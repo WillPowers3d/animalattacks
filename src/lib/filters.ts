@@ -13,6 +13,7 @@ export type IncidentQuery = {
   from?: string;
   to?: string;
   naOnly?: string;
+  hide?: string;
 };
 
 export function parseSearchParams(
@@ -35,6 +36,7 @@ export function parseSearchParams(
     from: one("from"),
     to: one("to"),
     naOnly: one("naOnly") ?? "1",
+    hide: one("hide"),
   };
 }
 

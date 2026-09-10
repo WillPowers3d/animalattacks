@@ -1,6 +1,5 @@
-import { IncidentCard } from "@/components/IncidentCard";
-import { IncidentFilters } from "@/components/IncidentFilters";
-import { IncidentMap } from "@/components/IncidentMap";
+import { HomeExplorer } from "@/components/HomeExplorer";
+import { toExplorerIncident } from "@/lib/explorer";
 import { parseSearchParams, toWhere } from "@/lib/filters";
 import { prisma } from "@/lib/prisma";
 
@@ -12,13 +11,12 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const sp = parseSearchParams(await searchParams);
-  const where = toWhere(sp);
+  const where = toWhere({ ...sp, species: undefined, hide: undefined });
 
-  const [incidents, states, total] = await Promise.all([
+  const [rows, states, total] = await Promise.all([
     prisma.incident.findMany({
       where,
       orderBy: [{ occurredAt: "desc" }, { createdAt: "desc" }],
-      take: 80,
     }),
     prisma.incident.findMany({
       where: { stateProvince: { not: null } },
@@ -28,17 +26,7 @@ export default async function HomePage({
     prisma.incident.count({ where }),
   ]);
 
-  const points = incidents
-    .filter((i) => i.lat != null && i.lng != null)
-    .map((i) => ({
-      slug: i.slug,
-      title: i.title,
-      lat: i.lat as number,
-      lng: i.lng as number,
-      species: i.species,
-      severity: i.severity,
-      dateDisplay: i.dateDisplay,
-    }));
+  const incidents = rows.map(toExplorerIncident).filter((i): i is NonNullable<typeof i> => i != null);
 
   const stateList = states
     .map((s) => s.stateProvince)
@@ -53,31 +41,14 @@ export default async function HomePage({
           North American animal attacks
         </h2>
         <p className="mt-2 max-w-3xl text-sm text-moss-200">
-          Browse {total} matching records. The historical core is Dean Weingarten’s documented
-          handgun defenses against bears (Ammoland / Gun Watch). Newer rows arrive from news RSS
-          and optional Facebook ingest. This is not an official government dataset.
+          {total} records in the ledger — every geocoded attack is on the map. Toggle animals live;
+          tap a cluster to expand, then a colored mark for the dossier. Historical core: Dean
+          Weingarten’s documented handgun defenses against bears (Ammoland / Gun Watch). This is
+          not official government data.
         </p>
       </section>
 
-      <IncidentFilters value={sp} states={stateList} />
-
-      <IncidentMap points={points} />
-
-      <div className="flex items-end justify-between">
-        <h3 className="stamp text-[10px] text-kraft-400">Incident list</h3>
-        <p className="font-mono text-xs text-moss-300">{total} records · showing {incidents.length}</p>
-      </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        {incidents.map((inc) => (
-          <IncidentCard key={inc.id} incident={inc} />
-        ))}
-      </div>
-      {incidents.length === 0 && (
-        <p className="border border-dashed border-kraft-500/30 p-8 text-center text-moss-300">
-          No incidents match these filters. Seed the database with{" "}
-          <code className="text-kraft-300">npm run db:reset</code>.
-        </p>
-      )}
+      <HomeExplorer incidents={incidents} query={sp} states={stateList} />
     </div>
   );
 }

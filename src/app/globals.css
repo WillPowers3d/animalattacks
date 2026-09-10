@@ -41,19 +41,115 @@ body {
   @apply w-full border border-kraft-500/30 bg-moss-950 px-2 py-2 text-sm text-kraft-200 outline-none focus:border-kraft-400;
 }
 
+.map-shell .maplibregl-ctrl-top-right {
+  top: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .map-shell .maplibregl-ctrl-top-right {
+    top: 8px;
+  }
+}
+
 .maplibregl-popup-content {
-  background: #1a261c !important;
+  background: #141c16 !important;
   color: #e4eee5 !important;
   border: 1px solid #c4a574 !important;
   border-radius: 2px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55) !important;
   font-family: inherit !important;
+  padding: 0 !important;
+  min-width: min(280px, 86vw);
+}
+
+.maplibregl-popup-close-button {
+  color: #e4d4b4 !important;
+  font-size: 22px !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 32px !important;
 }
 
 .maplibregl-popup-tip {
-  border-top-color: #1a261c !important;
+  border-top-color: #141c16 !important;
 }
 
 .maplibregl-ctrl-attrib {
   font-size: 10px !important;
+}
+
+.map-pop {
+  padding: 12px 14px 12px;
+}
+
+.map-pop-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e4d4b4;
+}
+
+.map-pop-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+}
+
+.map-pop-sev {
+  margin-left: auto;
+  border: 1px solid rgba(196, 165, 116, 0.45);
+  padding: 2px 6px;
+  color: #c3d4c5;
+}
+
+.map-pop-title {
+  margin: 8px 0 4px;
+  font-size: 15px;
+  line-height: 1.3;
+  color: #f0e6d0;
+}
+
+.map-pop-meta {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #93b197;
+}
+
+.map-pop-sum {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #d5e3d7;
+}
+
+.map-pop-gun {
+  margin: 0 0 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: #ff8a4c;
+}
+
+.map-pop-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #c45c26;
+  background: #9a3b1a;
+  color: #fff !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.map-pop-link:hover {
+  background: #c45c26;
 }

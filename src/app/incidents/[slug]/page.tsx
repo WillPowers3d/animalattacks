@@ -77,6 +77,8 @@ export default async function IncidentDetail({ params }: { params: Promise<{ slu
 
       {inc.lat != null && inc.lng != null && (
         <IncidentMap
+          compact
+          showLegend={false}
           points={[
             {
               slug: inc.slug,
@@ -86,6 +88,10 @@ export default async function IncidentDetail({ params }: { params: Promise<{ slu
               species: inc.species,
               severity: inc.severity,
               dateDisplay: inc.dateDisplay,
+              location: formatLocation(inc),
+              summary: inc.summary,
+              caliber: inc.caliber,
+              firearmType: inc.firearmType,
             },
           ]}
         />

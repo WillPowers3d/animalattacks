@@ -29,10 +29,12 @@ export function IncidentFilters({
   value,
   states,
   action = "/",
+  hideSpeciesSelect = false,
 }: {
   value: IncidentQuery;
   states: string[];
   action?: string;
+  hideSpeciesSelect?: boolean;
 }) {
   return (
     <form
@@ -40,17 +42,22 @@ export function IncidentFilters({
       method="get"
       className="grid gap-3 border border-kraft-500/25 bg-moss-900/70 p-4 sm:grid-cols-2 lg:grid-cols-4"
     >
-      <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
-        Species
-        <select name="species" defaultValue={value.species ?? ""} className="field-input">
-          <option value="">All species</option>
-          {SPECIES.map((s) => (
-            <option key={s} value={s}>
-              {SPECIES_LABELS[s]}
-            </option>
-          ))}
-        </select>
-      </label>
+      {value.hide ? (
+        <input type="hidden" name="hide" key={value.hide} defaultValue={value.hide} />
+      ) : null}
+      {!hideSpeciesSelect && (
+        <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
+          Species
+          <select name="species" defaultValue={value.species ?? ""} className="field-input">
+            <option value="">All species</option>
+            {SPECIES.map((s) => (
+              <option key={s} value={s}>
+                {SPECIES_LABELS[s]}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
       <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
         Region / state
         <select name="state" defaultValue={value.state ?? ""} className="field-input">
