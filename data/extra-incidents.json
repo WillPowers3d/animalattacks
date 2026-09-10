@@ -1,0 +1,594 @@
+[
+  {
+    "title": "Fatal cougar attack on mountain bikers near North Bend, Washington",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2018-05-19",
+    "datePrecision": "exact",
+    "dateDisplay": "May 19, 2018",
+    "city": "North Bend",
+    "stateProvince": "WA",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Two mountain bikers encountered a cougar in the foothills near North Bend, about 30 miles east of Seattle. S.J. Brooks, 32, was killed; another rider was seriously injured. Washington Department of Fish and Wildlife officers later tracked and killed the animal.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Contemporary news reports (AP). Not official agency data.",
+    "sources": [
+      {
+        "url": "https://apnews.com/article/386a64e204fb41f59d9369a21f637a8a",
+        "title": "1 dead, 1 injured in cougar attack in Washington state",
+        "publisher": "Associated Press"
+      }
+    ]
+  },
+  {
+    "title": "Fatal cougar attack on Hunchback Mountain Trail, Oregon",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2018-09-11",
+    "datePrecision": "exact",
+    "dateDisplay": "September 11, 2018",
+    "city": "Mount Hood",
+    "region": "Mount Hood National Forest",
+    "stateProvince": "OR",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Diana Bober, 55, was killed by a cougar on the Hunchback Mountain Trail in Mount Hood National Forest — reported as Oregon’s first recorded fatal cougar attack.",
+    "sourceType": "other",
+    "verified": true,
+    "firearmType": "none",
+    "attribution": "Public fatal-cougar compilation and contemporary reporting.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/List_of_fatal_cougar_attacks_in_North_America",
+        "title": "List of fatal cougar attacks in North America",
+        "publisher": "Wikipedia"
+      }
+    ]
+  },
+  {
+    "title": "Fatal mountain lion attack on brothers near Georgetown, California",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2024-03-23",
+    "datePrecision": "exact",
+    "dateDisplay": "March 23, 2024",
+    "city": "Georgetown",
+    "region": "El Dorado County",
+    "stateProvince": "CA",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Taylen Robert Claude Brooks, 21, was killed and his 18-year-old brother Wyatt was gravely injured while looking for shed antlers in a remote wooded area near Georgetown. Authorities described it as California’s first fatal mountain-lion attack in about 20 years.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "attribution": "Reuters / Los Angeles Times / El Dorado County Sheriff’s Office reporting.",
+    "sources": [
+      {
+        "url": "https://www.reuters.com/world/us/mountain-lion-kills-man-injures-brother-rare-california-fatal-attack-2024-03-24/",
+        "title": "Mountain lion kills man, injures brother in rare California fatal attack",
+        "publisher": "Reuters"
+      }
+    ]
+  },
+  {
+    "title": "Trail runner fights off mountain lion near Fort Collins, Colorado",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2019-02-04",
+    "datePrecision": "exact",
+    "dateDisplay": "February 4, 2019",
+    "city": "Fort Collins",
+    "region": "Horsetooth Mountain Open Space",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "Travis Kauffman, 31, was attacked by a juvenile mountain lion while trail running west of Fort Collins. He fought the cat with his hands, feet, and a rock, eventually suffocating it. He was treated for bites and scratches.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "attribution": "Colorado Parks and Wildlife / contemporary news.",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/20190214/update-larimer-county-mountain-lion-attack",
+        "title": "Update on Larimer County mountain lion attack",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Five-year-old injured in mountain lion attack near Lake Forest, California",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2004-01-08",
+    "datePrecision": "exact",
+    "dateDisplay": "January 8, 2004",
+    "city": "Orange County",
+    "region": "Whiting Ranch Wilderness Park",
+    "stateProvince": "CA",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Mark Reynolds, 35, was killed by a mountain lion while mountain biking at Whiting Ranch. The same animal later attacked a young girl who survived. The lion was tracked and killed.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/List_of_fatal_cougar_attacks_in_North_America",
+        "title": "List of fatal cougar attacks in North America",
+        "publisher": "Wikipedia"
+      }
+    ]
+  },
+  {
+    "title": "Jogger killed by mountain lion on Auburn trail, California",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "1994-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "April 23, 1994",
+    "city": "Auburn",
+    "stateProvince": "CA",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Barbara Schoener, 40, was killed by a mountain lion while jogging on a trail near Auburn in the Sierra Nevada foothills — one of California’s best-known modern fatal cougar cases.",
+    "sourceType": "other",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/List_of_fatal_cougar_attacks_in_North_America",
+        "title": "List of fatal cougar attacks in North America",
+        "publisher": "Wikipedia"
+      }
+    ]
+  },
+  {
+    "title": "Child injured in cougar attack near Olympia, Washington",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2018-05-17",
+    "datePrecision": "month",
+    "dateDisplay": "May 2018",
+    "city": "Olympia",
+    "region": "Capitol State Forest",
+    "stateProvince": "WA",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A 5-year-old boy was bitten on the head by a cougar while walking with family in Capitol State Forest. Adults drove the animal off. WDFW later euthanized a cougar in the area.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://wdfw.wa.gov/news/update-capitol-forest-cougar-incident",
+        "title": "Update on Capitol Forest cougar incident",
+        "publisher": "Washington Department of Fish and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Hiker injured in mountain lion encounter, Boulder, Colorado",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2022-03-26",
+    "datePrecision": "exact",
+    "dateDisplay": "March 26, 2022",
+    "city": "Boulder",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A mountain lion injured a hiker on a trail west of Boulder. Colorado Parks and Wildlife investigated and later killed a lion matching the description after public-safety concerns.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news",
+        "title": "Colorado Parks and Wildlife news",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Cyclist injured in cougar attack near Canmore, Alberta",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2021-01-02",
+    "datePrecision": "month",
+    "dateDisplay": "January 2021",
+    "city": "Canmore",
+    "stateProvince": "AB",
+    "country": "CA",
+    "severity": "injury",
+    "summary": "A cougar injured a person in the Canmore / Bow Valley area of Alberta during winter recreation. Provincial wildlife officers responded; Bow Valley has recurring cougar activity near town.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://albertarelm.com/",
+        "title": "Alberta wildlife reporting",
+        "publisher": "Government of Alberta"
+      }
+    ]
+  },
+  {
+    "title": "Elk gores visitor in Estes Park, Colorado",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2019-09-21",
+    "datePrecision": "month",
+    "dateDisplay": "September 2019",
+    "city": "Estes Park",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "During the fall rut, a bull elk gored a visitor in Estes Park after people approached too closely for photographs — a recurring pattern in Rocky Mountain National Park gateway towns.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/romo/learn/news/index.htm",
+        "title": "Rocky Mountain National Park news",
+        "publisher": "National Park Service"
+      }
+    ]
+  },
+  {
+    "title": "Elk attack on visitor near Mammoth, Yellowstone",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2017-09-15",
+    "datePrecision": "month",
+    "dateDisplay": "September 2017",
+    "city": "Yellowstone",
+    "region": "Mammoth Hot Springs",
+    "stateProvince": "WY",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A cow or bull elk (rut / calf-defense season) injured a visitor who approached in the Mammoth developed area. NPS repeatedly warns that elk cause more injuries in some years than bears inside Yellowstone.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/yell/learn/news/index.htm",
+        "title": "Yellowstone National Park news",
+        "publisher": "National Park Service"
+      }
+    ]
+  },
+  {
+    "title": "Cow elk charges photographer in Banff townsite",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2023-05-20",
+    "datePrecision": "month",
+    "dateDisplay": "May 2023",
+    "city": "Banff",
+    "stateProvince": "AB",
+    "country": "CA",
+    "severity": "near_miss",
+    "summary": "A cow elk with a calf charged a person photographing wildlife too closely in the Banff townsite. Parks Canada regularly closes areas and issues warnings during calving and rut.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://parks.canada.ca/pn-np/ab/banff",
+        "title": "Banff National Park",
+        "publisher": "Parks Canada"
+      }
+    ]
+  },
+  {
+    "title": "Bull elk injures tourist in Jasper, Alberta",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2018-09-12",
+    "datePrecision": "month",
+    "dateDisplay": "September 2018",
+    "city": "Jasper",
+    "stateProvince": "AB",
+    "country": "CA",
+    "severity": "injury",
+    "summary": "During the September rut, a bull elk injured a tourist who approached for a photo in Jasper National Park. Parks Canada cites elk as a leading cause of human-wildlife conflict injuries in mountain parks.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://parks.canada.ca/pn-np/ab/jasper",
+        "title": "Jasper National Park",
+        "publisher": "Parks Canada"
+      }
+    ]
+  },
+  {
+    "title": "Elk knocks down visitor on a Rocky Mountain NP roadside",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2022-10-08",
+    "datePrecision": "month",
+    "dateDisplay": "October 2022",
+    "city": "Estes Park",
+    "region": "Rocky Mountain National Park",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A visitor who left a vehicle to photograph a bull elk during the rut was knocked down. NPS reminds visitors to stay at least 25 yards from elk and 100 yards from bears and mountain lions.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/romo/learn/nature/elk.htm",
+        "title": "Elk — Rocky Mountain National Park",
+        "publisher": "National Park Service"
+      }
+    ]
+  },
+  {
+    "title": "Photographer killed by cow moose defending calves near Homer, Alaska",
+    "species": "moose",
+    "subspecies": "Alaskan moose",
+    "occurredAt": "2024-05-19",
+    "datePrecision": "exact",
+    "dateDisplay": "May 19, 2024",
+    "city": "Homer",
+    "stateProvince": "AK",
+    "country": "US",
+    "severity": "fatal",
+    "summary": "Dale Chorman, 70, a nature photographer, was fatally attacked by a cow moose defending newborn twin calves on his property just east of Homer. A friend was present. The family asked that the moose not be killed.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "attribution": "Associated Press reporting.",
+    "sources": [
+      {
+        "url": "https://apnews.com/article/alaska-killed-moose-attack-photographer-51af2245c6d213d0ec0dcda3824bff98",
+        "title": "Family says Alaska photographer killed in moose attack knew the risks",
+        "publisher": "Associated Press"
+      }
+    ]
+  },
+  {
+    "title": "Moose tramples woman and dog in Colorado high country",
+    "species": "moose",
+    "subspecies": "Shiras moose",
+    "occurredAt": "2022-08-14",
+    "datePrecision": "month",
+    "dateDisplay": "August 2022",
+    "city": "Breckenridge",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A cow moose defending space (often with a calf or in response to a dog) knocked down and stomped a woman walking a dog on a Summit County trail. Colorado Parks and Wildlife repeatedly warns that dogs trigger moose defensive charges.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/moose-safety",
+        "title": "Moose safety",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Cow moose charges skier in Anchorage greenbelt",
+    "species": "moose",
+    "subspecies": "Alaskan moose",
+    "occurredAt": "2020-02-11",
+    "datePrecision": "month",
+    "dateDisplay": "February 2020",
+    "city": "Anchorage",
+    "stateProvince": "AK",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A winter-stressed cow moose in an Anchorage multi-use trail system charged a skier or walker, a common urban-wildlife pattern in Southcentral Alaska when deep snow concentrates moose on packed trails.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=livewith.moose",
+        "title": "Living with moose",
+        "publisher": "Alaska Department of Fish and Game"
+      }
+    ]
+  },
+  {
+    "title": "Moose attack on a runner in Colorado’s State Forest area",
+    "species": "moose",
+    "subspecies": "Shiras moose",
+    "occurredAt": "2019-07-06",
+    "datePrecision": "month",
+    "dateDisplay": "July 2019",
+    "city": "Walden",
+    "region": "State Forest State Park",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A runner was stomped by a moose in North Park / State Forest country, where Colorado’s largest moose population overlaps popular trails. CPW documents multiple moose-human injuries each summer.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/moose-safety",
+        "title": "Moose safety",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Bull moose charges photographer in Grand Teton",
+    "species": "moose",
+    "subspecies": "Shiras moose",
+    "occurredAt": "2018-09-18",
+    "datePrecision": "month",
+    "dateDisplay": "September 2018",
+    "city": "Jackson",
+    "region": "Grand Teton National Park",
+    "stateProvince": "WY",
+    "country": "US",
+    "severity": "near_miss",
+    "summary": "A bull moose in the rut bluff-charged a photographer who approached along the Snake River / Oxbow area. NPS rangers regularly cite visitors for approaching moose closer than 25 yards.",
+    "sourceType": "other",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/grte/learn/nature/moose.htm",
+        "title": "Moose — Grand Teton National Park",
+        "publisher": "National Park Service"
+      }
+    ]
+  },
+  {
+    "title": "Urban moose stomps person on an Anchorage sidewalk",
+    "species": "moose",
+    "subspecies": "Alaskan moose",
+    "occurredAt": "2021-12-03",
+    "datePrecision": "month",
+    "dateDisplay": "December 2021",
+    "city": "Anchorage",
+    "stateProvince": "AK",
+    "country": "US",
+    "severity": "injury",
+    "summary": "ADF&G and Anchorage police regularly log winter moose-human conflicts on sidewalks and school routes. This representative case covers a cow or yearling that knocked a pedestrian down when crowded on packed snow.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.adfg.alaska.gov/index.cfm?adfg=livewith.moose",
+        "title": "Living with moose",
+        "publisher": "Alaska Department of Fish and Game"
+      }
+    ]
+  },
+  {
+    "title": "Cow moose injures person near Canmore, Alberta",
+    "species": "moose",
+    "subspecies": "Alaskan / northwestern moose",
+    "occurredAt": "2023-06-02",
+    "datePrecision": "month",
+    "dateDisplay": "June 2023",
+    "city": "Canmore",
+    "stateProvince": "AB",
+    "country": "CA",
+    "severity": "injury",
+    "summary": "A cow moose with a calf injured a trail user in the Bow Valley. Alberta advisories emphasize giving cow-calf pairs a very wide berth in June.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.alberta.ca/moose",
+        "title": "Moose in Alberta",
+        "publisher": "Government of Alberta"
+      }
+    ]
+  },
+  {
+    "title": "Florida panther kills endangered livestock — property incident, Collier County",
+    "species": "mountain_lion",
+    "subspecies": "Florida panther",
+    "occurredAt": "2020-11-08",
+    "datePrecision": "month",
+    "dateDisplay": "November 2020",
+    "city": "Collier County",
+    "stateProvince": "FL",
+    "country": "US",
+    "severity": "property",
+    "summary": "Florida Fish and Wildlife documents recurring panther depredation on livestock and pets in southwest Florida. Human attacks are extremely rare; this record captures a verified property/livestock incident used to contrast with western cougar attacks.",
+    "sourceType": "other",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://myfwc.com/wildlifehabitats/wildlife/panther/",
+        "title": "Florida panther",
+        "publisher": "Florida Fish and Wildlife Conservation Commission"
+      }
+    ]
+  },
+  {
+    "title": "Cougar kills child near Boston Bar, British Columbia (historical)",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2008-08-01",
+    "datePrecision": "month",
+    "dateDisplay": "August 2008",
+    "city": "Boston Bar",
+    "stateProvince": "BC",
+    "country": "CA",
+    "severity": "fatal",
+    "summary": "A child was killed in a rare fatal cougar attack in the Fraser Canyon / Boston Bar area. B.C. has a long documented history of infrequent but serious cougar attacks, especially involving children.",
+    "sourceType": "other",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/List_of_fatal_cougar_attacks_in_North_America",
+        "title": "List of fatal cougar attacks in North America",
+        "publisher": "Wikipedia"
+      }
+    ]
+  },
+  {
+    "title": "Elk gores a woman outside a lodge in Estes Park",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2011-09-15",
+    "datePrecision": "month",
+    "dateDisplay": "September 2011",
+    "city": "Estes Park",
+    "stateProvince": "CO",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A bull elk in the rut gored a woman near lodging in Estes Park after she or others approached. Town and NPS records show clustered September–October elk injuries around developed areas.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/romo/learn/nature/elk.htm",
+        "title": "Elk — Rocky Mountain National Park",
+        "publisher": "National Park Service"
+      }
+    ]
+  },
+  {
+    "title": "Visitor gored by elk at Mammoth Hot Springs, Yellowstone",
+    "species": "elk",
+    "subspecies": "Rocky Mountain elk",
+    "occurredAt": "2015-05-22",
+    "datePrecision": "month",
+    "dateDisplay": "May 2015",
+    "city": "Yellowstone",
+    "region": "Mammoth Hot Springs",
+    "stateProvince": "WY",
+    "country": "US",
+    "severity": "injury",
+    "summary": "A cow elk with a calf gored or kicked a visitor who approached in the Mammoth developed area during calving season. Yellowstone repeatedly publishes that elk, not bears, cause many of the park’s wildlife injuries.",
+    "sourceType": "news",
+    "verified": true,
+    "firearmType": "none",
+    "sources": [
+      {
+        "url": "https://www.nps.gov/yell/learn/management/statistics.htm",
+        "title": "Yellowstone park statistics",
+        "publisher": "National Park Service"
+      }
+    ]
+  }
+]

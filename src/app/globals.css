@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: #0b100d;
+  color: #e4eee5;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 600px at 10% -10%, rgba(196, 165, 116, 0.08), transparent 50%),
+    radial-gradient(900px 500px at 110% 10%, rgba(196, 92, 38, 0.08), transparent 45%),
+    linear-gradient(180deg, #0b100d 0%, #121a15 40%, #0b100d 100%);
+  min-height: 100%;
+}
+
+::selection {
+  background: #c45c26;
+  color: #fff;
+}
+
+.field-grid {
+  background-image:
+    linear-gradient(rgba(196, 165, 116, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 165, 116, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.stamp {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.field-input {
+  @apply w-full border border-kraft-500/30 bg-moss-950 px-2 py-2 text-sm text-kraft-200 outline-none focus:border-kraft-400;
+}
+
+.maplibregl-popup-content {
+  background: #1a261c !important;
+  color: #e4eee5 !important;
+  border: 1px solid #c4a574 !important;
+  border-radius: 2px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  font-family: inherit !important;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: #1a261c !important;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+}
