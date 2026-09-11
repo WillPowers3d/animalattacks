@@ -105,6 +105,23 @@ export const WILDLIFE_STATES = [
   "SD",
   "ND",
   "FL",
+  // Remaining black-bear / cougar range after the first wave
+  "TX",
+  "OK",
+  "AR",
+  "GA",
+  "KY",
+  "MO",
+  "IA",
+  "KS",
+  "NE",
+  "LA",
+  "AL",
+  "SC",
+  "MS",
+  "OH",
+  "IN",
+  "IL",
 ] as const;
 
 export function wildlifeRank(state?: string | null): number {

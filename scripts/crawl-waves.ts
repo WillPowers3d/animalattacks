@@ -4,8 +4,17 @@
  *
  *   npx tsx scripts/crawl-waves.ts --hours=2 --batch=600 --concurrency=12
  */
+import { writeSync } from "node:fs";
 import { runPublicationCrawl } from "../src/lib/publications/crawl";
 import { prisma } from "../src/lib/prisma";
+
+function log(msg: string) {
+  try {
+    writeSync(1, `${msg}\n`);
+  } catch {
+    console.log(msg);
+  }
+}
 
 function flag(name: string): string | undefined {
   const pref = `--${name}=`;
@@ -41,7 +50,7 @@ async function main() {
     }
     wave += 1;
     const minsLeft = Math.round((deadline - Date.now()) / 60000);
-    console.log(`\n=== wave ${wave} · ${left} remaining · ${minsLeft} min left · batch ${batch} ===`);
+    log(`\n=== wave ${wave} · ${left} remaining · ${minsLeft} min left · batch ${batch} ===`);
     const result = await runPublicationCrawl({
       limit: batch,
       concurrency,

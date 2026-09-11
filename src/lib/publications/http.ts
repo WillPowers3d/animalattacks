@@ -22,14 +22,20 @@ function hostOf(url: string): string {
 
 export async function politeFetch(
   url: string,
-  opts: { timeoutMs?: number; minDelayMs?: number; accept?: string } = {},
+  opts: { timeoutMs?: number; minDelayMs?: number; accept?: string; signal?: AbortSignal } = {},
 ): Promise<FetchResult> {
   const timeoutMs = opts.timeoutMs ?? 12000;
   const minDelayMs = opts.minDelayMs ?? 1200;
   const host = hostOf(url);
+  if (opts.signal?.aborted) {
+    return { ok: false, status: 0, url, text: "", contentType: "", error: "aborted" };
+  }
   const waitUntil = hostNextAllowed.get(host) ?? 0;
   const now = Date.now();
   if (waitUntil > now) await sleep(waitUntil - now);
+  if (opts.signal?.aborted) {
+    return { ok: false, status: 0, url, text: "", contentType: "", error: "aborted" };
+  }
   hostNextAllowed.set(host, Date.now() + minDelayMs);
 
   let last: FetchResult = {
@@ -43,6 +49,9 @@ export async function politeFetch(
 
   for (let attempt = 0; attempt < 3; attempt++) {
     const ctrl = new AbortController();
+    const onParentAbort = () => ctrl.abort();
+    opts.signal?.addEventListener("abort", onParentAbort);
+    if (opts.signal?.aborted) ctrl.abort();
     const t = setTimeout(() => ctrl.abort(), timeoutMs);
     try {
       const res = await fetch(url, {
@@ -84,13 +93,18 @@ export async function politeFetch(
         contentType: "",
         error: err instanceof Error ? err.message : String(err),
       };
-      if (attempt < 2 && /aborted|network|ECONNRESET|ETIMEDOUT|fetch failed/i.test(last.error ?? "")) {
+      if (
+        attempt < 2 &&
+        !opts.signal?.aborted &&
+        /aborted|network|ECONNRESET|ETIMEDOUT|fetch failed/i.test(last.error ?? "")
+      ) {
         await sleep(800 * (attempt + 1));
         continue;
       }
       return last;
     } finally {
       clearTimeout(t);
+      opts.signal?.removeEventListener("abort", onParentAbort);
     }
   }
   return last;

@@ -15,6 +15,7 @@ import zlib from "node:zlib";
 import { parseCsv } from "../src/lib/publications/csv";
 import { isNationalOrJunkHost } from "../src/lib/publications/national";
 import { normalizeHost, normalizeHomepage } from "../src/lib/publications/domain";
+import { parseLocationField, stateFromBundle } from "../src/lib/publications/infer-state";
 import { stateAbbr, US_STATE_NAMES } from "../src/lib/publications/states";
 import { geocodeIncident } from "../src/lib/geo";
 import type { CirculationTier, DirectoryManifest, PublicationSeed } from "../src/lib/publications/types";
@@ -220,12 +221,14 @@ function loadHomepages(file: string) {
   let n = 0;
   for (const row of rows) {
     if ((row.country || "").toUpperCase() !== "US") continue;
+    const loc = parseLocationField(row.location);
     remember(
       {
         name: row.name,
         url: row.url,
-        city: row.location,
-        town: row.location,
+        city: loc.city,
+        town: loc.city,
+        state: stateFromBundle(row.bundle) ?? loc.state,
         tier: "newspaper",
       },
       "news-homepages",

@@ -196,7 +196,10 @@ Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. 
 | `npm run parse:weingarten` | Re-parse `data/sources/` |
 | `npm run ingest` / `ingest:dry` | News + Facebook pipeline |
 | `npm run publications:build` | Rebuild `data/publications/us-local-news.json.gz` from open sources |
+| `npm run publications:fill-states` | Infer missing states; rewrite seed + live DB |
 | `npm run crawl:publications` / `crawl:publications:dry` | Scan local papers → upsert incidents |
+| `npm run crawl:waves` | Unattended batches until `--hours` budget |
+| `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
 | `npm run test:publications` | Keyword matcher unit checks |
 | `npm run geocode:report` | City / state / country geocode coverage |
 

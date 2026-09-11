@@ -1,3 +1,4 @@
+import { writeSync } from "node:fs";
 import { prisma } from "../prisma";
 import { alreadyExists, persistIncident } from "../ingest/persist";
 import { extractPageSnippet } from "./html";
@@ -56,13 +57,26 @@ type PubRow = {
   robotsStatus: string | null;
 };
 
-async function loadRobots(homepageUrl: string, minDelayMs: number): Promise<RobotsRules> {
+function progress(msg: string) {
+  try {
+    writeSync(1, `${msg}\n`);
+  } catch {
+    console.log(msg);
+  }
+}
+
+async function loadRobots(
+  homepageUrl: string,
+  minDelayMs: number,
+  signal?: AbortSignal,
+): Promise<RobotsRules> {
   const origin = originOf(homepageUrl);
   if (!origin) return emptyRobots("error");
   const res = await politeFetch(`${origin}/robots.txt`, {
     accept: "text/plain,*/*",
     minDelayMs,
     timeoutMs: 8000,
+    signal,
   });
   if (!res.ok || !res.text) return emptyRobots(res.status === 404 ? "allow" : "unknown");
   return parseRobotsTxt(res.text, origin);
@@ -136,7 +150,11 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
     ? new Date(Date.now() - skipRecentHours * 3600 * 1000)
     : null;
   const queued = candidates
-    .filter((p) => opts.force || !cutoff || !p.lastCrawledAt || p.lastCrawledAt < cutoff)
+    .filter((p) => {
+      if (/^\?{2,}$/.test(p.name.trim())) return false;
+      if (/\.(tw|ru|cn|jp|kr)$/i.test(p.domain)) return false;
+      return opts.force || !cutoff || !p.lastCrawledAt || p.lastCrawledAt < cutoff;
+    })
     .sort((a, b) => {
       const wr = wildlifeRank(a.state) - wildlifeRank(b.state);
       if (wr !== 0) return wr;
@@ -167,31 +185,19 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   };
 
   await mapPool(queued, concurrency, async (pub) => {
-    const timedOut = {
-      fetched: 0,
-      matched: 0,
-      upserted: 0,
-      skipped: 0,
-      robotsBlocked: false,
-      error: "pub-timeout-45s",
-      samples: [] as CrawlResult["samples"],
-    };
-    const result = await Promise.race([
-      crawlOne(pub, {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 45_000);
+    let result: Awaited<ReturnType<typeof crawlOne>>;
+    try {
+      result = await crawlOne(pub, {
         dryRun,
         mode,
         since: pub.lastCrawledAt ? since : null,
         minDelayMs,
-      }),
-      sleep(45_000).then(() => timedOut),
-    ]);
-    if (result.error === "pub-timeout-45s") {
-      await withBusyRetry(() =>
-        prisma.publication.update({
-          where: { id: pub.id },
-          data: { lastCrawledAt: new Date(), lastError: "pub-timeout-45s" },
-        }),
-      );
+        signal: ctrl.signal,
+      });
+    } finally {
+      clearTimeout(timer);
     }
     scanned += 1;
     fetchedArticles += result.fetched;
@@ -210,7 +216,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       if (samples.length < 60) samples.push(s);
     }
     if (scanned % 25 === 0) {
-      console.log(
+      progress(
         `[crawl] ${scanned}/${queued.length} pubs · articles=${fetchedArticles} matches=${matchingArticles} upserted=${incidentsUpserted}`,
       );
     }
@@ -247,7 +253,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
 async function crawlOne(
   pub: PubRow,
-  opts: { dryRun: boolean; mode: string; since: Date | null; minDelayMs: number },
+  opts: { dryRun: boolean; mode: string; since: Date | null; minDelayMs: number; signal?: AbortSignal },
 ): Promise<{
   fetched: number;
   matched: number;
@@ -269,7 +275,8 @@ async function crawlOne(
   );
 
   try {
-    const rules = await loadRobots(pub.homepageUrl, opts.minDelayMs);
+    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+    const rules = await loadRobots(pub.homepageUrl, opts.minDelayMs, opts.signal);
     const origin = originOf(pub.homepageUrl);
     if (!rules.fetchable || (origin && !robotsAllows(rules, "/"))) {
       await finishPub(pub, crawlRow.id, {
@@ -288,7 +295,7 @@ async function crawlOne(
     let homepageHtml: string | undefined;
     const needHomepage = !pub.rssUrl && origin && robotsAllows(rules, "/");
     if (needHomepage) {
-      const home = await politeFetch(pub.homepageUrl, { minDelayMs: delay });
+      const home = await politeFetch(pub.homepageUrl, { minDelayMs: delay, signal: opts.signal });
       if (home.ok) homepageHtml = home.text;
     }
 
@@ -301,10 +308,12 @@ async function crawlOne(
       if (!articles.has(key)) articles.set(key, item);
     };
 
+    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
     const rssTargets = discovered.rss.slice(0, opts.mode === "backfill" ? 6 : 3);
     for (const feed of rssTargets) {
+      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
       if (!robotsAllows(rules, new URL(feed).pathname)) continue;
-      const items = await fetchRssArticles(feed);
+      const items = await fetchRssArticles(feed, opts.signal);
       for (const item of items) add(item);
       if (items.length) break;
     }
@@ -324,6 +333,7 @@ async function crawlOne(
         maxUrls: opts.mode === "backfill" ? 120 : 40,
         maxChildSitemaps: opts.mode === "backfill" ? 8 : 3,
         minDelayMs: delay,
+        signal: opts.signal,
       });
       for (const item of items) add(item);
     }
@@ -332,6 +342,7 @@ async function crawlOne(
       const searchItems = await fetchSearchArticles(pub.homepageUrl, rules, {
         minDelayMs: delay,
         maxQueries: 3,
+        signal: opts.signal,
       });
       for (const item of searchItems) add(item);
     }
@@ -355,6 +366,7 @@ async function crawlOne(
     if (!firstRss && discovered.rss.length) firstRss = discovered.rss[0];
 
     for (const article of articles.values()) {
+      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
@@ -368,7 +380,7 @@ async function crawlOne(
           skipped += 1;
           continue;
         }
-        const page = await politeFetch(article.url, { minDelayMs: delay });
+        const page = await politeFetch(article.url, { minDelayMs: delay, signal: opts.signal });
         if (page.ok) {
           const extracted = extractPageSnippet(page.text);
           title = title || extracted.title;

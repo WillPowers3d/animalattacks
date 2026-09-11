@@ -24,6 +24,7 @@
     "crawl:publications:dry": "tsx scripts/crawl-publications.ts --dry-run",
     "crawl:waves": "tsx scripts/crawl-waves.ts",
     "publications:fill-states": "tsx scripts/fill-publication-states.ts --rewrite-seed",
+    "publications:fill-states:seed": "tsx scripts/fill-publication-states.ts --rewrite-seed --seed-only",
     "test:publications": "tsx scripts/test-publication-match.ts",
     "results:write": "tsx scripts/write-results.ts"
   },

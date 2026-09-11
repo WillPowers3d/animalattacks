@@ -65,7 +65,8 @@ export async function discoverFeeds(
   return { rss: [...rss], sitemaps: [...sitemaps] };
 }
 
-export async function fetchRssArticles(feedUrl: string): Promise<ArticleCandidate[]> {
+export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): Promise<ArticleCandidate[]> {
+  if (signal?.aborted) return [];
   try {
     const feed = await rssParser.parseURL(feedUrl);
     const items: ArticleCandidate[] = [];
@@ -90,7 +91,13 @@ export async function fetchRssArticles(feedUrl: string): Promise<ArticleCandidat
 export async function fetchSitemapArticles(
   sitemapUrl: string,
   rules: RobotsRules,
-  opts: { since?: Date | null; maxUrls?: number; maxChildSitemaps?: number; minDelayMs?: number },
+  opts: {
+    since?: Date | null;
+    maxUrls?: number;
+    maxChildSitemaps?: number;
+    minDelayMs?: number;
+    signal?: AbortSignal;
+  },
 ): Promise<ArticleCandidate[]> {
   const seenMaps = new Set<string>();
   const queue = [sitemapUrl];
@@ -99,6 +106,7 @@ export async function fetchSitemapArticles(
   const since = opts.since ?? null;
 
   while (queue.length && seenMaps.size < maxChild) {
+    if (opts.signal?.aborted) break;
     const next = queue.shift()!;
     if (seenMaps.has(next)) continue;
     if (!robotsAllows(rules, pathOf(next))) continue;
@@ -106,6 +114,7 @@ export async function fetchSitemapArticles(
     const res = await politeFetch(next, {
       accept: "application/xml,text/xml,*/*",
       minDelayMs: opts.minDelayMs,
+      signal: opts.signal,
     });
     if (!res.ok || !res.text) continue;
     const locs = extractSitemapLocs(res.text);
@@ -148,7 +157,7 @@ export async function fetchSitemapArticles(
 export async function fetchSearchArticles(
   homepageUrl: string,
   rules: RobotsRules,
-  opts: { minDelayMs?: number; maxQueries?: number } = {},
+  opts: { minDelayMs?: number; maxQueries?: number; signal?: AbortSignal } = {},
 ): Promise<ArticleCandidate[]> {
   const origin = originOf(homepageUrl);
   if (!origin) return [];
@@ -163,10 +172,11 @@ export async function fetchSearchArticles(
   ];
 
   for (const q of queries) {
+    if (opts.signal?.aborted) break;
     for (const path of templates(q)) {
       if (!robotsAllows(rules, path)) continue;
       const url = new URL(path, origin).toString();
-      const res = await politeFetch(url, { minDelayMs: opts.minDelayMs });
+      const res = await politeFetch(url, { minDelayMs: opts.minDelayMs, signal: opts.signal });
       if (!res.ok || !res.text) continue;
       if (/just a moment|captcha|enable javascript|access denied/i.test(res.text.slice(0, 2000))) {
         continue;
