@@ -37,9 +37,9 @@ export default async function PublicationsPage({
 
   const [total, scanned, matched, withRss, rows, byState, lastCrawls] = await Promise.all([
     prisma.publication.count({ where }),
-    prisma.publication.count({ where: { lastCrawledAt: { not: null } } }),
-    prisma.publication.count({ where: { matchCount: { gt: 0 } } }),
-    prisma.publication.count({ where: { rssUrl: { not: null } } }),
+    prisma.publication.count({ where: { ...where, lastCrawledAt: { not: null } } }),
+    prisma.publication.count({ where: { ...where, matchCount: { gt: 0 } } }),
+    prisma.publication.count({ where: { ...where, rssUrl: { not: null } } }),
     prisma.publication.findMany({
       where,
       orderBy: [{ matchCount: "desc" }, { state: "asc" }, { name: "asc" }],

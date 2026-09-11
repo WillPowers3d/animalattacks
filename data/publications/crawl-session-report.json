@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-11T20:09:23.732Z",
+  "generatedAt": "2026-09-11T20:12:07.185Z",
   "environment": "cloud-agent SQLite session (not production Postgres)",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 847,
-  "articlesFetched": 14774,
+  "publicationsScanned": 934,
+  "articlesFetched": 16040,
   "matchingArticles": 32,
   "publicationsWithMatches": 22,
   "incidentsFromLocalPapers": 37,
@@ -18,9 +18,9 @@
     },
     {
       "state": "CA",
-      "scanned": 55,
+      "scanned": 142,
       "matches": 0,
-      "articles": 585
+      "articles": 1851
     },
     {
       "state": "CO",
