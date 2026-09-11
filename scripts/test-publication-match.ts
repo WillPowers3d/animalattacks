@@ -16,6 +16,8 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Lodgepole man charged with poaching deer and elk", want: false },
   { title: "Hunter charged with illegal mountain lion kill", want: false },
   { title: "Grizzly charged a hunter near Choteau", want: true },
+  { title: "Boulder policemen charged in elk shooting", want: false },
+  { title: "Cocaine Bear thrives with outstanding gore", want: false },
 ];
 
 let failed = 0;

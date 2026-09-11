@@ -13,7 +13,7 @@ const ANIMAL_PATTERNS: { species: Species; re: RegExp; term: string }[] = [
 ];
 
 const ATTACK_RE =
-  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores?|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
+  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
 
 /** "bear charged a hiker" is an attack; "man charged with poaching elk" is not. */
 const ANIMAL_CHARGED_RE =
@@ -35,7 +35,11 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
 
   const attack = text.match(ATTACK_RE) ?? (ANIMAL_CHARGED_RE.test(text) ? ["charged", "charged"] : null);
   if (!attack) return { matched: false, species: "other", reason: "no-attack-term" };
-  if (/\bcharged with\b/i.test(text) && !ATTACK_RE.test(text) && !/\b(mauled|mauling|attacked|charging)\b/i.test(text)) {
+  if (
+    /\bcharged (with|in)\b/i.test(text) &&
+    !ATTACK_RE.test(text) &&
+    !/\b(mauled|mauling|attacked|charging)\b/i.test(text)
+  ) {
     return { matched: false, species: "other", reason: "legal-charged-with" };
   }
 

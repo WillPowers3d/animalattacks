@@ -1,0 +1,344 @@
+{
+  "generatedAt": "2026-09-11T20:09:23.732Z",
+  "environment": "cloud-agent SQLite session (not production Postgres)",
+  "publicationsSeeded": 14847,
+  "publicationsScanned": 847,
+  "articlesFetched": 14774,
+  "matchingArticles": 32,
+  "publicationsWithMatches": 22,
+  "incidentsFromLocalPapers": 37,
+  "incidentsTotal": 267,
+  "seedIncidentsUnchanged": 230,
+  "crawledStates": [
+    {
+      "state": "AK",
+      "scanned": 49,
+      "matches": 6,
+      "articles": 1091
+    },
+    {
+      "state": "CA",
+      "scanned": 55,
+      "matches": 0,
+      "articles": 585
+    },
+    {
+      "state": "CO",
+      "scanned": 225,
+      "matches": 8,
+      "articles": 3770
+    },
+    {
+      "state": "ID",
+      "scanned": 78,
+      "matches": 2,
+      "articles": 1652
+    },
+    {
+      "state": "MT",
+      "scanned": 78,
+      "matches": 11,
+      "articles": 2379
+    },
+    {
+      "state": "OR",
+      "scanned": 131,
+      "matches": 0,
+      "articles": 2311
+    },
+    {
+      "state": "WA",
+      "scanned": 190,
+      "matches": 2,
+      "articles": 2117
+    },
+    {
+      "state": "WY",
+      "scanned": 41,
+      "matches": 3,
+      "articles": 869
+    }
+  ],
+  "localIncidentsBySpecies": {
+    "bear": 27,
+    "elk": 2,
+    "moose": 3,
+    "mountain_lion": 5
+  },
+  "localIncidentsByState": {
+    "AK": 9,
+    "CO": 11,
+    "ID": 2,
+    "IL": 1,
+    "MT": 9,
+    "WA": 2,
+    "WY": 3
+  },
+  "sampleMatches": [
+    {
+      "title": "Washington man survives bear attack in northern Alaska wilderness, transported to Seattle",
+      "species": "bear",
+      "place": "Kitsap, AK",
+      "publisher": "Bainbridge Islander",
+      "url": "https://www.kitsapsun.com/story/news/2026/09/03/washington-man-survives-bear-attack-in-northern-alaska-wilderness-transported-to-seattle/91593745007/"
+    },
+    {
+      "title": "Rare cougar attack outside Ferndale - The Northern Light",
+      "species": "mountain_lion",
+      "place": "Ferndale, WA",
+      "publisher": "Northern Light",
+      "url": "https://www.thenorthernlight.com/stories/rare-cougar-attack-outside-ferndale,2802"
+    },
+    {
+      "title": "Eagle County deputy kills bear who charged him at apartment complex where previous attack occurred",
+      "species": "bear",
+      "place": "Mesa, CO",
+      "publisher": "KJCT",
+      "url": "https://www.kjct8.com/2026/09/08/eagle-county-deputy-kills-bear-who-charged-him-apartment-complex-where-previous-attack-occurred/"
+    },
+    {
+      "title": "What's driving record number of Colorado bear attacks, sightings",
+      "species": "bear",
+      "place": "Larimer, CO",
+      "publisher": "Coloradoan",
+      "url": "https://www.coloradoan.com/story/news/local/colorado/2026/09/02/whats-driving-record-number-of-colorado-bear-attacks-sightings/91565739007/"
+    },
+    {
+      "title": "Bear sought in bite and run incident - The Pagosa Springs Sun",
+      "species": "bear",
+      "place": "Pagosa, CO",
+      "publisher": "The Pagosa Springs SUN newspaper",
+      "url": "https://www.pagosasun.com/stories/bear-sought-in-bite-and-run-incident,1441"
+    },
+    {
+      "title": "Gilpin women attacked by moose - The Mountain-Ear",
+      "species": "moose",
+      "place": "Boulder, CO",
+      "publisher": "Nederland Mountain-Ear",
+      "url": "https://www.themtnear.com/stories/gilpin-women-attacked-by-moose,1762"
+    },
+    {
+      "title": "“Bear Attack” ice cream and  Slogar fried  chicken help capture local problem bear - The Crested Butte News",
+      "species": "bear",
+      "place": "Gunnison, CO",
+      "publisher": "crestedbuttenews.com",
+      "url": "https://crestedbuttenews.com/2010/07/bear-attack-ice-cream-and-slogar-fried-chicken-help-capture-local-problem-bear/"
+    },
+    {
+      "title": "Bear mauls ninja to give  Mason four-year council term - The Crested Butte News",
+      "species": "bear",
+      "place": "Gunnison, CO",
+      "publisher": "crestedbuttenews.com",
+      "url": "https://crestedbuttenews.com/2009/11/bear-mauls-ninja-to-give-mason-four-year-council-term/"
+    },
+    {
+      "title": "2 more bears killed in Colorado, including 1 that charged deputies as witnesses watched; Conflicts in Durango and Vail highlight danger to humans and bears when drought has made na",
+      "species": "bear",
+      "place": "Colorado, CO",
+      "publisher": "Montrose Daily Press",
+      "url": "https://www.montrosepress.com/2-more-bears-killed-in-colorado-including-1-that-charged-deputies-as-witnesses-watched-conflicts/article_29c6f794-168d-4fd9-8e22-99958a9bf285.html"
+    },
+    {
+      "title": "2 more bears killed in Colorado, including 1 that charged deputies as witnesses watched; Conflicts in Durango and Vail highlight danger to humans and bears when drought has made na",
+      "species": "bear",
+      "place": "Colorado, CO",
+      "publisher": "Montrose Daily Press",
+      "url": "https://www.montrosepress.com/townnews/food/2-more-bears-killed-in-colorado-including-1-that-charged-deputies-as-witnesses-watched-conflicts/article_6c1abe28-f4db-4309-aa08-c77da2d12251.html"
+    },
+    {
+      "title": "Colorado’s High Country sees 4 black bear attacks in August as bear activity sets records amid drought",
+      "species": "bear",
+      "place": "August, CO",
+      "publisher": "Citizen Telegram",
+      "url": "https://www.postindependent.com/news/colorado-high-country-black-bear-attacks-drought/"
+    },
+    {
+      "title": "Update: Boulder policemen charged in elk shooting – Recorder Online",
+      "species": "elk",
+      "place": "Larimer, CO",
+      "publisher": "berthoudrecorder.com",
+      "url": "https://www.berthoudrecorder.com/boulder-policemen-charged-in-elk-shooting/"
+    },
+    {
+      "title": "Poaching Mushrooms/ Bear Attack/ Boise County Embezzlement Case - The Idaho World",
+      "species": "bear",
+      "place": "Ada, ID",
+      "publisher": "Idaho World",
+      "url": "https://idahoworld.com/poaching-mushrooms-bear-attack-boise-county-embezzlement-case/"
+    },
+    {
+      "title": "Rangers in Yellowstone National Park kill black bear after it bites camper",
+      "species": "bear",
+      "place": "Yellowstone National, WY",
+      "publisher": "Sheridan Media Newspaper",
+      "url": "https://sheridanmedia.com/news/23620/rangers-in-yellowstone-national-park-kill-black-bear-after-it-bites-camper/"
+    },
+    {
+      "title": "‘Cocaine Bear’ thrives with its ridiculous plot, outstanding gore and hilarious screenplay – The Arbiter",
+      "species": "bear",
+      "place": "Ada, ID",
+      "publisher": "Arbiter",
+      "url": "https://www.arbiteronline.com/2023/02/25/cocaine-bear-thrives-with-its-ridiculous-plot-outstanding-gore-and-hilarious-screenplay/"
+    },
+    {
+      "title": "Hiker injured in bear attack in Yellowstone",
+      "species": "bear",
+      "place": "Yellowstone, WY",
+      "publisher": "Northern Wyoming Daily News",
+      "url": "https://www.wyodaily.com/story/2025/09/11/wyoming/hiker-injured-in-bear-attack-in-yellowstone/17054.html"
+    },
+    {
+      "title": "Before Grizzly 399 became world-famous, Lander man survived her attack",
+      "species": "bear",
+      "place": "Sweetwater, WY",
+      "publisher": "Green River Star",
+      "url": "https://www.greenriverstar.com/story/2024/11/21/news/before-grizzly-399-became-world-famous-lander-man-survived-her-attack/12194.html"
+    },
+    {
+      "title": "Man fought off a mountain lion weeks before a suspected fatal Colorado attack",
+      "species": "mountain_lion",
+      "place": "Laramie, CO",
+      "publisher": "Wyoming Tribune Eagle",
+      "url": "https://www.wyomingnews.com/man-fought-off-a-mountain-lion-weeks-before-a-suspected-fatal-colorado-attack/article_77943a86-142c-44da-a1f5-07235369f4cf.html"
+    },
+    {
+      "title": "Lodgepole Man Charged With Poaching Deer And Elk In Blaine and Phillips Counties",
+      "species": "elk",
+      "place": "Blaine, MT",
+      "publisher": "Glasgow Courier",
+      "url": "https://www.glasgowcourier.com/story/2025/06/25/sports/lodgepole-man-charged-with-poaching-deer-and-elk-in-blaine-and-phillips-counties/16999.html"
+    },
+    {
+      "title": "Updated: Grizzly bear attacks, kills cyclist camping in downtown Ovando",
+      "species": "bear",
+      "place": "Lincoln, MT",
+      "publisher": "Blackfoot Valley Dispatch",
+      "url": "https://www.blackfootvalleydispatch.com/story/2021/07/08/outdoors/updated-grizzly-bear-attacks-kills-cyclist-camping-in-downtown-ovando/2783.html"
+    },
+    {
+      "title": "DNA confirms euthanized bear responsible for Ovando attack",
+      "species": "bear",
+      "place": "Ovando, MT",
+      "publisher": "Blackfoot Valley Dispatch",
+      "url": "https://www.blackfootvalleydispatch.com/story/2021/07/15/outdoors/dna-confirms-euthanized-bear-responsible-for-ovando-attack/2804.html"
+    },
+    {
+      "title": "Wildlife officials, Blackfoot community work together on fatal bear attack and next steps",
+      "species": "bear",
+      "place": "Powell County, MT",
+      "publisher": "Blackfoot Valley Dispatch",
+      "url": "https://www.blackfootvalleydispatch.com/story/2021/08/12/outdoors/wildlife-officials-blackfoot-community-work-together-on-fatal-bear-attack-and-next-steps/2842.html"
+    },
+    {
+      "title": "Hunter attacked by grizzly bear near Choteau",
+      "species": "bear",
+      "place": "Choteau\nGREAT, WA",
+      "publisher": "Blackfoot Valley Dispatch",
+      "url": "https://www.blackfootvalleydispatch.com/story/2022/10/10/outdoors/hunter-attacked-by-grizzly-bear-near-choteau/3386.html"
+    },
+    {
+      "title": "Horses attacked by mountain lion - Bitterroot Star",
+      "species": "mountain_lion",
+      "place": "Ravalli, IL",
+      "publisher": "The Bitterroot Star",
+      "url": "https://bitterrootstar.com/2011/07/horses-attacked-by-mountain-lion/"
+    },
+    {
+      "title": "Army Medic Leads Life-Saving Response After Bear Attack in Alaska",
+      "species": "bear",
+      "place": "Alaska, AK",
+      "publisher": "Alaska Native News",
+      "url": "https://alaska-native-news.com/army-medic-leads-life-saving-response-after-bear-attack-in-alaska/83863/"
+    },
+    {
+      "title": "Black Bear Bites FWP Employee - Flathead Beacon",
+      "species": "bear",
+      "place": "Flathead, MT",
+      "publisher": "Flathead Beacon",
+      "url": "https://flatheadbeacon.com/2007/08/29/black-bear-bites-fwp-employee/"
+    },
+    {
+      "title": "News Buffet: City Elections, Grizzly Attack, Illegal Road Racing - Flathead Beacon",
+      "species": "bear",
+      "place": "Flathead, MT",
+      "publisher": "Flathead Beacon",
+      "url": "https://flatheadbeacon.com/2007/10/17/news-buffet-city-elections-grizzly-attack-illegal-road-racing/"
+    },
+    {
+      "title": "Employee Mauled at Coram Bear Park - Flathead Beacon",
+      "species": "bear",
+      "place": "Coram Bear, MT",
+      "publisher": "Flathead Beacon",
+      "url": "https://flatheadbeacon.com/2007/11/02/employee-mauled-at-coram-bear-park/"
+    },
+    {
+      "title": "Mountain Lion Attacks Hunter Southeast of Kalispell - Flathead Beacon",
+      "species": "mountain_lion",
+      "place": "Flathead, MT",
+      "publisher": "Flathead Beacon",
+      "url": "https://flatheadbeacon.com/2007/11/12/mountain-lion-attacks-hunter-southeast-of-kalispell/"
+    },
+    {
+      "title": "Moose Attacks Snowmobiles in Canyon Creek - Flathead Beacon",
+      "species": "moose",
+      "place": "Canyon Creek, MT",
+      "publisher": "Flathead Beacon",
+      "url": "https://flatheadbeacon.com/2008/01/02/moose-attacks-snowmobiles-in-canyon-creek/"
+    },
+    {
+      "title": "Brown Bear Mauls Kenai Woman on her Deck",
+      "species": "bear",
+      "place": "Kenai Peninsula, AK",
+      "publisher": "Alaska Native News",
+      "url": "https://alaska-native-news.com/brown-bear-mauls-kenai-woman-on-her-deck/85076/"
+    },
+    {
+      "title": "Washington hunter charged with illegal mountain lion kill on Wrangell Island",
+      "species": "mountain_lion",
+      "place": "Alaska, AK",
+      "publisher": "petersburgpilot.com",
+      "url": "https://www.petersburgpilot.com/story/2025/03/06/news/washington-hunter-charged-with-illegal-mountain-lion-kill-on-wrangell-island/14770.html"
+    },
+    {
+      "title": "Bear attack has Alaska wildlife officials urging caution",
+      "species": "bear",
+      "place": "Haines, AK",
+      "publisher": "Juneau Empire Newspaper",
+      "url": "https://www.juneauempire.com/2026/09/05/bear-attack-has-alaska-wildlife-officials-urging-caution/"
+    },
+    {
+      "title": "Alaska Guardsmen  rescue bear-attack victim near Galena",
+      "species": "bear",
+      "place": "Galena, AK",
+      "publisher": "Delta Discovery",
+      "url": "https://deltadiscovery.com/alaska-guardsmen-rescue-bear-attack-victim-near-galena/"
+    },
+    {
+      "title": "Fish & Game investigates bear attack near Hope",
+      "species": "bear",
+      "place": "Hope\nEmployees, AK",
+      "publisher": "Delta Discovery",
+      "url": "https://deltadiscovery.com/fish-game-investigates-bear-attack-near-hope/"
+    },
+    {
+      "title": "Man charged in poaching of pregnant cow moose - Chilkat Valley News",
+      "species": "moose",
+      "place": "Haines, AK",
+      "publisher": "chilkatvalleynews.com",
+      "url": "https://www.chilkatvalleynews.com/2012/05/10/man-charged-in-poaching-of-pregnant-cow-moose/"
+    },
+    {
+      "title": "Anger at bears after local woman mauled",
+      "species": "bear",
+      "place": "Haines, AK",
+      "publisher": "chilkatvalleynews.com",
+      "url": "https://www.chilkatvalleynews.com/2026/09/10/anger-at-bears-after-local-woman-mauled/"
+    }
+  ],
+  "notes": [
+    "First-session progressive crawl, not a complete all-time nationwide archive.",
+    "Wildlife-priority states first (AK, MT, WY, ID, CO, WA, OR, …).",
+    "robots.txt honored; snippets/titles/URLs only.",
+    "A few early-session false positives (legal 'charged with', movie reviews) were filtered in later matcher revisions; leftover rows can be pruned."
+  ]
+}

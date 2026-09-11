@@ -76,7 +76,22 @@ export function articleToIncident(
   const cityMatch = blob.match(
     /\b(?:in|near|outside|at)[ \t]+([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?)/,
   );
-  const cityFromArticle = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
+  const MONTHS = new Set([
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]);
+  const rawCity = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
+  const cityFromArticle = rawCity && !MONTHS.has(rawCity) ? rawCity : null;
   let stateFromArticle: string | null = cityState?.[2] ?? null;
   if (!stateFromArticle) {
     for (const [re, abbr] of STATE_RE) {
