@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-11T22:26:55.110Z",
+  "generatedAt": "2026-09-11T23:43:27.829Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 3646,
-  "remainingNewspapers": 7731,
-  "articlesFetched": 61595,
-  "matchingArticles": 52,
-  "publicationsWithMatches": 39,
-  "incidentsFromLocalPapers": 56,
-  "incidentsTotal": 286,
+  "publicationsScanned": 5236,
+  "remainingNewspapers": 6141,
+  "articlesFetched": 87690,
+  "matchingArticles": 56,
+  "publicationsWithMatches": 43,
+  "incidentsFromLocalPapers": 60,
+  "incidentsTotal": 290,
   "crawledStates": [
     {
       "state": "CA",
@@ -22,6 +22,20 @@
       "scanned": 446,
       "matches": 3,
       "articles": 9286
+    },
+    {
+      "state": "FL",
+      "name": "Florida",
+      "scanned": 342,
+      "matches": 1,
+      "articles": 5126
+    },
+    {
+      "state": "NC",
+      "name": "North Carolina",
+      "scanned": 297,
+      "matches": 2,
+      "articles": 4660
     },
     {
       "state": "MN",
@@ -49,7 +63,14 @@
       "name": "Pennsylvania",
       "scanned": 222,
       "matches": 4,
-      "articles": 4386
+      "articles": 4427
+    },
+    {
+      "state": "VA",
+      "name": "Virginia",
+      "scanned": 198,
+      "matches": 0,
+      "articles": 3670
     },
     {
       "state": "WA",
@@ -59,18 +80,18 @@
       "articles": 2175
     },
     {
+      "state": "TN",
+      "name": "Tennessee",
+      "scanned": 192,
+      "matches": 1,
+      "articles": 5694
+    },
+    {
       "state": "WI",
       "name": "Wisconsin",
       "scanned": 169,
       "matches": 1,
       "articles": 3087
-    },
-    {
-      "state": "TN",
-      "name": "Tennessee",
-      "scanned": 158,
-      "matches": 1,
-      "articles": 4413
     },
     {
       "state": "AZ",
@@ -122,6 +143,20 @@
       "articles": 844
     },
     {
+      "state": "WV",
+      "name": "West Virginia",
+      "scanned": 71,
+      "matches": 0,
+      "articles": 1086
+    },
+    {
+      "state": "TX",
+      "name": "Texas",
+      "scanned": 64,
+      "matches": 0,
+      "articles": 1303
+    },
+    {
       "state": "NV",
       "name": "Nevada",
       "scanned": 62,
@@ -136,11 +171,25 @@
       "articles": 735
     },
     {
+      "state": "SD",
+      "name": "South Dakota",
+      "scanned": 60,
+      "matches": 0,
+      "articles": 1054
+    },
+    {
       "state": "VT",
       "name": "Vermont",
       "scanned": 53,
       "matches": 0,
       "articles": 785
+    },
+    {
+      "state": "ND",
+      "name": "North Dakota",
+      "scanned": 52,
+      "matches": 0,
+      "articles": 576
     },
     {
       "state": "AK",
@@ -150,31 +199,186 @@
       "articles": 1151
     },
     {
+      "state": "IL",
+      "name": "Illinois",
+      "scanned": 45,
+      "matches": 1,
+      "articles": 735
+    },
+    {
       "state": "WY",
       "name": "Wyoming",
       "scanned": 41,
       "matches": 3,
       "articles": 869
+    },
+    {
+      "state": "OH",
+      "name": "Ohio",
+      "scanned": 38,
+      "matches": 0,
+      "articles": 303
+    },
+    {
+      "state": "GA",
+      "name": "Georgia",
+      "scanned": 34,
+      "matches": 0,
+      "articles": 545
+    },
+    {
+      "state": "IA",
+      "name": "Iowa",
+      "scanned": 32,
+      "matches": 0,
+      "articles": 443
+    },
+    {
+      "state": "IN",
+      "name": "Indiana",
+      "scanned": 32,
+      "matches": 0,
+      "articles": 303
+    },
+    {
+      "state": "KS",
+      "name": "Kansas",
+      "scanned": 31,
+      "matches": 0,
+      "articles": 536
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "scanned": 29,
+      "matches": 0,
+      "articles": 613
+    },
+    {
+      "state": "KY",
+      "name": "Kentucky",
+      "scanned": 28,
+      "matches": 0,
+      "articles": 523
+    },
+    {
+      "state": "MO",
+      "name": "Missouri",
+      "scanned": 26,
+      "matches": 0,
+      "articles": 502
+    },
+    {
+      "state": "MS",
+      "name": "Mississippi",
+      "scanned": 21,
+      "matches": 0,
+      "articles": 65
+    },
+    {
+      "state": "LA",
+      "name": "Louisiana",
+      "scanned": 20,
+      "matches": 0,
+      "articles": 265
+    },
+    {
+      "state": "AR",
+      "name": "Arkansas",
+      "scanned": 19,
+      "matches": 0,
+      "articles": 376
+    },
+    {
+      "state": "NE",
+      "name": "Nebraska",
+      "scanned": 19,
+      "matches": 0,
+      "articles": 294
+    },
+    {
+      "state": "AL",
+      "name": "Alabama",
+      "scanned": 18,
+      "matches": 0,
+      "articles": 514
+    },
+    {
+      "state": "CT",
+      "name": "Connecticut",
+      "scanned": 17,
+      "matches": 0,
+      "articles": 120
+    },
+    {
+      "state": "OK",
+      "name": "Oklahoma",
+      "scanned": 17,
+      "matches": 0,
+      "articles": 251
+    },
+    {
+      "state": "MD",
+      "name": "Maryland",
+      "scanned": 15,
+      "matches": 0,
+      "articles": 280
+    },
+    {
+      "state": "SC",
+      "name": "South Carolina",
+      "scanned": 12,
+      "matches": 0,
+      "articles": 169
+    },
+    {
+      "state": "NJ",
+      "name": "New Jersey",
+      "scanned": 7,
+      "matches": 0,
+      "articles": 87
+    },
+    {
+      "state": "HI",
+      "name": "Hawaii",
+      "scanned": 6,
+      "matches": 0,
+      "articles": 226
+    },
+    {
+      "state": "DC",
+      "name": "District of Columbia",
+      "scanned": 5,
+      "matches": 0,
+      "articles": 148
+    },
+    {
+      "state": "RI",
+      "name": "Rhode Island",
+      "scanned": 1,
+      "matches": 0,
+      "articles": 0
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 37,
-    "mountain_lion": 12,
+    "bear": 38,
+    "mountain_lion": 15,
     "elk": 4,
     "moose": 3
   },
   "localIncidentsByState": {
-    "CO": 13,
+    "CO": 15,
     "AK": 10,
     "MT": 9,
     "CA": 7,
     "WY": 3,
     "ID": 2,
+    "IL": 2,
     "MN": 2,
     "PA": 2,
     "WA": 2,
     "FL": 1,
-    "IL": 1,
+    "NC": 1,
     "NM": 1,
     "NV": 1,
     "NY": 1,
