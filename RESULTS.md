@@ -73,60 +73,67 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-11T21:37:25.813Z** on this machine’s SQLite database.
+Generated **2026-09-11T22:26:55.099Z** on this machine’s SQLite database.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **2,738** |
-| Uncrawled newspapers remaining | 8,639 |
-| Article records fetched | **41,580** |
-| Matching articles | **44** |
-| Publications with a match | 32 |
-| Incidents from local papers | **49** |
-| Incidents total (incl. historical seed) | 279 |
+| Scanned at least once | **3,646** |
+| Uncrawled newspapers remaining | 7,731 |
+| Article records fetched | **61,595** |
+| Matching articles | **52** |
+| Publications with a match | 39 |
+| Incidents from local papers | **56** |
+| Incidents total (incl. historical seed) | 286 |
 
 ### Coverage by state (scanned publications)
 
 | State | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
-| CA California | 698 | 10370 | 7 |
-| MN Minnesota | 291 | 3413 | 2 |
-| MI Michigan | 256 | 3347 | 0 |
-| CO Colorado | 225 | 3770 | 8 |
-| WA Washington | 190 | 2117 | 2 |
-| WI Wisconsin | 168 | 3046 | 1 |
-| AZ Arizona | 134 | 2166 | 0 |
-| OR Oregon | 131 | 2311 | 0 |
+| CA California | 741 | 11612 | 7 |
+| NY New York | 446 | 9286 | 3 |
+| MN Minnesota | 293 | 3437 | 2 |
+| MI Michigan | 258 | 3367 | 0 |
+| CO Colorado | 229 | 3856 | 8 |
+| PA Pennsylvania | 222 | 4386 | 4 |
+| WA Washington | 193 | 2175 | 2 |
+| WI Wisconsin | 169 | 3087 | 1 |
+| TN Tennessee | 158 | 4413 | 1 |
+| AZ Arizona | 137 | 2188 | 0 |
+| OR Oregon | 132 | 2311 | 0 |
 | ME Maine | 93 | 1013 | 0 |
 | UT Utah | 80 | 1021 | 0 |
+| MT Montana | 79 | 2409 | 11 |
 | ID Idaho | 78 | 1652 | 2 |
-| MT Montana | 78 | 2379 | 11 |
 | NM New Mexico | 71 | 844 | 1 |
 | NV Nevada | 62 | 998 | 1 |
 | NH New Hampshire | 60 | 735 | 0 |
-| AK Alaska | 49 | 1091 | 6 |
+| VT Vermont | 53 | 785 | 0 |
+| AK Alaska | 51 | 1151 | 6 |
 | WY Wyoming | 41 | 869 | 3 |
-| VT Vermont | 33 | 438 | 0 |
 
 ### Local-paper incidents by species
 
-- bear: 33
-- mountain_lion: 10
-- elk: 3
+- bear: 37
+- mountain_lion: 12
+- elk: 4
 - moose: 3
 
 ### Local-paper incidents by state
 
-- CO: 11
+- CO: 13
 - AK: 10
 - MT: 9
 - CA: 7
 - WY: 3
 - ID: 2
 - MN: 2
+- PA: 2
 - WA: 2
+- FL: 1
 - IL: 1
 - NM: 1
 - NV: 1
+- NY: 1
+- TN: 1
 

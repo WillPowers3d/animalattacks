@@ -1,67 +1,88 @@
 {
-  "generatedAt": "2026-09-11T21:37:25.825Z",
+  "generatedAt": "2026-09-11T22:26:55.110Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 2738,
-  "remainingNewspapers": 8639,
-  "articlesFetched": 41580,
-  "matchingArticles": 44,
-  "publicationsWithMatches": 32,
-  "incidentsFromLocalPapers": 49,
-  "incidentsTotal": 279,
+  "publicationsScanned": 3646,
+  "remainingNewspapers": 7731,
+  "articlesFetched": 61595,
+  "matchingArticles": 52,
+  "publicationsWithMatches": 39,
+  "incidentsFromLocalPapers": 56,
+  "incidentsTotal": 286,
   "crawledStates": [
     {
       "state": "CA",
       "name": "California",
-      "scanned": 698,
+      "scanned": 741,
       "matches": 7,
-      "articles": 10370
+      "articles": 11612
+    },
+    {
+      "state": "NY",
+      "name": "New York",
+      "scanned": 446,
+      "matches": 3,
+      "articles": 9286
     },
     {
       "state": "MN",
       "name": "Minnesota",
-      "scanned": 291,
+      "scanned": 293,
       "matches": 2,
-      "articles": 3413
+      "articles": 3437
     },
     {
       "state": "MI",
       "name": "Michigan",
-      "scanned": 256,
+      "scanned": 258,
       "matches": 0,
-      "articles": 3347
+      "articles": 3367
     },
     {
       "state": "CO",
       "name": "Colorado",
-      "scanned": 225,
+      "scanned": 229,
       "matches": 8,
-      "articles": 3770
+      "articles": 3856
+    },
+    {
+      "state": "PA",
+      "name": "Pennsylvania",
+      "scanned": 222,
+      "matches": 4,
+      "articles": 4386
     },
     {
       "state": "WA",
       "name": "Washington",
-      "scanned": 190,
+      "scanned": 193,
       "matches": 2,
-      "articles": 2117
+      "articles": 2175
     },
     {
       "state": "WI",
       "name": "Wisconsin",
-      "scanned": 168,
+      "scanned": 169,
       "matches": 1,
-      "articles": 3046
+      "articles": 3087
+    },
+    {
+      "state": "TN",
+      "name": "Tennessee",
+      "scanned": 158,
+      "matches": 1,
+      "articles": 4413
     },
     {
       "state": "AZ",
       "name": "Arizona",
-      "scanned": 134,
+      "scanned": 137,
       "matches": 0,
-      "articles": 2166
+      "articles": 2188
     },
     {
       "state": "OR",
       "name": "Oregon",
-      "scanned": 131,
+      "scanned": 132,
       "matches": 0,
       "articles": 2311
     },
@@ -80,18 +101,18 @@
       "articles": 1021
     },
     {
+      "state": "MT",
+      "name": "Montana",
+      "scanned": 79,
+      "matches": 11,
+      "articles": 2409
+    },
+    {
       "state": "ID",
       "name": "Idaho",
       "scanned": 78,
       "matches": 2,
       "articles": 1652
-    },
-    {
-      "state": "MT",
-      "name": "Montana",
-      "scanned": 78,
-      "matches": 11,
-      "articles": 2379
     },
     {
       "state": "NM",
@@ -115,11 +136,18 @@
       "articles": 735
     },
     {
+      "state": "VT",
+      "name": "Vermont",
+      "scanned": 53,
+      "matches": 0,
+      "articles": 785
+    },
+    {
       "state": "AK",
       "name": "Alaska",
-      "scanned": 49,
+      "scanned": 51,
       "matches": 6,
-      "articles": 1091
+      "articles": 1151
     },
     {
       "state": "WY",
@@ -127,32 +155,29 @@
       "scanned": 41,
       "matches": 3,
       "articles": 869
-    },
-    {
-      "state": "VT",
-      "name": "Vermont",
-      "scanned": 33,
-      "matches": 0,
-      "articles": 438
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 33,
-    "mountain_lion": 10,
-    "elk": 3,
+    "bear": 37,
+    "mountain_lion": 12,
+    "elk": 4,
     "moose": 3
   },
   "localIncidentsByState": {
-    "CO": 11,
+    "CO": 13,
     "AK": 10,
     "MT": 9,
     "CA": 7,
     "WY": 3,
     "ID": 2,
     "MN": 2,
+    "PA": 2,
     "WA": 2,
+    "FL": 1,
     "IL": 1,
     "NM": 1,
-    "NV": 1
+    "NV": 1,
+    "NY": 1,
+    "TN": 1
   }
 }
