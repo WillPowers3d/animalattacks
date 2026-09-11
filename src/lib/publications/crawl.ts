@@ -266,7 +266,8 @@ async function crawlOne(
 
     const delay = Math.max(opts.minDelayMs, Math.round((rules.crawlDelaySec ?? 0) * 1000));
     let homepageHtml: string | undefined;
-    if (origin && robotsAllows(rules, "/")) {
+    const needHomepage = !pub.rssUrl && origin && robotsAllows(rules, "/");
+    if (needHomepage) {
       const home = await politeFetch(pub.homepageUrl, { minDelayMs: delay });
       if (home.ok) homepageHtml = home.text;
     }
@@ -288,11 +289,15 @@ async function crawlOne(
       if (items.length) break;
     }
 
+    const rssFilled = [...articles.values()].some((a) => a.source === "rss");
+    const skipSitemap = opts.mode === "incremental" && rssFilled && articles.size >= 8;
     const sitemapCap = opts.mode === "backfill" ? 4 : 2;
-    const sitemapTargets = [
-      ...(pub.sitemapUrl ? [pub.sitemapUrl] : []),
-      ...discovered.sitemaps,
-    ].slice(0, sitemapCap);
+    const sitemapTargets = skipSitemap
+      ? []
+      : [
+          ...(pub.sitemapUrl ? [pub.sitemapUrl] : []),
+          ...discovered.sitemaps,
+        ].slice(0, sitemapCap);
     for (const sm of sitemapTargets) {
       const items = await fetchSitemapArticles(sm, rules, {
         since: opts.since,
