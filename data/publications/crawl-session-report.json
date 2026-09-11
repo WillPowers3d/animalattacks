@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-11T20:38:39.857Z",
+  "generatedAt": "2026-09-11T20:50:48.784Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 1528,
-  "remainingNewspapers": 9849,
-  "articlesFetched": 24783,
-  "matchingArticles": 39,
-  "publicationsWithMatches": 28,
-  "incidentsFromLocalPapers": 44,
-  "incidentsTotal": 274,
+  "publicationsScanned": 1812,
+  "remainingNewspapers": 9565,
+  "articlesFetched": 29093,
+  "matchingArticles": 40,
+  "publicationsWithMatches": 29,
+  "incidentsFromLocalPapers": 45,
+  "incidentsTotal": 275,
   "crawledStates": [
     {
       "state": "CA",
       "name": "California",
-      "scanned": 696,
+      "scanned": 698,
       "matches": 7,
-      "articles": 10246
+      "articles": 10370
     },
     {
       "state": "CO",
@@ -31,11 +31,25 @@
       "articles": 2117
     },
     {
+      "state": "AZ",
+      "name": "Arizona",
+      "scanned": 134,
+      "matches": 0,
+      "articles": 2166
+    },
+    {
       "state": "OR",
       "name": "Oregon",
       "scanned": 131,
       "matches": 0,
       "articles": 2311
+    },
+    {
+      "state": "UT",
+      "name": "Utah",
+      "scanned": 79,
+      "matches": 0,
+      "articles": 981
     },
     {
       "state": "ID",
@@ -52,6 +66,13 @@
       "articles": 2379
     },
     {
+      "state": "NM",
+      "name": "New Mexico",
+      "scanned": 70,
+      "matches": 1,
+      "articles": 803
+    },
+    {
       "state": "AK",
       "name": "Alaska",
       "scanned": 49,
@@ -66,15 +87,15 @@
       "articles": 869
     },
     {
-      "state": "AZ",
-      "name": "Arizona",
-      "scanned": 40,
+      "state": "NV",
+      "name": "Nevada",
+      "scanned": 39,
       "matches": 0,
-      "articles": 348
+      "articles": 584
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 28,
+    "bear": 29,
     "mountain_lion": 10,
     "elk": 3,
     "moose": 3
@@ -87,6 +108,7 @@
     "WY": 3,
     "ID": 2,
     "WA": 2,
-    "IL": 1
+    "IL": 1,
+    "NM": 1
   }
 }
