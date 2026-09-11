@@ -194,6 +194,173 @@ const PLACE_COORDS: Record<string, Coord> = {
   "caribou-targhee,id": { lat: 44.5, lng: -111.35 },
   "tepee creek,mt": { lat: 44.85, lng: -111.15 },
   "gallatin,mt": { lat: 45.4, lng: -111.15 },
+  "seattle,wa": { lat: 47.6062, lng: -122.3321 },
+  "kenai peninsula,ak": { lat: 60.3, lng: -150.5 },
+  "wind river,wy": { lat: 43.2, lng: -109.5 },
+  "stewart island,ak": { lat: 55.23, lng: -131.98 },
+  "stokes state forest,nj": { lat: 41.18, lng: -74.83 },
+  "seneca lake,az": { lat: 34.33, lng: -111.3 },
+  "talkeetna mountains,ak": { lat: 62.0, lng: -148.5 },
+  "western talkeetna mountains,ak": { lat: 62.0, lng: -148.5 },
+  "ishawooa mesa,wy": { lat: 44.35, lng: -109.55 },
+  "lake mary,ca": { lat: 37.605, lng: -119.0 },
+  "bruin creek,wy": { lat: 44.7, lng: -109.4 },
+  "north crandall,wy": { lat: 44.85, lng: -109.7 },
+  "north crandall,": { lat: 44.85, lng: -109.7 },
+  "pocono country place,pa": { lat: 41.17, lng: -75.32 },
+  "las vegas,nm": { lat: 35.594, lng: -105.223 },
+  "shoshone river,wy": { lat: 44.52, lng: -109.05 },
+  "gallatin county,mt": { lat: 45.54, lng: -111.17 },
+  "fort collins,co": { lat: 40.5853, lng: -105.0844 },
+  "olympia,wa": { lat: 47.0379, lng: -122.9007 },
+  "breckenridge,co": { lat: 39.4817, lng: -106.0384 },
+  "walden,co": { lat: 40.7316, lng: -106.2836 },
+  "collier county,fl": { lat: 26.15, lng: -81.6 },
+  "boston bar,bc": { lat: 49.868, lng: -121.443 },
+  "walker,la": { lat: 30.488, lng: -90.861 },
+  "grand teton,wy": { lat: 43.7904, lng: -110.6818 },
+  "grand teton national park,wy": { lat: 43.7904, lng: -110.6818 },
+  "mammoth hot springs,wy": { lat: 44.976, lng: -110.701 },
+  "rocky mountain national park,co": { lat: 40.3428, lng: -105.6836 },
+  "horsetooth,co": { lat: 40.54, lng: -105.16 },
+  "whiting ranch,ca": { lat: 33.68, lng: -117.65 },
+  "lake forest,ca": { lat: 33.6469, lng: -117.6892 },
+  "capitol state forest,wa": { lat: 46.95, lng: -123.15 },
+  "capitol forest,wa": { lat: 46.95, lng: -123.15 },
+  "scapegoat,mt": { lat: 47.25, lng: -112.7 },
+  "ear mountain,mt": { lat: 47.82, lng: -112.7 },
+  "coal creek,mt": { lat: 45.2, lng: -110.9 },
+  "montreal river,mi": { lat: 47.4, lng: -88.15 },
+  "calumet,mi": { lat: 47.246, lng: -88.453 },
+  "parks highway,ak": { lat: 62.74, lng: -150.12 },
+  "kodiak island,ak": { lat: 57.47, lng: -153.4 },
+  "chichagof island,ak": { lat: 57.9, lng: -135.6 },
+  "becharof wildlife refuge,ak": { lat: 57.95, lng: -156.4 },
+  "cootenays mountains,bc": { lat: 50.6, lng: -116.0 },
+  "kootenays,bc": { lat: 50.6, lng: -116.0 },
+  "afognak island,ak": { lat: 58.3, lng: -152.5 },
+  "afogak island,ak": { lat: 58.3, lng: -152.5 },
+  "svalbard,sv": { lat: 78.2232, lng: 15.6267 },
+  "morrow county,oh": { lat: 40.53, lng: -82.79 },
+  "morrow county ohio,oh": { lat: 40.53, lng: -82.79 },
+  "tsiu river,ak": { lat: 60.09, lng: -143.7 },
+  "chickaloon river,ak": { lat: 61.8, lng: -148.45 },
+  "grays harbor county,wa": { lat: 47.05, lng: -123.85 },
+  "keweenaw county,mi": { lat: 47.4, lng: -88.2 },
+  "summit county,co": { lat: 39.59, lng: -106.11 },
+  "larimer county,co": { lat: 40.7, lng: -105.5 },
+  "park county,wy": { lat: 44.52, lng: -109.6 },
+  "pinyon ridge,wy": { lat: 42.87, lng: -109.86 },
+  "shedhorn ridge,mt": { lat: 45.2, lng: -111.5 },
+  "pass creek,wy": { lat: 44.4, lng: -109.3 },
+  "benchmark,mt": { lat: 47.48, lng: -112.9 },
+  "yukon river,yt": { lat: 64.0, lng: -139.4 },
+  "snake river,wy": { lat: 43.66, lng: -110.72 },
+  "state forest state park,co": { lat: 40.54, lng: -106.0 },
+  "north park,co": { lat: 40.75, lng: -106.3 },
+  "hunchback mountain,or": { lat: 45.3, lng: -121.73 },
+  "bow valley,ab": { lat: 51.1, lng: -115.35 },
+  "fraser canyon,bc": { lat: 49.87, lng: -121.44 },
+  "wasilla,ak": { lat: 61.5814, lng: -149.4394 },
+  "palmer,ak": { lat: 61.5996, lng: -149.1128 },
+  "soldotna,ak": { lat: 60.4878, lng: -151.0583 },
+  "valdez,ak": { lat: 61.1308, lng: -146.3483 },
+  "bethel,ak": { lat: 60.7922, lng: -161.7558 },
+  "dillingham,ak": { lat: 59.0397, lng: -158.4575 },
+  "ketchikan,ak": { lat: 55.3422, lng: -131.6461 },
+  "skagway,ak": { lat: 59.4583, lng: -135.3139 },
+  "hattiesburg,ms": { lat: 31.3271, lng: -89.2903 },
+  "missoula,mt": { lat: 46.8721, lng: -113.994 },
+  "whitefish,mt": { lat: 48.4111, lng: -114.3376 },
+  "livingston,mt": { lat: 45.6624, lng: -110.561 },
+  "red lodge,mt": { lat: 45.1858, lng: -109.2468 },
+  "gardiner,mt": { lat: 45.0319, lng: -110.7058 },
+  "cooke city,mt": { lat: 45.02, lng: -109.934 },
+  "seeley lake,mt": { lat: 47.1794, lng: -113.4845 },
+  "hamilton,mt": { lat: 46.2466, lng: -114.1603 },
+  "libby,mt": { lat: 48.3883, lng: -115.556 },
+  "troy,mt": { lat: 48.4633, lng: -115.891 },
+  "lincoln,mt": { lat: 46.9549, lng: -112.6817 },
+  "augusta,mt": { lat: 47.4916, lng: -112.392 },
+  "drummond,mt": { lat: 46.6674, lng: -113.147 },
+  "phillipsburg,mt": { lat: 46.3324, lng: -113.2942 },
+  "salmon,id": { lat: 45.1758, lng: -113.8959 },
+  "driggs,id": { lat: 43.7232, lng: -111.1113 },
+  "victor,id": { lat: 43.6027, lng: -111.1113 },
+  "rexburg,id": { lat: 43.823, lng: -111.7897 },
+  "idaho falls,id": { lat: 43.4917, lng: -112.033 },
+  "coeur d'alene,id": { lat: 47.6777, lng: -116.7805 },
+  "sandpoint,id": { lat: 48.2766, lng: -116.5532 },
+  "mccall,id": { lat: 44.911, lng: -116.0985 },
+  "stanley,id": { lat: 44.216, lng: -114.937 },
+  "jackson hole,wy": { lat: 43.4799, lng: -110.7624 },
+  "wilson,wy": { lat: 43.5008, lng: -110.877 },
+  "alpine,wy": { lat: 43.1638, lng: -111.0177 },
+  "afton,wy": { lat: 42.725, lng: -110.9319 },
+  "laramie,wy": { lat: 41.3114, lng: -105.5911 },
+  "sheridan,wy": { lat: 44.797, lng: -106.9562 },
+  "aspen,co": { lat: 39.1911, lng: -106.8175 },
+  "vail,co": { lat: 39.6403, lng: -106.3742 },
+  "durango,co": { lat: 37.2753, lng: -107.8801 },
+  "pagosa springs,co": { lat: 37.2694, lng: -107.0098 },
+  "grand junction,co": { lat: 39.0639, lng: -108.5506 },
+  "fort walton beach,fl": { lat: 30.4058, lng: -86.6188 },
+  "ocala,fl": { lat: 29.1872, lng: -82.1401 },
+  "lake placid,ny": { lat: 44.2795, lng: -73.9799 },
+  "lake george,ny": { lat: 43.4262, lng: -73.7123 },
+  "adirondack,ny": { lat: 44.1, lng: -74.0 },
+  "bangor,me": { lat: 44.8016, lng: -68.7712 },
+  "bar harbor,me": { lat: 44.3876, lng: -68.2039 },
+  "bend,or": { lat: 44.0582, lng: -121.3153 },
+  "bend,or ": { lat: 44.0582, lng: -121.3153 },
+  "grants pass,or": { lat: 42.439, lng: -123.3284 },
+  "medford,or": { lat: 42.3265, lng: -122.8756 },
+  "eugene,or": { lat: 44.0521, lng: -123.0868 },
+  "spokane,wa": { lat: 47.6588, lng: -117.426 },
+  "leavenworth,wa": { lat: 47.5962, lng: -120.6615 },
+  "port angeles,wa": { lat: 48.1181, lng: -123.4307 },
+  "flagstaff,az": { lat: 35.1983, lng: -111.6513 },
+  "prescott,az": { lat: 34.5403, lng: -112.4685 },
+  "payson,az": { lat: 34.2309, lng: -111.3251 },
+  "taos,nm": { lat: 36.4072, lng: -105.5731 },
+  "santa fe,nm": { lat: 35.687, lng: -105.9378 },
+  "moab,ut": { lat: 38.5733, lng: -109.5498 },
+  "park city,ut": { lat: 40.6461, lng: -111.498 },
+  "reno,nv": { lat: 39.5296, lng: -119.8138 },
+  "south lake tahoe,nv": { lat: 38.9399, lng: -119.9772 },
+  "mammoth lakes,ca": { lat: 37.6485, lng: -118.9721 },
+  "yosemite,ca": { lat: 37.8651, lng: -119.5383 },
+  "sequoia,ca": { lat: 36.4864, lng: -118.5658 },
+  "big sur,ca": { lat: 36.2704, lng: -121.8081 },
+  "trinity,ca": { lat: 40.78, lng: -123.0 },
+  "eureka,ca": { lat: 40.8021, lng: -124.1637 },
+  "redding,ca": { lat: 40.5865, lng: -122.3917 },
+  "kelowna,bc": { lat: 49.888, lng: -119.496 },
+  "kamloops,bc": { lat: 50.6745, lng: -120.3273 },
+  "prince george,bc": { lat: 53.9171, lng: -122.7497 },
+  "revelstoke,bc": { lat: 50.9981, lng: -118.1957 },
+  "golden,bc": { lat: 51.296, lng: -116.963 },
+  "fernie,bc": { lat: 49.504, lng: -115.063 },
+  "cranbrook,bc": { lat: 49.512, lng: -115.769 },
+  "invermere,bc": { lat: 50.505, lng: -116.03 },
+  "squamish,bc": { lat: 49.7016, lng: -123.1558 },
+  "pemberton,bc": { lat: 50.321, lng: -122.805 },
+  "calgary,ab": { lat: 51.0447, lng: -114.0719 },
+  "edmonton,ab": { lat: 53.5461, lng: -113.4938 },
+  "hinton,ab": { lat: 53.4, lng: -117.583 },
+  "grande prairie,ab": { lat: 55.1707, lng: -118.7884 },
+  "thunder bay,on": { lat: 48.3809, lng: -89.2477 },
+  "sault ste marie,on": { lat: 46.4953, lng: -84.3453 },
+  "sudbury,on": { lat: 46.4917, lng: -80.993 },
+  "algonquin,on": { lat: 45.84, lng: -78.38 },
+  "thompson,mb": { lat: 55.7433, lng: -97.8553 },
+  "winnipeg,mb": { lat: 49.8954, lng: -97.1385 },
+  "dawson,yt": { lat: 64.0601, lng: -139.4328 },
+  "inuvik,nt": { lat: 68.3607, lng: -133.723 },
+  "iqaluit,nu": { lat: 63.7467, lng: -68.517 },
+  "gatineau,qc": { lat: 45.4765, lng: -75.7013 },
+  "montreal,qc": { lat: 45.5017, lng: -73.5673 },
+  "quebec city,qc": { lat: 46.8139, lng: -71.208 },
 };
 
 const PROVINCE_CENTROIDS: Record<string, Coord> = {
@@ -222,8 +389,128 @@ const COUNTRY_CENTROIDS: Record<string, Coord> = {
   OTHER: { lat: 45, lng: -100 },
 };
 
+export type GeocodePrecision = "city" | "state" | "country";
+
+export type GeocodeResult = Coord & {
+  precision: GeocodePrecision;
+  matched?: string;
+};
+
+const PLACE_ALIASES: Record<string, string> = {
+  "kodiak island": "kodiak",
+  "chichagof island": "chichagof",
+  afogak: "afognak",
+  "afogak island": "afognak",
+  "afognak island": "afognak",
+  glacier: "glacier national park",
+  "becharof wildlife refuge": "becharof",
+  "island park reservoir": "island park",
+  "kenai peninsula": "kenai peninsula",
+  "pocono country place": "pocono",
+  "ft walton beach": "ft. walton beach",
+  "fort walton beach": "ft. walton beach",
+  "cootenays mountains": "kootenay",
+  kootenays: "kootenay",
+  "jackson hole": "jackson",
+  "grand teton national park": "grand teton",
+  "capitol forest": "capitol state forest",
+  "whiting ranch wilderness park": "whiting ranch",
+  "rocky mountain np": "rocky mountain national park",
+  "mammoth": "mammoth hot springs",
+  "yellowstone national park": "yellowstone",
+  "denali national park": "denali",
+  svalbard: "svalbard",
+  spitsbergen: "svalbard",
+  "longyearbyen": "longyearbyen",
+};
+
+const STATE_NAME_CITIES = new Set([
+  "alaska", "alabama", "arizona", "arkansas", "california", "colorado", "connecticut",
+  "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa",
+  "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan",
+  "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada",
+  "new hampshire", "new jersey", "new mexico", "new york", "north carolina",
+  "north dakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhode island",
+  "south carolina", "south dakota", "tennessee", "texas", "utah", "vermont",
+  "virginia", "washington", "west virginia", "wisconsin", "wyoming",
+  "british columbia", "alberta", "manitoba", "ontario", "yukon", "quebec",
+  "saskatchewan", "nunavut", "canada", "united states", "mexico", "norway",
+  "russia", "germany",
+]);
+
 function key(city?: string | null, state?: string | null) {
   return `${(city ?? "").toLowerCase().trim()},${(state ?? "").toLowerCase().trim()}`;
+}
+
+function stripPlaceNoise(raw: string) {
+  return raw
+    .toLowerCase()
+    .replace(/\./g, "")
+    .replace(
+      /\b(wildlife refuge|national forest|national park|caribou-?targhee|developed area|townsite|greenbelt|open space)\b/g,
+      " ",
+    )
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function lookupPlace(city: string, state?: string | null): { coord: Coord; matched: string } | null {
+  const alias = PLACE_ALIASES[city.toLowerCase()] ?? city;
+  const variants = [alias, stripPlaceNoise(alias), city, stripPlaceNoise(city)].filter(Boolean);
+  const stateKey = (state ?? "").toLowerCase().trim();
+
+  for (const v of variants) {
+    const exact = key(v, state);
+    if (PLACE_COORDS[exact]) return { coord: PLACE_COORDS[exact], matched: exact };
+  }
+  for (const v of variants) {
+    const prefix = `${v.toLowerCase().trim()},`;
+    const hit = Object.entries(PLACE_COORDS).find(([place]) => place.startsWith(prefix));
+    if (hit) return { coord: hit[1], matched: hit[0] };
+  }
+  if (stateKey) {
+    for (const v of variants) {
+      const token = v.toLowerCase().trim();
+      if (token.length < 4) continue;
+      const hit = Object.entries(PLACE_COORDS).find(([place]) => {
+        const [pCity, pState] = place.split(",");
+        return pState === stateKey && (pCity.includes(token) || token.includes(pCity));
+      });
+      if (hit) return { coord: hit[1], matched: hit[0] };
+    }
+  }
+  return null;
+}
+
+export function resolveGeocode(input: {
+  city?: string | null;
+  region?: string | null;
+  stateProvince?: string | null;
+  country?: string | null;
+}): GeocodeResult {
+  const rawCity = (input.city ?? "").trim();
+  const rawRegion = (input.region ?? "").trim();
+  const state = input.stateProvince ?? null;
+  const cityIsAdmin = STATE_NAME_CITIES.has(rawCity.toLowerCase());
+  const regionIsAdmin = STATE_NAME_CITIES.has(rawRegion.toLowerCase());
+
+  const candidates = [cityIsAdmin ? "" : rawCity, regionIsAdmin ? "" : rawRegion].filter(Boolean);
+  for (const cand of candidates) {
+    const hit = lookupPlace(cand, state);
+    if (hit) return { ...hit.coord, precision: "city", matched: hit.matched };
+  }
+
+  if (state && STATE_CENTROIDS[state]) {
+    return { ...STATE_CENTROIDS[state], precision: "state", matched: state };
+  }
+  if (state && PROVINCE_CENTROIDS[state]) {
+    return { ...PROVINCE_CENTROIDS[state], precision: "state", matched: state };
+  }
+  if (state === "SV" || input.country === "NO") {
+    return { ...PLACE_COORDS["svalbard,no"], precision: "city", matched: "svalbard,no" };
+  }
+  const country = COUNTRY_CENTROIDS[input.country ?? "US"] ?? COUNTRY_CENTROIDS.US;
+  return { ...country, precision: "country", matched: input.country ?? "US" };
 }
 
 export function geocodeIncident(input: {
@@ -232,19 +519,12 @@ export function geocodeIncident(input: {
   stateProvince?: string | null;
   country?: string | null;
 }): Coord {
-  const city = input.city ?? input.region;
-  const state = input.stateProvince;
-  const k = key(city, state);
-  if (city && state && PLACE_COORDS[k]) return PLACE_COORDS[k];
-  if (city) {
-    const hit = Object.entries(PLACE_COORDS).find(([place]) =>
-      place.startsWith(`${city.toLowerCase().trim()},`),
-    );
-    if (hit) return hit[1];
-  }
-  if (state && STATE_CENTROIDS[state]) return STATE_CENTROIDS[state];
-  if (state && PROVINCE_CENTROIDS[state]) return PROVINCE_CENTROIDS[state];
-  return COUNTRY_CENTROIDS[input.country ?? "US"] ?? COUNTRY_CENTROIDS.US;
+  const resolved = resolveGeocode(input);
+  return { lat: resolved.lat, lng: resolved.lng };
+}
+
+export function isMappablePrecision(precision: GeocodePrecision) {
+  return precision === "city" || precision === "state";
 }
 
 /** Small deterministic offset so stacked state-centroid points fan out. */

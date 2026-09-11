@@ -1,3 +1,4 @@
+import { FilterActions } from "@/components/FilterActions";
 import type { IncidentQuery } from "@/lib/filters";
 import {
   FIREARM_LABELS,
@@ -139,6 +140,7 @@ export function IncidentFilters({
         >
           Reset
         </a>
+        <FilterActions query={value} />
       </div>
     </form>
   );

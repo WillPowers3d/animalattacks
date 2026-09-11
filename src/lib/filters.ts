@@ -67,6 +67,13 @@ export function toWhere(q: IncidentQuery): Prisma.IncidentWhereInput {
   if (q.from) AND.push({ occurredAt: { gte: new Date(q.from) } });
   if (q.to) AND.push({ occurredAt: { lte: new Date(q.to) } });
   if (q.naOnly !== "0") AND.push({ country: { in: ["US", "CA", "MX"] } });
+  if (q.hide?.trim()) {
+    const hidden = q.hide
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (hidden.length) AND.push({ species: { notIn: hidden } });
+  }
 
   return AND.length ? { AND } : {};
 }

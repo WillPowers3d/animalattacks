@@ -168,6 +168,109 @@ function detectSubspecies(text: string): string | null {
   return null;
 }
 
+const ADMIN_AS_CITY = new Set(
+  Object.keys(STATE_MAP).concat([
+    "canada", "united states", "mexico", "norway", "russia", "germany",
+    "washington state", "new york state",
+  ]),
+);
+
+const JUNK_CITIES = new Set([
+  "grizzly", "grizzly bear", "black bear", "polar bear", "brown bear",
+  "adventure", "magazine", "pii", "desert eagle", "combination",
+  "june", "july", "august", "september", "october", "november", "december",
+  "january", "february", "march", "april", "may", "spring", "summer", "fall", "winter",
+  "spray failed", "cow call grizzly attack", "anchorage daily news",
+  "az republic", "state", "wildlife refuge", "springs", "falls",
+  "russel gillespie", "lou kis", "jack muir", "geologist alex burton",
+  "army capt. michael staver", "shane thomas", "weatherly bates",
+  "dr. lee francis", "north america", "addition", "handgun", "pistol",
+  "unknown handgun", "failure", "success", "from",
+]);
+
+const KNOWN_PLACES = [
+  "Becharof", "Greenwood Lake", "Great Falls", "Columbia Falls", "Marion County",
+  "Resurrection Trail", "Island Park", "Siren", "Tepee Creek", "Meeteetse",
+  "Hidden Lakes", "Choteau", "Ft. Walton Beach", "Fort Walton Beach", "Big Sky",
+  "Denali", "Russian River", "Eagle River", "Seward", "Sitka", "Nome", "Sterling",
+  "Glennallen", "Healy", "Kodiak Island", "Kodiak", "Juneau", "Anchorage", "Homer",
+  "Fairbanks", "Yellowstone", "Glacier", "Cody", "Pinedale", "Jackson", "Ennis",
+  "Bozeman", "Kalispell", "West Yellowstone", "Churchill", "Dawson City", "Selkirk",
+  "Steamboat Springs", "Winter Park", "South Lake Tahoe", "Silver City",
+  "Gatlinburg", "Sevierville", "Bristol", "Rangeley", "Zanesville",
+  "New Castle", "Sanford", "Kingston", "Luther", "Chena", "Wrangell",
+  "Boundary Waters", "Kachemak", "Chichagof Island", "Chichagof", "Chitina",
+  "Byers Lake", "Keweenaw", "Talkeetna", "Lander", "Bondurant", "Baranof",
+  "Wolf Creek", "Kenai Peninsula", "Wind River", "Stewart Island",
+  "Stokes State Forest", "Seneca Lake", "Ishawooa Mesa", "Lake Mary",
+  "Bruin Creek", "North Crandall", "Pocono Country Place", "Las Vegas",
+  "Shoshone River", "Gallatin County", "Afognak", "Afogak Island",
+  "Morrow County", "Tsiu River", "Chickaloon", "Grays Harbor",
+  "Tom Miner Basin", "Upper Green River", "Henrys Lake", "Cora",
+  "Garden Lake", "Highland Valley", "Minto", "Rodgersville", "Walker",
+  "Missoula", "Whitefish", "Livingston", "Gardiner", "Seeley Lake",
+  "Libby", "Lincoln", "Augusta", "Salmon", "Driggs", "McCall", "Stanley",
+  "Sheridan", "Aspen", "Vail", "Durango", "Flagstaff", "Taos", "Moab",
+  "Yosemite", "Wasilla", "Palmer", "Soldotna", "Valdez", "Ketchikan",
+  "Grand Teton", "Coal Creek", "Ear Mountain", "Scapegoat", "Montreal River",
+  "Parks Highway", "Byers Lake", "Cold Bay", "Muldoon", "Mantakusa",
+  "Unuk River", "Skykomish", "Circle Lake", "Central", "Bell Flats",
+  "Pioneer Trail", "Eldridge Creek", "Stamp Meadows", "Featherly Creek",
+  "Flathead", "Caribou-Targhee", "Two Oceans Pass", "Ocate", "Georgetown",
+  "Auburn", "North Bend", "Canmore", "Banff", "Jasper", "Whistler",
+];
+
+function isUsableCity(raw?: string | null): raw is string {
+  if (!raw) return false;
+  const city = raw.replace(/\s+/g, " ").trim();
+  if (city.length < 3 || city.length > 48) return false;
+  const lower = city.toLowerCase().replace(/\./g, "");
+  if (ADMIN_AS_CITY.has(lower) || JUNK_CITIES.has(lower)) return false;
+  if (/^\d/.test(city)) return false;
+  if (/\b(capt|dr|geologist|officer|hunter)\b/i.test(city) && !/\b(lake|river|park|creek|mountain|county|island|falls|forest)\b/i.test(city)) {
+    return false;
+  }
+  return true;
+}
+
+function lookupState(token: string): { abbr: string; country: Country } | undefined {
+  const lower = token.toLowerCase().replace(/\.$/, "").trim();
+  if (STATE_MAP[lower]) return STATE_MAP[lower];
+  const abbr = lower.toUpperCase();
+  for (const info of Object.values(STATE_MAP)) {
+    if (info.abbr === abbr) return info;
+  }
+  return undefined;
+}
+
+function parsePipePlace(placePart: string): {
+  city?: string;
+  region?: string;
+  stateProvince?: string;
+  country: Country;
+} {
+  const cleaned = placePart.replace(/\s+/g, " ").trim();
+  const bits = cleaned.split(",").map((s) => s.trim()).filter(Boolean);
+  if (bits.length >= 2) {
+    const stateTok = bits[bits.length - 1];
+    const state = lookupState(stateTok);
+    const city = bits.slice(0, -1).join(", ");
+    if (state) {
+      return {
+        city: isUsableCity(city) ? city : undefined,
+        region: isUsableCity(city) ? undefined : city || undefined,
+        stateProvince: state.abbr,
+        country: state.country,
+      };
+    }
+  }
+  const onlyState = lookupState(cleaned);
+  if (onlyState) {
+    return { stateProvince: onlyState.abbr, country: onlyState.country, region: cleaned };
+  }
+  return detectLocation(cleaned);
+}
+
 function detectLocation(text: string): {
   city?: string;
   region?: string;
@@ -176,10 +279,10 @@ function detectLocation(text: string): {
 } {
   const lower = text.toLowerCase();
   if (/svalbard|spitsbergen|barents|krosspynten|longyearbyen|hornsund|edgeøya|paulabren|storøya|austfjord/i.test(text)) {
-    return { region: "Svalbard", stateProvince: "SV", country: "NO" };
+    return { region: "Svalbard", city: "Svalbard", stateProvince: "SV", country: "NO" };
   }
-  if (/norway/.test(lower) && !/new/.test(lower)) {
-    return { region: "Norway", stateProvince: "SV", country: "NO" };
+  if (/\bnorway\b/.test(lower) && !/\bnew\b/.test(lower)) {
+    return { region: "Svalbard", city: "Svalbard", stateProvince: "SV", country: "NO" };
   }
   if (/kassel|germany/.test(lower)) {
     return { city: "Kassel", stateProvince: "HE", country: "DE" };
@@ -204,27 +307,15 @@ function detectLocation(text: string): {
   );
   let city: string | undefined;
   if (placeMatch) {
-    const cand = placeMatch[1].replace(/\b(Alaska|Montana|Wyoming|Idaho|Colorado|Florida|California|Washington|Oregon|New York|Wisconsin|Tennessee|Arizona|New Mexico)\b/g, "").trim();
-    if (cand.length > 2 && cand.length < 40) city = cand;
+    const cand = placeMatch[1]
+      .replace(/\b(Alaska|Montana|Wyoming|Idaho|Colorado|Florida|California|Washington|Oregon|New York|Wisconsin|Tennessee|Arizona|New Mexico|British Columbia|Alberta|Yukon)\b/g, "")
+      .trim();
+    if (isUsableCity(cand)) city = cand;
   }
 
-  const knownPlaces = [
-    "Becharof", "Greenwood Lake", "Great Falls", "Columbia Falls", "Marion County",
-    "Resurrection Trail", "Island Park", "Siren", "Tepee Creek", "Meeteetse",
-    "Hidden Lakes", "Choteau", "Ft. Walton Beach", "Fort Walton Beach", "Big Sky",
-    "Denali", "Russian River", "Eagle River", "Seward", "Sitka", "Nome", "Sterling",
-    "Glennallen", "Healy", "Kodiak", "Juneau", "Anchorage", "Homer", "Fairbanks",
-    "Yellowstone", "Glacier", "Cody", "Pinedale", "Jackson", "Ennis", "Bozeman",
-    "Kalispell", "West Yellowstone", "Churchill", "Dawson City", "Selkirk",
-    "Steamboat Springs", "Winter Park", "South Lake Tahoe", "Silver City",
-    "Gatlinburg", "Sevierville", "Bristol", "Rangeley", "Zanesville",
-    "New Castle", "Sanford", "Kingston", "Luther", "Chena", "Wrangell",
-    "Boundary Waters", "Kachemak", "Chichagof", "Chitina", "Byers Lake",
-    "Keweenaw", "Talkeetna", "Lander", "Bondurant", "Baranof", "Wolf Creek",
-  ];
   if (!city) {
-    for (const p of knownPlaces) {
-      if (new RegExp(`\\b${p}\\b`, "i").test(text)) {
+    for (const p of KNOWN_PLACES) {
+      if (new RegExp(`\\b${p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text)) {
         city = p;
         break;
       }
@@ -239,11 +330,22 @@ function detectLocation(text: string): {
   }
 
   return {
-    city,
-    region: city ? undefined : stateName || undefined,
+    city: isUsableCity(city) ? city : undefined,
+    region: isUsableCity(city) ? undefined : stateName || undefined,
     stateProvince: state?.abbr,
     country: state?.country ?? "US",
   };
+}
+
+function locationFromCase(header: string, raw: string) {
+  if (header.includes("|")) {
+    const parts = header.split("|").map((s) => s.trim());
+    if (parts[1]) {
+      const loc = parsePipePlace(parts[1]);
+      if (loc.stateProvince || loc.city) return loc;
+    }
+  }
+  return detectLocation(`${header}\n${raw}`);
 }
 
 function parseDate(text: string): {
@@ -358,7 +460,7 @@ function toIncident(
     return null;
   }
 
-  const loc = detectLocation(blob);
+  const loc = locationFromCase(header, raw);
   const date = parseDate(header + " " + raw.slice(0, 200));
   const caliber = detectCaliber(header) ?? detectCaliber(raw);
   const sub = detectSubspecies(header) ?? detectSubspecies(raw);

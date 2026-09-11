@@ -2,17 +2,18 @@ name: Daily incident ingest
 
 on:
   schedule:
-    - cron: "15 12 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run (do not write)"
-        required: false
-        default: "false"
+        description: "Dry run (fetch + parse, do not write)"
+        type: boolean
+        default: false
 
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,17 +21,67 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Ensure local sqlite (CI fallback)
+
+      - name: Resolve database
+        env:
+          SECRET_DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          echo 'DATABASE_URL="file:./dev.db"' >> "$GITHUB_ENV"
+          if [ -n "$SECRET_DATABASE_URL" ]; then
+            echo "DATABASE_URL=$SECRET_DATABASE_URL" >> "$GITHUB_ENV"
+            echo "DB_MODE=hosted" >> "$GITHUB_ENV"
+            echo "Using hosted DATABASE_URL (production path)."
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "::error::Scheduled ingest requires a DATABASE_URL repo secret (Postgres). The runner SQLite file is ephemeral and is not a production database."
+            exit 1
+          else
+            echo 'DATABASE_URL=file:./dev.db' >> "$GITHUB_ENV"
+            echo "DB_MODE=sqlite-smoke" >> "$GITHUB_ENV"
+            echo "::warning::No DATABASE_URL secret. Using ephemeral SQLite for a manual smoke run only. Add a Postgres DATABASE_URL secret for production."
+          fi
+
+      - name: Configure Prisma provider
+        run: npx tsx scripts/configure-db-provider.ts
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Smoke seed (ephemeral SQLite only)
+        if: env.DB_MODE == 'sqlite-smoke'
+        run: |
           npx prisma db push
           npm run db:seed
+
+      - name: Ingest news + Facebook
+        id: ingest
         env:
-          DATABASE_URL: file:./dev.db
-      - name: Ingest news + Facebook stub
-        run: npm run ingest${{ github.event.inputs.dry_run == 'true' && ':dry' || '' }}
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
           FACEBOOK_PAGE_IDS: ${{ secrets.FACEBOOK_PAGE_IDS }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run }}"
+          if [ "$DRY" = "true" ]; then
+            echo "Mode: dry-run (no writes)"
+            npm run ingest:dry | tee ingest-out.json
+          else
+            echo "Mode: live upsert"
+            npm run ingest | tee ingest-out.json
+          fi
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Daily ingest"
+            echo ""
+            echo "- Event: \`${{ github.event_name }}\`"
+            echo "- Dry run input: \`${{ github.event.inputs.dry_run || 'false' }}\`"
+            echo "- DB mode: \`${DB_MODE:-unknown}\`"
+            echo ""
+            if [ -f ingest-out.json ]; then
+              echo '```json'
+              tail -n 80 ingest-out.json
+              echo '```'
+            else
+              echo "No ingest JSON was written (the job likely failed before ingest)."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -136,7 +136,7 @@ export async function maybeEnrichWithOpenAI(inc: SeedIncident): Promise<SeedInci
     const raw = res.choices[0]?.message?.content;
     if (!raw) return inc;
     const parsed = JSON.parse(raw) as Partial<SeedIncident>;
-    return {
+    const merged: SeedIncident = {
       ...inc,
       ...parsed,
       title: inc.title,
@@ -144,6 +144,8 @@ export async function maybeEnrichWithOpenAI(inc: SeedIncident): Promise<SeedInci
       sources: inc.sources,
       sourceType: inc.sourceType,
     };
+    const geo = offsetCoord(geocodeIncident(merged), merged.title);
+    return { ...merged, lat: geo.lat, lng: geo.lng };
   } catch (err) {
     console.warn("OpenAI enrichment skipped:", err);
     return inc;

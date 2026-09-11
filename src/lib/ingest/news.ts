@@ -10,9 +10,12 @@ export const NEWS_QUERIES = [
   { q: "bear attack United States OR Canada OR Alaska OR Montana", species: "bear" as const },
   { q: "grizzly bear attack Montana OR Wyoming OR Alaska OR Idaho", species: "bear" as const },
   { q: "black bear attack", species: "bear" as const },
+  { q: "fatal bear attack Alaska OR Montana OR Wyoming OR Canada", species: "bear" as const },
   { q: "mountain lion attack OR cougar attack United States OR Canada", species: "mountain_lion" as const },
+  { q: "cougar mauls OR mountain lion mauls", species: "mountain_lion" as const },
   { q: "elk attack OR elk gores visitor park", species: "elk" as const },
   { q: "moose attack Alaska OR Colorado OR Canada", species: "moose" as const },
+  { q: "moose tramples OR moose gores", species: "moose" as const },
 ];
 
 function rssUrl(query: string) {
@@ -29,14 +32,21 @@ export type NewsItem = {
   species: SeedIncident["species"];
 };
 
-export async function fetchNewsItems(): Promise<NewsItem[]> {
+export type NewsFetchResult = {
+  items: NewsItem[];
+  failures: { query: string; error: string }[];
+};
+
+export async function fetchNewsItems(): Promise<NewsFetchResult> {
   const seen = new Set<string>();
   const items: NewsItem[] = [];
+  const failures: NewsFetchResult["failures"] = [];
 
   for (const query of NEWS_QUERIES) {
     try {
       const feed = await parser.parseURL(rssUrl(query.q));
-      for (const entry of feed.items ?? []) {
+      const entries = feed.items ?? [];
+      for (const entry of entries) {
         const url = entry.link ?? "";
         const title = entry.title ?? "";
         if (!url || !title) continue;
@@ -53,8 +63,10 @@ export async function fetchNewsItems(): Promise<NewsItem[]> {
         });
       }
     } catch (err) {
-      console.warn(`RSS fetch failed for "${query.q}":`, err);
+      const error = err instanceof Error ? err.message : String(err);
+      console.warn(`RSS fetch failed for "${query.q}":`, error);
+      failures.push({ query: query.q, error });
     }
   }
-  return items;
+  return { items, failures };
 }

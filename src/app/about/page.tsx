@@ -74,13 +74,16 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2 className="font-display text-xl text-kraft-200">Daily ingest</h2>
+        <h2 className="font-display text-xl text-kraft-200">Daily updates</h2>
         <p className="mt-2">
-          <code>npm run ingest</code> pulls Google News RSS queries for NA attacks, optionally
-          enriches with OpenAI if <code>OPENAI_API_KEY</code> is set, and upserts after dedupe by
-          URL or title+date+location. Facebook is a pluggable Graph API client: without{" "}
-          <code>FACEBOOK_ACCESS_TOKEN</code> and <code>FACEBOOK_PAGE_IDS</code> it loads documented
-          mock posts so the path is testable.
+          A GitHub Action runs at 12:00 UTC against a hosted Postgres <code>DATABASE_URL</code>.{" "}
+          <code>npm run ingest</code> pulls Google News RSS, optionally enriches with OpenAI if{" "}
+          <code>OPENAI_API_KEY</code> is set, and upserts after dedupe by URL or title+date+location.
+          Use <code>npm run ingest:dry</code> to fetch and parse without writes. Facebook is a
+          pluggable Graph API client: without <code>FACEBOOK_ACCESS_TOKEN</code> and{" "}
+          <code>FACEBOOK_PAGE_IDS</code> it loads documented mock posts so the path is testable.
+          Vercel Cron can hit <code>/api/ingest</code> with <code>CRON_SECRET</code>. SQLite is only
+          for local quickstart — it is not the production ingest target.
         </p>
       </section>
 

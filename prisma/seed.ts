@@ -19,8 +19,8 @@ async function upsertIncident(inc: SeedIncident) {
     geocodeIncident(inc),
     `${inc.title}${inc.occurredAt ?? ""}`,
   );
-  const lat = inc.lat ?? geo.lat;
-  const lng = inc.lng ?? geo.lng;
+  const lat = geo.lat;
+  const lng = geo.lng;
   const externalKey = makeExternalKey(inc);
   const slug = makeSlug(inc.title, inc.occurredAt, externalKey);
 

@@ -23,7 +23,9 @@
         "title": "1 dead, 1 injured in cougar attack in Washington state",
         "publisher": "Associated Press"
       }
-    ]
+    ],
+    "lat": 46.9063,
+    "lng": -121.322
   },
   {
     "title": "Fatal cougar attack on Hunchback Mountain Trail, Oregon",
@@ -48,7 +50,9 @@
         "title": "List of fatal cougar attacks in North America",
         "publisher": "Wikipedia"
       }
-    ]
+    ],
+    "lat": 45.961600000000004,
+    "lng": -121.0281
   },
   {
     "title": "Fatal mountain lion attack on brothers near Georgetown, California",
@@ -73,7 +77,9 @@
         "title": "Mountain lion kills man, injures brother in rare California fatal attack",
         "publisher": "Reuters"
       }
-    ]
+    ],
+    "lat": 38.828399999999995,
+    "lng": -122.5606
   },
   {
     "title": "Trail runner fights off mountain lion near Fort Collins, Colorado",
@@ -98,7 +104,9 @@
         "title": "Update on Larimer County mountain lion attack",
         "publisher": "Colorado Parks and Wildlife"
       }
-    ]
+    ],
+    "lat": 41.0963,
+    "lng": -105.4008
   },
   {
     "title": "Five-year-old injured in mountain lion attack near Lake Forest, California",
@@ -122,7 +130,9 @@
         "title": "List of fatal cougar attacks in North America",
         "publisher": "Wikipedia"
       }
-    ]
+    ],
+    "lat": 33.2023,
+    "lng": -117.4923
   },
   {
     "title": "Jogger killed by mountain lion on Auburn trail, California",
@@ -145,7 +155,9 @@
         "title": "List of fatal cougar attacks in North America",
         "publisher": "Wikipedia"
       }
-    ]
+    ],
+    "lat": 39.5308,
+    "lng": -121.1651
   },
   {
     "title": "Child injured in cougar attack near Olympia, Washington",
@@ -169,7 +181,9 @@
         "title": "Update on Capitol Forest cougar incident",
         "publisher": "Washington Department of Fish and Wildlife"
       }
-    ]
+    ],
+    "lat": 46.6179,
+    "lng": -124.6563
   },
   {
     "title": "Hiker injured in mountain lion encounter, Boulder, Colorado",
@@ -192,7 +206,9 @@
         "title": "Colorado Parks and Wildlife news",
         "publisher": "Colorado Parks and Wildlife"
       }
-    ]
+    ],
+    "lat": 40.4658,
+    "lng": -105.4973
   },
   {
     "title": "Cyclist injured in cougar attack near Canmore, Alberta",
@@ -215,7 +231,9 @@
         "title": "Alberta wildlife reporting",
         "publisher": "Government of Alberta"
       }
-    ]
+    ],
+    "lat": 51.0946,
+    "lng": -116.453
   },
   {
     "title": "Elk gores visitor in Estes Park, Colorado",
@@ -238,7 +256,9 @@
         "title": "Rocky Mountain National Park news",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 40.8588,
+    "lng": -107.5587
   },
   {
     "title": "Elk attack on visitor near Mammoth, Yellowstone",
@@ -262,7 +282,9 @@
         "title": "Yellowstone National Park news",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 43.9604,
+    "lng": -111.36829999999999
   },
   {
     "title": "Cow elk charges photographer in Banff townsite",
@@ -285,7 +307,9 @@
         "title": "Banff National Park",
         "publisher": "Parks Canada"
       }
-    ]
+    ],
+    "lat": 50.68000000000001,
+    "lng": -115.13260000000001
   },
   {
     "title": "Bull elk injures tourist in Jasper, Alberta",
@@ -308,7 +332,9 @@
         "title": "Jasper National Park",
         "publisher": "Parks Canada"
       }
-    ]
+    ],
+    "lat": 52.8863,
+    "lng": -117.8882
   },
   {
     "title": "Elk knocks down visitor on a Rocky Mountain NP roadside",
@@ -332,7 +358,9 @@
         "title": "Elk — Rocky Mountain National Park",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 40.3968,
+    "lng": -105.22489999999999
   },
   {
     "title": "Photographer killed by cow moose defending calves near Homer, Alaska",
@@ -356,7 +384,9 @@
         "title": "Family says Alaska photographer killed in moose attack knew the risks",
         "publisher": "Associated Press"
       }
-    ]
+    ],
+    "lat": 59.2001,
+    "lng": -153.25070000000002
   },
   {
     "title": "Moose tramples woman and dog in Colorado high country",
@@ -379,7 +409,9 @@
         "title": "Moose safety",
         "publisher": "Colorado Parks and Wildlife"
       }
-    ]
+    ],
+    "lat": 39.5363,
+    "lng": -107.0912
   },
   {
     "title": "Cow moose charges skier in Anchorage greenbelt",
@@ -402,7 +434,9 @@
         "title": "Living with moose",
         "publisher": "Alaska Department of Fish and Game"
       }
-    ]
+    ],
+    "lat": 61.2125,
+    "lng": -150.69269999999997
   },
   {
     "title": "Moose attack on a runner in Colorado’s State Forest area",
@@ -426,7 +460,9 @@
         "title": "Moose safety",
         "publisher": "Colorado Parks and Wildlife"
       }
-    ]
+    ],
+    "lat": 40.5538,
+    "lng": -108.147
   },
   {
     "title": "Bull moose charges photographer in Grand Teton",
@@ -450,7 +486,9 @@
         "title": "Moose — Grand Teton National Park",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 44.0315,
+    "lng": -111.6416
   },
   {
     "title": "Urban moose stomps person on an Anchorage sidewalk",
@@ -473,7 +511,9 @@
         "title": "Living with moose",
         "publisher": "Alaska Department of Fish and Game"
       }
-    ]
+    ],
+    "lat": 61.7207,
+    "lng": -151.0133
   },
   {
     "title": "Cow moose injures person near Canmore, Alberta",
@@ -496,7 +536,9 @@
         "title": "Moose in Alberta",
         "publisher": "Government of Alberta"
       }
-    ]
+    ],
+    "lat": 51.719,
+    "lng": -116.4012
   },
   {
     "title": "Florida panther kills endangered livestock — property incident, Collier County",
@@ -519,7 +561,9 @@
         "title": "Florida panther",
         "publisher": "Florida Fish and Wildlife Conservation Commission"
       }
-    ]
+    ],
+    "lat": 25.749599999999997,
+    "lng": -82.0116
   },
   {
     "title": "Cougar kills child near Boston Bar, British Columbia (historical)",
@@ -542,7 +586,9 @@
         "title": "List of fatal cougar attacks in North America",
         "publisher": "Wikipedia"
       }
-    ]
+    ],
+    "lat": 49.1946,
+    "lng": -121.6796
   },
   {
     "title": "Elk gores a woman outside a lodge in Estes Park",
@@ -565,7 +611,9 @@
         "title": "Elk — Rocky Mountain National Park",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 40.6152,
+    "lng": -107.2507
   },
   {
     "title": "Visitor gored by elk at Mammoth Hot Springs, Yellowstone",
@@ -589,6 +637,8 @@
         "title": "Yellowstone park statistics",
         "publisher": "National Park Service"
       }
-    ]
+    ],
+    "lat": 44.199799999999996,
+    "lng": -112.0711
   }
 ]

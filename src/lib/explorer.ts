@@ -1,3 +1,4 @@
+import { geocodeIncident, offsetCoord } from "./geo";
 import { formatLocation } from "./incident-utils";
 import type { Species } from "./types";
 
@@ -13,6 +14,7 @@ export type ExplorerIncident = {
   country: string;
   lat: number;
   lng: number;
+  occurredAt?: Date | string | null;
   severity: string;
   summary: string;
   caliber?: string | null;
@@ -34,6 +36,7 @@ export function toExplorerIncident(row: {
   country: string;
   lat: number | null;
   lng: number | null;
+  occurredAt?: Date | string | null;
   severity: string;
   summary: string;
   caliber?: string | null;
@@ -41,9 +44,17 @@ export function toExplorerIncident(row: {
   defenseOutcome?: string | null;
   sourceType: string;
   verified: boolean;
-}): ExplorerIncident | null {
-  if (row.lat == null || row.lng == null) return null;
-  if (!Number.isFinite(row.lat) || !Number.isFinite(row.lng)) return null;
+}): ExplorerIncident {
+  let lat = row.lat;
+  let lng = row.lng;
+  if (lat == null || lng == null || !Number.isFinite(lat) || !Number.isFinite(lng)) {
+    const geo = offsetCoord(
+      geocodeIncident(row),
+      `${row.slug}${row.title}`,
+    );
+    lat = geo.lat;
+    lng = geo.lng;
+  }
   return {
     slug: row.slug,
     title: row.title,
@@ -54,8 +65,9 @@ export function toExplorerIncident(row: {
     region: row.region,
     stateProvince: row.stateProvince,
     country: row.country,
-    lat: row.lat,
-    lng: row.lng,
+    lat,
+    lng,
+    occurredAt: row.occurredAt,
     severity: row.severity,
     summary: row.summary,
     caliber: row.caliber,

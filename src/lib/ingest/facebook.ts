@@ -75,6 +75,37 @@ export async function fetchFacebookPosts(): Promise<FacebookPost[]> {
   return posts;
 }
 
+function inferFacebookLocation(text: string): {
+  city: string | null;
+  stateProvince: string | null;
+  country: "US" | "CA" | "MX";
+} {
+  const places: [RegExp, string, string, "US" | "CA" | "MX"][] = [
+    [/Anchorage/i, "Anchorage", "AK", "US"],
+    [/Estes Park/i, "Estes Park", "CO", "US"],
+    [/Banff/i, "Banff", "AB", "CA"],
+    [/Jasper/i, "Jasper", "AB", "CA"],
+    [/Canmore/i, "Canmore", "AB", "CA"],
+    [/Yellowstone/i, "Yellowstone", "WY", "US"],
+    [/Bozeman/i, "Bozeman", "MT", "US"],
+    [/Jackson/i, "Jackson", "WY", "US"],
+    [/Fairbanks/i, "Fairbanks", "AK", "US"],
+    [/Homer/i, "Homer", "AK", "US"],
+    [/Boulder/i, "Boulder", "CO", "US"],
+    [/Whistler/i, "Whistler", "BC", "CA"],
+  ];
+  for (const [re, city, state, country] of places) {
+    if (re.test(text)) return { city, stateProvince: state, country };
+  }
+  if (/\bAlaska\b/i.test(text)) return { city: null, stateProvince: "AK", country: "US" };
+  if (/\bMontana\b/i.test(text)) return { city: null, stateProvince: "MT", country: "US" };
+  if (/\bColorado\b/i.test(text)) return { city: null, stateProvince: "CO", country: "US" };
+  if (/\bWyoming\b/i.test(text)) return { city: null, stateProvince: "WY", country: "US" };
+  if (/\bAlberta\b/i.test(text)) return { city: null, stateProvince: "AB", country: "CA" };
+  if (/\bBritish Columbia\b/i.test(text)) return { city: null, stateProvince: "BC", country: "CA" };
+  return { city: null, stateProvince: null, country: "US" };
+}
+
 export function facebookToIncident(post: FacebookPost): SeedIncident | null {
   const text = post.message;
   if (!/(bear|cougar|mountain lion|elk|moose)/i.test(text)) return null;
@@ -85,11 +116,7 @@ export function facebookToIncident(post: FacebookPost): SeedIncident | null {
       : /cougar|mountain lion/i.test(text)
         ? "mountain_lion"
         : "bear";
-  const loc = /Anchorage/i.test(text)
-    ? { city: "Anchorage", stateProvince: "AK" as const, country: "US" as const }
-    : /Estes Park/i.test(text)
-      ? { city: "Estes Park", stateProvince: "CO" as const, country: "US" as const }
-      : { city: null, stateProvince: null, country: "US" as const };
+  const loc = inferFacebookLocation(text);
   const geo = offsetCoord(geocodeIncident(loc), post.id);
   return {
     title: text.slice(0, 120),

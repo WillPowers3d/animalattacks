@@ -1,4 +1,5 @@
 import { HomeExplorer } from "@/components/HomeExplorer";
+import { LatestAttacks } from "@/components/LatestAttacks";
 import { toExplorerIncident } from "@/lib/explorer";
 import { parseSearchParams, toWhere } from "@/lib/filters";
 import { prisma } from "@/lib/prisma";
@@ -13,7 +14,7 @@ export default async function HomePage({
   const sp = parseSearchParams(await searchParams);
   const where = toWhere({ ...sp, species: undefined, hide: undefined });
 
-  const [rows, states, total] = await Promise.all([
+  const [rows, states, total, lastIngest] = await Promise.all([
     prisma.incident.findMany({
       where,
       orderBy: [{ occurredAt: "desc" }, { createdAt: "desc" }],
@@ -24,9 +25,14 @@ export default async function HomePage({
       distinct: ["stateProvince"],
     }),
     prisma.incident.count({ where }),
+    prisma.ingestRun.findFirst({
+      where: { dryRun: false },
+      orderBy: { startedAt: "desc" },
+    }),
   ]);
 
-  const incidents = rows.map(toExplorerIncident).filter((i): i is NonNullable<typeof i> => i != null);
+  const incidents = rows.map(toExplorerIncident);
+  const latest = incidents.slice(0, 8);
 
   const stateList = states
     .map((s) => s.stateProvince)
@@ -46,7 +52,21 @@ export default async function HomePage({
           Weingarten’s documented handgun defenses against bears (Ammoland / Gun Watch). This is
           not official government data.
         </p>
+        {lastIngest ? (
+          <p className="mt-3 font-mono text-[11px] text-moss-300">
+            Last live ingest {lastIngest.finishedAt?.toISOString().slice(0, 16) ?? "running"} UTC ·
+            fetched {lastIngest.fetched} · wrote {lastIngest.upserted} · skipped {lastIngest.skipped}
+            {lastIngest.errors ? " · see /api/ingest/status for warnings" : ""}
+          </p>
+        ) : (
+          <p className="mt-3 font-mono text-[11px] text-moss-400">
+            No live ingest run yet — seed data is loaded. Daily updates use GitHub Actions or Vercel
+            Cron against Postgres.
+          </p>
+        )}
       </section>
+
+      <LatestAttacks incidents={latest} />
 
       <HomeExplorer incidents={incidents} query={sp} states={stateList} />
     </div>

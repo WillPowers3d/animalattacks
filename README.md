@@ -10,12 +10,13 @@ This is **not official wildlife-agency data**.
 
 - Incident database: species / subspecies, date, city–region–state/province, country (US / CA / MX), severity (fatal / injury / near-miss / property), summary, source URL(s), source type (news / facebook / ammoland / other), verified flag, lat/lng
 - Defensive-firearm fields used in Weingarten’s research: `firearmType`, `caliber`, `shotsFired`, `defenseOutcome` (success / failure / indeterminate), `combinationDefense`
-- Homepage map + list with filters (species, region, date, severity, firearm type / caliber)
+- Homepage map + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber)
+- Shareable filter URLs and **CSV export** of the filtered ledger
 - Incident detail pages with attribution
 - Stats: species, region, yearly trend, **handgun caliber effectiveness**
 - Full-text search
 - About / methodology + disclaimer
-- Daily ingest: Google News RSS + pluggable Facebook Graph API (mock if no token)
+- Daily ingest: Google News RSS + pluggable Facebook Graph API (mock if no token), GitHub Action at 12:00 UTC
 
 ## Stack
 
@@ -47,37 +48,67 @@ Primary historical corpus is parsed from public articles (copies under `data/sou
 | [Ammoland, May 2024 — ~190](https://www.ammoland.com/2024/05/bear-defense-with-handguns-update-20-more-cases-98-effective/) | Third update |
 | [Ammoland, Oct 2025 — 205](https://www.ammoland.com/2025/10/handguns-proven-98-effective-in-205-documented-bear-attacks/) | Fourth update |
 
-`npm run parse:weingarten` extracts dated cases into `data/weingarten-incidents.json`. Additional mountain lion / elk / moose incidents from public news and agency pages live in `data/extra-incidents.json`.
+`npm run parse:weingarten` extracts dated cases into `data/weingarten-incidents.json`. Additional mountain lion / elk / moose incidents from public news and agency pages live in `data/extra-incidents.json`. `npm run geocode:report` prints city-level vs state-centroid vs country-fallback coverage. Known places get city coordinates; otherwise the map uses state/province centroids so more dots plot.
 
 Parsing is heuristic. Weingarten’s published **98%** figure uses *his* inclusion rules (handgun actually fired; combination cases excluded from the rate). This site stores combination cases with `combinationDefense=true` and shows caliber breakdowns only where we extracted a caliber.
 
 Chuke’s Outdoors and others cite this same public database; we attribute the research to **Dean Weingarten / Ammoland**.
 
-## Daily ingest
+## Daily updates
+
+The ledger is meant to grow every day from public news (and optional Facebook pages). **Do not treat the GitHub runner’s SQLite file as production** — it disappears when the job ends.
+
+### SQLite vs Postgres
+
+| Environment | `DATABASE_URL` | Prisma `provider` | What to do |
+| --- | --- | --- | --- |
+| Local quickstart | `file:./dev.db` (see `.env.example`) | `sqlite` | `npx prisma db push` then `npm run db:seed` |
+| Production / daily ingest | `postgresql://…` hosted URL | `postgresql` | Set the repo/Vercel secret, run `npx tsx scripts/configure-db-provider.ts`, then `npx prisma db push` once and seed |
+
+`scripts/configure-db-provider.ts` flips the schema to `postgresql` when `DATABASE_URL` starts with `postgres`. Field types are already Postgres-ready.
+
+### Dry-run vs live
 
 ```bash
-npm run ingest          # write upserts
-npm run ingest:dry      # fetch + parse, no writes
+npm run ingest          # live: fetch + parse + upsert
+npm run ingest:dry      # dry-run: fetch + parse, no writes; exit 1 if hard failures
 # optional flags: --no-facebook  --enrich
 ```
+
+Dry-run still records an `IngestRun` row marked `dryRun=true` so you can see fetched / would-upsert / skipped counts. Live writes new incidents after URL and title+date+location dedupe.
+
+Useful failures (job exits non-zero):
+
+- Scheduled GitHub Action without a `DATABASE_URL` secret
+- Every Google News RSS query failed (egress / outage)
+- Facebook token + page IDs set, but Graph returned no posts
+- Production `/api/ingest` called without `INGEST_SECRET` / `CRON_SECRET`
+
+Partial RSS failures are warnings: other queries still ingest.
+
+### What ingest pulls
 
 - **News:** Google News RSS queries for NA bear / cougar / elk / moose attacks.
 - **Facebook:** If `FACEBOOK_ACCESS_TOKEN` and `FACEBOOK_PAGE_IDS` (comma-separated) are set, posts are pulled from Graph API `/{page-id}/posts`. Otherwise a **mock/stub** path runs so the pipeline is testable.
 - **Dedupe:** canonical URL, then title + date + location.
-- **Parse:** keyword heuristics. Set `OPENAI_API_KEY` and pass `--enrich` (or set the key for `/api/ingest`) for optional LLM field cleanup.
-- **HTTP:** `POST /api/ingest` (protect with `INGEST_SECRET` Bearer token or `?secret=`).
+- **Parse:** keyword heuristics + city/state geocode. Set `OPENAI_API_KEY` and pass `--enrich` (or set the key for `/api/ingest`) for optional LLM field cleanup.
+- **HTTP:** `GET`/`POST /api/ingest` (Bearer `INGEST_SECRET` or `CRON_SECRET`, or `?secret=`). Last runs: `/api/ingest/status`.
 
-### GitHub Action
+### GitHub Action (preferred production path)
 
-`.github/workflows/ingest.yml` runs daily at 12:15 UTC (`workflow_dispatch` available). Add repo secrets as needed:
+`.github/workflows/ingest.yml` runs **daily at 12:00 UTC** and supports **Run workflow** with a dry-run toggle.
 
-- `DATABASE_URL` (Postgres in production; SQLite is only for local / CI smoke)
+Repo secrets:
+
+- **`DATABASE_URL`** — required for the scheduled job (hosted Postgres). Manual dispatch without it smokes against ephemeral SQLite and warns.
 - `OPENAI_API_KEY` (optional)
 - `FACEBOOK_ACCESS_TOKEN` / `FACEBOOK_PAGE_IDS` (optional)
 
+The job writes a GitHub step summary with the ingest JSON (fetched / upserted / skipped / errors).
+
 ### Vercel Cron
 
-`vercel.json` hits `/api/ingest` daily. Set `INGEST_SECRET` and a production `DATABASE_URL` (Postgres). Switch Prisma `provider` to `postgresql` for hosted Postgres — field types are already compatible.
+`vercel.json` hits `/api/ingest` daily at 12:00 UTC. Set `CRON_SECRET` (Vercel sends `Authorization: Bearer $CRON_SECRET`) and/or `INGEST_SECRET`, plus a production Postgres `DATABASE_URL`. Do not put the secret in the cron path.
 
 ### Facebook token setup
 
@@ -90,8 +121,8 @@ npm run ingest:dry      # fetch + parse, no writes
 
 Local default is SQLite (`DATABASE_URL="file:./dev.db"`). For Postgres:
 
-1. Change `provider = "postgresql"` in `prisma/schema.prisma`.
-2. Set `DATABASE_URL`.
+1. Set `DATABASE_URL` to the Postgres URL.
+2. `npx tsx scripts/configure-db-provider.ts` (or change `provider = "postgresql"` in `prisma/schema.prisma`).
 3. `npx prisma db push` (or migrate) and `npm run db:seed`.
 
 ## Scripts
@@ -105,6 +136,7 @@ Local default is SQLite (`DATABASE_URL="file:./dev.db"`). For Postgres:
 | `npm run db:reset` | Recreate DB + seed |
 | `npm run parse:weingarten` | Re-parse `data/sources/` |
 | `npm run ingest` / `ingest:dry` | News + Facebook pipeline |
+| `npm run geocode:report` | City / state / country geocode coverage |
 
 ## License / ethics
 
