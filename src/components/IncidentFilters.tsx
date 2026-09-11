@@ -1,3 +1,5 @@
+"use client";
+
 import { FilterActions } from "@/components/FilterActions";
 import type { IncidentQuery } from "@/lib/filters";
 import {
@@ -37,10 +39,26 @@ export function IncidentFilters({
   action?: string;
   hideSpeciesSelect?: boolean;
 }) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const params = new URLSearchParams();
+    for (const [key, value] of data.entries()) {
+      const text = String(value).trim();
+      if (!text) continue;
+      if (key === "naOnly" && text === "1") continue;
+      params.set(key, text);
+    }
+    const qs = params.toString();
+    window.location.assign(qs ? `${action}?${qs}` : action);
+  }
+
   return (
     <form
       action={action}
       method="get"
+      onSubmit={handleSubmit}
       className="grid gap-3 border border-kraft-500/25 bg-moss-900/70 p-4 sm:grid-cols-2 lg:grid-cols-4"
     >
       {value.hide ? (
