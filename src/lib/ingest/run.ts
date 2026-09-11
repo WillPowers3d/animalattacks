@@ -1,10 +1,8 @@
 import { prisma } from "../prisma";
-import { geocodeIncident, offsetCoord } from "../geo";
-import { dedupeKey, makeExternalKey, makeSlug } from "../incident-utils";
 import { NEWS_QUERIES, fetchNewsItems } from "./news";
 import { heuristicParse, maybeEnrichWithOpenAI } from "./parse";
 import { facebookToIncident, fetchFacebookPosts } from "./facebook";
-import type { SeedIncident } from "../types";
+import { alreadyExists, persistIncident } from "./persist";
 
 export type IngestOptions = {
   dryRun?: boolean;
@@ -22,113 +20,6 @@ export type IngestResult = {
   samples: { title: string; url: string; action: string }[];
   facebookMode: "live" | "mock";
 };
-
-async function alreadyExists(inc: SeedIncident) {
-  const url = inc.sources[0]?.url;
-  if (url) {
-    const byUrl = await prisma.source.findFirst({
-      where: { url },
-      select: { id: true },
-    });
-    if (byUrl) return true;
-  }
-  const key = makeExternalKey(inc);
-  const byKey = await prisma.incident.findUnique({ where: { externalKey: key } });
-  if (byKey) return true;
-
-  if (inc.occurredAt && inc.title) {
-    const date = new Date(inc.occurredAt);
-    const start = new Date(date);
-    start.setUTCHours(0, 0, 0, 0);
-    const end = new Date(date);
-    end.setUTCHours(23, 59, 59, 999);
-    const sameDay = await prisma.incident.findMany({
-      where: {
-        occurredAt: { gte: start, lte: end },
-        city: inc.city ?? undefined,
-        stateProvince: inc.stateProvince ?? undefined,
-      },
-      select: { title: true, occurredAt: true, city: true, stateProvince: true },
-    });
-    const incoming = dedupeKey({
-      title: inc.title,
-      occurredAt: inc.occurredAt,
-      city: inc.city,
-      stateProvince: inc.stateProvince,
-    });
-    return sameDay.some(
-      (row) =>
-        dedupeKey({
-          title: row.title,
-          occurredAt: row.occurredAt,
-          city: row.city,
-          stateProvince: row.stateProvince,
-        }) === incoming,
-    );
-  }
-  return false;
-}
-
-function withCoords(inc: SeedIncident): SeedIncident {
-  if (inc.lat != null && inc.lng != null) return inc;
-  const geo = offsetCoord(geocodeIncident(inc), `${inc.title}${inc.occurredAt ?? ""}`);
-  return { ...inc, lat: geo.lat, lng: geo.lng };
-}
-
-async function persist(inc: SeedIncident) {
-  const located = withCoords(inc);
-  const externalKey = makeExternalKey(located);
-  const slug = makeSlug(located.title, located.occurredAt, externalKey);
-  const data = {
-    slug,
-    title: located.title,
-    species: located.species,
-    subspecies: located.subspecies ?? null,
-    occurredAt: located.occurredAt ? new Date(located.occurredAt) : null,
-    datePrecision: located.datePrecision ?? "unknown",
-    dateDisplay: located.dateDisplay ?? null,
-    city: located.city ?? null,
-    region: located.region ?? null,
-    stateProvince: located.stateProvince ?? null,
-    country: located.country,
-    lat: located.lat ?? null,
-    lng: located.lng ?? null,
-    severity: inc.severity,
-    summary: inc.summary,
-    sourceType: inc.sourceType,
-    verified: inc.verified ?? false,
-    firearmType: inc.firearmType ?? null,
-    caliber: inc.caliber ?? null,
-    shotsFired: inc.shotsFired ?? null,
-    defenseOutcome: inc.defenseOutcome ?? null,
-    combinationDefense: inc.combinationDefense ?? false,
-    attribution: inc.attribution ?? null,
-    externalKey,
-  };
-  const row = await prisma.incident.upsert({
-    where: { externalKey },
-    create: {
-      ...data,
-      sources: {
-        create: inc.sources.map((s) => ({
-          url: s.url,
-          title: s.title ?? null,
-          publisher: s.publisher ?? null,
-        })),
-      },
-    },
-    update: {
-      title: data.title,
-      summary: data.summary,
-      lat: data.lat,
-      lng: data.lng,
-      city: data.city,
-      stateProvince: data.stateProvince,
-      updatedAt: new Date(),
-    },
-  });
-  return row;
-}
 
 export async function runIngest(opts: IngestOptions = {}): Promise<IngestResult> {
   const dryRun = Boolean(opts.dryRun);
@@ -170,7 +61,7 @@ export async function runIngest(opts: IngestOptions = {}): Promise<IngestResult>
         samples.push({ title: inc.title, url: inc.sources[0]?.url ?? "", action: "skip-dup" });
         continue;
       }
-      if (!dryRun) await persist(inc);
+      if (!dryRun) await persistIncident(inc);
       upserted += 1;
       samples.push({ title: inc.title, url: inc.sources[0]?.url ?? "", action: dryRun ? "dry-upsert" : "upsert" });
     }
@@ -197,7 +88,7 @@ export async function runIngest(opts: IngestOptions = {}): Promise<IngestResult>
           skipped += 1;
           continue;
         }
-        if (!dryRun) await persist(inc);
+        if (!dryRun) await persistIncident(inc);
         upserted += 1;
         samples.push({
           title: inc.title,

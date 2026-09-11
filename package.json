@@ -17,7 +17,12 @@
     "ingest": "tsx scripts/ingest.ts",
     "ingest:dry": "tsx scripts/ingest.ts --dry-run",
     "geocode:report": "tsx scripts/geocode-report.ts",
-    "db:provider": "tsx scripts/configure-db-provider.ts"
+    "db:provider": "tsx scripts/configure-db-provider.ts",
+    "publications:build": "tsx scripts/build-publications-directory.ts",
+    "publications:seed": "tsx prisma/seed.ts",
+    "crawl:publications": "tsx scripts/crawl-publications.ts",
+    "crawl:publications:dry": "tsx scripts/crawl-publications.ts --dry-run",
+    "test:publications": "tsx scripts/test-publication-match.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

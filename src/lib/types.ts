@@ -74,6 +74,7 @@ export type SeedIncident = {
   defenseOutcome?: DefenseOutcome | null;
   combinationDefense?: boolean;
   attribution?: string | null;
+  publicationId?: string | null;
   sources: { url: string; title?: string; publisher?: string }[];
 };
 

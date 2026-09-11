@@ -17,6 +17,7 @@ This is **not official wildlife-agency data**.
 - Full-text search
 - About / methodology + disclaimer
 - Daily ingest: Google News RSS + pluggable Facebook Graph API (mock if no token), GitHub Action at 12:00 UTC
+- Expandable **US local / small-town news directory** + progressive crawler (RSS, sitemaps, site search) that upserts matching animal-attack incidents
 
 ## Stack
 
@@ -125,6 +126,62 @@ Local default is SQLite (`DATABASE_URL="file:./dev.db"`). For Postgres:
 2. `npx tsx scripts/configure-db-provider.ts` (or change `provider = "postgresql"` in `prisma/schema.prisma`).
 3. `npx prisma db push` (or migrate) and `npm run db:seed`.
 
+## Local newspaper directory + crawler
+
+National Google News RSS still misses a lot of weeklies. This app ships an **expandable publication directory** and a **progressive crawler** that treats local papers as a first-class ingest source.
+
+It is **not** a complete census of every US town or an all-time scrape of every site. Those jobs are impossible to finish in one run and would be rude even if they were. What we do ship:
+
+1. A large starter directory (thousands of unique domains when sources allow) committed as `data/publications/us-local-news.json.gz`.
+2. A `Publication` table (name, homepage, RSS, town/city/state/county, town-center lat/lng, circulation tier, directory provenance, robots status, last crawl).
+3. A resumable crawler that prefers RSS/Atom, then sitemaps, then WordPress/site-search archive pages.
+4. High-precision matching: an **animal term** (bear, moose, elk, mountain lion / cougar / puma) **and** an **attack term** (attack, attacked, mauling, mauled, charging, …) must appear in the title or snippet before an Incident is created.
+5. Dedup by article URL. Location = parsed town/state when possible, otherwise the publication’s **town center**.
+6. **Snippets only** — title, URL, ≤400-character excerpt. No full-body archive.
+
+### How the directory was built
+
+`npm run publications:build` merges open sources and writes the gzipped seed + `data/publications/manifest.json`:
+
+| Source | What we take | License / ethics |
+| --- | --- | --- |
+| [3DLNews / WM News Lab](https://github.com/wm-newslab/3DLNews) | ~14k US local outlets (newspapers, TV, radio) with website, town, lat/lng, optional RSS | Academic compilation of public directory facts. We store name/URL/place/coords only. |
+| [sTechLab local-news dataset](https://github.com/sTechLab/local-news-dataset) | ~10k local outlets (name, website, city, state) | Cite [Aubin Le Quéré et al., ICWSM 2022](https://mariannealq.com/wp-content/uploads/2022/05/Local_News_ICWSM_Camera_Ready.pdf). |
+| [firephil/us-news-sites](https://github.com/firephil/us-news-sites) | Local / regional news domains | Public domain list. |
+| [palewire/news-homepages](https://github.com/palewire/news-homepages) | US site roster | Factual names/URLs from a GPL-3.0 archiver. |
+| [Wikidata](https://query.wikidata.org/) | Newspapers, weeklies, news websites with `P17=US` and official website | CC0. |
+| [Wikipedia lists of newspapers by state](https://en.wikipedia.org/wiki/List_of_newspapers_in_the_United_States) | External links from each state list | CC BY-SA — attribute Wikipedia contributors. |
+
+Rows are **deduped by domain**. National wires / platforms (NYT, CNN, AP, Facebook, …) are dropped so the table stays local-first. Metro dailies are kept because they still cover nearby towns. TV/radio news sites are stored with `circulationTier` but the default crawl is newspapers / weeklies / digital.
+
+**Honest gaps:** dead papers and broken URLs remain; some towns never had a site; paywalled weeklies may expose RSS titles but not body (we never bypass paywalls or logins); Wikipedia/Wikidata coverage is uneven in the Plains and Deep South; 3DLNews snapshots lag current ownership changes. Re-run the builder and/or append `data/publications/extra.json` to expand.
+
+Town-center coordinates: source lat/lng when present, else a US cities gazetteer, else the existing state-centroid fallback used by the map.
+
+### Crawl CLI
+
+```bash
+npm run crawl:publications -- --limit=200
+npm run crawl:publications -- --state=MT --since=2018-01-01 --backfill
+npm run crawl:publications:dry -- --limit=40 --state=AK
+# flags: --limit=N  --state=XX  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
+```
+
+- **Incremental (default):** RSS + recent sitemap URLs; skips publications crawled in the last ~18 hours.
+- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: `lastCrawledAt` / `lastBackfillAt` / `PublicationCrawl` rows.
+- **Legal / ethics:** `User-Agent` identifies the project; `robots.txt` is fetched and honored (including `Crawl-delay`); ≥1.5s between requests to the same host; no credential stuffing; no paywall bypass; no full-text warehouse.
+- **Precision:** matcher tests live in `npm run test:publications`.
+
+Browse the directory and crawl stats at `/publications`. JSON: `GET /api/publications`. Protected crawl trigger: `POST /api/publications/crawl` (same `INGEST_SECRET` / `CRON_SECRET` as news ingest).
+
+### GitHub Action (local papers)
+
+`.github/workflows/crawl-publications.yml` — **daily incremental at 13:30 UTC** and **weekly backfill Sundays 07:15 UTC**, plus manual dispatch (`dry_run`, `backfill`, `limit`, `state`).
+
+Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. The job uses concurrency 6 and documents rate limits in the step summary. Do not treat the runner’s SQLite file as production.
+
+`npm run ingest` (Google News + optional Facebook) is unchanged and still the national daily path.
+
 ## Scripts
 
 | Script | Purpose |
@@ -132,12 +189,17 @@ Local default is SQLite (`DATABASE_URL="file:./dev.db"`). For Postgres:
 | `npm run dev` | Next.js dev server |
 | `npm run build` | Production build |
 | `npm run db:push` | Sync Prisma schema |
-| `npm run db:seed` | Load Weingarten + extra JSON |
+| `npm run db:seed` | Load Weingarten + extra JSON + publication directory |
 | `npm run db:reset` | Recreate DB + seed |
 | `npm run parse:weingarten` | Re-parse `data/sources/` |
 | `npm run ingest` / `ingest:dry` | News + Facebook pipeline |
+| `npm run publications:build` | Rebuild `data/publications/us-local-news.json.gz` from open sources |
+| `npm run crawl:publications` / `crawl:publications:dry` | Scan local papers → upsert incidents |
+| `npm run test:publications` | Keyword matcher unit checks |
 | `npm run geocode:report` | City / state / country geocode coverage |
 
 ## License / ethics
 
 Incident text is summarized from public news and Weingarten’s published lists for research/index use. Read the originals. Do not treat caliber charts as a recommendation to carry or use a firearm.
+
+The local-paper crawler identifies itself, honors `robots.txt` (including crawl-delay), rate-limits per host, and stores **title + URL + short snippet** only. It does not bypass paywalls, logins, or bot challenges, and it is not a full-text archive of newspapers. Directory rows are factual name/URL/place records merged from open datasets — see the table above and `data/publications/manifest.json`.

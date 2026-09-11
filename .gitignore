@@ -13,6 +13,7 @@ prisma/dev.db-journal
 prisma/*.db
 prisma/*.db-journal
 ingest-out.json
+crawl-out.json
 .vercel
 tsconfig.tsbuildinfo
 next-env.d.ts

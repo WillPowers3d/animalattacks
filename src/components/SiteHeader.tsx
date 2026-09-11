@@ -4,6 +4,7 @@ const links = [
   { href: "/", label: "Field map" },
   { href: "/stats", label: "Stats" },
   { href: "/search", label: "Search" },
+  { href: "/publications", label: "Local papers" },
   { href: "/about", label: "Methodology" },
 ];
 

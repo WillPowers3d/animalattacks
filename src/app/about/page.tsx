@@ -74,6 +74,21 @@ export default function AboutPage() {
       </section>
 
       <section>
+        <h2 className="font-display text-xl text-kraft-200">Local newspaper directory</h2>
+        <p className="mt-2">
+          In addition to Google News RSS, the site keeps a first-class{" "}
+          <a href="/publications">US local-news publication table</a> seeded from open directories
+          (Wikidata, Wikipedia state newspaper lists, and academic local-outlet datasets).{" "}
+          <code>npm run crawl:publications</code> scans RSS, sitemaps, and site-search pages for
+          bear / moose / elk / mountain-lion (cougar, puma) reports that also use an attack term
+          (attack, mauling, charging, etc.). Matching rows become Incidents with title, URL, and a
+          short snippet only — never a full article body. If the story has no precise place, the
+          map uses the publication’s town-center coordinates. Robots.txt is respected; the crawler
+          is polite and resumable, not a claim that every US town has been fully archived.
+        </p>
+      </section>
+
+      <section>
         <h2 className="font-display text-xl text-kraft-200">Daily updates</h2>
         <p className="mt-2">
           A GitHub Action runs at 12:00 UTC against a hosted Postgres <code>DATABASE_URL</code>.{" "}

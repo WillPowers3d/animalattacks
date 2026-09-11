@@ -26,7 +26,7 @@ export default async function IncidentDetail({ params }: { params: Promise<{ slu
   const { slug } = await params;
   const inc = await prisma.incident.findUnique({
     where: { slug },
-    include: { sources: true },
+    include: { sources: true, publication: true },
   });
   if (!inc) notFound();
 
@@ -73,6 +73,10 @@ export default async function IncidentDetail({ params }: { params: Promise<{ slu
         />
         <Fact label="Combination defense" value={inc.combinationDefense ? "Yes" : "No"} />
         <Fact label="Country" value={inc.country} />
+        <Fact
+          label="Local paper"
+          value={inc.publication ? `${inc.publication.name}${inc.publication.state ? ` · ${inc.publication.state}` : ""}` : "—"}
+        />
       </dl>
 
       {inc.lat != null && inc.lng != null && (

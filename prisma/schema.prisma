@@ -35,6 +35,8 @@ model Incident {
   combinationDefense  Boolean   @default(false)
   attribution         String?
   externalKey         String    @unique
+  publicationId       String?
+  publication         Publication? @relation(fields: [publicationId], references: [id], onDelete: SetNull)
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
   sources             Source[]
@@ -46,6 +48,7 @@ model Incident {
   @@index([occurredAt])
   @@index([caliber])
   @@index([firearmType])
+  @@index([publicationId])
 }
 
 model Source {
@@ -71,4 +74,63 @@ model IngestRun {
   upserted    Int      @default(0)
   skipped     Int      @default(0)
   errors      String?
+}
+
+/// US local / small-town online news publication from open directories.
+model Publication {
+  id                  String    @id @default(cuid())
+  name                String
+  homepageUrl         String
+  domain              String    @unique
+  rssUrl              String?
+  sitemapUrl          String?
+  town                String?
+  city                String?
+  state               String?
+  county              String?
+  country             String    @default("US")
+  lat                 Float?
+  lng                 Float?
+  circulationTier     String?
+  directorySource     String
+  wikidataId          String?
+  lastCrawledAt       DateTime?
+  lastBackfillAt      DateTime?
+  crawlCursor         String?
+  robotsStatus        String?
+  robotsCheckedAt     DateTime?
+  robotsCrawlDelay    Float?
+  notes               String?
+  enabled             Boolean   @default(true)
+  scannedArticleCount Int       @default(0)
+  matchCount          Int       @default(0)
+  lastError           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  incidents           Incident[]
+  crawls              PublicationCrawl[]
+
+  @@index([state])
+  @@index([lastCrawledAt])
+  @@index([enabled])
+  @@index([circulationTier])
+  @@index([matchCount])
+}
+
+model PublicationCrawl {
+  id             String       @id @default(cuid())
+  publicationId  String
+  publication    Publication  @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  startedAt      DateTime     @default(now())
+  finishedAt     DateTime?
+  mode           String
+  dryRun         Boolean      @default(false)
+  fetched        Int          @default(0)
+  matched        Int          @default(0)
+  upserted       Int          @default(0)
+  skipped        Int          @default(0)
+  error          String?
+
+  @@index([publicationId])
+  @@index([startedAt])
 }

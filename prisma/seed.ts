@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { geocodeIncident, offsetCoord } from "../src/lib/geo";
 import { makeExternalKey, makeSlug } from "../src/lib/incident-utils";
+import { seedPublications } from "../src/lib/publications/seed";
 import type { SeedIncident } from "../src/lib/types";
 
 const prisma = new PrismaClient();
@@ -98,6 +99,7 @@ async function main() {
     if (n % 40 === 0) console.log(`  ${n}/${all.length}`);
   }
   console.log(`Seeded ${n} incidents.`);
+  await seedPublications({ log: true });
 }
 
 main()
