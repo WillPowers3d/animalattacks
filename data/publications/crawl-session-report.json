@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-11T20:50:48.784Z",
+  "generatedAt": "2026-09-11T21:06:16.860Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 1812,
-  "remainingNewspapers": 9565,
-  "articlesFetched": 29093,
-  "matchingArticles": 40,
-  "publicationsWithMatches": 29,
-  "incidentsFromLocalPapers": 45,
-  "incidentsTotal": 275,
+  "publicationsScanned": 2185,
+  "remainingNewspapers": 9192,
+  "articlesFetched": 33306,
+  "matchingArticles": 43,
+  "publicationsWithMatches": 31,
+  "incidentsFromLocalPapers": 48,
+  "incidentsTotal": 278,
   "crawledStates": [
     {
       "state": "CA",
@@ -15,6 +15,13 @@
       "scanned": 698,
       "matches": 7,
       "articles": 10370
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "scanned": 255,
+      "matches": 2,
+      "articles": 2705
     },
     {
       "state": "CO",
@@ -45,11 +52,18 @@
       "articles": 2311
     },
     {
+      "state": "ME",
+      "name": "Maine",
+      "scanned": 93,
+      "matches": 0,
+      "articles": 1013
+    },
+    {
       "state": "UT",
       "name": "Utah",
-      "scanned": 79,
+      "scanned": 80,
       "matches": 0,
-      "articles": 981
+      "articles": 1021
     },
     {
       "state": "ID",
@@ -68,9 +82,16 @@
     {
       "state": "NM",
       "name": "New Mexico",
-      "scanned": 70,
+      "scanned": 71,
       "matches": 1,
-      "articles": 803
+      "articles": 844
+    },
+    {
+      "state": "NV",
+      "name": "Nevada",
+      "scanned": 62,
+      "matches": 1,
+      "articles": 998
     },
     {
       "state": "AK",
@@ -85,17 +106,10 @@
       "scanned": 41,
       "matches": 3,
       "articles": 869
-    },
-    {
-      "state": "NV",
-      "name": "Nevada",
-      "scanned": 39,
-      "matches": 0,
-      "articles": 584
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 29,
+    "bear": 32,
     "mountain_lion": 10,
     "elk": 3,
     "moose": 3
@@ -107,8 +121,10 @@
     "CA": 7,
     "WY": 3,
     "ID": 2,
+    "MN": 2,
     "WA": 2,
     "IL": 1,
-    "NM": 1
+    "NM": 1,
+    "NV": 1
   }
 }
