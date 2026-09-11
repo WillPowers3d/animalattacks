@@ -73,27 +73,29 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-11T21:06:16.848Z** on this machine’s SQLite database.
+Generated **2026-09-11T21:37:25.813Z** on this machine’s SQLite database.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **2,185** |
-| Uncrawled newspapers remaining | 9,192 |
-| Article records fetched | **33,306** |
-| Matching articles | **43** |
-| Publications with a match | 31 |
-| Incidents from local papers | **48** |
-| Incidents total (incl. historical seed) | 278 |
+| Scanned at least once | **2,738** |
+| Uncrawled newspapers remaining | 8,639 |
+| Article records fetched | **41,580** |
+| Matching articles | **44** |
+| Publications with a match | 32 |
+| Incidents from local papers | **49** |
+| Incidents total (incl. historical seed) | 279 |
 
 ### Coverage by state (scanned publications)
 
 | State | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
 | CA California | 698 | 10370 | 7 |
-| MN Minnesota | 255 | 2705 | 2 |
+| MN Minnesota | 291 | 3413 | 2 |
+| MI Michigan | 256 | 3347 | 0 |
 | CO Colorado | 225 | 3770 | 8 |
 | WA Washington | 190 | 2117 | 2 |
+| WI Wisconsin | 168 | 3046 | 1 |
 | AZ Arizona | 134 | 2166 | 0 |
 | OR Oregon | 131 | 2311 | 0 |
 | ME Maine | 93 | 1013 | 0 |
@@ -102,12 +104,14 @@ Generated **2026-09-11T21:06:16.848Z** on this machine’s SQLite database.
 | MT Montana | 78 | 2379 | 11 |
 | NM New Mexico | 71 | 844 | 1 |
 | NV Nevada | 62 | 998 | 1 |
+| NH New Hampshire | 60 | 735 | 0 |
 | AK Alaska | 49 | 1091 | 6 |
 | WY Wyoming | 41 | 869 | 3 |
+| VT Vermont | 33 | 438 | 0 |
 
 ### Local-paper incidents by species
 
-- bear: 32
+- bear: 33
 - mountain_lion: 10
 - elk: 3
 - moose: 3
@@ -115,7 +119,7 @@ Generated **2026-09-11T21:06:16.848Z** on this machine’s SQLite database.
 ### Local-paper incidents by state
 
 - CO: 11
-- AK: 9
+- AK: 10
 - MT: 9
 - CA: 7
 - WY: 3
