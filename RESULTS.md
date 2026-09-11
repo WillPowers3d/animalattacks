@@ -73,24 +73,24 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-11T20:25:55.455Z** on this machine’s SQLite database.
+Generated **2026-09-11T20:38:39.846Z** on this machine’s SQLite database.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **1,241** |
-| Uncrawled newspapers remaining | 10,136 |
-| Article records fetched | **20,844** |
-| Matching articles | **35** |
-| Publications with a match | 24 |
-| Incidents from local papers | **40** |
-| Incidents total (incl. historical seed) | 270 |
+| Scanned at least once | **1,528** |
+| Uncrawled newspapers remaining | 9,849 |
+| Article records fetched | **24,783** |
+| Matching articles | **39** |
+| Publications with a match | 28 |
+| Incidents from local papers | **44** |
+| Incidents total (incl. historical seed) | 274 |
 
 ### Coverage by state (scanned publications)
 
 | State | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
-| CA California | 449 | 6655 | 3 |
+| CA California | 696 | 10246 | 7 |
 | CO Colorado | 225 | 3770 | 8 |
 | WA Washington | 190 | 2117 | 2 |
 | OR Oregon | 131 | 2311 | 0 |
@@ -98,11 +98,12 @@ Generated **2026-09-11T20:25:55.455Z** on this machine’s SQLite database.
 | MT Montana | 78 | 2379 | 11 |
 | AK Alaska | 49 | 1091 | 6 |
 | WY Wyoming | 41 | 869 | 3 |
+| AZ Arizona | 40 | 348 | 0 |
 
 ### Local-paper incidents by species
 
-- bear: 27
-- mountain_lion: 7
+- bear: 28
+- mountain_lion: 10
 - elk: 3
 - moose: 3
 
@@ -111,7 +112,7 @@ Generated **2026-09-11T20:25:55.455Z** on this machine’s SQLite database.
 - CO: 11
 - AK: 9
 - MT: 9
-- CA: 3
+- CA: 7
 - WY: 3
 - ID: 2
 - WA: 2
