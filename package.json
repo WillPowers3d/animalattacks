@@ -22,7 +22,10 @@
     "publications:seed": "tsx prisma/seed.ts",
     "crawl:publications": "tsx scripts/crawl-publications.ts",
     "crawl:publications:dry": "tsx scripts/crawl-publications.ts --dry-run",
-    "test:publications": "tsx scripts/test-publication-match.ts"
+    "crawl:waves": "tsx scripts/crawl-waves.ts",
+    "publications:fill-states": "tsx scripts/fill-publication-states.ts --rewrite-seed",
+    "test:publications": "tsx scripts/test-publication-match.ts",
+    "results:write": "tsx scripts/write-results.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

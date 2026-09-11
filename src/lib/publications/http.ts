@@ -32,40 +32,68 @@ export async function politeFetch(
   if (waitUntil > now) await sleep(waitUntil - now);
   hostNextAllowed.set(host, Date.now() + minDelayMs);
 
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    const res = await fetch(url, {
-      signal: ctrl.signal,
-      redirect: "follow",
-      headers: {
-        "User-Agent": CRAWLER_UA,
-        Accept: opts.accept ?? "text/html,application/xhtml+xml,application/xml,application/rss+xml,application/atom+xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.8",
-      },
-    });
-    const contentType = res.headers.get("content-type") ?? "";
-    // Never follow into login walls as a success body we parse at length.
-    const text = await res.text();
-    return {
-      ok: res.ok,
-      status: res.status,
-      url: res.url || url,
-      text: text.slice(0, 400_000),
-      contentType,
-    };
-  } catch (err) {
-    return {
-      ok: false,
-      status: 0,
-      url,
-      text: "",
-      contentType: "",
-      error: err instanceof Error ? err.message : String(err),
-    };
-  } finally {
-    clearTimeout(t);
+  let last: FetchResult = {
+    ok: false,
+    status: 0,
+    url,
+    text: "",
+    contentType: "",
+    error: "not-attempted",
+  };
+
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        signal: ctrl.signal,
+        redirect: "follow",
+        headers: {
+          "User-Agent": CRAWLER_UA,
+          Accept:
+            opts.accept ??
+            "text/html,application/xhtml+xml,application/xml,application/rss+xml,application/atom+xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.8",
+        },
+      });
+      const contentType = res.headers.get("content-type") ?? "";
+      const text = await res.text();
+      last = {
+        ok: res.ok,
+        status: res.status,
+        url: res.url || url,
+        text: text.slice(0, 400_000),
+        contentType,
+      };
+      if (res.status === 429 || res.status === 503) {
+        const retryAfter = Number(res.headers.get("retry-after"));
+        const waitMs = Number.isFinite(retryAfter)
+          ? Math.min(30_000, Math.max(2_000, retryAfter * 1000))
+          : 4000 * (attempt + 1);
+        hostNextAllowed.set(host, Date.now() + waitMs);
+        await sleep(waitMs);
+        continue;
+      }
+      return last;
+    } catch (err) {
+      last = {
+        ok: false,
+        status: 0,
+        url,
+        text: "",
+        contentType: "",
+        error: err instanceof Error ? err.message : String(err),
+      };
+      if (attempt < 2 && /aborted|network|ECONNRESET|ETIMEDOUT|fetch failed/i.test(last.error ?? "")) {
+        await sleep(800 * (attempt + 1));
+        continue;
+      }
+      return last;
+    } finally {
+      clearTimeout(t);
+    }
   }
+  return last;
 }
 
 export function sleep(ms: number) {

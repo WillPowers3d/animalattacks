@@ -156,7 +156,7 @@ Rows are **deduped by domain**. National wires / platforms (NYT, CNN, AP, Facebo
 
 **Honest gaps:** dead papers and broken URLs remain; some towns never had a site; paywalled weeklies may expose RSS titles but not body (we never bypass paywalls or logins); Wikipedia/Wikidata coverage is uneven in the Plains and Deep South; 3DLNews snapshots lag current ownership changes. Re-run the builder and/or append `data/publications/extra.json` to expand.
 
-A first-session progressive crawl report (publications scanned, matches, incidents, top states) is committed at `data/publications/crawl-session-report.json`. That SQLite run is not the production database — continue with `npm run crawl:publications -- --backfill` against hosted Postgres.
+Live session numbers, state coverage, and resume commands: **[RESULTS.md](RESULTS.md)**. Machine-readable snapshot: `data/publications/crawl-session-report.json`. That SQLite run is not the production database — continue with `npm run crawl:waves` or `npm run crawl:publications -- --backfill` against hosted Postgres.
 
 Town-center coordinates: source lat/lng when present, else a US cities gazetteer, else the existing state-centroid fallback used by the map.
 
