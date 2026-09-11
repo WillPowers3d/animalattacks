@@ -167,12 +167,32 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   };
 
   await mapPool(queued, concurrency, async (pub) => {
-    const result = await crawlOne(pub, {
-      dryRun,
-      mode,
-      since: pub.lastCrawledAt ? since : null,
-      minDelayMs,
-    });
+    const timedOut = {
+      fetched: 0,
+      matched: 0,
+      upserted: 0,
+      skipped: 0,
+      robotsBlocked: false,
+      error: "pub-timeout-45s",
+      samples: [] as CrawlResult["samples"],
+    };
+    const result = await Promise.race([
+      crawlOne(pub, {
+        dryRun,
+        mode,
+        since: pub.lastCrawledAt ? since : null,
+        minDelayMs,
+      }),
+      sleep(45_000).then(() => timedOut),
+    ]);
+    if (result.error === "pub-timeout-45s") {
+      await withBusyRetry(() =>
+        prisma.publication.update({
+          where: { id: pub.id },
+          data: { lastCrawledAt: new Date(), lastError: "pub-timeout-45s" },
+        }),
+      );
+    }
     scanned += 1;
     fetchedArticles += result.fetched;
     matchingArticles += result.matched;
