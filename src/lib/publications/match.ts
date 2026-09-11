@@ -13,10 +13,14 @@ const ANIMAL_PATTERNS: { species: Species; re: RegExp; term: string }[] = [
 ];
 
 const ATTACK_RE =
-  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|charged|gores?|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
+  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores?|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
+
+/** "bear charged a hiker" is an attack; "man charged with poaching elk" is not. */
+const ANIMAL_CHARGED_RE =
+  /\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b[^.]{0,40}\bcharged\b|\bcharged\b[^.]{0,40}\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b/i;
 
 const NEGATIVE_RE =
-  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink))\b/i;
+  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?)\b/i;
 
 const PLACE_ONLY_RE =
   /\b(bear (creek|lake|river|mountain|valley|canyon|gap|butte)|elk (grove|city|rapids|horn|river|ton|point)|moose (jaw|lake|pass)|cougar (mountain|town))\b/i;
@@ -29,8 +33,11 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "negative-context" };
   }
 
-  const attack = text.match(ATTACK_RE);
+  const attack = text.match(ATTACK_RE) ?? (ANIMAL_CHARGED_RE.test(text) ? ["charged", "charged"] : null);
   if (!attack) return { matched: false, species: "other", reason: "no-attack-term" };
+  if (/\bcharged with\b/i.test(text) && !ATTACK_RE.test(text) && !/\b(mauled|mauling|attacked|charging)\b/i.test(text)) {
+    return { matched: false, species: "other", reason: "legal-charged-with" };
+  }
 
   let animalHit: (typeof ANIMAL_PATTERNS)[number] | undefined;
   for (const pat of ANIMAL_PATTERNS) {

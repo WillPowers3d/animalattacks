@@ -13,6 +13,9 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "City council meeting in Elk Grove", snippet: "budget hearing", want: false },
   { title: "New coffee shop opens on Bear Creek Road", want: false },
   { title: "Police say man was mauled by a black bear", want: true },
+  { title: "Lodgepole man charged with poaching deer and elk", want: false },
+  { title: "Hunter charged with illegal mountain lion kill", want: false },
+  { title: "Grizzly charged a hunter near Choteau", want: true },
 ];
 
 let failed = 0;

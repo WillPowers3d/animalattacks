@@ -167,7 +167,12 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   };
 
   await mapPool(queued, concurrency, async (pub) => {
-    const result = await crawlOne(pub, { dryRun, mode, since, minDelayMs });
+    const result = await crawlOne(pub, {
+      dryRun,
+      mode,
+      since: pub.lastCrawledAt ? since : null,
+      minDelayMs,
+    });
     scanned += 1;
     fetchedArticles += result.fetched;
     matchingArticles += result.matched;
@@ -181,7 +186,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       byState[pub.state ?? "??"].matches += result.matched;
       byState[pub.state ?? "??"].upserted += result.upserted;
     }
-    for (const s of result.samples) {
+    for (const s of result.samples ?? []) {
       if (samples.length < 60) samples.push(s);
     }
     if (scanned % 25 === 0) {
@@ -256,7 +261,7 @@ async function crawlOne(
         skipped: 0,
         backfill: opts.mode === "backfill",
       });
-      return { fetched: 0, matched: 0, upserted: 0, skipped: 0, robotsBlocked: true };
+      return { fetched: 0, matched: 0, upserted: 0, skipped: 0, robotsBlocked: true, samples: [] };
     }
 
     const delay = Math.max(opts.minDelayMs, Math.round((rules.crawlDelaySec ?? 0) * 1000));

@@ -70,13 +70,20 @@ export function articleToIncident(
   if (!match.matched) return null;
 
   const blob = `${article.title}\n${article.snippet}`;
-  const cityMatch = blob.match(/\b(?:in|near|outside|at)\s+([A-Z][A-Za-z]+(?:\s[A-Z][A-Za-z]+)?)/);
-  const cityFromArticle = cityMatch?.[1] ?? null;
-  let stateFromArticle: string | null = null;
-  for (const [re, abbr] of STATE_RE) {
-    if (re.test(blob)) {
-      stateFromArticle = abbr;
-      break;
+  const cityState = blob.match(
+    /\b([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?),\s*([A-Z]{2})\b/,
+  );
+  const cityMatch = blob.match(
+    /\b(?:in|near|outside|at)[ \t]+([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?)/,
+  );
+  const cityFromArticle = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
+  let stateFromArticle: string | null = cityState?.[2] ?? null;
+  if (!stateFromArticle) {
+    for (const [re, abbr] of STATE_RE) {
+      if (re.test(`${article.title}`)) {
+        stateFromArticle = abbr;
+        break;
+      }
     }
   }
 
