@@ -1,14 +1,21 @@
 {
-  "generatedAt": "2026-09-12T05:39:31.875Z",
+  "generatedAt": "2026-09-12T05:50:02.626Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 9818,
-  "remainingNewspapers": 1559,
-  "articlesFetched": 114338,
+  "publicationsScanned": 10218,
+  "remainingNewspapers": 1159,
+  "articlesFetched": 118803,
   "matchingArticles": 59,
   "publicationsWithMatches": 46,
   "incidentsFromLocalPapers": 64,
   "incidentsTotal": 294,
   "crawledStates": [
+    {
+      "state": "??",
+      "name": "",
+      "scanned": 800,
+      "matches": 0,
+      "articles": 9888
+    },
     {
       "state": "CA",
       "name": "California",
@@ -29,13 +36,6 @@
       "scanned": 475,
       "matches": 3,
       "articles": 9499
-    },
-    {
-      "state": "??",
-      "name": "",
-      "scanned": 400,
-      "matches": 0,
-      "articles": 5423
     },
     {
       "state": "IL",
