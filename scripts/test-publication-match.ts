@@ -35,6 +35,11 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Bisons mauled by Cougars | the Manitoban", want: false },
   { title: "It wasn’t a bear that attacked a camper found dead in his tent", want: false },
   { title: "Elk hunter fends off cougar attack", want: true },
+  { title: "Un ours attaque un randonneur près de Banff", want: true },
+  { title: "Attaque d'ours mortelle près de Tulita", want: true },
+  { title: "Un orignal attaque un skieur à Whitehorse", want: true },
+  { title: "Un couguar attaque un chien à Squamish", want: true },
+  { title: "Les Canadiens attaquent en troisième période", want: false },
 ]
 
 let failed = 0;

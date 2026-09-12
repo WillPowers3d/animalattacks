@@ -56,32 +56,33 @@ const STATE_RE: [RegExp, string][] = [
 ];
 
 const PROVINCE_RE: [RegExp, string][] = [
-  [/\bBritish Columbia\b|\bB\.C\.\b/, "BC"],
+  [/\bBritish Columbia\b|\bB\.C\.\b|\bColombie[- ]Britannique\b|\bC\.-B\.\b/, "BC"],
   [/\bAlberta\b|\bAlta\.\b/, "AB"],
   [/\bSaskatchewan\b|\bSask\.\b/, "SK"],
   [/\bManitoba\b/, "MB"],
   [/\bOntario\b/, "ON"],
   [/\bYukon\b/, "YT"],
-  [/\bNorthwest Territories\b|\bN\.W\.T\.\b|\bNWT\b/, "NT"],
+  [/\bNorthwest Territories\b|\bN\.W\.T\.\b|\bNWT\b|\bTerritoires du Nord[- ]Ouest\b/, "NT"],
   [/\bNunavut\b/, "NU"],
   [/\bQuebec\b|\bQuébec\b/, "QC"],
-  [/\bNew Brunswick\b/, "NB"],
-  [/\bNova Scotia\b/, "NS"],
-  [/\bNewfoundland\b|\bLabrador\b/, "NL"],
+  [/\bNew Brunswick\b|\bNouveau[- ]Brunswick\b/, "NB"],
+  [/\bNova Scotia\b|\bNouvelle[- ]Écosse\b/, "NS"],
+  [/\bNewfoundland\b|\bLabrador\b|\bTerre[- ]Neuve\b/, "NL"],
 ];
 
 function inferSeverity(text: string): SeedIncident["severity"] {
-  if (/\b(killed|dead|dies|fatal|fatally|died)\b/i.test(text)) return "fatal";
-  if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed)\b/i.test(text)) return "injury";
-  if (/\b(home|cabin|property|break-in|livestock|pet)\b/i.test(text)) return "property";
+  if (/\b(killed|dead|dies|fatal|fatally|died|tu[ée]e?s?|mortel(?:le)?)\b/i.test(text)) return "fatal";
+  if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed|bless[ée]e?s?|hospitalis[ée]e?s?)\b/i.test(text))
+    return "injury";
+  if (/\b(home|cabin|property|break-in|livestock|pet|bétail|propriété)\b/i.test(text)) return "property";
   return "near_miss";
 }
 
 function inferSubspecies(species: Species, text: string): string | null {
   if (species === "bear") {
-    if (/grizzly|brown bear/i.test(text)) return "grizzly";
-    if (/black bear/i.test(text)) return "black";
-    if (/polar/i.test(text)) return "polar";
+    if (/grizzly|grizzli|brown bear/i.test(text)) return "grizzly";
+    if (/black bear|ours noir/i.test(text)) return "black";
+    if (/polar|ours polaire/i.test(text)) return "polar";
   }
   if (species === "mountain_lion") return "cougar";
   return null;
@@ -111,7 +112,7 @@ export function articleToIncident(
     /\b([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?),\s*([A-Z]{2})\b/,
   );
   const cityMatch = blob.match(
-    /\b(?:in|near|outside|at)[ \t]+([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?)/,
+    /\b(?:in|near|outside|at|près de|pres de)[ \t]+([A-ZÀ-Ÿ][A-Za-zÀ-ÿ'-]+(?:[ \t][A-ZÀ-Ÿ][A-Za-zÀ-ÿ'-]+)?)/,
   );
   const MONTHS = new Set([
     "January",

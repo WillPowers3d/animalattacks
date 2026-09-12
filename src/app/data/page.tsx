@@ -20,6 +20,10 @@ export default async function DataPage() {
     scanned,
     canadaPubs,
     canadaScanned,
+    canadaIncidents,
+    canadaPubLinked,
+    canadaByProv,
+    canadaIncByProv,
     agencyPubs,
     agencyScanned,
     pubMatches,
@@ -36,6 +40,19 @@ export default async function DataPage() {
     prisma.publication.count({ where: { lastCrawledAt: { not: null } } }),
     prisma.publication.count({ where: { country: "CA" } }),
     prisma.publication.count({ where: { country: "CA", lastCrawledAt: { not: null } } }),
+    prisma.incident.count({ where: { country: "CA" } }),
+    prisma.incident.count({ where: { country: "CA", publicationId: { not: null } } }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "CA" },
+      _count: { _all: true },
+      _sum: { matchCount: true, scannedArticleCount: true },
+    }),
+    prisma.incident.groupBy({
+      by: ["stateProvince"],
+      where: { country: "CA" },
+      _count: { _all: true },
+    }),
     prisma.publication.count({ where: { circulationTier: "agency" } }),
     prisma.publication.count({ where: { circulationTier: "agency", lastCrawledAt: { not: null } } }),
     prisma.publication.count({ where: { matchCount: { gt: 0 } } }),
@@ -71,6 +88,23 @@ export default async function DataPage() {
     .sort((a, b) => b.n - a.n)
     .slice(0, 16);
 
+  const caOrder = ["YT", "NT", "NU", "BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "NL", "PE", "??"];
+  const caIncMap = new Map(canadaIncByProv.map((r) => [r.stateProvince ?? "??", r._count._all]));
+  const canadaProvRows = canadaByProv
+    .map((p) => ({
+      key: p.state ?? "??",
+      name: regionName(p.state),
+      pubs: p._count._all,
+      articles: p._sum.scannedArticleCount ?? 0,
+      matches: p._sum.matchCount ?? 0,
+      incidents: caIncMap.get(p.state ?? "??") ?? 0,
+    }))
+    .sort((a, b) => {
+      const ai = caOrder.indexOf(a.key);
+      const bi = caOrder.indexOf(b.key);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+
   return (
     <article className="space-y-8 text-sm leading-relaxed text-moss-100">
       <header>
@@ -90,6 +124,7 @@ export default async function DataPage() {
         <Stat tile="Pubs scanned" value={scanned.toLocaleString()} />
         <Stat tile="Articles fetched" value={(articles._sum.scannedArticleCount ?? 0).toLocaleString()} />
         <Stat tile="Canada pubs / scanned" value={`${canadaPubs} / ${canadaScanned}`} />
+        <Stat tile="Canada incidents / crawl" value={`${canadaIncidents} / ${canadaPubLinked}`} />
         <Stat tile="Agency feeds / scanned" value={`${agencyPubs} / ${agencyScanned}`} />
         <Stat tile="Pubs with a match" value={pubMatches.toLocaleString()} />
         <Stat tile="Crawl-sourced incidents" value={localIncidents.toLocaleString()} />
@@ -136,6 +171,25 @@ export default async function DataPage() {
           </ul>
         </section>
       </div>
+
+      <section>
+        <h2 className="font-display text-xl text-kraft-200">Canada by province / territory</h2>
+        <p className="mt-1 text-moss-300">
+          Priority coverage: Yukon, NWT, Nunavut, B.C., Alberta, Saskatchewan, Manitoba, northern Ontario.
+        </p>
+        <ul className="mt-3 grid gap-1 sm:grid-cols-2 font-mono text-xs text-moss-200">
+          {canadaProvRows.map((r) => (
+            <li key={r.key} className="flex justify-between gap-4 border-b border-kraft-500/10 py-1">
+              <span>
+                {r.key} {r.name}
+              </span>
+              <span className="text-kraft-200">
+                {r.pubs} pubs · {r.articles} arts · {r.matches} hits · {r.incidents} inc
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section>
         <h2 className="font-display text-xl text-kraft-200">Crawl-sourced incidents by region</h2>

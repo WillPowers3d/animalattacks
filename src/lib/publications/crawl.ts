@@ -406,6 +406,7 @@ async function crawlOne(
         minDelayMs: delay,
         maxQueries: 3,
         signal: opts.signal,
+        country: pub.country,
       });
       for (const item of searchItems) add(item);
     }

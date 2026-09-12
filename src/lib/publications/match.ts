@@ -2,18 +2,22 @@ import type { MatchResult } from "./types";
 import type { Species } from "../types";
 
 const ANIMAL_PATTERNS: { species: Species; re: RegExp; term: string }[] = [
-  { species: "bear", term: "bear", re: /\b(grizzly|brown bear|black bear|polar bear|bears?)\b/i },
-  { species: "moose", term: "moose", re: /\bmoose\b/i },
-  { species: "elk", term: "elk", re: /\belk\b/i },
+  {
+    species: "bear",
+    term: "bear",
+    re: /\b(grizzly|grizzli|brown bear|black bear|polar bear|bears?|ours(?:e|es|on|ons)?|ours polaire)\b/i,
+  },
+  { species: "moose", term: "moose", re: /\b(moose|orignal(?:s|aux)?)\b/i },
+  { species: "elk", term: "elk", re: /\b(elk|wapiti(?:s)?)\b/i },
   {
     species: "mountain_lion",
     term: "mountain lion",
-    re: /\b(mountain lions?|cougars?|pumas?)\b/i,
+    re: /\b(mountain lions?|cougars?|couguars?|pumas?)\b/i,
   },
 ];
 
 const ATTACK_RE =
-  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
+  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed|attaques?|attaqu[ée]e?s?|agress[ée]e?s?|mutil[ée]e?s?)\b/i;
 
 /** "bear charged a hiker" is an attack; "man charged with poaching elk" is not. */
 const ANIMAL_CHARGED_RE =
@@ -131,6 +135,16 @@ export const SEARCH_QUERIES = [
   "mountain lion attack",
   "cougar attack",
   "cougar mauling",
+];
+
+/** Extra queries for Canadian papers (English + French local newsrooms). */
+export const SEARCH_QUERIES_CA = [
+  "bear attack",
+  "attaque ours",
+  "cougar attack",
+  "attaque orignal",
+  "attaque couguar",
+  "moose attack",
 ];
 
 export function urlLooksLikeMatch(url: string): boolean {

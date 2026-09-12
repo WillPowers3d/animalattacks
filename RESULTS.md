@@ -10,6 +10,7 @@ Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The run
 | --- | ---: |
 | Unique US publications (`data/publications/us-local-news.json.gz`) | **14,847** |
 | Canadian local / digital papers (`data/publications/canada-local-news.json`) | **383** (curated + Wikidata/Wikipedia; BC / AB / SK / MB / ON north / YT / NT / NU prioritized) |
+| Canada priority extras (`data/publications/canada-priority-extra.json`) | **CBC regional + Radio-Canada + NNSL territories + northern weeklies** (path-qualified so they do not collide with national hosts) |
 | Agency / park press feeds (`data/publications/agency-feeds.json`) | **49** (western state agencies, NPS parks, provincial newsrooms) |
 | Newspapers (default crawl set) | **11,377** US + Canadian newspapers |
 | TV / radio / broadcast (stored, skipped unless `--all-tiers`) | 3,470 |

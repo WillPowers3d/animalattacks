@@ -60,6 +60,12 @@ export async function writeResultsReport(): Promise<SessionReport> {
     localByState,
     canadaPubs,
     canadaScanned,
+    canadaPubStats,
+    canadaScannedByProv,
+    canadaIncidents,
+    canadaPubLinked,
+    canadaIncByProv,
+    canadaRecent,
     agencyPubs,
     agencyScanned,
     byCountry,
@@ -96,6 +102,30 @@ export async function writeResultsReport(): Promise<SessionReport> {
     }),
     prisma.publication.count({ where: { country: "CA" } }),
     prisma.publication.count({ where: { country: "CA", lastCrawledAt: { not: null } } }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "CA" },
+      _count: { _all: true },
+      _sum: { matchCount: true, scannedArticleCount: true },
+    }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "CA", lastCrawledAt: { not: null } },
+      _count: { _all: true },
+    }),
+    prisma.incident.count({ where: { country: "CA" } }),
+    prisma.incident.count({ where: { country: "CA", publicationId: { not: null } } }),
+    prisma.incident.groupBy({
+      by: ["stateProvince"],
+      where: { country: "CA" },
+      _count: { _all: true },
+    }),
+    prisma.incident.findMany({
+      where: { country: "CA", publicationId: { not: null } },
+      orderBy: { createdAt: "desc" },
+      take: 18,
+      select: { title: true, stateProvince: true, species: true, severity: true, city: true },
+    }),
     prisma.publication.count({ where: { circulationTier: "agency" } }),
     prisma.publication.count({ where: { circulationTier: "agency", lastCrawledAt: { not: null } } }),
     prisma.incident.groupBy({ by: ["country"], _count: { _all: true } }),
@@ -172,9 +202,50 @@ export async function writeResultsReport(): Promise<SessionReport> {
     `| New incidents this wave (beyond restored) | ${newLocal.toLocaleString()} |`,
     `| Publications with a match | ${mergedMatchedPubs.toLocaleString()} |`,
     `| Incidents from local / agency feeds (combined) | **${mergedLocal.toLocaleString()}** |`,
-    `| Canada publications (seeded / scanned) | ${canadaPubs} / ${canadaScanned} |`,
+    `| Canada publications (seeded / scanned) | **${canadaPubs} / ${canadaScanned}** |`,
+    `| Canada incidents (all / publication-linked) | **${canadaIncidents} / ${canadaPubLinked}** |`,
     `| Agency feeds (seeded / scanned) | ${agencyPubs} / ${agencyScanned} |`,
     `| Incidents total | ${Math.max(prior?.incidentsTotal ?? 0, totalInc).toLocaleString()} |`,
+    "",
+    "### Canada coverage (priority)",
+    "",
+    "Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Counts are live from this VM after the Canada-priority seed + crawl.",
+    "",
+    "| Province / territory | Seeded | Scanned | Articles | Matches | Incidents |",
+    "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ...(() => {
+      const incMap = new Map(canadaIncByProv.map((r) => [r.stateProvince ?? "??", r._count._all]));
+      const scannedMap = new Map(canadaScannedByProv.map((r) => [r.state ?? "??", r._count._all]));
+      const order = ["YT", "NT", "NU", "BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "NL", "PE", "??"];
+      const rows = canadaPubStats.map((p) => ({
+        state: p.state ?? "??",
+        pubs: p._count._all,
+        scanned: scannedMap.get(p.state ?? "??") ?? 0,
+        articles: p._sum.scannedArticleCount ?? 0,
+        matches: p._sum.matchCount ?? 0,
+        incidents: incMap.get(p.state ?? "??") ?? 0,
+      }));
+      rows.sort((a, b) => {
+        const ai = order.indexOf(a.state);
+        const bi = order.indexOf(b.state);
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+      });
+      return rows.map(
+        (r) =>
+          `| ${r.state} ${regionName(r.state) || ""} | ${r.pubs} | ${r.scanned} | ${r.articles} | ${r.matches} | ${r.incidents} |`,
+      );
+    })(),
+    "",
+    `**Canada totals:** ${canadaPubs} pubs seeded, ${canadaScanned} scanned, ${canadaPubStats.reduce((n, p) => n + (p._sum.scannedArticleCount ?? 0), 0)} articles, ${canadaPubStats.reduce((n, p) => n + (p._sum.matchCount ?? 0), 0)} matcher hits, ${canadaPubLinked} publication-linked incidents (${canadaIncidents} incidents with country=CA).`,
+    "",
+    "#### Recent / best Canada finds",
+    "",
+    ...(canadaRecent.length
+      ? canadaRecent.map(
+          (inc) =>
+            `- ${inc.title} (${inc.species}${inc.severity ? `, ${inc.severity}` : ""}${inc.city ? `, ${inc.city}` : ""}${inc.stateProvince ? `, ${inc.stateProvince}` : ""})`,
+        )
+      : ["- None in this database yet."]),
     "",
     "### Incidents by country",
     "",
