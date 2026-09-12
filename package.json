@@ -23,7 +23,7 @@
     "crawl:publications": "tsx scripts/crawl-publications.ts",
     "crawl:publications:dry": "tsx scripts/crawl-publications.ts --dry-run",
     "crawl:waves": "tsx scripts/crawl-waves.ts",
-    "crawl:canada": "tsx scripts/crawl-publications.ts --country=CA --since=1990-01-01 --backfill --concurrency=10",
+    "crawl:canada": "tsx scripts/crawl-publications.ts --country=CA --since=1990-01-01 --backfill --lite --concurrency=6",
     "crawl:agencies": "tsx scripts/crawl-publications.ts --agencies --since=1990-01-01 --concurrency=8",
     "crawl:backfill-wildlife": "tsx scripts/crawl-waves.ts --hours=3 --batch=250 --concurrency=10 --wildlife --backfill",
     "publications:coverage-seeds": "tsx scripts/write-coverage-seeds.ts",

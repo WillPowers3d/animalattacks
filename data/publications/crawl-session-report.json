@@ -1,28 +1,30 @@
 {
-  "generatedAt": "2026-09-12T15:44:04.296Z",
-  "publicationsSeeded": 15268,
-  "publicationsScanned": 11721,
-  "remainingNewspapers": 6332,
-  "articlesFetched": 130965,
-  "matchingArticles": 77,
-  "publicationsWithMatches": 48,
+  "generatedAt": "2026-09-12T17:20:20.031Z",
+  "publicationsSeeded": 15308,
+  "publicationsScanned": 11761,
+  "remainingNewspapers": 6446,
+  "articlesFetched": 134883,
+  "matchingArticles": 1049,
+  "publicationsWithMatches": 68,
   "incidentsFromLocalPapers": 188,
-  "incidentsTotal": 371,
-  "canadaPublications": 391,
-  "canadaScanned": 389,
+  "incidentsTotal": 487,
+  "canadaPublications": 432,
+  "canadaScanned": 314,
   "agencyPublications": 49,
-  "agencyScanned": 49,
+  "agencyScanned": 47,
   "incidentsByCountry": {
-    "CA": 72,
+    "CA": 177,
     "DE": 1,
     "NO": 10,
     "RU": 4,
-    "US": 284
+    "US": 292,
+    "JP": 2,
+    "SI": 1
   },
   "incidentsBySource": {
     "agency": 7,
     "ammoland": 205,
-    "news": 154,
+    "news": 270,
     "other": 5
   },
   "crawledStates": [
@@ -286,6 +288,13 @@
       "matches": 12
     },
     {
+      "state": "BC",
+      "name": "British Columbia",
+      "scanned": 88,
+      "articles": 2071,
+      "matches": 795
+    },
+    {
       "state": "NM",
       "name": "New Mexico",
       "scanned": 85,
@@ -314,18 +323,18 @@
       "matches": 0
     },
     {
-      "state": "BC",
-      "name": "British Columbia",
-      "scanned": 80,
-      "articles": 224,
-      "matches": 0
-    },
-    {
       "state": "NV",
       "name": "Nevada",
       "scanned": 69,
       "articles": 1312,
       "matches": 1
+    },
+    {
+      "state": "ON",
+      "name": "Ontario",
+      "scanned": 67,
+      "articles": 807,
+      "matches": 21
     },
     {
       "state": "NH",
@@ -356,13 +365,6 @@
       "matches": 6
     },
     {
-      "state": "ON",
-      "name": "Ontario",
-      "scanned": 58,
-      "articles": 58,
-      "matches": 0
-    },
-    {
       "state": "ND",
       "name": "North Dakota",
       "scanned": 55,
@@ -391,6 +393,13 @@
       "matches": 3
     },
     {
+      "state": "AB",
+      "name": "Alberta",
+      "scanned": 42,
+      "articles": 425,
+      "matches": 20
+    },
+    {
       "state": "RI",
       "name": "Rhode Island",
       "scanned": 41,
@@ -405,13 +414,6 @@
       "matches": 0
     },
     {
-      "state": "AB",
-      "name": "Alberta",
-      "scanned": 36,
-      "articles": 103,
-      "matches": 0
-    },
-    {
       "state": "QC",
       "name": "Quebec",
       "scanned": 24,
@@ -421,16 +423,23 @@
     {
       "state": "MB",
       "name": "Manitoba",
-      "scanned": 13,
-      "articles": 1,
-      "matches": 0
+      "scanned": 17,
+      "articles": 281,
+      "matches": 55
     },
     {
       "state": "SK",
       "name": "Saskatchewan",
-      "scanned": 12,
-      "articles": 80,
-      "matches": 14
+      "scanned": 16,
+      "articles": 191,
+      "matches": 32
+    },
+    {
+      "state": "NT",
+      "name": "Northwest Territories",
+      "scanned": 11,
+      "articles": 398,
+      "matches": 40
     },
     {
       "state": "NB",
@@ -442,9 +451,9 @@
     {
       "state": "YT",
       "name": "Yukon",
-      "scanned": 5,
-      "articles": 0,
-      "matches": 0
+      "scanned": 6,
+      "articles": 99,
+      "matches": 10
     },
     {
       "state": "NS",
@@ -454,18 +463,11 @@
       "matches": 0
     },
     {
-      "state": "NT",
-      "name": "Northwest Territories",
-      "scanned": 4,
-      "articles": 28,
-      "matches": 2
-    },
-    {
       "state": "NU",
       "name": "Nunavut",
-      "scanned": 2,
-      "articles": 0,
-      "matches": 0
+      "scanned": 3,
+      "articles": 140,
+      "matches": 15
     },
     {
       "state": "NL",
@@ -483,8 +485,8 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 122,
-    "mountain_lion": 15,
+    "bear": 173,
+    "mountain_lion": 73,
     "elk": 4,
     "moose": 9
   },
@@ -495,11 +497,11 @@
     "CA": 7,
     "WY": 10,
     "AR": 2,
-    "ID": 2,
+    "ID": 3,
     "IL": 2,
     "MN": 2,
     "PA": 2,
-    "WA": 6,
+    "WA": 7,
     "FL": 5,
     "NC": 1,
     "NM": 4,
@@ -507,16 +509,19 @@
     "NY": 1,
     "OK": 1,
     "TN": 1,
-    "AB": 5,
-    "BC": 39,
-    "MB": 4,
-    "NT": 2,
-    "NU": 1,
-    "SK": 6,
+    "AB": 22,
+    "BC": 84,
+    "MB": 13,
+    "NT": 11,
+    "NU": 3,
+    "SK": 7,
     "WI": 1,
     "ME": 5,
     "UT": 5,
     "NH": 1,
-    "VT": 7
+    "VT": 7,
+    "??": 2,
+    "ON": 14,
+    "YT": 10
   }
 }

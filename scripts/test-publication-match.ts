@@ -40,6 +40,8 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Un orignal attaque un skieur à Whitehorse", want: true },
   { title: "Un couguar attaque un chien à Squamish", want: true },
   { title: "Les Canadiens attaquent en troisième période", want: false },
+  { title: "Balanced offensive attack propels Raiders past Cougars", want: false },
+  { title: "Raiders hold off Cougar attack", want: false },
 ]
 
 let failed = 0;

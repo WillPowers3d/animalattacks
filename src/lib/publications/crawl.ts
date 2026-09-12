@@ -34,6 +34,8 @@ export type CrawlOptions = {
   force?: boolean;
   minDelayMs?: number;
   skipRecentHours?: number;
+  /** RSS + site-search only — skip sitemap walks so archive queries actually run. */
+  lite?: boolean;
 };
 
 export type CrawlResult = {
@@ -240,7 +242,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
   await mapPool(queued, concurrency, async (pub) => {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 45_000);
+    const timer = setTimeout(() => ctrl.abort(), 150_000);
     let result: Awaited<ReturnType<typeof crawlOne>>;
     try {
       result = await crawlOne(pub, {
@@ -249,6 +251,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
         since: pub.lastCrawledAt ? since : null,
         minDelayMs,
         signal: ctrl.signal,
+        lite: Boolean(opts.lite) || pub.country === "CA",
       });
     } finally {
       clearTimeout(timer);
@@ -307,7 +310,14 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
 async function crawlOne(
   pub: PubRow,
-  opts: { dryRun: boolean; mode: string; since: Date | null; minDelayMs: number; signal?: AbortSignal },
+  opts: {
+    dryRun: boolean;
+    mode: string;
+    since: Date | null;
+    minDelayMs: number;
+    signal?: AbortSignal;
+    lite?: boolean;
+  },
 ): Promise<{
   fetched: number;
   matched: number;
@@ -329,7 +339,7 @@ async function crawlOne(
   );
 
   try {
-    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
     const rules = await loadRobots(pub.homepageUrl, opts.minDelayMs, opts.signal);
     const origin = originOf(pub.homepageUrl);
     if (!rules.fetchable || (origin && !robotsAllows(rules, "/"))) {
@@ -362,10 +372,10 @@ async function crawlOne(
       if (!articles.has(key)) articles.set(key, item);
     };
 
-    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
-    const rssTargets = discovered.rss.slice(0, opts.mode === "backfill" ? 6 : 3);
+    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+    const rssTargets = discovered.rss.slice(0, opts.lite ? 1 : opts.mode === "backfill" ? 6 : 3);
     for (const feed of rssTargets) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
       let feedUrl = feed;
       let feedPath = "/";
       try {
@@ -382,7 +392,10 @@ async function crawlOne(
     }
 
     const rssFilled = [...articles.values()].some((a) => a.source === "rss");
-    const skipSitemap = opts.mode === "incremental" && rssFilled && articles.size >= 8;
+    const skipSitemap =
+      Boolean(opts.lite) ||
+      (opts.mode === "incremental" && rssFilled && articles.size >= 8) ||
+      (opts.mode === "backfill" && rssFilled && articles.size >= 12 && Boolean(pub.rssUrl));
     const sitemapCap = opts.mode === "backfill" ? 4 : 2;
     const sitemapTargets = skipSitemap
       ? []
@@ -404,7 +417,7 @@ async function crawlOne(
     if (opts.mode === "backfill") {
       const searchItems = await fetchSearchArticles(pub.homepageUrl, rules, {
         minDelayMs: delay,
-        maxQueries: 3,
+        maxQueries: pub.country === "CA" ? 4 : 3,
         signal: opts.signal,
         country: pub.country,
       });
@@ -430,7 +443,7 @@ async function crawlOne(
     if (!firstRss && discovered.rss.length) firstRss = discovered.rss[0];
 
     for (const article of articles.values()) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
@@ -544,7 +557,8 @@ async function finishPub(
       where: { id: pub.id },
       data: {
         lastCrawledAt: new Date(),
-        lastBackfillAt: data.backfill ? new Date() : undefined,
+        lastBackfillAt:
+          data.backfill && !data.lastError?.startsWith("pub-timeout") ? new Date() : undefined,
         robotsStatus: data.robotsStatus,
         robotsCheckedAt: new Date(),
         robotsCrawlDelay: data.robotsCrawlDelay ?? undefined,

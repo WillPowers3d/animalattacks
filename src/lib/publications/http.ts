@@ -96,7 +96,7 @@ export async function politeFetch(
       if (
         attempt < 2 &&
         !opts.signal?.aborted &&
-        /aborted|network|ECONNRESET|ETIMEDOUT|fetch failed/i.test(last.error ?? "")
+        /network|ECONNRESET|ETIMEDOUT|fetch failed/i.test(last.error ?? "")
       ) {
         await sleep(800 * (attempt + 1));
         continue;

@@ -40,7 +40,7 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "search-query-echo" };
   }
   if (
-    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport)\b/i.test(
+    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?)\b/i.test(
       text,
     )
   ) {

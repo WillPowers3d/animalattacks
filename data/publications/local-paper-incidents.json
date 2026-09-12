@@ -713,37 +713,6 @@
     ]
   },
   {
-    "title": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Brandon",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.848,
-    "lng": -99.95,
-    "severity": "near_miss",
-    "summary": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.brandonsun.com/national/2026/04/15/in-the-news-today-quebec-premier-swearing-in-ontario-jails-b-c-bear-attack",
-        "title": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
-        "publisher": "Brandon Sun"
-      }
-    ]
-  },
-  {
     "title": "Officers believe sow with cubs was involved in B.C. bear attack on students, teachers",
     "species": "bear",
     "subspecies": null,
@@ -801,37 +770,6 @@
       {
         "url": "https://www.brandonsun.com/lifestyles/2025/07/27/man-seriously-injured-in-b-c-grizzly-bear-attack-in-kootenay-region",
         "title": "Man seriously injured in B.C. grizzly bear attack in Kootenay region",
-        "publisher": "Brandon Sun"
-      }
-    ]
-  },
-  {
-    "title": "Grizzly attack on B.C. elementary class is latest in series of encounters",
-    "species": "bear",
-    "subspecies": "grizzly",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Brandon",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.848,
-    "lng": -99.95,
-    "severity": "near_miss",
-    "summary": "Grizzly attack on B.C. elementary class is latest in series of encounters",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.brandonsun.com/lifestyles/2025/11/21/grizzly-attack-on-b-c-elementary-class-is-latest-in-series-of-encounters",
-        "title": "Grizzly attack on B.C. elementary class is latest in series of encounters",
         "publisher": "Brandon Sun"
       }
     ]
@@ -1271,37 +1209,6 @@
     ]
   },
   {
-    "title": "Grizzly bear fatally gored by mountain goat in eastern B.C.: Parks Canada",
-    "species": "bear",
-    "subspecies": "grizzly",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Steinbach",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.526,
-    "lng": -96.684,
-    "severity": "fatal",
-    "summary": "Grizzly bear fatally gored by mountain goat in eastern B.C.: Parks Canada",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Carillon News. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.thecarillon.com/national/2021/09/22/grizzly-bear-fatally-gored-by-mountain-goat-in-eastern-bc-parks-canada",
-        "title": "Grizzly bear fatally gored by mountain goat in eastern B.C.: Parks Canada",
-        "publisher": "Carillon News"
-      }
-    ]
-  },
-  {
     "title": "Grizzly attacks, injures mountain biker on remote B.C. trail",
     "species": "bear",
     "subspecies": "grizzly",
@@ -1457,37 +1364,6 @@
     ]
   },
   {
-    "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Glacier National",
-    "region": null,
-    "stateProvince": "MB",
-    "country": "CA",
-    "lat": 53.5971,
-    "lng": -99.6049,
-    "severity": "near_miss",
-    "summary": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/08/bear-attack-likely-kills-a-hiker-in-glacier-national-park-for-the-first-time-in-decades",
-        "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
     "title": "Bear attack on hiker closes trail in Yellowstone National Park",
     "species": "bear",
     "subspecies": null,
@@ -1581,37 +1457,6 @@
     ]
   },
   {
-    "title": "Bear attacks three-year-old girl playing on deck outside home in Maple Ridge, B.C.",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Maple Ridge",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 54.3307,
-    "lng": -98.3771,
-    "severity": "property",
-    "summary": "Bear attacks three-year-old girl playing on deck outside home in Maple Ridge, B.C.",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/08/09/bear-attacks-three-year-old-girl-playing-on-deck-outside-home-in-maple-ridge-b-c",
-        "title": "Bear attacks three-year-old girl playing on deck outside home in Maple Ridge, B.C.",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
     "title": "No ongoing public safety threat after grizzly bear attacks man in Vanderhoof, B.C.",
     "species": "bear",
     "subspecies": "grizzly",
@@ -1638,68 +1483,6 @@
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/04/14/no-ongoing-public-safety-threat-after-grizzly-bear-attacks-man-in-vanderhoof-b-c",
         "title": "No ongoing public safety threat after grizzly bear attacks man in Vanderhoof, B.C.",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
-    "title": "Grizzly bear attack in B.C. area leaves 72-year-old woman with serious injuries",
-    "species": "bear",
-    "subspecies": "grizzly",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Winnipeg",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.8954,
-    "lng": -97.1385,
-    "severity": "near_miss",
-    "summary": "Grizzly bear attack in B.C. area leaves 72-year-old woman with serious injuries",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/08/06/grizzly-bear-attack-in-b-c-area-seriously-injures-72-year-old-woman",
-        "title": "Grizzly bear attack in B.C. area leaves 72-year-old woman with serious injuries",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
-    "title": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Winnipeg",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.8954,
-    "lng": -97.1385,
-    "severity": "near_miss",
-    "summary": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/canada/2026/04/15/in-the-news-today-quebec-premier-swearing-in-ontario-jails-b-c-bear-attack",
-        "title": "In the news today: Quebec premier swearing in, Ontario jails, B.C. bear attack",
         "publisher": "Winnipeg Free Press"
       }
     ]
@@ -1736,68 +1519,6 @@
     ]
   },
   {
-    "title": "Officers believe sow with cubs was involved in B.C. bear attack on students, teachers",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Winnipeg",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.8954,
-    "lng": -97.1385,
-    "severity": "near_miss",
-    "summary": "Officers believe sow with cubs was involved in B.C. bear attack on students, teachers",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2025/11/22/search-continues-for-grizzly-that-attacked-students-teachers-at-b-c-trail",
-        "title": "Officers believe sow with cubs was involved in B.C. bear attack on students, teachers",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
-    "title": "Man seriously injured in B.C. grizzly bear attack in Kootenay region",
-    "species": "bear",
-    "subspecies": "grizzly",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Kootenay",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.9924,
-    "lng": -117.337,
-    "severity": "near_miss",
-    "summary": "Man seriously injured in B.C. grizzly bear attack in Kootenay region",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2025/07/27/man-seriously-injured-in-b-c-grizzly-bear-attack-in-kootenay-region",
-        "title": "Man seriously injured in B.C. grizzly bear attack in Kootenay region",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
     "title": "Authorities shoot and kill black bear believed to have fatally mauled man in Arkansas",
     "species": "bear",
     "subspecies": "black",
@@ -1824,37 +1545,6 @@
       {
         "url": "https://www.winnipegfreepress.com/world/2025/10/06/authorities-shoot-and-kill-black-bear-believed-to-have-fatally-mauled-man-in-arkansas",
         "title": "Authorities shoot and kill black bear believed to have fatally mauled man in Arkansas",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
-    "title": "Grizzly attack on B.C. elementary class is latest in series of encounters",
-    "species": "bear",
-    "subspecies": "grizzly",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Winnipeg",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.8954,
-    "lng": -97.1385,
-    "severity": "near_miss",
-    "summary": "Grizzly attack on B.C. elementary class is latest in series of encounters",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2025/11/21/grizzly-attack-on-b-c-elementary-class-is-latest-in-series-of-encounters",
-        "title": "Grizzly attack on B.C. elementary class is latest in series of encounters",
         "publisher": "Winnipeg Free Press"
       }
     ]
@@ -2015,37 +1705,6 @@
     ]
   },
   {
-    "title": "Conservation officers confirm bear shot by RCMP mauled child in Maple Ridge",
-    "species": "bear",
-    "subspecies": null,
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Maple Ridge",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 53.7357,
-    "lng": -99.2731,
-    "severity": "near_miss",
-    "summary": "Conservation officers confirm bear shot by RCMP mauled child in Maple Ridge",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/08/15/conservation-officers-confirm-bear-shot-by-rcmp-mauled-child-in-maple-ridge",
-        "title": "Conservation officers confirm bear shot by RCMP mauled child in Maple Ridge",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
     "title": "Officials search for a bear that attacked a hiker on a popular trail in Anchorage, Alaska",
     "species": "bear",
     "subspecies": null,
@@ -2103,37 +1762,6 @@
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2023/07/25/traps-removed-after-no-sign-of-the-grizzly-that-killed-a-woman-near-yellowstone",
         "title": "Traps removed after no sign of the grizzly that killed a woman near Yellowstone",
-        "publisher": "Winnipeg Free Press"
-      }
-    ]
-  },
-  {
-    "title": "Lawsuit says British Columbia zoo negligent in black bear mauling of toddler’s arm",
-    "species": "bear",
-    "subspecies": "black",
-    "occurredAt": null,
-    "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
-    "city": "Winnipeg",
-    "region": null,
-    "stateProvince": "BC",
-    "country": "CA",
-    "lat": 49.8954,
-    "lng": -97.1385,
-    "severity": "near_miss",
-    "summary": "Lawsuit says British Columbia zoo negligent in black bear mauling of toddler’s arm",
-    "sourceType": "news",
-    "verified": false,
-    "firearmType": null,
-    "caliber": null,
-    "shotsFired": null,
-    "defenseOutcome": null,
-    "combinationDefense": false,
-    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "sources": [
-      {
-        "url": "https://www.winnipegfreepress.com/canada/2023/01/04/b-c-zoo-sued-over-alleged-black-bear-mauling-of-toddlers-arm",
-        "title": "Lawsuit says British Columbia zoo negligent in black bear mauling of toddler’s arm",
         "publisher": "Winnipeg Free Press"
       }
     ]
@@ -4305,6 +3933,3974 @@
         "url": "https://vermontdailychronicle.com/vt-headlines-maple-festival-kicks-off-in-st-albans/",
         "title": "College student accused of mass terror plot at college released to Vermont family",
         "publisher": "Vermont Daily Chronicle"
+      }
+    ]
+  },
+  {
+    "title": "Bear Attack in Kenora – Wawa-news.com",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2019-09-28",
+    "datePrecision": "exact",
+    "dateDisplay": "2019-09-28",
+    "city": "Kenora",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 49.3624,
+    "lng": -96.443,
+    "severity": "near_miss",
+    "summary": "Bear Attack in Kenora – Wawa-news.com",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Wawa-news. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://wawa-news.com/index.php/2019/09/28/bear-attack-in-kenora/",
+        "title": "Bear Attack in Kenora – Wawa-news.com",
+        "publisher": "Wawa-news"
+      }
+    ]
+  },
+  {
+    "title": "Nuxalk Nation launches support effort after grizzly bear attack in Bella Coola",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bella Coola",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 63.6551,
+    "lng": -136.3468,
+    "severity": "near_miss",
+    "summary": "Nuxalk Nation launches support effort after grizzly bear attack in Bella Coola",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2025/11/24/nuxalk-nation-launches-support-effort-after-grizzly-bear-attack-in-bella-coola/",
+        "title": "Nuxalk Nation launches support effort after grizzly bear attack in Bella Coola",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Yukon bear attack survivor believes her dog — and a hair clip — saved her life",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "Yukon bear attack survivor believes her dog — and a hair clip — saved her life",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2024/07/05/yukon-bear-attack-survivor-believes-her-dog-and-a-hair-clip-saved-her-life/",
+        "title": "Yukon bear attack survivor believes her dog — and a hair clip — saved her life",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Pine Lake Campground closed following bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "Pine Lake Campground closed following bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2024/07/01/pine-lake-campground-closed-following-bear-attack/",
+        "title": "Pine Lake Campground closed following bear attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "UPDATED: Woman, 10-month-old child dead after bear attack northeast of Mayo",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "fatal",
+    "summary": "UPDATED: Woman, 10-month-old child dead after bear attack northeast of Mayo",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2018/11/27/two-dead-after-suspected-bear-attack-northeast-of-mayo/",
+        "title": "UPDATED: Woman, 10-month-old child dead after bear attack northeast of Mayo",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Deflected bullet caused woman’s death during bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "Deflected bullet caused woman’s death during bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2015/12/28/deflected-bullet-caused-womans-death-during-bear-attack/",
+        "title": "Deflected bullet caused woman’s death during bear attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Woman safe after surprise bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "Woman safe after surprise bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2013/08/09/woman-safe-after-surprise-bear-attack/",
+        "title": "Woman safe after surprise bear attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Bare facts on bear attacks",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "Bare facts on bear attacks",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2011/05/25/bare-facts-on-bear-attacks/",
+        "title": "Bare facts on bear attacks",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Six charges laid in fatal bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "fatal",
+    "summary": "Six charges laid in fatal bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2007/05/08/six-charges-laid-in-fatal-bear-attack/",
+        "title": "Six charges laid in fatal bear attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Injured skier survives, polar bear killed after Nunavut attack",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "NU",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "fatal",
+    "summary": "Injured skier survives, polar bear killed after Nunavut attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2025/04/28/injured-skier-survives-polar-bear-killed-after-nunavut-attack/",
+        "title": "Injured skier survives, polar bear killed after Nunavut attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "‘I swung my fist as hard as I could’: Man recalls northwest B.C. cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Whitehorse",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 60.7212,
+    "lng": -135.0568,
+    "severity": "near_miss",
+    "summary": "‘I swung my fist as hard as I could’: Man recalls northwest B.C. cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Yukon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://yukon-news.com/2025/07/31/i-swung-my-fist-as-hard-as-i-could-man-recalls-northwest-bc-cougar-attack/",
+        "title": "‘I swung my fist as hard as I could’: Man recalls northwest B.C. cougar attack",
+        "publisher": "Yukon News"
+      }
+    ]
+  },
+  {
+    "title": "Worker killed in polar bear attack on island southeast of Iqaluit",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "fatal",
+    "summary": "Worker killed in polar bear attack on island southeast of Iqaluit",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2024/08/12/worker-killed-in-polar-bear-attack-on-island-southeast-of-iqaluit/",
+        "title": "Worker killed in polar bear attack on island southeast of Iqaluit",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Hay River couple fought off bear attacking girl with boots, statue of angel",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "near_miss",
+    "summary": "Hay River couple fought off bear attacking girl with boots, statue of angel",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2020/10/17/awakened-by-partner-hay-river-man-fought-off-bear-attacking-girl-with-statue-of-angel/",
+        "title": "Hay River couple fought off bear attacking girl with boots, statue of angel",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Woman in serious condition after bear attack in Hay River",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 61.2906,
+    "lng": -116.966,
+    "severity": "near_miss",
+    "summary": "Woman in serious condition after bear attack in Hay River",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2020/10/16/woman-in-serious-condition-after-bear-attack-in-hay-river/",
+        "title": "Woman in serious condition after bear attack in Hay River",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Bear attack victim warned of risks just days before being mauled to death",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "near_miss",
+    "summary": "Bear attack victim warned of risks just days before being mauled to death",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2019/08/23/bear-attack-victim-warned-of-risks-just-days-before-being-mauled-to-death/",
+        "title": "Bear attack victim warned of risks just days before being mauled to death",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Bear attack victim a French composer on musical quest",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "near_miss",
+    "summary": "Bear attack victim a French composer on musical quest",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2019/08/21/victim-of-bear-encounter-identified-as-french-composer-on-quest-to-collect-sounds-of-the-north/",
+        "title": "Bear attack victim a French composer on musical quest",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Fort Liard man not killed by bear attack, says NWT coroner",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "fatal",
+    "summary": "Fort Liard man not killed by bear attack, says NWT coroner",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2019/05/29/fort-liard-man-not-killed-by-bear-attack-says-nwt-coroner/",
+        "title": "Fort Liard man not killed by bear attack, says NWT coroner",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Arviat, Naujaat bear attacks deemed ‘isolated incidents’",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "near_miss",
+    "summary": "Arviat, Naujaat bear attacks deemed ‘isolated incidents’",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2018/09/07/arviat-naujaat-bear-attacks-deemed-isolated-incidents/",
+        "title": "Arviat, Naujaat bear attacks deemed ‘isolated incidents’",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Two Naujaat hunters rescued on island, another perishes after polar bear attack",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Hay River",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 60.816,
+    "lng": -115.79,
+    "severity": "near_miss",
+    "summary": "Two Naujaat hunters rescued on island, another perishes after polar bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2018/08/28/two-naujaat-hunters-rescued-on-island-another-perishes-after-polar-bear-attack/",
+        "title": "Two Naujaat hunters rescued on island, another perishes after polar bear attack",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Injured skier survives, but attacking bear killed in Auyuittuq National Park",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Auyuittuq National",
+    "region": null,
+    "stateProvince": "NT",
+    "country": "CA",
+    "lat": 65.2735,
+    "lng": -125.6941,
+    "severity": "fatal",
+    "summary": "Injured skier survives, but attacking bear killed in Auyuittuq National Park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Hay River Hub. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thehayriverhub.com/2025/04/28/injured-skier-survives-but-attacking-bear-killed-in-auyuittuq-national-park/",
+        "title": "Injured skier survives, but attacking bear killed in Auyuittuq National Park",
+        "publisher": "Hay River Hub"
+      }
+    ]
+  },
+  {
+    "title": "Three people badly injured in polar bear attack near Sanirajak",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Sanirajak",
+    "region": null,
+    "stateProvince": "NU",
+    "country": "CA",
+    "lat": 70.0492,
+    "lng": -83.7124,
+    "severity": "near_miss",
+    "summary": "Three people badly injured in polar bear attack near Sanirajak",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Nunavut News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://nunavutnews.com/2021/08/11/three-people-badly-injured-in-polar-bear-attack-near-sanirajak/",
+        "title": "Three people badly injured in polar bear attack near Sanirajak",
+        "publisher": "Nunavut News"
+      }
+    ]
+  },
+  {
+    "title": "Man survives grizzly bear attack while walking off-leash dog in Shuswap",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Shuswap",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 54.0753,
+    "lng": -129.0518,
+    "severity": "near_miss",
+    "summary": "Man survives grizzly bear attack while walking off-leash dog in Shuswap",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2026/09/03/man-survives-grizzly-bear-attack-while-walking-off-leash-dog-in-shuswap/",
+        "title": "Man survives grizzly bear attack while walking off-leash dog in Shuswap",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "1 person taken to hospital after bear attack prompts closure of Vancouver Island park",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "injury",
+    "summary": "1 person taken to hospital after bear attack prompts closure of Vancouver Island park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2026/08/14/1-person-taken-to-hospital-after-bear-attack-prompts-closure-of-vancouver-island-park/",
+        "title": "1 person taken to hospital after bear attack prompts closure of Vancouver Island park",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Fundraiser started to help parents of Maple Ridge bear attack victim",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "Fundraiser started to help parents of Maple Ridge bear attack victim",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2026/08/12/fundraiser-started-to-help-parents-of-maple-ridge-bear-attack-victim/",
+        "title": "Fundraiser started to help parents of Maple Ridge bear attack victim",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Man injured in grizzly bear attack near Pemberton",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Pemberton",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.8156,
+    "lng": -122.2772,
+    "severity": "near_miss",
+    "summary": "Man injured in grizzly bear attack near Pemberton",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2026/08/10/man-injured-in-grizzly-bear-attack-near-pemberton/",
+        "title": "Man injured in grizzly bear attack near Pemberton",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Mission man survives bear attack at home",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "property",
+    "summary": "Mission man survives bear attack at home",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2026/05/20/mission-man-survives-bear-attack-at-home/",
+        "title": "Mission man survives bear attack at home",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "All 4 captured grizzlies ruled out from Bella Coola bear attack",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "All 4 captured grizzlies ruled out from Bella Coola bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2025/11/29/all-4-captured-grizzlies-ruled-out-from-bella-coola-bear-attack/",
+        "title": "All 4 captured grizzlies ruled out from Bella Coola bear attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "2nd grizzly captured following Bella Coola bear attack",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "2nd grizzly captured following Bella Coola bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2025/11/25/2nd-grizzly-captured-following-bella-coola-bear-attack/",
+        "title": "2nd grizzly captured following Bella Coola bear attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Bear attack that injured students, teachers in Bella Coola still a ‘dangerous situation’",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bella Coola",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.8835,
+    "lng": -128.3518,
+    "severity": "near_miss",
+    "summary": "Bear attack that injured students, teachers in Bella Coola still a ‘dangerous situation’",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2025/11/22/bear-attack-that-seriously-injured-4-in-bella-coola-still-a-dangerous-situation/",
+        "title": "Bear attack that injured students, teachers in Bella Coola still a ‘dangerous situation’",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "UPDATE: Three school children, 1 adult injured in Bella Coola grizzly bear attack",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bella Coola",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.6147,
+    "lng": -127.8016,
+    "severity": "near_miss",
+    "summary": "UPDATE: Three school children, 1 adult injured in Bella Coola grizzly bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2025/11/21/3-children-1-adult-injured-in-bella-coola-grizzly-bear-attack/",
+        "title": "UPDATE: Three school children, 1 adult injured in Bella Coola grizzly bear attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Vancouver Island couple mourns alpaca killed in cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "fatal",
+    "summary": "Vancouver Island couple mourns alpaca killed in cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2025/07/04/vancouver-island-couple-mourns-alpaca-killed-in-cougar-attack/",
+        "title": "Vancouver Island couple mourns alpaca killed in cougar attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Warning issued after dog killed in string of Vancouver Island cougar attacks",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "fatal",
+    "summary": "Warning issued after dog killed in string of Vancouver Island cougar attacks",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2022/04/01/warning-issued-after-dog-killed-in-string-of-vancouver-island-cougar-attacks/",
+        "title": "Warning issued after dog killed in string of Vancouver Island cougar attacks",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Owner’s noisy charge saves 14-pound dog from B.C. cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "Owner’s noisy charge saves 14-pound dog from B.C. cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2022/03/18/owners-noisy-charge-saves-14-pound-dog-from-b-c-cougar-attack/",
+        "title": "Owner’s noisy charge saves 14-pound dog from B.C. cougar attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "UPDATED: Agassiz cougar attack victim in stable condition",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "UPDATED: Agassiz cougar attack victim in stable condition",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2021/05/04/woman-seriously-injured-in-cougar-attack-near-agassiz/",
+        "title": "UPDATED: Agassiz cougar attack victim in stable condition",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Dogs survive cougar attack in Ladysmith, family asks for help with vet bills",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Ladysmith",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.2913,
+    "lng": -128.6906,
+    "severity": "near_miss",
+    "summary": "Dogs survive cougar attack in Ladysmith, family asks for help with vet bills",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2020/11/11/dogs-survive-cougar-attack-in-ladysmith-family-asks-for-help-with-vet-bills/",
+        "title": "Dogs survive cougar attack in Ladysmith, family asks for help with vet bills",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Boy, 10, alive after family dog jumps into action during cougar attack in Lillooet",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Lillooet",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.0883,
+    "lng": -128.2258,
+    "severity": "near_miss",
+    "summary": "Boy, 10, alive after family dog jumps into action during cougar attack in Lillooet",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2020/09/03/boy-10-alive-after-family-dog-jumps-into-action-during-cougar-attack-in-lillooet/",
+        "title": "Boy, 10, alive after family dog jumps into action during cougar attack in Lillooet",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Mother hailed as hero in Vancouver Island cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Vancouver Island",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.6411,
+    "lng": -123.7885,
+    "severity": "near_miss",
+    "summary": "Mother hailed as hero in Vancouver Island cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2019/04/01/mother-hailed-as-hero-in-vancouver-island-cougar-attack/",
+        "title": "Mother hailed as hero in Vancouver Island cougar attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Ladysmith man saves dog from cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "Ladysmith man saves dog from cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2018/09/10/ladysmith-man-saves-dog-from-cougar-attack-on-holland-creek-trail/",
+        "title": "Ladysmith man saves dog from cougar attack",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Two kids injured in separate cougar attacks in B.C.",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Alberni",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.233,
+    "lng": -124.805,
+    "severity": "near_miss",
+    "summary": "Two kids injured in separate cougar attacks in B.C.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Alberni Valley News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://albernivalleynews.com/2018/08/30/two-kids-injured-in-separate-cougar-attacks-in-b-c/",
+        "title": "Two kids injured in separate cougar attacks in B.C.",
+        "publisher": "Alberni Valley News"
+      }
+    ]
+  },
+  {
+    "title": "Black bear attack injures hiker on Comox Valley trail",
+    "species": "bear",
+    "subspecies": "black",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Campbell River",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 50.024,
+    "lng": -125.247,
+    "severity": "near_miss",
+    "summary": "Black bear attack injures hiker on Comox Valley trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Campbell River Mirror. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://campbellrivermirror.com/2026/07/21/black-bear-attack-injures-hiker-on-comox-valley-trail/",
+        "title": "Black bear attack injures hiker on Comox Valley trail",
+        "publisher": "Campbell River Mirror"
+      }
+    ]
+  },
+  {
+    "title": "Update: Vineyard cougar attack could be second one of the month in the area",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Campbell River",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 50.024,
+    "lng": -125.247,
+    "severity": "near_miss",
+    "summary": "Update: Vineyard cougar attack could be second one of the month in the area",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Campbell River Mirror. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://campbellrivermirror.com/2018/05/16/cougar-kills-sheep-at-vancouver-island-vineyard/",
+        "title": "Update: Vineyard cougar attack could be second one of the month in the area",
+        "publisher": "Campbell River Mirror"
+      }
+    ]
+  },
+  {
+    "title": "Two dogs victim of cougar attacks in Bridge Lake during same week",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bridge Lake",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.0547,
+    "lng": -127.8702,
+    "severity": "near_miss",
+    "summary": "Two dogs victim of cougar attacks in Bridge Lake during same week",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: 100 Mile House Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://100milefreepress.net/2018/03/07/two-dogs-victim-of-cougar-attacks-in-bridge-lake-during-same-week/",
+        "title": "Two dogs victim of cougar attacks in Bridge Lake during same week",
+        "publisher": "100 Mile House Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attack injures mini horses near Lone Butte: full story",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Lone Butte",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.7743,
+    "lng": -128.9426,
+    "severity": "near_miss",
+    "summary": "Cougar attack injures mini horses near Lone Butte: full story",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: 100 Mile House Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://100milefreepress.net/2017/10/06/cougar-attack-injures-mini-horses-near-lone-butte-full-story/",
+        "title": "Cougar attack injures mini horses near Lone Butte: full story",
+        "publisher": "100 Mile House Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Kelly Lake man fends off cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "100 Mile House",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 51.644,
+    "lng": -121.295,
+    "severity": "near_miss",
+    "summary": "Kelly Lake man fends off cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: 100 Mile House Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://100milefreepress.net/2013/03/27/kelly-lake-man-fends-off-cougar-attack/",
+        "title": "Kelly Lake man fends off cougar attack",
+        "publisher": "100 Mile House Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attacks ranch horse at Bridge Lake",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bridge Lake",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.0463,
+    "lng": -129.1652,
+    "severity": "near_miss",
+    "summary": "Cougar attacks ranch horse at Bridge Lake",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: 100 Mile House Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://100milefreepress.net/2011/02/08/cougar-attacks-ranch-horse-at-bridge-lake/",
+        "title": "Cougar attacks ranch horse at Bridge Lake",
+        "publisher": "100 Mile House Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Mountain biker attacked by cougar near Squamish: Conservation officer service",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Squamish",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.0156,
+    "lng": -122.9724,
+    "severity": "near_miss",
+    "summary": "Mountain biker attacked by cougar near Squamish: Conservation officer service",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Abbotsford News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://abbynews.com/2025/08/08/mountain-biker-attacked-by-cougar-near-squamish-conservation-officer-service/",
+        "title": "Mountain biker attacked by cougar near Squamish: Conservation officer service",
+        "publisher": "Abbotsford News"
+      }
+    ]
+  },
+  {
+    "title": "Grand Forks man saves dog by kicking attacking cougar in the head",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Abbotsford",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.0504,
+    "lng": -122.3045,
+    "severity": "near_miss",
+    "summary": "Grand Forks man saves dog by kicking attacking cougar in the head",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Abbotsford News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://abbynews.com/2022/04/13/grand-forks-man-saves-dog-by-kicking-attacking-cougar-in-the-head/",
+        "title": "Grand Forks man saves dog by kicking attacking cougar in the head",
+        "publisher": "Abbotsford News"
+      }
+    ]
+  },
+  {
+    "title": "UPDATE: 2 cougars killed following attack in Harrison Mills",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Harrison Mills",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.1569,
+    "lng": -127.453,
+    "severity": "fatal",
+    "summary": "UPDATE: 2 cougars killed following attack in Harrison Mills",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Abbotsford News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://abbynews.com/2021/05/04/harrison-mills-woman-airlifted-to-hospital-after-cougar-attack/",
+        "title": "UPDATE: 2 cougars killed following attack in Harrison Mills",
+        "publisher": "Abbotsford News"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attacks on animals reported in Boundary area",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Boundary",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.9689,
+    "lng": -127.656,
+    "severity": "near_miss",
+    "summary": "Cougar attacks on animals reported in Boundary area",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Castlegar News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://castlegarnews.com/2023/09/06/cougar-attacks-on-animals-reported-in-boundary-area/",
+        "title": "Cougar attacks on animals reported in Boundary area",
+        "publisher": "Castlegar News"
+      }
+    ]
+  },
+  {
+    "title": "Dog comes to rescue in Trail cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Trail",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.3484,
+    "lng": -118.6284,
+    "severity": "near_miss",
+    "summary": "Dog comes to rescue in Trail cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Castlegar News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://castlegarnews.com/2012/08/29/dog-comes-to-rescue-in-trail-cougar-attack/",
+        "title": "Dog comes to rescue in Trail cougar attack",
+        "publisher": "Castlegar News"
+      }
+    ]
+  },
+  {
+    "title": "Agassiz woman fends off cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Chilliwack",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.158,
+    "lng": -121.951,
+    "severity": "near_miss",
+    "summary": "Agassiz woman fends off cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Chilliwack Progress. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://theprogress.com/2015/07/22/agassiz-woman-fends-off-cougar-attack/",
+        "title": "Agassiz woman fends off cougar attack",
+        "publisher": "Chilliwack Progress"
+      }
+    ]
+  },
+  {
+    "title": "Black bear attack injures hiker on Cumberland trail",
+    "species": "bear",
+    "subspecies": "black",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Courtenay",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.687,
+    "lng": -124.994,
+    "severity": "near_miss",
+    "summary": "Black bear attack injures hiker on Cumberland trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Comox Valley Record. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://comoxvalleyrecord.com/2026/07/21/black-bear-attack-injures-hiker-on-cumberland-trail/",
+        "title": "Black bear attack injures hiker on Cumberland trail",
+        "publisher": "Comox Valley Record"
+      }
+    ]
+  },
+  {
+    "title": "Owner’s noisy charge saves 14-pound dog from North Island cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Courtenay",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.687,
+    "lng": -124.994,
+    "severity": "near_miss",
+    "summary": "Owner’s noisy charge saves 14-pound dog from North Island cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Comox Valley Record. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://comoxvalleyrecord.com/2022/03/18/owners-noisy-charge-saves-14-pound-dog-from-north-island-cougar-attack/",
+        "title": "Owner’s noisy charge saves 14-pound dog from North Island cougar attack",
+        "publisher": "Comox Valley Record"
+      }
+    ]
+  },
+  {
+    "title": "T.W. Paterson column: Lake Cowichan cougar attack recalls children’s heroism of 1916",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Duncan",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 48.778,
+    "lng": -123.708,
+    "severity": "near_miss",
+    "summary": "T.W. Paterson column: Lake Cowichan cougar attack recalls children’s heroism of 1916",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Cowichan Valley Citizen. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://cowichanvalleycitizen.com/2019/04/06/t-w-paterson-column-lake-cowichan-cougar-attack-recalls-childrens-heroism-of-1916/",
+        "title": "T.W. Paterson column: Lake Cowichan cougar attack recalls children’s heroism of 1916",
+        "publisher": "Cowichan Valley Citizen"
+      }
+    ]
+  },
+  {
+    "title": "VIDEO: Mother hailed as hero in Lake Cowichan cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Lake Cowichan",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 54.0347,
+    "lng": -128.8852,
+    "severity": "near_miss",
+    "summary": "VIDEO: Mother hailed as hero in Lake Cowichan cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Cowichan Valley Citizen. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://cowichanvalleycitizen.com/2019/04/01/mother-hailed-as-hero-in-lake-cowichan-cougar-attack/",
+        "title": "VIDEO: Mother hailed as hero in Lake Cowichan cougar attack",
+        "publisher": "Cowichan Valley Citizen"
+      }
+    ]
+  },
+  {
+    "title": "Ladysmith man saves dog from cougar attack on Holland Creek trail",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Duncan",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 48.778,
+    "lng": -123.708,
+    "severity": "near_miss",
+    "summary": "Ladysmith man saves dog from cougar attack on Holland Creek trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Cowichan Valley Citizen. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://cowichanvalleycitizen.com/2018/09/10/ladysmith-man-saves-dog-from-cougar-attack-on-holland-creek-trail/",
+        "title": "Ladysmith man saves dog from cougar attack on Holland Creek trail",
+        "publisher": "Cowichan Valley Citizen"
+      }
+    ]
+  },
+  {
+    "title": "Cougar tagged as culprit in sheep kills",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Salt Spring Island",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 48.85,
+    "lng": -123.5,
+    "severity": "property",
+    "summary": "A south-end hobby farmer lost most of his new lambs on Tuesday in what is suspected to be the first cougar attack on Salt Spring Island livestock this year.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Gulf Islands Driftwood. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://gulfislandsdriftwood.com/cougar-tagged-as-culprit-in-sheep-kills/",
+        "title": "Cougar tagged as culprit in sheep kills",
+        "publisher": "Gulf Islands Driftwood"
+      }
+    ]
+  },
+  {
+    "title": "Boy, 9, suffers minor injuries in cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Grand Forks",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.033,
+    "lng": -118.44,
+    "severity": "near_miss",
+    "summary": "Boy, 9, suffers minor injuries in cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Grand Forks Gazette. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://grandforksgazette.ca/2018/08/30/boy-9-suffers-minor-injuries-in-cougar-attack/",
+        "title": "Boy, 9, suffers minor injuries in cougar attack",
+        "publisher": "Grand Forks Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Greenwood resident Ingrid Mathison reports cougar attacked foal",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Grand Forks",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.033,
+    "lng": -118.44,
+    "severity": "near_miss",
+    "summary": "Greenwood resident Ingrid Mathison reports cougar attacked foal",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Grand Forks Gazette. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://grandforksgazette.ca/2013/07/24/greenwood-resident-ingrid-mathison-reports-cougar-attacked-foal/",
+        "title": "Greenwood resident Ingrid Mathison reports cougar attacked foal",
+        "publisher": "Grand Forks Gazette"
+      }
+    ]
+  },
+  {
+    "title": "‘I swung my fist as hard as I could’: Smithers man recalls cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Queen Charlotte",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.255,
+    "lng": -132.09,
+    "severity": "near_miss",
+    "summary": "‘I swung my fist as hard as I could’: Smithers man recalls cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Haida Gwaii Observer. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://haidagwaiiobserver.com/2025/07/31/i-swung-my-fist-as-hard-as-i-could-smithers-man-recalls-cougar-attack/",
+        "title": "‘I swung my fist as hard as I could’: Smithers man recalls cougar attack",
+        "publisher": "Haida Gwaii Observer"
+      }
+    ]
+  },
+  {
+    "title": "2 cougars killed following attack on woman in Agassiz area",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Agassiz",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.4369,
+    "lng": -128.8264,
+    "severity": "fatal",
+    "summary": "2 cougars killed following attack on woman in Agassiz area",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Haida Gwaii Observer. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://haidagwaiiobserver.com/2021/05/05/two-cougars-killed-following-attack-in-agassiz-area/",
+        "title": "2 cougars killed following attack on woman in Agassiz area",
+        "publisher": "Haida Gwaii Observer"
+      }
+    ]
+  },
+  {
+    "title": "Children and pets warned to stay inside after second cougar attack in South Okanagan",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "South Okanagan",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.4579,
+    "lng": -126.9672,
+    "severity": "near_miss",
+    "summary": "Children and pets warned to stay inside after second cougar attack in South Okanagan",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Kelowna Capital News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://kelownacapnews.com/2021/04/23/children-and-pets-warned-to-stay-inside-after-second-cougar-attack-in-south-okanagan/",
+        "title": "Children and pets warned to stay inside after second cougar attack in South Okanagan",
+        "publisher": "Kelowna Capital News"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attacks, kills dog in Okanagan",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Okanagan",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.2423,
+    "lng": -127.243,
+    "severity": "near_miss",
+    "summary": "Cougar attacks, kills dog in Okanagan",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Kelowna Capital News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://kelownacapnews.com/2019/01/22/cougar-attacks-kills-dog-in-okanagan/",
+        "title": "Cougar attacks, kills dog in Okanagan",
+        "publisher": "Kelowna Capital News"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attacks dog in Penticton",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Penticton",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.8253,
+    "lng": -120.3553,
+    "severity": "near_miss",
+    "summary": "Cougar attacks dog in Penticton",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Kelowna Capital News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://kelownacapnews.com/2017/11/14/cougar-attacks-dog-in-penticton/",
+        "title": "Cougar attacks dog in Penticton",
+        "publisher": "Kelowna Capital News"
+      }
+    ]
+  },
+  {
+    "title": "House cat escaped cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Kelowna",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.888,
+    "lng": -119.496,
+    "severity": "near_miss",
+    "summary": "House cat escaped cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Kelowna Capital News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://kelownacapnews.com/2017/09/23/house-cat-escaped-cougar-attack/",
+        "title": "House cat escaped cougar attack",
+        "publisher": "Kelowna Capital News"
+      }
+    ]
+  },
+  {
+    "title": "North Island woman’s dog survives vicious cougar attack on Commuter trail",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Port Hardy",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 50.718,
+    "lng": -127.498,
+    "severity": "near_miss",
+    "summary": "North Island woman’s dog survives vicious cougar attack on Commuter trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: North Island Gazette. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://northislandgazette.com/2022/03/18/north-island-womans-dog-survives-vicious-cougar-attack-on-commuter-trail/",
+        "title": "North Island woman’s dog survives vicious cougar attack on Commuter trail",
+        "publisher": "North Island Gazette"
+      }
+    ]
+  },
+  {
+    "title": "North Saanich couple mourns loss of alpaca following cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Oak Bay",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 48.426,
+    "lng": -123.316,
+    "severity": "near_miss",
+    "summary": "North Saanich couple mourns loss of alpaca following cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Oak Bay News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://oakbaynews.com/2025/07/04/north-saanich-couple-mourns-loss-of-alpaca-following-cougar-attack/",
+        "title": "North Saanich couple mourns loss of alpaca following cougar attack",
+        "publisher": "Oak Bay News"
+      }
+    ]
+  },
+  {
+    "title": "Increased cougar attacks in Metchosin sparks letter to province",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Metchosin",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.3235,
+    "lng": -128.685,
+    "severity": "near_miss",
+    "summary": "Increased cougar attacks in Metchosin sparks letter to province",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Oak Bay News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://oakbaynews.com/2024/08/01/increased-cougar-attacks-in-metchosin-sparks-letter-to-province/",
+        "title": "Increased cougar attacks in Metchosin sparks letter to province",
+        "publisher": "Oak Bay News"
+      }
+    ]
+  },
+  {
+    "title": "Warning issued after dog killed in string of Metchosin, East Sooke cougar attacks",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Oak Bay",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 48.426,
+    "lng": -123.316,
+    "severity": "fatal",
+    "summary": "Warning issued after dog killed in string of Metchosin, East Sooke cougar attacks",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Oak Bay News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://oakbaynews.com/2022/04/01/warning-issued-after-dog-killed-in-string-of-metchosin-east-sooke-cougar-attacks/",
+        "title": "Warning issued after dog killed in string of Metchosin, East Sooke cougar attacks",
+        "publisher": "Oak Bay News"
+      }
+    ]
+  },
+  {
+    "title": "Keep kids and pets inside warns RDOS and PIB after second cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Penticton",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.4991,
+    "lng": -119.5937,
+    "severity": "near_miss",
+    "summary": "Keep kids and pets inside warns RDOS and PIB after second cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Penticton Western News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://pentictonwesternnews.com/2021/04/23/keep-kids-and-pets-inside-warns-rdos-and-pib-after-second-cougar-attack/",
+        "title": "Keep kids and pets inside warns RDOS and PIB after second cougar attack",
+        "publisher": "Penticton Western News"
+      }
+    ]
+  },
+  {
+    "title": "Keremeos dog survives cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Penticton",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.4991,
+    "lng": -119.5937,
+    "severity": "near_miss",
+    "summary": "Keremeos dog survives cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Penticton Western News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://pentictonwesternnews.com/2017/01/18/keremeos-dog-survives-cougar-attack/",
+        "title": "Keremeos dog survives cougar attack",
+        "publisher": "Penticton Western News"
+      }
+    ]
+  },
+  {
+    "title": "Man hurt in B.C. grizzly bear attack near Fort Steele dies in hospital",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Steele",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 54.3693,
+    "lng": -128.993,
+    "severity": "fatal",
+    "summary": "Man hurt in B.C. grizzly bear attack near Fort Steele dies in hospital",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Revelstoke Review. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://revelstokereview.com/2025/10/27/man-hurt-in-bc-grizzly-bear-attack-near-fort-steele-dies-in-hospital/",
+        "title": "Man hurt in B.C. grizzly bear attack near Fort Steele dies in hospital",
+        "publisher": "Revelstoke Review"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attack on Fairy Creek trail",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fernie",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.504,
+    "lng": -115.063,
+    "severity": "near_miss",
+    "summary": "Cougar attack on Fairy Creek trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: The Free Press (Fernie). Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thefreepress.ca/2015/11/27/cougar-attack-on-fairy-creek-trail/",
+        "title": "Cougar attack on Fairy Creek trail",
+        "publisher": "The Free Press (Fernie)"
+      }
+    ]
+  },
+  {
+    "title": "Cougar euthanized following dog attack on NYE",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fernie",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 49.504,
+    "lng": -115.063,
+    "severity": "near_miss",
+    "summary": "Cougar euthanized following dog attack on NYE",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: The Free Press (Fernie). Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thefreepress.ca/2026/01/08/cougar-euthanized-following-dog-attack-on-nye/",
+        "title": "Cougar euthanized following dog attack on NYE",
+        "publisher": "The Free Press (Fernie)"
+      }
+    ]
+  },
+  {
+    "title": "Victoria man saves dog from cougar attack near Ucluelet",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Ucluelet",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.6721,
+    "lng": -127.5188,
+    "severity": "near_miss",
+    "summary": "Victoria man saves dog from cougar attack near Ucluelet",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Westerly News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://westerlynews.ca/2015/07/04/victoria-man-saves-dog-from-cougar-attack-near-ucluelet/",
+        "title": "Victoria man saves dog from cougar attack near Ucluelet",
+        "publisher": "Westerly News"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attacks reported in Chimney Valley",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Chimney Valley",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.3319,
+    "lng": -127.4348,
+    "severity": "near_miss",
+    "summary": "Cougar attacks reported in Chimney Valley",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Williams Lake Tribune. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://wltribune.com/2013/07/31/cougar-attacks-reported-in-chimney-valley/",
+        "title": "Cougar attacks reported in Chimney Valley",
+        "publisher": "Williams Lake Tribune"
+      }
+    ]
+  },
+  {
+    "title": "Cougar attack in South Langley prompts warning",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "South Langley",
+    "region": null,
+    "stateProvince": "BC",
+    "country": "CA",
+    "lat": 53.7743,
+    "lng": -129.189,
+    "severity": "near_miss",
+    "summary": "Cougar attack in South Langley prompts warning",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Aldergrove Star. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://aldergrovestar.com/2015/06/02/cougar-attack-in-south-langley-prompts-warning/",
+        "title": "Cougar attack in South Langley prompts warning",
+        "publisher": "Aldergrove Star"
+      }
+    ]
+  },
+  {
+    "title": "Bear attack prompts closure of Waterton Park areas",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Lethbridge",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 49.693,
+    "lng": -112.842,
+    "severity": "near_miss",
+    "summary": "Bear attack prompts closure of Waterton Park areas",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Lethbridge Herald. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://lethbridgeherald.com/news/lethbridge-news/2024/06/13/bear-attack-prompts-closure-of-waterton-park-areas/",
+        "title": "Bear attack prompts closure of Waterton Park areas",
+        "publisher": "Lethbridge Herald"
+      }
+    ]
+  },
+  {
+    "title": "Bear attacks are terrible but rare, says a Red Deer Polytechnic bear expert",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Bear attacks are terrible but rare, says a Red Deer Polytechnic bear expert",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2023/10/02/bear-attacks-are-terrible-but-rare-says-a-red-deer-polytechnic-bear-expert/",
+        "title": "Bear attacks are terrible but rare, says a Red Deer Polytechnic bear expert",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Woman, 10-month-old girl killed in bear attack in Yukon",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Yukon",
+    "region": null,
+    "stateProvince": "YT",
+    "country": "CA",
+    "lat": 64.5077,
+    "lng": -136.1956,
+    "severity": "fatal",
+    "summary": "Woman, 10-month-old girl killed in bear attack in Yukon",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2018/11/28/woman-10-month-old-girl-killed-in-bear-attack-in-yukon/",
+        "title": "Woman, 10-month-old girl killed in bear attack in Yukon",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Mom helps save Colorado girl from bear attack, officials say",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Mom helps save Colorado girl from bear attack, officials say",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2018/05/14/mom-helps-save-colorado-girl-from-bear-attack-officials-say/",
+        "title": "Mom helps save Colorado girl from bear attack, officials say",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Mother bear attacks Mission woman, conservation officer",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Mother bear attacks Mission woman, conservation officer",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2017/10/24/mother-bear-attacks-mission-woman-conservation-officer/",
+        "title": "Mother bear attacks Mission woman, conservation officer",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "The true story of two fatal grizzly bear attacks that changed our relationship with wildlife",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "fatal",
+    "summary": "The true story of two fatal grizzly bear attacks that changed our relationship with wildlife",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2017/08/07/the-true-story-of-two-fatal-grizzly-bear-attacks-that-changed-our-relationship-with-wildlife/",
+        "title": "The true story of two fatal grizzly bear attacks that changed our relationship with wildlife",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Wilderness area west of Calgary to remain closed due to grizzly bear attack",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Wilderness area west of Calgary to remain closed due to grizzly bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2015/09/01/wilderness-area-west-of-calgary-to-remain-closed-due-to-grizzly-bear-attack/",
+        "title": "Wilderness area west of Calgary to remain closed due to grizzly bear attack",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Thanks to cell phone, man survives polar bear attack",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Thanks to cell phone, man survives polar bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2013/09/10/thanks-to-cell-phone-man-survives-polar-bear-attack/",
+        "title": "Thanks to cell phone, man survives polar bear attack",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "B.C. man uses arrow to save himself after mother grizzly bear attacks",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "B.C. man uses arrow to save himself after mother grizzly bear attacks",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2009/09/17/b-c-man-uses-arrow-to-save-himself-after-mother-grizzly-bear-attacks/",
+        "title": "B.C. man uses arrow to save himself after mother grizzly bear attacks",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Rocky Mountain House cougar attack survivor named Mayor of the Mall in support of STARS",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Rocky Mountain House cougar attack survivor named Mayor of the Mall in support of STARS",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2023/03/08/rocky-mountain-house-cougar-attack-survivor-named-mayor-of-the-mall-in-support-of-stars/",
+        "title": "Rocky Mountain House cougar attack survivor named Mayor of the Mall in support of STARS",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Sylvan Lake boy overcoming trauma after a cougar attack near Rocky",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Rocky",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 54.23990000000001,
+    "lng": -118.3671,
+    "severity": "near_miss",
+    "summary": "Sylvan Lake boy overcoming trauma after a cougar attack near Rocky",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2022/08/05/sylvan-lake-boy-overcoming-trauma-after-a-cougar-attack-near-rocky/",
+        "title": "Sylvan Lake boy overcoming trauma after a cougar attack near Rocky",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Family dog saves B.C. boy, 11, from cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Family dog saves B.C. boy, 11, from cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2010/01/04/family-dog-saves-b-c-boy-11-from-cougar-attack/",
+        "title": "Family dog saves B.C. boy, 11, from cougar attack",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "B.C. girl recovers from cougar attack as mom relives rescue terror",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "B.C. girl recovers from cougar attack as mom relives rescue terror",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2009/06/18/b-c-girl-recovers-from-cougar-attack-as-mom-relives-rescue-terror/",
+        "title": "B.C. girl recovers from cougar attack as mom relives rescue terror",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Cougar that attacked boy near Rocky was euthanized by Fish and Wildlife",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Rocky",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 54.1503,
+    "lng": -117.0889,
+    "severity": "near_miss",
+    "summary": "Cougar that attacked boy near Rocky was euthanized by Fish and Wildlife",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2022/08/04/cougar-that-attacked-boy-near-rocky-was-euthanized-by-fish-and-wildlife/",
+        "title": "Cougar that attacked boy near Rocky was euthanized by Fish and Wildlife",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "No sign of cougar: Banff park officials reopen area where big cat attacked",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "No sign of cougar: Banff park officials reopen area where big cat attacked",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2013/05/31/no-sign-of-cougar-banff-park-officials-reopen-area-where-big-cat-attacked/",
+        "title": "No sign of cougar: Banff park officials reopen area where big cat attacked",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Cougar hunted after attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Cougar hunted after attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2013/05/27/cougar-hunted-after-attack/",
+        "title": "Cougar hunted after attack",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Cougar that attacked woman destroyed",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Cougar that attacked woman destroyed",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2012/08/29/cougar-that-attacked-woman-destroyed/",
+        "title": "Cougar that attacked woman destroyed",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "Cougar shot after attacking seven-year-old boy on Vancouver Island",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Red Deer",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 52.2681,
+    "lng": -113.8112,
+    "severity": "near_miss",
+    "summary": "Cougar shot after attacking seven-year-old boy on Vancouver Island",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Red Deer Advocate. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://reddeeradvocate.com/2012/08/17/cougar-shot-after-attacking-seven-year-old-boy-on-vancouver-island/",
+        "title": "Cougar shot after attacking seven-year-old boy on Vancouver Island",
+        "publisher": "Red Deer Advocate"
+      }
+    ]
+  },
+  {
+    "title": "M.L. man awarded Medal of Bravery",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Meadow Lake",
+    "region": null,
+    "stateProvince": "SK",
+    "country": "CA",
+    "lat": 54.13,
+    "lng": -108.435,
+    "severity": "near_miss",
+    "summary": "Sometimes you don’t need to think, you just need to act. This is something Meadow Lake’s Dwayne Voth understands wholeheartedly following a 2018 bear attack in the Meadow Lake Provincial Park and his subsequent efforts to not only intervene, but to also potentially save a life. These efforts were recognized last week when Voth travelled [&hellip;]",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Northern Pride. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://northernprideml.com/2022/09/m-l-man-awarded-medal-of-bravery/",
+        "title": "M.L. man awarded Medal of Bravery",
+        "publisher": "Northern Pride"
+      }
+    ]
+  },
+  {
+    "title": "Teams work through the night in search of bear after B.C. attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "Teams work through the night in search of bear after B.C. attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: APTN News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.aptnnews.ca/national-news/teams-work-through-the-night-in-search-of-bear-after-b-c-attack/",
+        "title": "Teams work through the night in search of bear after B.C. attack",
+        "publisher": "APTN News"
+      }
+    ]
+  },
+  {
+    "title": "Grizzly bear attacks Nuxalk Nation students, teachers in B.C.",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "Grizzly bear attacks Nuxalk Nation students, teachers in B.C.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: APTN News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.aptnnews.ca/national-news/grizzly-bear-attacks-nuxalk-nation-students-teachers-in-b-c/",
+        "title": "Grizzly bear attacks Nuxalk Nation students, teachers in B.C.",
+        "publisher": "APTN News"
+      }
+    ]
+  },
+  {
+    "title": "Man injured while defending wife from polar bear attack in northern Ontario: police",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "Man injured while defending wife from polar bear attack in northern Ontario: police",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: APTN News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.aptnnews.ca/national-news/man-injured-while-defending-wife-from-polar-bear-attack-in-northern-ontario-police/",
+        "title": "Man injured while defending wife from polar bear attack in northern Ontario: police",
+        "publisher": "APTN News"
+      }
+    ]
+  },
+  {
+    "title": "Man punches cougar in face, deters attack near Smithers, B.C.",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Smithers",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 54.73999999999999,
+    "lng": -129.1966,
+    "severity": "near_miss",
+    "summary": "Man punches cougar in face, deters attack near Smithers, B.C.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.brandonsun.com/lifestyles/2025/07/27/man-punches-cougar-in-face-deters-attack-near-smithers-b-c",
+        "title": "Man punches cougar in face, deters attack near Smithers, B.C.",
+        "publisher": "Brandon Sun"
+      }
+    ]
+  },
+  {
+    "title": "Parks Canada investigation finds no evidence of Banff cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Brandon",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.848,
+    "lng": -99.95,
+    "severity": "near_miss",
+    "summary": "Parks Canada investigation finds no evidence of Banff cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.brandonsun.com/lifestyles/2024/03/08/parks-canada-investigation-finds-no-evidence-of-banff-cougar-attack",
+        "title": "Parks Canada investigation finds no evidence of Banff cougar attack",
+        "publisher": "Brandon Sun"
+      }
+    ]
+  },
+  {
+    "title": "One person taken to hospital after cougar attack in Banff National Park",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Banff National",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 53.9821,
+    "lng": -100.4505,
+    "severity": "injury",
+    "summary": "One person taken to hospital after cougar attack in Banff National Park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.brandonsun.com/lifestyles/2024/02/13/one-person-taken-to-hospital-after-cougar-attack-in-banff-national-park",
+        "title": "One person taken to hospital after cougar attack in Banff National Park",
+        "publisher": "Brandon Sun"
+      }
+    ]
+  },
+  {
+    "title": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Brandon",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 49.848,
+    "lng": -99.95,
+    "severity": "fatal",
+    "summary": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.brandonsun.com/world/2026/01/01/woman-killed-in-suspected-mountain-lion-attack-while-hiking-in-northern-colorado",
+        "title": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+        "publisher": "Brandon Sun"
+      }
+    ]
+  },
+  {
+    "title": "B.C. woman airlifted to hospital with serious injuries in a cougar attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Steinbach",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.526,
+    "lng": -96.684,
+    "severity": "injury",
+    "summary": "B.C. woman airlifted to hospital with serious injuries in a cougar attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Carillon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.thecarillon.com/national/2021/05/04/bc-woman-airlifted-to-hospital-with-serious-injuries-in-a-cougar-attack",
+        "title": "B.C. woman airlifted to hospital with serious injuries in a cougar attack",
+        "publisher": "Carillon News"
+      }
+    ]
+  },
+  {
+    "title": "Cougar believed to be responsible for B.C. attack killed: conservation service",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Steinbach",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.526,
+    "lng": -96.684,
+    "severity": "fatal",
+    "summary": "Cougar believed to be responsible for B.C. attack killed: conservation service",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Carillon News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.thecarillon.com/national/2021/05/05/cougar-believed-to-be-responsible-for-bc-attack-killed-conservation-service",
+        "title": "Cougar believed to be responsible for B.C. attack killed: conservation service",
+        "publisher": "Carillon News"
+      }
+    ]
+  },
+  {
+    "title": "Grizzly attack in B.C. likely ‘defensive’, bears to be spared, investigators say",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Brandon",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "CA",
+    "lat": 49.848,
+    "lng": -99.95,
+    "severity": "near_miss",
+    "summary": "Grizzly attack in B.C. likely ‘defensive’, bears to be spared, investigators say",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.brandonsun.com/lifestyles/2025/07/29/grizzly-attack-in-b-c-likely-defensive-bears-to-be-spared-investigators-say",
+        "title": "Grizzly attack in B.C. likely ‘defensive’, bears to be spared, investigators say",
+        "publisher": "Brandon Sun"
+      }
+    ]
+  },
+  {
+    "title": "Japan deploys the military to counter a surge in bear attacks",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": null,
+    "country": "JP",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "Japan deploys the military to counter a surge in bear attacks",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/arts-and-life/life/sci-tech/2025/11/05/japan-sends-troops-to-northern-region-to-help-stop-bear-attacks-after-a-record-number-of-casualties",
+        "title": "Japan deploys the military to counter a surge in bear attacks",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Bear attack leaves woman in critical condition in Slovenia",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Slovenia",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "SI",
+    "lat": 53.3675,
+    "lng": -98.3379,
+    "severity": "near_miss",
+    "summary": "Bear attack leaves woman in critical condition in Slovenia",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/arts-and-life/life/sci-tech/2025/05/28/bear-attack-leaves-woman-in-critical-condition-in-slovenia",
+        "title": "Bear attack leaves woman in critical condition in Slovenia",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "A bear injures 4 people in a residential area of Japan as attacks rise",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": null,
+    "country": "JP",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "A bear injures 4 people in a residential area of Japan as attacks rise",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/06/02/a-bear-injures-4-people-in-a-residential-area-of-japan-as-the-annual-number-of-attacks-rises",
+        "title": "A bear injures 4 people in a residential area of Japan as attacks rise",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Mountain lion attacks 11-year-old girl at home in Malibu, California",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Malibu",
+    "region": null,
+    "stateProvince": "CA",
+    "country": "US",
+    "lat": 37.149259,
+    "lng": -119.878531,
+    "severity": "property",
+    "summary": "Mountain lion attacks 11-year-old girl at home in Malibu, California",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/world/2025/08/11/mountain-lion-attacks-11-year-old-girl-at-home-in-malibu-california",
+        "title": "Mountain lion attacks 11-year-old girl at home in Malibu, California",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "8-year-old survives cougar attack in Washington state national park",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Washington",
+    "region": null,
+    "stateProvince": "WA",
+    "country": "US",
+    "lat": 46.748502,
+    "lng": -121.217494,
+    "severity": "near_miss",
+    "summary": "8-year-old survives cougar attack in Washington state national park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/breakingnews/2023/07/31/8-year-old-survives-cougar-attack-in-washington-state-national-park",
+        "title": "8-year-old survives cougar attack in Washington state national park",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "fatal",
+    "summary": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/world/2026/01/01/woman-killed-in-suspected-mountain-lion-attack-while-hiking-in-northern-colorado",
+        "title": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Search ends for mountain lions after solo hiker fatally attacked on Colorado trail",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "fatal",
+    "summary": "Search ends for mountain lions after solo hiker fatally attacked on Colorado trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/01/05/search-ends-for-mountain-lions-after-hiker-fatally-attacked-on-colorado-trail",
+        "title": "Search ends for mountain lions after solo hiker fatally attacked on Colorado trail",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Mountain lion bites 4-year-old on popular Olympic National Park trail, injuring child",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Winnipeg",
+    "region": null,
+    "stateProvince": "MB",
+    "country": "US",
+    "lat": 49.8954,
+    "lng": -97.1385,
+    "severity": "near_miss",
+    "summary": "Mountain lion bites 4-year-old on popular Olympic National Park trail, injuring child",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://www.winnipegfreepress.com/world/2025/07/21/mountain-lion-bites-4-year-old-on-popular-olympic-national-park-trail-injuring-child",
+        "title": "Mountain lion bites 4-year-old on popular Olympic National Park trail, injuring child",
+        "publisher": "Winnipeg Free Press"
+      }
+    ]
+  },
+  {
+    "title": "Family dog saves owner from bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Family dog saves owner from bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/district-news/family-dog-saves-owner-from-bear-attack/",
+        "title": "Family dog saves owner from bear attack",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Victim ID’d in weekend bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ID",
+    "country": "US",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Victim ID’d in weekend bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/district-news/victim-idd-in-weekend-bear-attack/",
+        "title": "Victim ID’d in weekend bear attack",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Two people injured in bear attack in Alberta park",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Alberta",
+    "region": null,
+    "stateProvince": "AB",
+    "country": "CA",
+    "lat": 53.9179,
+    "lng": -116.5765,
+    "severity": "near_miss",
+    "summary": "Two people injured in bear attack in Alberta park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/canada/two-people-injured-in-bear-attack-in-alberta-park/",
+        "title": "Two people injured in bear attack in Alberta park",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Polar bear attacks profiled in study",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Polar bear attacks profiled in study",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/canada/polar-bear-attacks-profiled-in-study/",
+        "title": "Polar bear attacks profiled in study",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Geocacher hurt in bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Geocacher hurt in bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/canada/geocacher-hurt-in-bear-attack/",
+        "title": "Geocacher hurt in bear attack",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Hunter escapes bear attack by following grandmother’s tip, shoving arm down grizzly’s throat",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Hunter escapes bear attack by following grandmother’s tip, shoving arm down grizzly’s throat",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/world/hunter-escapes-bear-attack-by-following-grandmothers-tip-shoving-arm-down-grizzlys-throat/",
+        "title": "Hunter escapes bear attack by following grandmother’s tip, shoving arm down grizzly’s throat",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Bear attacks man",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Bear attacks man",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/local-news/bear-attacks-man/",
+        "title": "Bear attacks man",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Woman shares harrowing bear attack story",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Woman shares harrowing bear attack story",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/district-news/woman-shares-harrowing-bear-attack-story/",
+        "title": "Woman shares harrowing bear attack story",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Man survives surprise bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Man survives surprise bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/local-news/man-survives-surprise-bear-attack/",
+        "title": "Man survives surprise bear attack",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Local woman recovering from bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Fort Frances",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 48.609,
+    "lng": -93.403,
+    "severity": "near_miss",
+    "summary": "Local woman recovering from bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Fort Frances Times. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://fftimes.com/news/district-news/local-woman-recovering-from-bear-attack/",
+        "title": "Local woman recovering from bear attack",
+        "publisher": "Fort Frances Times"
+      }
+    ]
+  },
+  {
+    "title": "Search continues for bear that attacked B.C. pupils, two other grizzlies to be freed",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Ohsweken",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 51.2538,
+    "lng": -85.3232,
+    "severity": "near_miss",
+    "summary": "Search continues for bear that attacked B.C. pupils, two other grizzlies to be freed",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Turtle Island News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://theturtleislandnews.com/index.php/2025/11/26/search-continues-for-bear-that-attacked-b-c-pupils-two-other-grizzlies-to-be-freed/",
+        "title": "Search continues for bear that attacked B.C. pupils, two other grizzlies to be freed",
+        "publisher": "Turtle Island News"
+      }
+    ]
+  },
+  {
+    "title": "BC First Nation calls on MP to cancel visit after he failed to reach out following grizzly attack",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Ohsweken",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 51.2538,
+    "lng": -85.3232,
+    "severity": "near_miss",
+    "summary": "BC First Nation calls on MP to cancel visit after he failed to reach out following grizzly attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Turtle Island News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://theturtleislandnews.com/index.php/2025/12/12/bc-first-nation-calls-on-mp-to-cancel-visit-after-he-failed-to-reach-out-following-grizzly-attack/",
+        "title": "BC First Nation calls on MP to cancel visit after he failed to reach out following grizzly attack",
+        "publisher": "Turtle Island News"
+      }
+    ]
+  },
+  {
+    "title": "Armstrong OPP respond to non-life-threatening bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Wawa",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 47.993,
+    "lng": -84.771,
+    "severity": "near_miss",
+    "summary": "Armstrong OPP respond to non-life-threatening bear attack",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Wawa-news. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://wawa-news.com/index.php/2024/06/12/armstrong-opp-respond-to-non-life-threatening-bear-attack/",
+        "title": "Armstrong OPP respond to non-life-threatening bear attack",
+        "publisher": "Wawa-news"
+      }
+    ]
+  },
+  {
+    "title": "Calls for grizzly hunts to return to Western Canada oversimplify a complex ecological issue",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Bella Coola",
+    "region": null,
+    "stateProvince": "ON",
+    "country": "CA",
+    "lat": 50.8926,
+    "lng": -86.9822,
+    "severity": "near_miss",
+    "summary": "By Tandeep Sidhu and Lacee O’Neil Highly publicized grizzly bear attacks have ignited calls to reopen grizzly trophy hunts across Western Canada. The most recent push came from the B.C. Wildlife Federation, a conservation and hunting advocacy organization that called for a hunting season on grizzlies after a bear attacked a group of schoolchildren in Bella Coola, B.C., leaving two people criticall",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Turtle Island News. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://theturtleislandnews.com/index.php/2025/11/26/calls-for-grizzly-hunts-to-return-to-western-canada-oversimplify-a-complex-ecological-issue/",
+        "title": "Calls for grizzly hunts to return to Western Canada oversimplify a complex ecological issue",
+        "publisher": "Turtle Island News"
       }
     ]
   }

@@ -1,7 +1,7 @@
 import { geocodeIncident, offsetCoord } from "../geo";
 import type { SeedIncident, Species } from "../types";
 import { matchAnimalAttack } from "./match";
-import { CA_PROVINCE_NAMES } from "./states";
+import { CA_PROVINCE_NAMES, US_STATE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
 
 const STATE_RE: [RegExp, string][] = [
@@ -145,7 +145,18 @@ export function articleToIncident(
 
   const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
   const state = stateFromArticle ?? pub.state ?? null;
-  const country = CA_PROVINCE_NAMES[state ?? ""] ? "CA" : (pub.country === "CA" ? "CA" : "US");
+  let country = pub.country === "CA" ? "CA" : "US";
+  if (state && CA_PROVINCE_NAMES[state]) country = "CA";
+  else if (state && US_STATE_NAMES[state]) country = "US";
+  const foreign =
+    blob.match(/\bJapan\b/i) ? "JP"
+    : blob.match(/\bSlovenia\b/i) ? "SI"
+    : blob.match(/\bItaly\b|\bItalia\b/i) ? "IT"
+    : blob.match(/\bRomania\b/i) ? "RO"
+    : null;
+  if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {
+    country = foreign;
+  }
   const hasPrecisePlace = Boolean(cityFromArticle);
   let lat = pub.lat ?? null;
   let lng = pub.lng ?? null;

@@ -16,6 +16,7 @@ const since = flag("since");
 const dryRun = Boolean(flag("dry-run") || flag("dryRun"));
 const backfill = Boolean(flag("backfill"));
 const force = Boolean(flag("force"));
+const lite = Boolean(flag("lite"));
 const unstated = Boolean(flag("unstated"));
 const wildlife = Boolean(flag("wildlife"));
 const agencies = Boolean(flag("agencies"));
@@ -46,6 +47,7 @@ runPublicationCrawl({
   dryRun,
   mode: backfill ? "backfill" : "incremental",
   force,
+  lite,
   newspapersOnly,
   concurrency,
 })
