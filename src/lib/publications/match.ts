@@ -29,8 +29,12 @@ const PLACE_ONLY_RE =
   /\b(bear (creek|lake|river|mountain|valley|canyon|gap|butte)|elk (grove|city|rapids|horn|river|ton|point)|moose (jaw|lake|pass)|cougar (mountain|town))\b/i;
 
 export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
-  const text = `${title}\n${snippet}`.replace(/\s+/g, " ").trim();
+  const cleanSnippet = snippetIsSearchQueryEcho(snippet) ? "" : snippet;
+  const text = `${title}\n${cleanSnippet}`.replace(/\s+/g, " ").trim();
   if (!text) return { matched: false, species: "other", reason: "empty" };
+  if (snippetIsSearchQueryEcho(snippet) && !matchAnimalAttack(title, "").matched) {
+    return { matched: false, species: "other", reason: "search-query-echo" };
+  }
 
   if (NEGATIVE_RE.test(text) && !ATTACK_RE.test(text)) {
     return { matched: false, species: "other", reason: "negative-context" };
@@ -64,6 +68,14 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     }
   }
 
+  if (
+    /\bbear[- ]spray(ed|ing)?\b/i.test(text) &&
+    !/\b(bears?|grizzly)\s+(attack|maul|charg)/i.test(text) &&
+    !/\b(attacked|mauled|charged)\s+by\s+(a\s+)?(bears?|grizzly)/i.test(text)
+  ) {
+    return { matched: false, species: animalHit.species, reason: "bear-spray-assault" };
+  }
+
   if (FICTION_AD_RE.test(text) && !/\b(hiker|hunter|camper|wildlife (officials?|officers?)|hospital)\b/i.test(text)) {
     return { matched: false, species: animalHit.species, reason: "ad-or-fiction" };
   }
@@ -82,6 +94,14 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     animalTerm: animalHit.term,
     attackTerm: attack[1],
   };
+}
+
+const SEARCH_QUERY_ONLY_RE =
+  /^(bear attack|bear mauling|moose attack|elk attack|mountain lion attack|cougar attack|cougar mauling)$/i;
+
+/** Site-search pages often echo the query as the only "snippet" — that is not a match. */
+export function snippetIsSearchQueryEcho(snippet: string): boolean {
+  return SEARCH_QUERY_ONLY_RE.test(snippet.replace(/\s+/g, " ").trim());
 }
 
 export const SEARCH_QUERIES = [

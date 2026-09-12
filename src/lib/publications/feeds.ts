@@ -190,7 +190,7 @@ export async function fetchSearchArticles(
       for (const item of extractSearchResultLinks(res.text, origin)) {
         if (seen.has(item.url)) continue;
         seen.add(item.url);
-        out.push({ ...item, snippet: item.snippet || q });
+        out.push({ ...item, snippet: item.snippet });
       }
       if (out.length) break;
     }

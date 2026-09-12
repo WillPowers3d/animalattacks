@@ -27,6 +27,11 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Cougar attack reported outside Squamish, B.C.", want: true },
   { title: "Moose attacks skier on a Whitehorse trail", want: true },
   { title: "Parks Canada warns after elk gores visitor in Banff", want: true },
+  { title: "Heritage Gallery celebrates banner season with quilting exhibition", snippet: "bear attack", want: false },
+  { title: "Click Here to Learn More About Our Sponsored Content", snippet: "cougar attack", want: false },
+  { title: "Bear spray used in attack downtown", snippet: "people being bear sprayed in Invermere", want: false },
+  { title: "Apartments evacuated after bear spray attack, one arrested", want: false },
+  { title: "Bear killed after attack seriously injures girl in Hay River", want: true },
 ]
 
 let failed = 0;

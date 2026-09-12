@@ -433,8 +433,10 @@ async function crawlOne(
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
+      const titleOnly = matchAnimalAttack(title, "");
       const needsFetch =
         article.source === "sitemap" ||
+        (article.source === "search" && !titleOnly.matched) ||
         (!preview.matched && (!title || !snippet) && article.source !== "homepage");
 
       if (needsFetch) {
