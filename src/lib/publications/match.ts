@@ -60,11 +60,16 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "legal-charged-with" };
   }
 
+  const attackIdx = text.search(ATTACK_RE);
   let animalHit: (typeof ANIMAL_PATTERNS)[number] | undefined;
+  let bestDist = Infinity;
   for (const pat of ANIMAL_PATTERNS) {
-    if (pat.re.test(text)) {
+    const m = text.match(pat.re);
+    if (!m || m.index == null) continue;
+    const dist = attackIdx >= 0 ? Math.abs(m.index - attackIdx) : m.index;
+    if (!animalHit || dist < bestDist) {
       animalHit = pat;
-      break;
+      bestDist = dist;
     }
   }
   if (!animalHit) return { matched: false, species: "other", reason: "no-animal-term" };

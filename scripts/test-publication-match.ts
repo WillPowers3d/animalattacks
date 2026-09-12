@@ -34,6 +34,7 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Bear killed after attack seriously injures girl in Hay River", want: true },
   { title: "Bisons mauled by Cougars | the Manitoban", want: false },
   { title: "It wasn’t a bear that attacked a camper found dead in his tent", want: false },
+  { title: "Elk hunter fends off cougar attack", want: true },
 ]
 
 let failed = 0;
