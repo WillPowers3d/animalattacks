@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-12T03:01:05.435Z",
+  "generatedAt": "2026-09-12T04:54:42.839Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 7262,
-  "remainingNewspapers": 4115,
-  "articlesFetched": 100391,
+  "publicationsScanned": 8350,
+  "remainingNewspapers": 3027,
+  "articlesFetched": 104010,
   "matchingArticles": 59,
   "publicationsWithMatches": 46,
   "incidentsFromLocalPapers": 64,
@@ -29,6 +29,20 @@
       "scanned": 475,
       "matches": 3,
       "articles": 9499
+    },
+    {
+      "state": "IL",
+      "name": "Illinois",
+      "scanned": 392,
+      "articles": 2281,
+      "matches": 1
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "scanned": 364,
+      "articles": 1335,
+      "matches": 0
     },
     {
       "state": "FL",
@@ -64,6 +78,13 @@
       "scanned": 269,
       "matches": 0,
       "articles": 3489
+    },
+    {
+      "state": "OH",
+      "name": "Ohio",
+      "scanned": 268,
+      "articles": 999,
+      "matches": 0
     },
     {
       "state": "MO",
@@ -106,6 +127,13 @@
       "scanned": 208,
       "matches": 0,
       "articles": 1179
+    },
+    {
+      "state": "IN",
+      "name": "Indiana",
+      "scanned": 208,
+      "articles": 958,
+      "matches": 0
     },
     {
       "state": "TN",
@@ -255,39 +283,11 @@
       "articles": 796
     },
     {
-      "state": "IL",
-      "name": "Illinois",
-      "scanned": 45,
-      "matches": 1,
-      "articles": 735
-    },
-    {
       "state": "WY",
       "name": "Wyoming",
       "scanned": 42,
       "matches": 3,
       "articles": 880
-    },
-    {
-      "state": "OH",
-      "name": "Ohio",
-      "scanned": 38,
-      "matches": 0,
-      "articles": 303
-    },
-    {
-      "state": "IN",
-      "name": "Indiana",
-      "scanned": 32,
-      "matches": 0,
-      "articles": 303
-    },
-    {
-      "state": "MA",
-      "name": "Massachusetts",
-      "scanned": 29,
-      "matches": 0,
-      "articles": 613
     },
     {
       "state": "MS",

@@ -20,7 +20,10 @@ const ANIMAL_CHARGED_RE =
   /\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b[^.]{0,40}\bcharged\b|\bcharged\b[^.]{0,40}\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b/i;
 
 const NEGATIVE_RE =
-  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate)\b/i;
+  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate|coca[- ]cola|santa claus|halloween costume|stuffed animal)\b/i;
+
+const FICTION_AD_RE =
+  /\b(coca[- ]cola|santa (claus|getting)|cartoon|advertisement|ad campaign|halloween costume|stuffed animal)\b/i;
 
 const PLACE_ONLY_RE =
   /\b(bear (creek|lake|river|mountain|valley|canyon|gap|butte)|elk (grove|city|rapids|horn|river|ton|point)|moose (jaw|lake|pass)|cougar (mountain|town))\b/i;
@@ -59,6 +62,10 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     if (!animalHit.re.test(stripped) && !new RegExp(`${place}.{0,40}${ATTACK_RE.source}`, "i").test(text)) {
       return { matched: false, species: animalHit.species, reason: "place-name-only" };
     }
+  }
+
+  if (FICTION_AD_RE.test(text) && !/\b(hiker|hunter|camper|wildlife (officials?|officers?)|hospital)\b/i.test(text)) {
+    return { matched: false, species: animalHit.species, reason: "ad-or-fiction" };
   }
 
   if (NEGATIVE_RE.test(text)) {

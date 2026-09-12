@@ -6,7 +6,7 @@ import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArtic
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
 import { matchAnimalAttack } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
-import { wildlifeRank } from "./states";
+import { LEFTOVER_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
 import { originOf } from "./domain";
 import type { ArticleCandidate } from "./types";
@@ -178,6 +178,14 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       return opts.force || !cutoff || !p.lastCrawledAt || p.lastCrawledAt < cutoff;
     })
     .sort((a, b) => {
+      const leftoverA = a.state
+        ? (LEFTOVER_STATES as readonly string[]).indexOf(a.state)
+        : -1;
+      const leftoverB = b.state
+        ? (LEFTOVER_STATES as readonly string[]).indexOf(b.state)
+        : -1;
+      const lr = (leftoverA === -1 ? 99 : leftoverA) - (leftoverB === -1 ? 99 : leftoverB);
+      if (lr !== 0) return lr;
       const wr = wildlifeRank(a.state) - wildlifeRank(b.state);
       if (wr !== 0) return wr;
       const ar = a.rssUrl ? 0 : 1;
@@ -334,8 +342,17 @@ async function crawlOne(
     const rssTargets = discovered.rss.slice(0, opts.mode === "backfill" ? 6 : 3);
     for (const feed of rssTargets) {
       if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
-      if (!robotsAllows(rules, new URL(feed).pathname)) continue;
-      const items = await fetchRssArticles(feed, opts.signal);
+      let feedUrl = feed;
+      let feedPath = "/";
+      try {
+        const resolved = new URL(feed, origin || pub.homepageUrl);
+        feedUrl = resolved.toString();
+        feedPath = resolved.pathname;
+      } catch {
+        continue;
+      }
+      if (!robotsAllows(rules, feedPath)) continue;
+      const items = await fetchRssArticles(feedUrl, opts.signal);
       for (const item of items) add(item);
       if (items.length) break;
     }

@@ -24,9 +24,9 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **7,262** in the prior SQLite session; leftover-state continuation is this VM |
-| Article records fetched (titles/snippets/RSS items) | **100,391** prior session + this leftover wave |
-| High-precision matches (animal + attack term) | **59** prior session |
+| Publications scanned at least once | **8,350** combined (7,262 prior + leftover IL/MA/OH/IN wave) |
+| Article records fetched (titles/snippets/RSS items) | **104,010** combined |
+| High-precision matches (animal + attack term) | **59** prior session (leftover wave added 0 real incidents; one Coke/Santa ad rejected) |
 | Incidents upserted from local papers | **64** prior session (SQLite was ephemeral; new finds are now exported) |
 | Historical Weingarten + extra seed | 231 (unchanged) |
 
@@ -84,17 +84,21 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
+Generated **2026-09-12T04:54:42.829Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **7,262** |
-| Uncrawled newspapers remaining | 4,115 |
-| Article records fetched | **100,391** |
-| Matching articles | **59** |
+| Scanned at least once (combined) | **8,350** |
+| This-VM leftover wave scanned | 1,232 |
+| Uncrawled newspapers remaining (est.) | 3,027 |
+| Article records fetched (combined) | **104,010** |
+| This-VM leftover articles | 5,573 |
+| Matching articles (combined) | **59** |
+| This-VM leftover matches | 0 |
 | Publications with a match | 46 |
-| Incidents from local papers | **64** |
+| Incidents from local papers (combined) | **64** |
+| This-VM leftover incidents | 0 |
 | Incidents total (incl. historical seed) | 294 |
 
 ### Coverage by state (scanned publications)
@@ -104,17 +108,21 @@ Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
+| IL Illinois | 392 | 2281 | 1 |
+| MA Massachusetts | 364 | 1335 | 0 |
 | FL Florida | 354 | 5195 | 1 |
 | MN Minnesota | 302 | 3585 | 2 |
 | NC North Carolina | 299 | 4671 | 2 |
 | GA Georgia | 290 | 1626 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
+| OH Ohio | 268 | 999 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
 | CO Colorado | 240 | 4034 | 9 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
 | IA Iowa | 208 | 1179 | 0 |
+| IN Indiana | 208 | 958 | 0 |
 | TN Tennessee | 196 | 5819 | 1 |
 | KY Kentucky | 187 | 1269 | 0 |
 | WI Wisconsin | 176 | 3212 | 1 |
@@ -136,11 +144,7 @@ Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
 | AK Alaska | 55 | 1252 | 6 |
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
-| IL Illinois | 45 | 735 | 1 |
 | WY Wyoming | 42 | 880 | 3 |
-| OH Ohio | 38 | 303 | 0 |
-| IN Indiana | 32 | 303 | 0 |
-| MA Massachusetts | 29 | 613 | 0 |
 | MS Mississippi | 21 | 65 | 0 |
 | LA Louisiana | 20 | 265 | 0 |
 | AL Alabama | 18 | 514 | 0 |
