@@ -84,16 +84,16 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T04:54:42.829Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
+Generated **2026-09-12T05:03:38.015Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once (combined) | **8,350** |
-| This-VM leftover wave scanned | 1,232 |
-| Uncrawled newspapers remaining (est.) | 3,027 |
-| Article records fetched (combined) | **104,010** |
-| This-VM leftover articles | 5,573 |
+| Scanned at least once (combined) | **8,691** |
+| This-VM leftover wave scanned | 1,632 |
+| Uncrawled newspapers remaining (est.) | 2,686 |
+| Article records fetched (combined) | **105,759** |
+| This-VM leftover articles | 8,166 |
 | Matching articles (combined) | **59** |
 | This-VM leftover matches | 0 |
 | Publications with a match | 46 |
@@ -108,21 +108,21 @@ Generated **2026-09-12T04:54:42.829Z**. Combined with prior-session aggregates (
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
-| IL Illinois | 392 | 2281 | 1 |
-| MA Massachusetts | 364 | 1335 | 0 |
+| IL Illinois | 399 | 2337 | 1 |
+| MA Massachusetts | 368 | 1465 | 0 |
 | FL Florida | 354 | 5195 | 1 |
 | MN Minnesota | 302 | 3585 | 2 |
 | NC North Carolina | 299 | 4671 | 2 |
 | GA Georgia | 290 | 1626 | 0 |
+| OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
-| OH Ohio | 268 | 999 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
 | CO Colorado | 240 | 4034 | 9 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
+| IN Indiana | 214 | 975 | 0 |
 | IA Iowa | 208 | 1179 | 0 |
-| IN Indiana | 208 | 958 | 0 |
 | TN Tennessee | 196 | 5819 | 1 |
 | KY Kentucky | 187 | 1269 | 0 |
 | WI Wisconsin | 176 | 3212 | 1 |
@@ -130,8 +130,11 @@ Generated **2026-09-12T04:54:42.829Z**. Combined with prior-session aggregates (
 | AR Arkansas | 152 | 1205 | 1 |
 | OR Oregon | 146 | 2412 | 0 |
 | AZ Arizona | 145 | 2328 | 0 |
+| MS Mississippi | 141 | 757 | 0 |
+| LA Louisiana | 129 | 986 | 0 |
 | OK Oklahoma | 117 | 692 | 0 |
 | NE Nebraska | 115 | 992 | 0 |
+| AL Alabama | 98 | 592 | 0 |
 | ME Maine | 97 | 1124 | 0 |
 | MT Montana | 90 | 2553 | 12 |
 | NM New Mexico | 84 | 1330 | 1 |
@@ -145,9 +148,6 @@ Generated **2026-09-12T04:54:42.829Z**. Combined with prior-session aggregates (
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
 | WY Wyoming | 42 | 880 | 3 |
-| MS Mississippi | 21 | 65 | 0 |
-| LA Louisiana | 20 | 265 | 0 |
-| AL Alabama | 18 | 514 | 0 |
 | CT Connecticut | 17 | 120 | 0 |
 | MD Maryland | 15 | 280 | 0 |
 | SC South Carolina | 12 | 169 | 0 |
