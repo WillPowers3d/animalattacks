@@ -5,6 +5,7 @@ const links = [
   { href: "/stats", label: "Stats" },
   { href: "/search", label: "Search" },
   { href: "/publications", label: "Local papers" },
+  { href: "/data", label: "Data" },
   { href: "/about", label: "Methodology" },
 ];
 

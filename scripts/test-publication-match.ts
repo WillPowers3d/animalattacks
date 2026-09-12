@@ -23,6 +23,10 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
     title: "I am confused by those Coca Cola cans that show Santa getting mauled by a polar bear",
     want: false,
   },
+  { title: "Grizzly bear attacks mountain biker near Canmore, Alberta", want: true },
+  { title: "Cougar attack reported outside Squamish, B.C.", want: true },
+  { title: "Moose attacks skier on a Whitehorse trail", want: true },
+  { title: "Parks Canada warns after elk gores visitor in Banff", want: true },
 ]
 
 let failed = 0;

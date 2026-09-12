@@ -25,9 +25,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
   const url = new URL(req.url);
+  const countries = url.searchParams.get("country") ?? url.searchParams.get("countries");
   const result = await runPublicationCrawl({
     dryRun: url.searchParams.get("dryRun") === "1",
     state: url.searchParams.get("state") ?? undefined,
+    countries: countries
+      ? countries
+          .split(",")
+          .map((s) => s.trim().toUpperCase())
+          .filter(Boolean)
+      : undefined,
+    wildlife: url.searchParams.get("wildlife") === "1",
+    agencies: url.searchParams.get("agencies") === "1",
     limit: url.searchParams.get("limit") ? Number(url.searchParams.get("limit")) : 40,
     mode: url.searchParams.get("backfill") === "1" ? "backfill" : "incremental",
     since: url.searchParams.get("since") ?? undefined,

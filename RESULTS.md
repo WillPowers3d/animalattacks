@@ -1,6 +1,6 @@
 # Local-paper crawl results
 
-First progressive nationwide sweep of the US local-news directory for bear / moose / elk / mountain-lion (cougar, puma) **attack** reports. This is **not** a claim that every US town or every archive page has been read.
+Progressive North American sweep for bear / moose / elk / mountain-lion (cougar, puma) **attack** reports: US local papers (first-pass RSS, then wildlife-state archive backfill), a curated **Canadian** local-news directory, and official **wildlife-agency / park** press feeds. This is **not** a claim that every town or every archive page has been read.
 
 Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The runner database is ephemeral. Production growth needs hosted Postgres (`DATABASE_URL`) and `npm run crawl:waves` or the GitHub Action.
 
@@ -8,13 +8,15 @@ Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The run
 
 | | Count |
 | --- | ---: |
-| Unique publications (`data/publications/us-local-news.json.gz`) | **14,847** |
-| Newspapers (default crawl set) | **11,377** |
+| Unique US publications (`data/publications/us-local-news.json.gz`) | **14,847** |
+| Canadian local / digital papers (`data/publications/canada-local-news.json`) | **133** (BC / AB / SK / MB / ON north / YT / NT / NU) |
+| Agency / park press feeds (`data/publications/agency-feeds.json`) | **49** (western state agencies, NPS parks, provincial newsrooms) |
+| Newspapers (default crawl set) | **11,377** US + Canadian newspapers |
 | TV / radio / broadcast (stored, skipped unless `--all-tiers`) | 3,470 |
-| With town or city | 12,252 |
-| With coordinates (town center, gazetteer, or state centroid) | 14,847 |
-| With RSS URL at seed time | 4,051 |
-| Still missing a parsed state | **1,912** (domain-only rows; 473 more states inferred this session from news-homepages bundles, unique gazetteer cities, and domain tokens) |
+| With town or city | 12,252 US + Canadian town centers |
+| With coordinates (town center, gazetteer, or state/province centroid) | all seeded rows |
+| With RSS URL at seed time | 4,051 US + most Canadian / agency rows |
+| Still missing a parsed US state | **1,912** (domain-only rows; first-pass already scanned) |
 
 Sources (facts only — name, URL, place): 3DLNews / WM News Lab, sTechLab ICWSM 2022 local-news dataset, firephil/us-news-sites, palewire/news-homepages, Wikidata (CC0), Wikipedia state newspaper lists (CC BY-SA). Deduped by domain; national wires filtered. Rebuild: `npm run publications:build`. Fill missing states: `npm run publications:fill-states`. Append rows: `data/publications/extra.json`.
 
@@ -24,15 +26,21 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **11,325** combined (leftover named states + domain-only rows done) |
-| Article records fetched (titles/snippets/RSS items) | **130,153** combined |
-| High-precision matches (animal + attack term) | **61** (59 prior + 2 this leftover/unstated wave; Coke/Santa ad rejected) |
-| Incidents upserted from local papers | **66** (64 prior + 2 new: Glacier NP grizzly survivor; AK Kraken-trip charge) |
+| Publications scanned at least once (US first pass) | **11,325** combined — do not re-scan |
+| Article records fetched (titles/snippets/RSS items) | **130,153** first-pass combined |
+| High-precision matches (animal + attack term) | **61** first-pass combined |
+| Incidents upserted from local papers | **66** first-pass combined |
 | Historical Weingarten + extra seed | 231 (unchanged) |
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
-**This continuation** skips re-scanning the well-covered first-wave states and targets leftover **IL, MA, OH, IN**, then other under-scanned states (MS, LA, AL, SC, CT, MD, NJ, DE, RI, HI, DC), then domain-only (`state` null) rows. Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` after `npm run db:seed`.
+**This continuation** does **not** re-scan the US first pass. It adds three new workstreams:
+
+1. **Wildlife-state archive backfill** (`--backfill --wildlife`) on AK, MT, WY, ID, CO, WA, OR, CA, NM, UT, NV, ME, MN, WI, MI, NH, VT — uses `lastBackfillAt`, so RSS-already-scanned papers still get sitemaps / site search.
+2. **Canadian local news** directory + crawl (`--country=CA`) with town-center geocode and `country=CA` pins.
+3. **Agency / park press feeds** (`--agencies`) stored as `sourceType=agency`.
+
+Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
 ## How to resume (do not start over)
 
@@ -42,15 +50,14 @@ Already-crawled rows have `lastCrawledAt` and are skipped unless `--force`. On a
 # Restore directory + lastCrawledAt / local-paper incidents
 npx prisma db push && npm run db:seed
 
-# Leftover named states + domain-only are done on this branch.
-# Next: hosted Postgres backfill, or incremental nationwide (skips lastCrawledAt)
-npm run crawl:waves -- --hours=2 --batch=400 --concurrency=12 --backfill
+# Wildlife-dense US archive backfill (does not re-do the RSS first pass)
+npm run crawl:waves -- --hours=3 --batch=250 --concurrency=10 --wildlife --backfill
 
-# Next batch of never-crawled newspapers, wildlife states first
-npm run crawl:publications -- --limit=800 --concurrency=12 --since=1990-01-01
+# Canadian local papers
+npm run crawl:canada
 
-# Multi-hour unattended waves
-npm run crawl:waves -- --hours=3 --batch=600 --concurrency=12
+# Official agency / park feeds
+npm run crawl:agencies
 
 # One state, deeper archives / site search
 npm run crawl:publications -- --state=ME --backfill --limit=200 --since=1990-01-01
@@ -71,11 +78,12 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 - Dead domains, ownership changes, and paywalled weeklies.
 - **1,912** directory rows had no reliable state; **1,907** of those newspapers are now scanned (5 skipped: `??` names or foreign TLDs).
-- First-wave wildlife states (CA, TX, NY, …) were **not** re-crawled this VM. Combined remaining **~52** is the leftover-priority queue, not every newspaper in the directory.
-- Incremental mode prefers RSS; `--backfill` is required for deeper sitemaps/site-search.
+- Incremental mode prefers RSS; `--backfill` is required for deeper sitemaps/site-search. First-pass leftovers (~52 newspapers) are not the focus of this wave.
 - Matcher rejects sports/finance/legal “charged with” noise; a few early-session false positives may remain from before that tightening.
 - This SQLite session is not the production ledger. Seed the hosted DB (`npm run db:seed`) then resume waves there.
-- Canada is out of scope for this directory (US local papers only), even though some border-state papers cover BC/AB/YT incidents.
+- First-pass wildlife states (CA, TX, NY, …) were RSS-scanned; archive `--backfill` is the next depth, not a full re-crawl.
+- Canadian coverage is a curated local list, not a complete national census.
+- Agency feeds share hosts (NPS, Parks Canada); those rows use path-qualified domains so each park can be crawled.
 
 ## Matcher
 

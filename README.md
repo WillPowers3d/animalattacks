@@ -138,6 +138,8 @@ It is **not** a complete census of every US town or an all-time scrape of every 
 4. High-precision matching: an **animal term** (bear, moose, elk, mountain lion / cougar / puma) **and** an **attack term** (attack, attacked, mauling, mauled, charging, …) must appear in the title or snippet before an Incident is created.
 5. Dedup by article URL. Location = parsed town/state when possible, otherwise the publication’s **town center**.
 6. **Snippets only** — title, URL, ≤400-character excerpt. No full-body archive.
+7. **Canada** — curated local/online papers for BC, AB, SK, MB, northern Ontario, YT, NT, NU (`data/publications/canada-local-news.json`). Incidents store `country=Canada` and town-center pins.
+8. **Agency / park feeds** — official RSS/newsroom pages (`data/publications/agency-feeds.json`) upsert as `sourceType=agency`.
 
 ### How the directory was built
 
@@ -167,16 +169,20 @@ npm run crawl:publications -- --limit=200
 npm run crawl:publications -- --state=MT --since=2018-01-01 --backfill
 npm run crawl:publications -- --states=IL,MA,OH,IN --limit=400 --concurrency=12 --since=1990-01-01
 npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN --unstated
+npm run crawl:canada
+npm run crawl:agencies
+npm run crawl:backfill-wildlife
 npm run crawl:publications:dry -- --limit=40 --state=AK
-# flags: --limit=N  --state=XX  --states=IL,MA  --unstated  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
+# flags: --limit=N  --state=XX  --states=IL,MA  --country=CA  --wildlife  --agencies
+#         --unstated  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
 ```
 
 - **Incremental (default):** RSS + recent sitemap URLs; skips publications crawled in the last ~18 hours.
-- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: `lastCrawledAt` / `lastBackfillAt` / `PublicationCrawl` rows.
+- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: skips `lastBackfillAt` (not the first-pass `lastCrawledAt`), so wildlife-state archives can be walked without re-doing the RSS pass. `--wildlife` limits to AK/MT/WY/ID/CO/WA/OR/CA/NM/UT/NV/ME/MN/WI/MI/NH/VT.
 - **Legal / ethics:** `User-Agent` identifies the project; `robots.txt` is fetched and honored (including `Crawl-delay`); ≥1.5s between requests to the same host; no credential stuffing; no paywall bypass; no full-text warehouse.
 - **Precision:** matcher tests live in `npm run test:publications`.
 
-Browse the directory and crawl stats at `/publications`. JSON: `GET /api/publications`. Protected crawl trigger: `POST /api/publications/crawl` (same `INGEST_SECRET` / `CRON_SECRET` as news ingest).
+Browse the directory at `/publications` (country + agency filters). Live coverage totals: `/data`. JSON: `GET /api/publications`. Protected crawl trigger: `POST /api/publications/crawl` (same `INGEST_SECRET` / `CRON_SECRET` as news ingest).
 
 ### GitHub Action (local papers)
 

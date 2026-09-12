@@ -5,6 +5,7 @@ export type IncidentQuery = {
   species?: string;
   severity?: string;
   country?: string;
+  sourceType?: string;
   state?: string;
   firearmType?: string;
   caliber?: string;
@@ -28,6 +29,7 @@ export function parseSearchParams(
     species: one("species"),
     severity: one("severity"),
     country: one("country"),
+    sourceType: one("sourceType"),
     state: one("state"),
     firearmType: one("firearmType"),
     caliber: one("caliber"),
@@ -59,6 +61,7 @@ export function toWhere(q: IncidentQuery): Prisma.IncidentWhereInput {
   if (q.species) AND.push({ species: q.species });
   if (q.severity) AND.push({ severity: q.severity });
   if (q.country) AND.push({ country: q.country });
+  if (q.sourceType) AND.push({ sourceType: q.sourceType });
   if (q.state) AND.push({ stateProvince: q.state });
   if (q.firearmType) AND.push({ firearmType: q.firearmType });
   if (q.caliber) AND.push({ caliber: q.caliber });

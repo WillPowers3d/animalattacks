@@ -1,6 +1,7 @@
 import { geocodeIncident, offsetCoord } from "../geo";
 import type { SeedIncident, Species } from "../types";
 import { matchAnimalAttack } from "./match";
+import { CA_PROVINCE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
 
 const STATE_RE: [RegExp, string][] = [
@@ -54,6 +55,21 @@ const STATE_RE: [RegExp, string][] = [
   [/\bHawaii\b|\bHI\b/, "HI"],
 ];
 
+const PROVINCE_RE: [RegExp, string][] = [
+  [/\bBritish Columbia\b|\bB\.C\.\b/, "BC"],
+  [/\bAlberta\b|\bAlta\.\b/, "AB"],
+  [/\bSaskatchewan\b|\bSask\.\b/, "SK"],
+  [/\bManitoba\b/, "MB"],
+  [/\bOntario\b/, "ON"],
+  [/\bYukon\b/, "YT"],
+  [/\bNorthwest Territories\b|\bN\.W\.T\.\b|\bNWT\b/, "NT"],
+  [/\bNunavut\b/, "NU"],
+  [/\bQuebec\b|\bQuébec\b/, "QC"],
+  [/\bNew Brunswick\b/, "NB"],
+  [/\bNova Scotia\b/, "NS"],
+  [/\bNewfoundland\b|\bLabrador\b/, "NL"],
+];
+
 function inferSeverity(text: string): SeedIncident["severity"] {
   if (/\b(killed|dead|dies|fatal|fatally|died)\b/i.test(text)) return "fatal";
   if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed)\b/i.test(text)) return "injury";
@@ -77,6 +93,8 @@ export type PublicationLocation = {
   town?: string | null;
   city?: string | null;
   state?: string | null;
+  country?: string | null;
+  circulationTier?: string | null;
   lat?: number | null;
   lng?: number | null;
 };
@@ -112,9 +130,12 @@ export function articleToIncident(
   const rawCity = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
   const cityFromArticle = rawCity && !MONTHS.has(rawCity) ? rawCity : null;
   let stateFromArticle: string | null = cityState?.[2] ?? null;
+  if (stateFromArticle && !CA_PROVINCE_NAMES[stateFromArticle] && !STATE_RE.some(([, abbr]) => abbr === stateFromArticle)) {
+    stateFromArticle = null;
+  }
   if (!stateFromArticle) {
-    for (const [re, abbr] of STATE_RE) {
-      if (re.test(`${article.title}`)) {
+    for (const [re, abbr] of [...PROVINCE_RE, ...STATE_RE]) {
+      if (re.test(`${article.title} ${article.snippet}`)) {
         stateFromArticle = abbr;
         break;
       }
@@ -123,11 +144,12 @@ export function articleToIncident(
 
   const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
   const state = stateFromArticle ?? pub.state ?? null;
+  const country = CA_PROVINCE_NAMES[state ?? ""] ? "CA" : (pub.country === "CA" ? "CA" : "US");
   const hasPrecisePlace = Boolean(cityFromArticle);
   let lat = pub.lat ?? null;
   let lng = pub.lng ?? null;
   if (hasPrecisePlace || lat == null || lng == null) {
-    const geo = offsetCoord(geocodeIncident({ city, stateProvince: state, country: "US" }), article.title);
+    const geo = offsetCoord(geocodeIncident({ city, stateProvince: state, country }), article.title);
     if (hasPrecisePlace || lat == null) {
       lat = geo.lat;
       lng = geo.lng;
@@ -136,6 +158,7 @@ export function articleToIncident(
 
   const occurredAt = article.isoDate ? article.isoDate.slice(0, 10) : null;
   const snippet = (article.snippet || article.title).slice(0, 400);
+  const isAgency = pub.circulationTier === "agency";
 
   return {
     title: article.title.slice(0, 180),
@@ -146,14 +169,16 @@ export function articleToIncident(
     dateDisplay: occurredAt ?? "Date unknown",
     city,
     stateProvince: state,
-    country: "US",
+    country,
     lat,
     lng,
     severity: inferSeverity(blob),
     summary: snippet,
-    sourceType: "news",
+    sourceType: isAgency ? "agency" : "news",
     verified: false,
-    attribution: `Local newspaper crawl: ${pub.name}. Snippet only — not official agency data.`,
+    attribution: isAgency
+      ? `Official agency / park press: ${pub.name}. Snippet only — confirm with the source.`
+      : `Local newspaper crawl: ${pub.name}. Snippet only — not official agency data.`,
     publicationId: pub.id,
     sources: [
       {

@@ -11,14 +11,21 @@ function rootDir() {
 export function loadPublicationSeeds(): PublicationSeed[] {
   const dir = path.join(rootDir(), "data/publications");
   const gz = path.join(dir, "us-local-news.json.gz");
-  const extra = path.join(dir, "extra.json");
+  const extras = [
+    "extra.json",
+    "canada-local-news.json",
+    "agency-feeds.json",
+  ];
   let main: PublicationSeed[] = [];
   if (fs.existsSync(gz)) {
     main = JSON.parse(zlib.gunzipSync(fs.readFileSync(gz)).toString("utf8")) as PublicationSeed[];
   }
-  let more: PublicationSeed[] = [];
-  if (fs.existsSync(extra)) {
-    more = JSON.parse(fs.readFileSync(extra, "utf8")) as PublicationSeed[];
+  const more: PublicationSeed[] = [];
+  for (const name of extras) {
+    const p = path.join(dir, name);
+    if (fs.existsSync(p)) {
+      more.push(...(JSON.parse(fs.readFileSync(p, "utf8")) as PublicationSeed[]));
+    }
   }
   const byDomain = new Map<string, PublicationSeed>();
   for (const p of [...main, ...more]) {
@@ -65,6 +72,7 @@ export async function seedPublications(opts: { log?: boolean } = {}) {
             city: p.city ?? p.town ?? undefined,
             state: p.state ?? undefined,
             county: p.county ?? undefined,
+            country: p.country ?? undefined,
             lat: p.lat ?? undefined,
             lng: p.lng ?? undefined,
             circulationTier: p.circulationTier ?? undefined,

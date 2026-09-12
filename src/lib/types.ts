@@ -36,9 +36,18 @@ export const SOURCE_TYPES = [
   "news",
   "facebook",
   "ammoland",
+  "agency",
   "other",
 ] as const;
 export type SourceType = (typeof SOURCE_TYPES)[number];
+
+export const SOURCE_TYPE_LABELS: Record<SourceType, string> = {
+  news: "News",
+  facebook: "Facebook",
+  ammoland: "Ammoland / Weingarten",
+  agency: "Wildlife agency / park",
+  other: "Other",
+};
 
 export const COUNTRIES = ["US", "CA", "MX", "NO", "DE", "RU", "OTHER"] as const;
 export type Country = (typeof COUNTRIES)[number];
