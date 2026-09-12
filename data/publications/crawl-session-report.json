@@ -1,41 +1,58 @@
 {
-  "generatedAt": "2026-09-12T06:21:57.452Z",
-  "publicationsSeeded": 14847,
-  "publicationsScanned": 11325,
-  "remainingNewspapers": 52,
-  "articlesFetched": 130153,
-  "matchingArticles": 61,
+  "generatedAt": "2026-09-12T15:44:04.296Z",
+  "publicationsSeeded": 15268,
+  "publicationsScanned": 11721,
+  "remainingNewspapers": 6332,
+  "articlesFetched": 130965,
+  "matchingArticles": 77,
   "publicationsWithMatches": 48,
-  "incidentsFromLocalPapers": 66,
-  "incidentsTotal": 296,
+  "incidentsFromLocalPapers": 188,
+  "incidentsTotal": 371,
+  "canadaPublications": 391,
+  "canadaScanned": 389,
+  "agencyPublications": 49,
+  "agencyScanned": 49,
+  "incidentsByCountry": {
+    "CA": 72,
+    "DE": 1,
+    "NO": 10,
+    "RU": 4,
+    "US": 284
+  },
+  "incidentsBySource": {
+    "agency": 7,
+    "ammoland": 205,
+    "news": 154,
+    "other": 5
+  },
   "crawledStates": [
     {
       "state": "??",
       "name": "",
-      "scanned": 1907,
-      "matches": 0,
-      "articles": 21238
+      "scanned": 2041,
+      "articles": 21525,
+      "matches": 0
     },
     {
       "state": "CA",
       "name": "California",
       "scanned": 781,
-      "matches": 7,
-      "articles": 11835
+      "articles": 11835,
+      "matches": 7
     },
     {
       "state": "TX",
       "name": "Texas",
       "scanned": 536,
-      "matches": 0,
-      "articles": 3736
+      "articles": 3736,
+      "matches": 0
     },
     {
       "state": "NY",
       "name": "New York",
       "scanned": 475,
-      "matches": 3,
-      "articles": 9499
+      "articles": 9499,
+      "matches": 3
     },
     {
       "state": "IL",
@@ -55,22 +72,22 @@
       "state": "FL",
       "name": "Florida",
       "scanned": 354,
-      "matches": 1,
-      "articles": 5195
+      "articles": 5195,
+      "matches": 1
     },
     {
       "state": "MN",
       "name": "Minnesota",
       "scanned": 302,
-      "matches": 2,
-      "articles": 3585
+      "articles": 3585,
+      "matches": 2
     },
     {
       "state": "NC",
       "name": "North Carolina",
       "scanned": 299,
-      "matches": 2,
-      "articles": 4671
+      "articles": 4671,
+      "matches": 2
     },
     {
       "state": "GA",
@@ -90,8 +107,8 @@
       "state": "MI",
       "name": "Michigan",
       "scanned": 269,
-      "matches": 0,
-      "articles": 3489
+      "articles": 3489,
+      "matches": 0
     },
     {
       "state": "MO",
@@ -104,29 +121,29 @@
       "state": "CO",
       "name": "Colorado",
       "scanned": 240,
-      "matches": 9,
-      "articles": 4034
+      "articles": 4034,
+      "matches": 9
     },
     {
       "state": "PA",
       "name": "Pennsylvania",
       "scanned": 240,
-      "matches": 4,
-      "articles": 4602
+      "articles": 4602,
+      "matches": 4
     },
     {
       "state": "WA",
       "name": "Washington",
       "scanned": 224,
-      "matches": 2,
-      "articles": 2675
+      "articles": 2675,
+      "matches": 2
     },
     {
       "state": "VA",
       "name": "Virginia",
       "scanned": 215,
-      "matches": 0,
-      "articles": 3942
+      "articles": 3942,
+      "matches": 0
     },
     {
       "state": "IN",
@@ -146,8 +163,8 @@
       "state": "TN",
       "name": "Tennessee",
       "scanned": 196,
-      "matches": 1,
-      "articles": 5819
+      "articles": 5819,
+      "matches": 1
     },
     {
       "state": "KY",
@@ -160,8 +177,8 @@
       "state": "WI",
       "name": "Wisconsin",
       "scanned": 176,
-      "matches": 1,
-      "articles": 3212
+      "articles": 3212,
+      "matches": 1
     },
     {
       "state": "CT",
@@ -202,15 +219,15 @@
       "state": "OR",
       "name": "Oregon",
       "scanned": 146,
-      "matches": 0,
-      "articles": 2412
+      "articles": 2412,
+      "matches": 0
     },
     {
       "state": "AZ",
       "name": "Arizona",
       "scanned": 145,
-      "matches": 0,
-      "articles": 2328
+      "articles": 2328,
+      "matches": 0
     },
     {
       "state": "MS",
@@ -257,93 +274,107 @@
     {
       "state": "ME",
       "name": "Maine",
-      "scanned": 97,
-      "matches": 0,
-      "articles": 1124
+      "scanned": 98,
+      "articles": 1124,
+      "matches": 0
     },
     {
       "state": "MT",
       "name": "Montana",
-      "scanned": 90,
-      "matches": 12,
-      "articles": 2553
+      "scanned": 92,
+      "articles": 2553,
+      "matches": 12
     },
     {
       "state": "NM",
       "name": "New Mexico",
-      "scanned": 84,
-      "matches": 1,
-      "articles": 1330
+      "scanned": 85,
+      "articles": 1330,
+      "matches": 2
     },
     {
       "state": "ID",
       "name": "Idaho",
-      "scanned": 82,
-      "matches": 2,
-      "articles": 1764
+      "scanned": 83,
+      "articles": 1764,
+      "matches": 2
     },
     {
       "state": "UT",
       "name": "Utah",
-      "scanned": 80,
-      "matches": 0,
-      "articles": 1021
+      "scanned": 81,
+      "articles": 1021,
+      "matches": 1
     },
     {
       "state": "WV",
       "name": "West Virginia",
       "scanned": 80,
-      "matches": 0,
-      "articles": 1141
+      "articles": 1141,
+      "matches": 0
+    },
+    {
+      "state": "BC",
+      "name": "British Columbia",
+      "scanned": 80,
+      "articles": 224,
+      "matches": 0
     },
     {
       "state": "NV",
       "name": "Nevada",
       "scanned": 69,
-      "matches": 1,
-      "articles": 1312
+      "articles": 1312,
+      "matches": 1
     },
     {
       "state": "NH",
       "name": "New Hampshire",
-      "scanned": 62,
-      "matches": 0,
-      "articles": 836
+      "scanned": 63,
+      "articles": 836,
+      "matches": 0
     },
     {
       "state": "SD",
       "name": "South Dakota",
       "scanned": 61,
-      "matches": 0,
-      "articles": 1062
+      "articles": 1062,
+      "matches": 0
     },
     {
       "state": "DC",
       "name": "District of Columbia",
-      "scanned": 57,
+      "scanned": 58,
       "articles": 397,
       "matches": 0
     },
     {
       "state": "AK",
       "name": "Alaska",
-      "scanned": 55,
-      "matches": 6,
-      "articles": 1252
+      "scanned": 58,
+      "articles": 1252,
+      "matches": 6
+    },
+    {
+      "state": "ON",
+      "name": "Ontario",
+      "scanned": 58,
+      "articles": 58,
+      "matches": 0
     },
     {
       "state": "ND",
       "name": "North Dakota",
       "scanned": 55,
-      "matches": 0,
-      "articles": 688
+      "articles": 688,
+      "matches": 0
     },
     {
       "state": "VT",
       "name": "Vermont",
       "scanned": 55,
-      "matches": 0,
-      "articles": 796
+      "articles": 796,
+      "matches": 0
     },
     {
       "state": "HI",
@@ -355,9 +386,9 @@
     {
       "state": "WY",
       "name": "Wyoming",
-      "scanned": 42,
-      "matches": 3,
-      "articles": 880
+      "scanned": 45,
+      "articles": 880,
+      "matches": 3
     },
     {
       "state": "RI",
@@ -370,34 +401,122 @@
       "state": "DE",
       "name": "Delaware",
       "scanned": 38,
-      "matches": 0,
-      "articles": 223
+      "articles": 223,
+      "matches": 0
+    },
+    {
+      "state": "AB",
+      "name": "Alberta",
+      "scanned": 36,
+      "articles": 103,
+      "matches": 0
+    },
+    {
+      "state": "QC",
+      "name": "Quebec",
+      "scanned": 24,
+      "articles": 28,
+      "matches": 0
+    },
+    {
+      "state": "MB",
+      "name": "Manitoba",
+      "scanned": 13,
+      "articles": 1,
+      "matches": 0
+    },
+    {
+      "state": "SK",
+      "name": "Saskatchewan",
+      "scanned": 12,
+      "articles": 80,
+      "matches": 14
+    },
+    {
+      "state": "NB",
+      "name": "New Brunswick",
+      "scanned": 8,
+      "articles": 0,
+      "matches": 0
+    },
+    {
+      "state": "YT",
+      "name": "Yukon",
+      "scanned": 5,
+      "articles": 0,
+      "matches": 0
+    },
+    {
+      "state": "NS",
+      "name": "Nova Scotia",
+      "scanned": 4,
+      "articles": 2,
+      "matches": 0
+    },
+    {
+      "state": "NT",
+      "name": "Northwest Territories",
+      "scanned": 4,
+      "articles": 28,
+      "matches": 2
+    },
+    {
+      "state": "NU",
+      "name": "Nunavut",
+      "scanned": 2,
+      "articles": 0,
+      "matches": 0
+    },
+    {
+      "state": "NL",
+      "name": "Newfoundland and Labrador",
+      "scanned": 1,
+      "articles": 1,
+      "matches": 0
+    },
+    {
+      "state": "PE",
+      "name": "Prince Edward Island",
+      "scanned": 1,
+      "articles": 0,
+      "matches": 0
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 44,
+    "bear": 122,
     "mountain_lion": 15,
     "elk": 4,
-    "moose": 3
+    "moose": 9
   },
   "localIncidentsByState": {
     "CO": 15,
-    "AK": 11,
+    "AK": 21,
     "MT": 11,
     "CA": 7,
-    "WY": 3,
+    "WY": 10,
     "AR": 2,
     "ID": 2,
     "IL": 2,
     "MN": 2,
     "PA": 2,
-    "WA": 2,
-    "FL": 1,
+    "WA": 6,
+    "FL": 5,
     "NC": 1,
-    "NM": 1,
+    "NM": 4,
     "NV": 1,
     "NY": 1,
     "OK": 1,
-    "TN": 1
+    "TN": 1,
+    "AB": 5,
+    "BC": 39,
+    "MB": 4,
+    "NT": 2,
+    "NU": 1,
+    "SK": 6,
+    "WI": 1,
+    "ME": 5,
+    "UT": 5,
+    "NH": 1,
+    "VT": 7
   }
 }

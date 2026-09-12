@@ -9,7 +9,7 @@ Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The run
 | | Count |
 | --- | ---: |
 | Unique US publications (`data/publications/us-local-news.json.gz`) | **14,847** |
-| Canadian local / digital papers (`data/publications/canada-local-news.json`) | **133** (BC / AB / SK / MB / ON north / YT / NT / NU) |
+| Canadian local / digital papers (`data/publications/canada-local-news.json`) | **383** (curated + Wikidata/Wikipedia; BC / AB / SK / MB / ON north / YT / NT / NU prioritized) |
 | Agency / park press feeds (`data/publications/agency-feeds.json`) | **49** (western state agencies, NPS parks, provincial newsrooms) |
 | Newspapers (default crawl set) | **11,377** US + Canadian newspapers |
 | TV / radio / broadcast (stored, skipped unless `--all-tiers`) | 3,470 |
@@ -24,13 +24,26 @@ Sources (facts only — name, URL, place): 3DLNews / WM News Lab, sTechLab ICWSM
 
 Refresh by re-running the live DB; the table is rewritten as the sweep continues.
 
-| | Count |
-| --- | ---: |
-| Publications scanned at least once (US first pass) | **11,325** combined — do not re-scan |
-| Article records fetched (titles/snippets/RSS items) | **130,153** first-pass combined |
-| High-precision matches (animal + attack term) | **61** first-pass combined |
-| Incidents upserted from local papers | **66** first-pass combined |
-| Historical Weingarten + extra seed | 231 (unchanged) |
+| | Before (first pass) | After this wave |
+| --- | ---: | ---: |
+| Directory rows | 14,847 US | **15,268** (14,847 US + 383 CA local + 49 agency; some domain overlap) |
+| US pubs scanned (RSS first pass) | **11,325** | **11,325** (not re-scanned) |
+| Canada pubs seeded / scanned | 0 / 0 | **391 / 389** |
+| Agency feeds seeded / scanned | 0 / 0 | **49 / 49** |
+| Wildlife-state archive backfill (AK MT WY ID NM UT NV ME NH VT) | 0 | **714 / 715** |
+| Canada crawl incidents (`country=CA`, publication-linked) | 0 | **57** |
+| Agency incidents (`sourceType=agency`) | 0 | **7** |
+| Publication-linked incidents in this VM | 2 leftover | **139** |
+| Incidents total in this VM | 231 seed + leftover | **371** |
+| Historical Weingarten + extra seed | 231 | 231 |
+
+### Best finds this wave
+
+**Canada:** fatal bear attack near Tulita, NT (musician); Hay River, NT girl injured; Nunavut mauled campers; Vanderhoof / Jasper / Whistler / Squamish / Anmore / Maple Ridge black-bear attacks; Bella Coola school-group grizzly; Prince Albert National Park mother/son; Buffalo Narrows, SK; Shamattawa, MB; Alberta livestock and Banff-area grizzly coverage.
+
+**Agency:** WDFW cougar attack on a Summit Lake jogger; cougar that attacked a child in Stevens County; elk hunter who fended off a cougar; NM Game & Fish bear incidents near Red River and Cedar Crest.
+
+**US archive backfill:** Yellowstone hiker injuries; Grizzly 399 / Lander; Glacier NP fatal; Ovando cyclist; Big Sky hunter; Columbia Falls; Cody hunter.
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
@@ -91,28 +104,45 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T06:21:57.441Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
+Generated **2026-09-12T15:44:04.285Z**. Combined with the committed first-pass baseline plus this VM’s Canada / agency / wildlife-backfill wave.
 
 | Metric | Count |
 | --- | ---: |
-| Publications in directory | 14,847 |
-| Scanned at least once (combined) | **11,325** |
-| This-VM leftover wave scanned | 4,329 |
-| Uncrawled newspapers remaining (est.) | 52 |
-| Article records fetched (combined) | **130,153** |
-| This-VM leftover articles | 33,590 |
-| Matching articles (combined) | **61** |
-| This-VM leftover matches | 2 |
+| Publications in directory | 15,268 |
+| Scanned at least once (combined) | **11,721** |
+| This-VM pubs scanned | 5,466 |
+| Uncrawled newspapers remaining | 6,332 |
+| Article records fetched (combined) | **130,965** |
+| This-VM articles | 35,795 |
+| Matching articles (combined) | **77** |
+| This-VM publication-linked incidents | 139 |
+| New incidents this wave (beyond restored) | 0 |
 | Publications with a match | 48 |
-| Incidents from local papers (combined) | **66** |
-| This-VM leftover incidents | 2 |
-| Incidents total (incl. historical seed) | 296 |
+| Incidents from local / agency feeds (combined) | **188** |
+| Canada publications (seeded / scanned) | 391 / 389 |
+| Agency feeds (seeded / scanned) | 49 / 49 |
+| Incidents total | 371 |
 
-### Coverage by state (scanned publications)
+### Incidents by country
 
-| State | Scanned | Articles | Matches |
+- US: 284
+- CA: 72
+- NO: 10
+- RU: 4
+- DE: 1
+
+### Incidents by source type
+
+- ammoland: 205
+- news: 154
+- agency: 7
+- other: 5
+
+### Coverage by state / province (scanned publications)
+
+| Region | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
-| ??  | 1907 | 21238 | 0 |
+| ??  | 2041 | 21525 | 0 |
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
@@ -147,49 +177,73 @@ Generated **2026-09-12T06:21:57.441Z**. Combined with prior-session aggregates (
 | NE Nebraska | 115 | 992 | 0 |
 | MD Maryland | 108 | 604 | 0 |
 | SC South Carolina | 105 | 572 | 0 |
-| ME Maine | 97 | 1124 | 0 |
-| MT Montana | 90 | 2553 | 12 |
-| NM New Mexico | 84 | 1330 | 1 |
-| ID Idaho | 82 | 1764 | 2 |
-| UT Utah | 80 | 1021 | 0 |
+| ME Maine | 98 | 1124 | 0 |
+| MT Montana | 92 | 2553 | 12 |
+| NM New Mexico | 85 | 1330 | 2 |
+| ID Idaho | 83 | 1764 | 2 |
+| UT Utah | 81 | 1021 | 1 |
 | WV West Virginia | 80 | 1141 | 0 |
+| BC British Columbia | 80 | 224 | 0 |
 | NV Nevada | 69 | 1312 | 1 |
-| NH New Hampshire | 62 | 836 | 0 |
+| NH New Hampshire | 63 | 836 | 0 |
 | SD South Dakota | 61 | 1062 | 0 |
-| DC District of Columbia | 57 | 397 | 0 |
-| AK Alaska | 55 | 1252 | 6 |
+| DC District of Columbia | 58 | 397 | 0 |
+| AK Alaska | 58 | 1252 | 6 |
+| ON Ontario | 58 | 58 | 0 |
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
 | HI Hawaii | 48 | 348 | 0 |
-| WY Wyoming | 42 | 880 | 3 |
+| WY Wyoming | 45 | 880 | 3 |
 | RI Rhode Island | 41 | 195 | 0 |
 | DE Delaware | 38 | 223 | 0 |
+| AB Alberta | 36 | 103 | 0 |
+| QC Quebec | 24 | 28 | 0 |
+| MB Manitoba | 13 | 1 | 0 |
+| SK Saskatchewan | 12 | 80 | 14 |
+| NB New Brunswick | 8 | 0 | 0 |
+| YT Yukon | 5 | 0 | 0 |
+| NS Nova Scotia | 4 | 2 | 0 |
+| NT Northwest Territories | 4 | 28 | 2 |
+| NU Nunavut | 2 | 0 | 0 |
+| NL Newfoundland and Labrador | 1 | 1 | 0 |
+| PE Prince Edward Island | 1 | 0 | 0 |
 
-### Local-paper incidents by species
+### Local / agency incidents by species
 
-- bear: 44
+- bear: 122
 - mountain_lion: 15
+- moose: 9
 - elk: 4
-- moose: 3
 
-### Local-paper incidents by state
+### Local / agency incidents by region
 
+- BC: 39
+- AK: 21
 - CO: 15
-- AK: 11
 - MT: 11
+- WY: 10
 - CA: 7
-- WY: 3
+- VT: 7
+- WA: 6
+- SK: 6
+- FL: 5
+- AB: 5
+- ME: 5
+- UT: 5
+- NM: 4
+- MB: 4
 - AR: 2
 - ID: 2
 - IL: 2
 - MN: 2
 - PA: 2
-- WA: 2
-- FL: 1
+- NT: 2
 - NC: 1
-- NM: 1
 - NV: 1
 - NY: 1
 - OK: 1
 - TN: 1
+- NU: 1
+- WI: 1
+- NH: 1
 
