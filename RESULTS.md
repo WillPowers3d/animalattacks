@@ -24,10 +24,10 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **5,236** (see latest snapshot — still climbing) |
-| Article records fetched (titles/snippets/RSS items) | **87,690** |
-| High-precision matches (animal + attack term) | **56** |
-| Incidents upserted from local papers | **60** |
+| Publications scanned at least once | **7,200+** (see latest snapshot — leftover-state wave still running) |
+| Article records fetched (titles/snippets/RSS items) | **100,000+** |
+| High-precision matches (animal + attack term) | **59** |
+| Incidents upserted from local papers | **64** (one climate-metaphor false positive removed) |
 | Historical Weingarten + extra seed | 231 (unchanged) |
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
@@ -73,67 +73,67 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-11T23:43:27.816Z** on this machine’s SQLite database.
+Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **5,236** |
-| Uncrawled newspapers remaining | 6,141 |
-| Article records fetched | **87,690** |
-| Matching articles | **56** |
-| Publications with a match | 43 |
-| Incidents from local papers | **60** |
-| Incidents total (incl. historical seed) | 290 |
+| Scanned at least once | **7,262** |
+| Uncrawled newspapers remaining | 4,115 |
+| Article records fetched | **100,391** |
+| Matching articles | **59** |
+| Publications with a match | 46 |
+| Incidents from local papers | **64** |
+| Incidents total (incl. historical seed) | 294 |
 
 ### Coverage by state (scanned publications)
 
 | State | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
-| CA California | 741 | 11612 | 7 |
-| NY New York | 446 | 9286 | 3 |
-| FL Florida | 342 | 5126 | 1 |
-| NC North Carolina | 297 | 4660 | 2 |
-| MN Minnesota | 293 | 3437 | 2 |
-| MI Michigan | 258 | 3367 | 0 |
-| CO Colorado | 229 | 3856 | 8 |
-| PA Pennsylvania | 222 | 4427 | 4 |
-| VA Virginia | 198 | 3670 | 0 |
-| WA Washington | 193 | 2175 | 2 |
-| TN Tennessee | 192 | 5694 | 1 |
-| WI Wisconsin | 169 | 3087 | 1 |
-| AZ Arizona | 137 | 2188 | 0 |
-| OR Oregon | 132 | 2311 | 0 |
-| ME Maine | 93 | 1013 | 0 |
+| CA California | 781 | 11835 | 7 |
+| TX Texas | 536 | 3736 | 0 |
+| NY New York | 475 | 9499 | 3 |
+| FL Florida | 354 | 5195 | 1 |
+| MN Minnesota | 302 | 3585 | 2 |
+| NC North Carolina | 299 | 4671 | 2 |
+| GA Georgia | 290 | 1626 | 0 |
+| MI Michigan | 269 | 3489 | 0 |
+| MO Missouri | 259 | 1600 | 0 |
+| CO Colorado | 240 | 4034 | 9 |
+| PA Pennsylvania | 240 | 4602 | 4 |
+| WA Washington | 224 | 2675 | 2 |
+| VA Virginia | 215 | 3942 | 0 |
+| IA Iowa | 208 | 1179 | 0 |
+| TN Tennessee | 196 | 5819 | 1 |
+| KY Kentucky | 187 | 1269 | 0 |
+| WI Wisconsin | 176 | 3212 | 1 |
+| KS Kansas | 158 | 1207 | 0 |
+| AR Arkansas | 152 | 1205 | 1 |
+| OR Oregon | 146 | 2412 | 0 |
+| AZ Arizona | 145 | 2328 | 0 |
+| OK Oklahoma | 117 | 692 | 0 |
+| NE Nebraska | 115 | 992 | 0 |
+| ME Maine | 97 | 1124 | 0 |
+| MT Montana | 90 | 2553 | 12 |
+| NM New Mexico | 84 | 1330 | 1 |
+| ID Idaho | 82 | 1764 | 2 |
 | UT Utah | 80 | 1021 | 0 |
-| MT Montana | 79 | 2409 | 11 |
-| ID Idaho | 78 | 1652 | 2 |
-| NM New Mexico | 71 | 844 | 1 |
-| WV West Virginia | 71 | 1086 | 0 |
-| TX Texas | 64 | 1303 | 0 |
-| NV Nevada | 62 | 998 | 1 |
-| NH New Hampshire | 60 | 735 | 0 |
-| SD South Dakota | 60 | 1054 | 0 |
-| VT Vermont | 53 | 785 | 0 |
-| ND North Dakota | 52 | 576 | 0 |
-| AK Alaska | 51 | 1151 | 6 |
+| WV West Virginia | 80 | 1141 | 0 |
+| NV Nevada | 69 | 1312 | 1 |
+| NH New Hampshire | 62 | 836 | 0 |
+| SD South Dakota | 61 | 1062 | 0 |
+| AK Alaska | 55 | 1252 | 6 |
+| ND North Dakota | 55 | 688 | 0 |
+| VT Vermont | 55 | 796 | 0 |
 | IL Illinois | 45 | 735 | 1 |
-| WY Wyoming | 41 | 869 | 3 |
+| WY Wyoming | 42 | 880 | 3 |
 | OH Ohio | 38 | 303 | 0 |
-| GA Georgia | 34 | 545 | 0 |
-| IA Iowa | 32 | 443 | 0 |
 | IN Indiana | 32 | 303 | 0 |
-| KS Kansas | 31 | 536 | 0 |
 | MA Massachusetts | 29 | 613 | 0 |
-| KY Kentucky | 28 | 523 | 0 |
-| MO Missouri | 26 | 502 | 0 |
 | MS Mississippi | 21 | 65 | 0 |
 | LA Louisiana | 20 | 265 | 0 |
-| AR Arkansas | 19 | 376 | 0 |
-| NE Nebraska | 19 | 294 | 0 |
 | AL Alabama | 18 | 514 | 0 |
 | CT Connecticut | 17 | 120 | 0 |
-| OK Oklahoma | 17 | 251 | 0 |
 | MD Maryland | 15 | 280 | 0 |
 | SC South Carolina | 12 | 169 | 0 |
 | NJ New Jersey | 7 | 87 | 0 |
@@ -143,7 +143,7 @@ Generated **2026-09-11T23:43:27.816Z** on this machine’s SQLite database.
 
 ### Local-paper incidents by species
 
-- bear: 38
+- bear: 42
 - mountain_lion: 15
 - elk: 4
 - moose: 3
@@ -152,9 +152,10 @@ Generated **2026-09-11T23:43:27.816Z** on this machine’s SQLite database.
 
 - CO: 15
 - AK: 10
-- MT: 9
+- MT: 10
 - CA: 7
 - WY: 3
+- AR: 2
 - ID: 2
 - IL: 2
 - MN: 2
@@ -165,5 +166,6 @@ Generated **2026-09-11T23:43:27.816Z** on this machine’s SQLite database.
 - NM: 1
 - NV: 1
 - NY: 1
+- OK: 1
 - TN: 1
 

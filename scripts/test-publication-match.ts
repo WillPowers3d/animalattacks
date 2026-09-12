@@ -18,6 +18,7 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Grizzly charged a hunter near Choteau", want: true },
   { title: "Boulder policemen charged in elk shooting", want: false },
   { title: "Cocaine Bear thrives with outstanding gore", want: false },
+  { title: "Bear attacks in Colorado are climate attacks", want: false },
 ];
 
 let failed = 0;
