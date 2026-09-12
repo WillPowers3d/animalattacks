@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-12T05:18:25.767Z",
+  "generatedAt": "2026-09-12T05:27:13.028Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 9047,
-  "remainingNewspapers": 2330,
-  "articlesFetched": 107118,
+  "publicationsScanned": 9418,
+  "remainingNewspapers": 1959,
+  "articlesFetched": 108915,
   "matchingArticles": 59,
   "publicationsWithMatches": 46,
   "incidentsFromLocalPapers": 64,
@@ -178,6 +178,13 @@
       "articles": 1207
     },
     {
+      "state": "NJ",
+      "name": "New Jersey",
+      "scanned": 157,
+      "articles": 771,
+      "matches": 0
+    },
+    {
       "state": "AR",
       "name": "Arkansas",
       "scanned": 152,
@@ -225,6 +232,13 @@
       "scanned": 115,
       "matches": 0,
       "articles": 992
+    },
+    {
+      "state": "MD",
+      "name": "Maryland",
+      "scanned": 108,
+      "articles": 604,
+      "matches": 0
     },
     {
       "state": "SC",
@@ -297,10 +311,10 @@
       "articles": 1062
     },
     {
-      "state": "MD",
-      "name": "Maryland",
-      "scanned": 59,
-      "articles": 280,
+      "state": "DC",
+      "name": "District of Columbia",
+      "scanned": 57,
+      "articles": 397,
       "matches": 0
     },
     {
@@ -325,6 +339,13 @@
       "articles": 796
     },
     {
+      "state": "HI",
+      "name": "Hawaii",
+      "scanned": 48,
+      "articles": 348,
+      "matches": 0
+    },
+    {
       "state": "WY",
       "name": "Wyoming",
       "scanned": 42,
@@ -332,32 +353,18 @@
       "articles": 880
     },
     {
-      "state": "NJ",
-      "name": "New Jersey",
-      "scanned": 7,
-      "matches": 0,
-      "articles": 87
-    },
-    {
-      "state": "HI",
-      "name": "Hawaii",
-      "scanned": 6,
-      "matches": 0,
-      "articles": 226
-    },
-    {
-      "state": "DC",
-      "name": "District of Columbia",
-      "scanned": 5,
-      "matches": 0,
-      "articles": 148
-    },
-    {
       "state": "RI",
       "name": "Rhode Island",
-      "scanned": 1,
+      "scanned": 41,
+      "articles": 195,
+      "matches": 0
+    },
+    {
+      "state": "DE",
+      "name": "Delaware",
+      "scanned": 38,
       "matches": 0,
-      "articles": 0
+      "articles": 223
     }
   ],
   "localIncidentsBySpecies": {
