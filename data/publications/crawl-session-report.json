@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-12T05:03:38.021Z",
+  "generatedAt": "2026-09-12T05:18:25.767Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 8691,
-  "remainingNewspapers": 2686,
-  "articlesFetched": 105759,
+  "publicationsScanned": 9047,
+  "remainingNewspapers": 2330,
+  "articlesFetched": 107118,
   "matchingArticles": 59,
   "publicationsWithMatches": 46,
   "incidentsFromLocalPapers": 64,
@@ -157,6 +157,20 @@
       "articles": 3212
     },
     {
+      "state": "CT",
+      "name": "Connecticut",
+      "scanned": 168,
+      "articles": 698,
+      "matches": 0
+    },
+    {
+      "state": "AL",
+      "name": "Alabama",
+      "scanned": 166,
+      "articles": 970,
+      "matches": 0
+    },
+    {
       "state": "KS",
       "name": "Kansas",
       "scanned": 158,
@@ -213,10 +227,10 @@
       "articles": 992
     },
     {
-      "state": "AL",
-      "name": "Alabama",
-      "scanned": 98,
-      "articles": 592,
+      "state": "SC",
+      "name": "South Carolina",
+      "scanned": 105,
+      "articles": 572,
       "matches": 0
     },
     {
@@ -283,6 +297,13 @@
       "articles": 1062
     },
     {
+      "state": "MD",
+      "name": "Maryland",
+      "scanned": 59,
+      "articles": 280,
+      "matches": 0
+    },
+    {
       "state": "AK",
       "name": "Alaska",
       "scanned": 55,
@@ -309,27 +330,6 @@
       "scanned": 42,
       "matches": 3,
       "articles": 880
-    },
-    {
-      "state": "CT",
-      "name": "Connecticut",
-      "scanned": 17,
-      "matches": 0,
-      "articles": 120
-    },
-    {
-      "state": "MD",
-      "name": "Maryland",
-      "scanned": 15,
-      "matches": 0,
-      "articles": 280
-    },
-    {
-      "state": "SC",
-      "name": "South Carolina",
-      "scanned": 12,
-      "matches": 0,
-      "articles": 169
     },
     {
       "state": "NJ",

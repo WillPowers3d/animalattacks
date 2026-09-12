@@ -84,16 +84,16 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T05:03:38.015Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
+Generated **2026-09-12T05:18:25.767Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once (combined) | **8,691** |
-| This-VM leftover wave scanned | 1,632 |
-| Uncrawled newspapers remaining (est.) | 2,686 |
-| Article records fetched (combined) | **105,759** |
-| This-VM leftover articles | 8,166 |
+| Scanned at least once (combined) | **9,047** |
+| This-VM leftover wave scanned | 2,032 |
+| Uncrawled newspapers remaining (est.) | 2,330 |
+| Article records fetched (combined) | **107,118** |
+| This-VM leftover articles | 10,011 |
 | Matching articles (combined) | **59** |
 | This-VM leftover matches | 0 |
 | Publications with a match | 46 |
@@ -126,6 +126,8 @@ Generated **2026-09-12T05:03:38.015Z**. Combined with prior-session aggregates (
 | TN Tennessee | 196 | 5819 | 1 |
 | KY Kentucky | 187 | 1269 | 0 |
 | WI Wisconsin | 176 | 3212 | 1 |
+| CT Connecticut | 168 | 698 | 0 |
+| AL Alabama | 166 | 970 | 0 |
 | KS Kansas | 158 | 1207 | 0 |
 | AR Arkansas | 152 | 1205 | 1 |
 | OR Oregon | 146 | 2412 | 0 |
@@ -134,7 +136,7 @@ Generated **2026-09-12T05:03:38.015Z**. Combined with prior-session aggregates (
 | LA Louisiana | 129 | 986 | 0 |
 | OK Oklahoma | 117 | 692 | 0 |
 | NE Nebraska | 115 | 992 | 0 |
-| AL Alabama | 98 | 592 | 0 |
+| SC South Carolina | 105 | 572 | 0 |
 | ME Maine | 97 | 1124 | 0 |
 | MT Montana | 90 | 2553 | 12 |
 | NM New Mexico | 84 | 1330 | 1 |
@@ -144,13 +146,11 @@ Generated **2026-09-12T05:03:38.015Z**. Combined with prior-session aggregates (
 | NV Nevada | 69 | 1312 | 1 |
 | NH New Hampshire | 62 | 836 | 0 |
 | SD South Dakota | 61 | 1062 | 0 |
+| MD Maryland | 59 | 280 | 0 |
 | AK Alaska | 55 | 1252 | 6 |
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
 | WY Wyoming | 42 | 880 | 3 |
-| CT Connecticut | 17 | 120 | 0 |
-| MD Maryland | 15 | 280 | 0 |
-| SC South Carolina | 12 | 169 | 0 |
 | NJ New Jersey | 7 | 87 | 0 |
 | HI Hawaii | 6 | 226 | 0 |
 | DC District of Columbia | 5 | 148 | 0 |
