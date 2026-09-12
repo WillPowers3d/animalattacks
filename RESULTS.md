@@ -24,19 +24,30 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **7,200+** (see latest snapshot — leftover-state wave still running) |
-| Article records fetched (titles/snippets/RSS items) | **100,000+** |
-| High-precision matches (animal + attack term) | **59** |
-| Incidents upserted from local papers | **64** (one climate-metaphor false positive removed) |
+| Publications scanned at least once | **7,262** in the prior SQLite session; leftover-state continuation is this VM |
+| Article records fetched (titles/snippets/RSS items) | **100,391** prior session + this leftover wave |
+| High-precision matches (animal + attack term) | **59** prior session |
+| Incidents upserted from local papers | **64** prior session (SQLite was ephemeral; new finds are now exported) |
 | Historical Weingarten + extra seed | 231 (unchanged) |
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
+**This continuation** skips re-scanning the well-covered first-wave states and targets leftover **IL, MA, OH, IN**, then other under-scanned states (MS, LA, AL, SC, CT, MD, NJ, DE, RI, HI, DC), then domain-only (`state` null) rows. Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` after `npm run db:seed`.
+
 ## How to resume (do not start over)
 
-Already-crawled rows have `lastCrawledAt` and are skipped unless `--force`.
+Already-crawled rows have `lastCrawledAt` and are skipped unless `--force`. On a fresh VM, seed first — `db:seed` applies `crawl-progress.json` if present.
 
 ```bash
+# Restore directory + lastCrawledAt / local-paper incidents
+npx prisma db push && npm run db:seed
+
+# Leftover states (IL, MA, OH, IN) then other under-scanned
+npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN
+
+# Domain-only / unstated rows
+npm run crawl:waves -- --hours=2 --batch=400 --concurrency=12 --unstated
+
 # Next batch of never-crawled newspapers, wildlife states first
 npm run crawl:publications -- --limit=800 --concurrency=12 --since=1990-01-01
 
