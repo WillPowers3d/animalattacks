@@ -27,6 +27,7 @@
     "crawl:agencies": "tsx scripts/crawl-publications.ts --agencies --since=1990-01-01 --concurrency=8",
     "crawl:backfill-wildlife": "tsx scripts/crawl-waves.ts --hours=3 --batch=250 --concurrency=10 --wildlife --backfill",
     "publications:coverage-seeds": "tsx scripts/write-coverage-seeds.ts",
+    "publications:build-canada": "tsx scripts/build-canada-directory.ts",
     "publications:fill-states": "tsx scripts/fill-publication-states.ts --rewrite-seed",
     "publications:fill-states:seed": "tsx scripts/fill-publication-states.ts --rewrite-seed --seed-only",
     "test:publications": "tsx scripts/test-publication-match.ts",

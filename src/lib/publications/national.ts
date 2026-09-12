@@ -68,6 +68,17 @@ export const NATIONAL_OR_JUNK_HOSTS = new Set([
   "newsbreak.com",
   "smartnews.com",
   "flipboard.com",
+  "theglobeandmail.com",
+  "nationalpost.com",
+  "financialpost.com",
+  "cbc.ca",
+  "globalnews.ca",
+  "ctvnews.ca",
+  "thestar.com",
+  "huffingtonpost.ca",
+  "macleans.ca",
+  "thewalrus.ca",
+  "bnnbloomberg.ca",
 ]);
 
 const JUNK_SUFFIXES = [
