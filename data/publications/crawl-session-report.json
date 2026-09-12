@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-12T05:50:02.626Z",
+  "generatedAt": "2026-09-12T06:21:57.452Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 10218,
-  "remainingNewspapers": 1159,
-  "articlesFetched": 118803,
-  "matchingArticles": 59,
-  "publicationsWithMatches": 46,
-  "incidentsFromLocalPapers": 64,
-  "incidentsTotal": 294,
+  "publicationsScanned": 11325,
+  "remainingNewspapers": 52,
+  "articlesFetched": 130153,
+  "matchingArticles": 61,
+  "publicationsWithMatches": 48,
+  "incidentsFromLocalPapers": 66,
+  "incidentsTotal": 296,
   "crawledStates": [
     {
       "state": "??",
       "name": "",
-      "scanned": 800,
+      "scanned": 1907,
       "matches": 0,
-      "articles": 9888
+      "articles": 21238
     },
     {
       "state": "CA",
@@ -375,15 +375,15 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 42,
+    "bear": 44,
     "mountain_lion": 15,
     "elk": 4,
     "moose": 3
   },
   "localIncidentsByState": {
     "CO": 15,
-    "AK": 10,
-    "MT": 10,
+    "AK": 11,
+    "MT": 11,
     "CA": 7,
     "WY": 3,
     "AR": 2,

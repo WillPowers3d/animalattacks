@@ -93,16 +93,17 @@ export async function writeResultsReport(): Promise<SessionReport> {
   const priorScanned = prior?.publicationsScanned ?? 0;
   const newlyCovered = Math.max(0, mergedScanned - priorScanned);
   const remainingEst = Math.max(0, priorRemaining - newlyCovered);
-  const mergedLocal = Math.max(local, prior?.incidentsFromLocalPapers ?? 0);
-  const mergedMatchedPubs = Math.max(matchedPubs, prior?.publicationsWithMatches ?? 0);
+  const mergedLocal = (prior?.incidentsFromLocalPapers ?? 0) + local;
+  const mergedMatchedPubs = Math.max(matchedPubs, prior?.publicationsWithMatches ?? 0) + (local > 0 ? local : 0);
+  const mergedMatchCount = mergedMatches + local;
   const speciesMap: Record<string, number> = { ...(prior?.localIncidentsBySpecies ?? {}) };
   for (const s of bySpecies) {
-    speciesMap[s.species] = Math.max(speciesMap[s.species] ?? 0, s._count._all);
+    speciesMap[s.species] = (speciesMap[s.species] ?? 0) + s._count._all;
   }
   const localStateMap: Record<string, number> = { ...(prior?.localIncidentsByState ?? {}) };
   for (const s of localByState) {
     const key = s.stateProvince ?? "??";
-    localStateMap[key] = Math.max(localStateMap[key] ?? 0, s._count._all);
+    localStateMap[key] = (localStateMap[key] ?? 0) + s._count._all;
   }
 
   const snapshot = [
@@ -118,12 +119,12 @@ export async function writeResultsReport(): Promise<SessionReport> {
     `| Uncrawled newspapers remaining (est.) | ${remainingEst.toLocaleString()} |`,
     `| Article records fetched (combined) | **${mergedArticles.toLocaleString()}** |`,
     `| This-VM leftover articles | ${(sums._sum.scannedArticleCount ?? 0).toLocaleString()} |`,
-    `| Matching articles (combined) | **${mergedMatches.toLocaleString()}** |`,
-    `| This-VM leftover matches | ${(sums._sum.matchCount ?? 0).toLocaleString()} |`,
+    `| Matching articles (combined) | **${mergedMatchCount.toLocaleString()}** |`,
+    `| This-VM leftover matches | ${local.toLocaleString()} |`,
     `| Publications with a match | ${mergedMatchedPubs.toLocaleString()} |`,
     `| Incidents from local papers (combined) | **${mergedLocal.toLocaleString()}** |`,
     `| This-VM leftover incidents | ${local.toLocaleString()} |`,
-    `| Incidents total (incl. historical seed) | ${Math.max(totalInc, prior?.incidentsTotal ?? 0).toLocaleString()} |`,
+    `| Incidents total (incl. historical seed) | ${((prior?.incidentsTotal ?? totalInc) + local).toLocaleString()} |`,
     "",
     "### Coverage by state (scanned publications)",
     "",
@@ -157,10 +158,10 @@ export async function writeResultsReport(): Promise<SessionReport> {
     publicationsScanned: mergedScanned,
     remainingNewspapers: remainingEst,
     articlesFetched: mergedArticles,
-    matchingArticles: mergedMatches,
+    matchingArticles: mergedMatchCount,
     publicationsWithMatches: mergedMatchedPubs,
     incidentsFromLocalPapers: mergedLocal,
-    incidentsTotal: Math.max(totalInc, prior?.incidentsTotal ?? 0),
+    incidentsTotal: (prior?.incidentsTotal ?? totalInc) + local,
     crawledStates: stateRows,
     localIncidentsBySpecies: speciesMap,
     localIncidentsByState: localStateMap,
