@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-12T05:27:13.028Z",
+  "generatedAt": "2026-09-12T05:39:31.875Z",
   "publicationsSeeded": 14847,
-  "publicationsScanned": 9418,
-  "remainingNewspapers": 1959,
-  "articlesFetched": 108915,
+  "publicationsScanned": 9818,
+  "remainingNewspapers": 1559,
+  "articlesFetched": 114338,
   "matchingArticles": 59,
   "publicationsWithMatches": 46,
   "incidentsFromLocalPapers": 64,
@@ -29,6 +29,13 @@
       "scanned": 475,
       "matches": 3,
       "articles": 9499
+    },
+    {
+      "state": "??",
+      "name": "",
+      "scanned": 400,
+      "matches": 0,
+      "articles": 5423
     },
     {
       "state": "IL",

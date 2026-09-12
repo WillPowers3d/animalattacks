@@ -24,8 +24,8 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **9,418** combined (leftover IL, MA, OH, IN, MS, LA, AL, SC, CT, MD, NJ, DE, RI, HI, DC done) |
-| Article records fetched (titles/snippets/RSS items) | **~109k** combined |
+| Publications scanned at least once | **9,818** combined (named leftovers done; domain-only / unstated wave underway) |
+| Article records fetched (titles/snippets/RSS items) | **~114k** combined |
 | High-precision matches (animal + attack term) | **59** prior session (leftover waves added 0 real incidents; one Coke/Santa ad rejected) |
 | Incidents upserted from local papers | **64** prior session (SQLite was ephemeral; new finds are now exported) |
 | Historical Weingarten + extra seed | 231 (unchanged) |
@@ -84,16 +84,16 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T05:27:13.027Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
+Generated **2026-09-12T05:39:31.868Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once (combined) | **9,418** |
-| This-VM leftover wave scanned | 2,422 |
-| Uncrawled newspapers remaining (est.) | 1,959 |
-| Article records fetched (combined) | **108,915** |
-| This-VM leftover articles | 12,352 |
+| Scanned at least once (combined) | **9,818** |
+| This-VM leftover wave scanned | 2,822 |
+| Uncrawled newspapers remaining (est.) | 1,559 |
+| Article records fetched (combined) | **114,338** |
+| This-VM leftover articles | 17,775 |
 | Matching articles (combined) | **59** |
 | This-VM leftover matches | 0 |
 | Publications with a match | 46 |
@@ -108,6 +108,7 @@ Generated **2026-09-12T05:27:13.027Z**. Combined with prior-session aggregates (
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
+| ??  | 400 | 5423 | 0 |
 | IL Illinois | 399 | 2337 | 1 |
 | MA Massachusetts | 368 | 1465 | 0 |
 | FL Florida | 354 | 5195 | 1 |
