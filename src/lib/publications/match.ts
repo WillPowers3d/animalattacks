@@ -20,7 +20,7 @@ const ANIMAL_CHARGED_RE =
   /\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b[^.]{0,40}\bcharged\b|\bcharged\b[^.]{0,40}\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b/i;
 
 const NEGATIVE_RE =
-  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate|coca[- ]cola|santa claus|halloween costume|stuffed animal)\b/i;
+  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate|coca[- ]cola|santa claus|halloween costume|stuffed animal|bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|killed by dogs|wasn['’]t a bear|not a bear that)\b/i;
 
 const FICTION_AD_RE =
   /\b(coca[- ]cola|santa (claus|getting)|cartoon|advertisement|ad campaign|halloween costume|stuffed animal)\b/i;
@@ -34,6 +34,16 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
   if (!text) return { matched: false, species: "other", reason: "empty" };
   if (snippetIsSearchQueryEcho(snippet) && !matchAnimalAttack(title, "").matched) {
     return { matched: false, species: "other", reason: "search-query-echo" };
+  }
+  if (
+    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport)\b/i.test(
+      text,
+    )
+  ) {
+    return { matched: false, species: "other", reason: "university-sports" };
+  }
+  if (/\b(killed by dogs|wasn['’]t a bear|not a bear that|not bear:)\b/i.test(text)) {
+    return { matched: false, species: "other", reason: "not-animal-attack" };
   }
 
   if (NEGATIVE_RE.test(text) && !ATTACK_RE.test(text)) {
@@ -68,8 +78,12 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     }
   }
 
+  if (/\barchives?\b/i.test(title) && /^(bear|moose|elk|cougar|mountain lion) attack/i.test(title.trim())) {
+    return { matched: false, species: "other", reason: "archive-index" };
+  }
+
   if (
-    /\bbear[- ]spray(ed|ing)?\b/i.test(text) &&
+    /\bbear[- ](spray|mace)(ed|ing)?\b/i.test(text) &&
     !/\b(bears?|grizzly)\s+(attack|maul|charg)/i.test(text) &&
     !/\b(attacked|mauled|charged)\s+by\s+(a\s+)?(bears?|grizzly)/i.test(text)
   ) {
