@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { IncidentMap } from "@/components/IncidentMap";
 import { formatLocation } from "@/lib/incident-utils";
 import { prisma } from "@/lib/prisma";
+import { sourceBadge } from "@/lib/source-badge";
 import {
   FIREARM_LABELS,
   OUTCOME_LABELS,
@@ -56,7 +57,10 @@ export default async function IncidentDetail({ params }: { params: Promise<{ slu
 
       <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Fact label="Severity" value={SEVERITY_LABELS[inc.severity as Severity] ?? inc.severity} />
-        <Fact label="Source type" value={inc.sourceType} />
+        <Fact
+          label="Source type"
+          value={`${sourceBadge({ sourceType: inc.sourceType, publicationId: inc.publicationId }).label}${inc.sourceType !== "news" ? ` (${inc.sourceType})` : ""}`}
+        />
         <Fact label="Verified flag" value={inc.verified ? "Logged source" : "Unverified ingest"} />
         <Fact
           label="Firearm"

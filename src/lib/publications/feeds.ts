@@ -71,8 +71,40 @@ export async function discoverFeeds(
   return { rss: [...rss], sitemaps: [...sitemaps] };
 }
 
+export async function parseRssText(xml: string): Promise<ArticleCandidate[]> {
+  try {
+    const feed = await rssParser.parseString(xml);
+    const items: ArticleCandidate[] = [];
+    for (const entry of feed.items ?? []) {
+      const url = entry.link ? canonicalArticleUrl(entry.link) : "";
+      const title = (entry.title ?? "").trim();
+      if (!url || !title) continue;
+      items.push({
+        title,
+        url,
+        snippet: (entry.contentSnippet ?? entry.content ?? "").replace(/<[^>]+>/g, " ").slice(0, 400),
+        isoDate: entry.isoDate ?? entry.pubDate ?? null,
+        source: "rss",
+      });
+    }
+    return items;
+  } catch {
+    return [];
+  }
+}
+
 export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): Promise<ArticleCandidate[]> {
   if (signal?.aborted) return [];
+  const res = await politeFetch(feedUrl, {
+    accept: "application/rss+xml,application/atom+xml,application/xml,text/xml,*/*",
+    timeoutMs: 18000,
+    signal,
+  });
+  if (res.ok && res.text && /<(rss|feed|rdf)\b/i.test(res.text)) {
+    const items = await parseRssText(res.text);
+    if (items.length) return items;
+  }
+  // Last resort: rss-parser's own client (may stall on HTTP/2 hosts).
   try {
     const feed = await rssParser.parseURL(feedUrl);
     const items: ArticleCandidate[] = [];

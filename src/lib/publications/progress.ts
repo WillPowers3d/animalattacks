@@ -8,7 +8,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { prisma } from "../prisma";
-import { persistIncident } from "../ingest/persist";
+import { persistOrMerge } from "../ingest/persist";
 import type { SeedIncident } from "../types";
 
 export const PROGRESS_PATH = "data/publications/crawl-progress.json";
@@ -151,7 +151,7 @@ export async function applyCrawlProgress(opts: { log?: boolean } = {}) {
   if (fs.existsSync(incPath)) {
     const rows = JSON.parse(fs.readFileSync(incPath, "utf8")) as SeedIncident[];
     for (const inc of rows) {
-      await persistIncident(inc);
+      await persistOrMerge(inc);
       incidents += 1;
     }
   }

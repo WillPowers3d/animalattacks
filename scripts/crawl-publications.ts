@@ -20,6 +20,7 @@ const lite = Boolean(flag("lite"));
 const unstated = Boolean(flag("unstated"));
 const wildlife = Boolean(flag("wildlife"));
 const agencies = Boolean(flag("agencies"));
+const cbc = Boolean(flag("cbc"));
 const newspapersOnly = agencies ? false : flag("all-tiers") ? false : true;
 const concurrency = flag("concurrency") ? Number(flag("concurrency")) : undefined;
 const states = statesRaw
@@ -43,6 +44,7 @@ runPublicationCrawl({
   unstated,
   wildlife,
   agencies,
+  cbc,
   since,
   dryRun,
   mode: backfill ? "backfill" : "incremental",

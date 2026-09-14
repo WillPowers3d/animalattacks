@@ -1,7 +1,8 @@
 import { writeSync } from "node:fs";
 import { prisma } from "../prisma";
-import { alreadyExists, persistIncident } from "../ingest/persist";
+import { findExistingIncident, persistOrMerge } from "../ingest/persist";
 import { extractPageSnippet } from "./html";
+import { cbcAlternateFeedUrls, fetchCbcListingArticles, fetchCbcSearchArticles, isCbcFamilyHost } from "./cbc";
 import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArticles } from "./feeds";
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
 import { matchAnimalAttack } from "./match";
@@ -26,6 +27,8 @@ export type CrawlOptions = {
   wildlife?: boolean;
   /** Official wildlife-agency / park press feeds only. */
   agencies?: boolean;
+  /** CBC / Radio-Canada regional rows only. */
+  cbc?: boolean;
   since?: string;
   dryRun?: boolean;
   concurrency?: number;
@@ -146,7 +149,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   else if (stateList.length > 1) stateClauses.push({ state: { in: stateList } });
   if (opts.unstated) stateClauses.push({ state: null });
 
-  const countries = (opts.countries ?? (opts.agencies ? [] : ["US"]))
+  const countries = (opts.countries ?? (opts.agencies ? [] : opts.cbc ? ["CA"] : ["US"]))
     .map((c) => c.toUpperCase())
     .filter(Boolean);
   const where: Record<string, unknown> = { enabled: true };
@@ -154,6 +157,13 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   else if (countries.length > 1) where.country = { in: countries };
   if (opts.agencies) {
     where.circulationTier = { in: ["agency"] };
+  } else if (opts.cbc) {
+    where.OR = [
+      { domain: { contains: "cbc.ca" } },
+      { domain: { contains: "radio-canada.ca" } },
+      { homepageUrl: { contains: "cbc.ca" } },
+      { homepageUrl: { contains: "radio-canada.ca" } },
+    ];
   } else if (opts.newspapersOnly !== false) {
     where.circulationTier = { in: ["newspaper", "weekly", "digital", "other"] };
   }
@@ -364,6 +374,11 @@ async function crawlOne(
     }
 
     const discovered = await discoverFeeds(pub.homepageUrl, pub.rssUrl, rules, homepageHtml);
+    if (isCbcFamilyHost(pub.homepageUrl) && pub.rssUrl) {
+      for (const alt of cbcAlternateFeedUrls(pub.rssUrl)) {
+        if (!discovered.rss.includes(alt)) discovered.rss.push(alt);
+      }
+    }
     const articles = new Map<string, ArticleCandidate>();
 
     const add = (item: ArticleCandidate) => {
@@ -373,7 +388,14 @@ async function crawlOne(
     };
 
     if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
-    const rssTargets = discovered.rss.slice(0, opts.lite ? 1 : opts.mode === "backfill" ? 6 : 3);
+    const rssCap = isCbcFamilyHost(pub.homepageUrl)
+      ? 6
+      : opts.lite
+        ? 1
+        : opts.mode === "backfill"
+          ? 6
+          : 3;
+    const rssTargets = discovered.rss.slice(0, rssCap);
     for (const feed of rssTargets) {
       if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
       let feedUrl = feed;
@@ -422,6 +444,24 @@ async function crawlOne(
         country: pub.country,
       });
       for (const item of searchItems) add(item);
+    }
+
+    if (isCbcFamilyHost(pub.homepageUrl)) {
+      const listing = await fetchCbcListingArticles(pub.homepageUrl, {
+        minDelayMs: delay,
+        signal: opts.signal,
+      });
+      for (const item of listing) add(item);
+      if (opts.mode === "backfill") {
+        const cbcSearch = await fetchCbcSearchArticles(
+          pub.homepageUrl,
+          pub.country === "CA"
+            ? ["bear attack", "attaque ours", "cougar attack", "polar bear"]
+            : ["bear attack", "cougar attack"],
+          { minDelayMs: delay, signal: opts.signal },
+        );
+        for (const item of cbcSearch) add(item);
+      }
     }
 
     if (homepageHtml) {
@@ -474,19 +514,34 @@ async function crawlOne(
       matched += 1;
       const inc = articleToIncident(filled, pub);
       if (!inc) continue;
-      const exists = await alreadyExists(inc);
-      if (exists) {
-        skipped += 1;
-        samples.push({ title: inc.title, url: inc.sources[0].url, publication: pub.name, action: "skip-dup" });
+      if (opts.dryRun) {
+        const exists = await findExistingIncident(inc);
+        if (exists) {
+          skipped += 1;
+          samples.push({ title: inc.title, url: inc.sources[0].url, publication: pub.name, action: "skip-dup" });
+          continue;
+        }
+        upserted += 1;
+        samples.push({
+          title: inc.title,
+          url: inc.sources[0].url,
+          publication: pub.name,
+          action: "dry-upsert",
+        });
         continue;
       }
-      if (!opts.dryRun) await persistIncident(inc);
+      const written = await persistOrMerge(inc);
+      if (written.action === "merged") {
+        skipped += 1;
+        samples.push({ title: inc.title, url: inc.sources[0].url, publication: pub.name, action: "merge-reprint" });
+        continue;
+      }
       upserted += 1;
       samples.push({
         title: inc.title,
         url: inc.sources[0].url,
         publication: pub.name,
-        action: opts.dryRun ? "dry-upsert" : "upsert",
+        action: "upsert",
       });
     }
 

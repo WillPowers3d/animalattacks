@@ -31,6 +31,8 @@ export default async function DataPage() {
     localIncidents,
     recentLocal,
     byRegion,
+    lastCrawl,
+    lastIngest,
   ] = await Promise.all([
     prisma.incident.count(),
     prisma.incident.groupBy({ by: ["sourceType"], _count: { _all: true } }),
@@ -77,6 +79,12 @@ export default async function DataPage() {
       where: { publicationId: { not: null } },
       _count: { _all: true },
     }),
+    prisma.publication.aggregate({ _max: { lastCrawledAt: true, lastBackfillAt: true } }),
+    prisma.ingestRun.findFirst({
+      where: { dryRun: false },
+      orderBy: { startedAt: "desc" },
+      select: { startedAt: true, finishedAt: true, source: true, upserted: true, fetched: true },
+    }),
   ]);
 
   const regionRows = byRegion
@@ -115,6 +123,21 @@ export default async function DataPage() {
           local-paper crawl, Canadian local news, and official wildlife-agency / park press feeds.
           See <Link href="/about" className="text-kraft-300 underline">methodology</Link> and the{" "}
           <Link href="/publications" className="text-kraft-300 underline">publication directory</Link>.
+        </p>
+        <p className="mt-3 border border-kraft-500/25 bg-moss-950/60 px-3 py-2 font-mono text-xs text-kraft-200">
+          Last crawl{" "}
+          {lastCrawl._max.lastCrawledAt
+            ? lastCrawl._max.lastCrawledAt.toISOString().replace("T", " ").slice(0, 16)
+            : "never"}{" "}
+          UTC
+          {lastCrawl._max.lastBackfillAt
+            ? ` · last archive backfill ${lastCrawl._max.lastBackfillAt.toISOString().replace("T", " ").slice(0, 16)} UTC`
+            : ""}
+          {lastIngest
+            ? ` · last ingest ${lastIngest.source} ${
+                (lastIngest.finishedAt ?? lastIngest.startedAt).toISOString().replace("T", " ").slice(0, 16)
+              } UTC (${lastIngest.fetched} fetched / ${lastIngest.upserted} wrote)`
+            : ""}
         </p>
       </header>
 

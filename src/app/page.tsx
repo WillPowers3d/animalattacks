@@ -12,9 +12,9 @@ export default async function HomePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const sp = parseSearchParams(await searchParams);
-  const where = toWhere({ ...sp, species: undefined, hide: undefined });
+  const where = toWhere({ ...sp, species: undefined, hide: undefined, country: undefined });
 
-  const [rows, states, total, lastIngest] = await Promise.all([
+  const [rows, states, total, lastIngest, coverage] = await Promise.all([
     prisma.incident.findMany({
       where,
       orderBy: [{ occurredAt: "desc" }, { createdAt: "desc" }],
@@ -29,6 +29,7 @@ export default async function HomePage({
       where: { dryRun: false },
       orderBy: { startedAt: "desc" },
     }),
+    prisma.incident.groupBy({ by: ["country"], _count: { _all: true } }),
   ]);
 
   const incidents = rows.map(toExplorerIncident);
@@ -47,10 +48,17 @@ export default async function HomePage({
           North American animal attacks
         </h2>
         <p className="mt-2 max-w-3xl text-sm text-moss-200">
-          {total} records in the ledger — every geocoded attack is on the map. Toggle animals live;
-          tap a cluster to expand, then a colored mark for the dossier. Historical core: Dean
-          Weingarten’s documented handgun defenses against bears (Ammoland / Gun Watch). This is
-          not official government data.
+          {total} records in the ledger — every geocoded attack is on the map. Toggle US / Canada /
+          All on the map, then tap a cluster. Historical core: Dean Weingarten’s documented handgun
+          defenses against bears (Ammoland / Gun Watch). This is not official government data.
+        </p>
+        <p className="mt-3 border border-kraft-500/30 bg-moss-950/70 px-3 py-2 font-mono text-[11px] text-kraft-200">
+          Coverage: {coverage.find((c) => c.country === "US")?._count._all ?? 0} US ·{" "}
+          {coverage.find((c) => c.country === "CA")?._count._all ?? 0} Canada · {total} in this
+          view.{" "}
+          <a href="/data" className="text-kraft-300 underline decoration-kraft-500/40">
+            Live crawl stats →
+          </a>
         </p>
         {lastIngest ? (
           <p className="mt-3 font-mono text-[11px] text-moss-300">

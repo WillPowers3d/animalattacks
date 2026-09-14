@@ -1,6 +1,7 @@
 import { prisma } from "../prisma";
 import { geocodeIncident, offsetCoord } from "../geo";
 import { dedupeKey, makeExternalKey, makeSlug } from "../incident-utils";
+import { extractPlaces, reprintPathKey, sameEvent } from "../publications/event-dedupe";
 import type { SeedIncident } from "../types";
 
 async function withBusyRetry<T>(fn: () => Promise<T>, tries = 6): Promise<T> {
@@ -18,30 +19,69 @@ async function withBusyRetry<T>(fn: () => Promise<T>, tries = 6): Promise<T> {
   throw last;
 }
 
+export type ExistingIncident = {
+  id: string;
+  title: string;
+  occurredAt: Date | null;
+  city: string | null;
+  stateProvince: string | null;
+  country: string;
+  species: string;
+  sourceType: string;
+  slug: string;
+};
+
 export async function alreadyExists(inc: SeedIncident) {
-  return withBusyRetry(() => alreadyExistsOnce(inc));
+  return Boolean(await findExistingIncident(inc));
 }
 
-async function alreadyExistsOnce(inc: SeedIncident) {
+export async function findExistingIncident(inc: SeedIncident): Promise<ExistingIncident | null> {
+  return withBusyRetry(() => findExistingIncidentOnce(inc));
+}
+
+async function findExistingIncidentOnce(inc: SeedIncident): Promise<ExistingIncident | null> {
+  const select = {
+    id: true,
+    title: true,
+    occurredAt: true,
+    city: true,
+    stateProvince: true,
+    country: true,
+    species: true,
+    sourceType: true,
+    slug: true,
+  } as const;
+
   const url = inc.sources[0]?.url;
   if (url) {
     const byUrl = await prisma.source.findFirst({
       where: { url },
-      select: { id: true },
+      select: { incident: { select } },
     });
-    if (byUrl) return true;
+    if (byUrl?.incident) return byUrl.incident;
     const canonical = url.split("?")[0];
     if (canonical !== url) {
       const byCanon = await prisma.source.findFirst({
         where: { url: canonical },
-        select: { id: true },
+        select: { incident: { select } },
       });
-      if (byCanon) return true;
+      if (byCanon?.incident) return byCanon.incident;
+    }
+    const pathKey = reprintPathKey(url);
+    if (pathKey) {
+      const pathHits = await prisma.source.findMany({
+        where: { url: { contains: pathKey } },
+        take: 8,
+        select: { url: true, incident: { select } },
+      });
+      const hit = pathHits.find((row) => reprintPathKey(row.url) === pathKey);
+      if (hit?.incident) return hit.incident;
     }
   }
+
   const key = makeExternalKey(inc);
-  const byKey = await prisma.incident.findUnique({ where: { externalKey: key } });
-  if (byKey) return true;
+  const byKey = await prisma.incident.findUnique({ where: { externalKey: key }, select });
+  if (byKey) return byKey;
 
   if (inc.occurredAt && inc.title) {
     const date = new Date(inc.occurredAt);
@@ -55,7 +95,7 @@ async function alreadyExistsOnce(inc: SeedIncident) {
         city: inc.city ?? undefined,
         stateProvince: inc.stateProvince ?? undefined,
       },
-      select: { title: true, occurredAt: true, city: true, stateProvince: true },
+      select,
     });
     const incoming = dedupeKey({
       title: inc.title,
@@ -63,7 +103,7 @@ async function alreadyExistsOnce(inc: SeedIncident) {
       city: inc.city,
       stateProvince: inc.stateProvince,
     });
-    return sameDay.some(
+    const exact = sameDay.find(
       (row) =>
         dedupeKey({
           title: row.title,
@@ -72,8 +112,121 @@ async function alreadyExistsOnce(inc: SeedIncident) {
           stateProvince: row.stateProvince,
         }) === incoming,
     );
+    if (exact) return exact;
   }
-  return false;
+
+  return findFuzzyEvent(inc, select);
+}
+
+async function findFuzzyEvent(
+  inc: SeedIncident,
+  select: {
+    id: true;
+    title: true;
+    occurredAt: true;
+    city: true;
+    stateProvince: true;
+    country: true;
+    species: true;
+    sourceType: true;
+    slug: true;
+  },
+): Promise<ExistingIncident | null> {
+  const date = inc.occurredAt ? new Date(inc.occurredAt) : null;
+  const windowStart = date ? new Date(date.getTime() - 14 * 86_400_000) : null;
+  const windowEnd = date ? new Date(date.getTime() + 14 * 86_400_000) : null;
+  const places = extractPlaces(inc.title, inc.city);
+  const where: {
+    species: string;
+    country?: string;
+    OR?: Array<Record<string, unknown>>;
+  } = { species: inc.species };
+  if (inc.country) where.country = inc.country;
+  const or: Array<Record<string, unknown>> = [];
+  if (date && windowStart && windowEnd) {
+    or.push({ occurredAt: { gte: windowStart, lte: windowEnd } });
+    or.push({ occurredAt: null });
+  }
+  if (inc.stateProvince) or.push({ stateProvince: inc.stateProvince });
+  if (places[0]) or.push({ title: { contains: places[0].split(" ")[0] } });
+  if (or.length) where.OR = or;
+
+  const candidates = await prisma.incident.findMany({
+    where,
+    select: { ...select, sources: { select: { url: true } } },
+    take: 180,
+    orderBy: { createdAt: "desc" },
+  });
+
+  const incoming = {
+    title: inc.title,
+    occurredAt: inc.occurredAt,
+    city: inc.city,
+    stateProvince: inc.stateProvince,
+    country: inc.country,
+    species: inc.species,
+    sourceType: inc.sourceType,
+    urls: inc.sources.map((s) => s.url),
+  };
+
+  for (const row of candidates) {
+    const hit = sameEvent(incoming, {
+      title: row.title,
+      occurredAt: row.occurredAt,
+      city: row.city,
+      stateProvince: row.stateProvince,
+      country: row.country,
+      species: row.species,
+      sourceType: row.sourceType,
+      urls: row.sources.map((s) => s.url),
+    });
+    if (hit.match) {
+      return {
+        id: row.id,
+        title: row.title,
+        occurredAt: row.occurredAt,
+        city: row.city,
+        stateProvince: row.stateProvince,
+        country: row.country,
+        species: row.species,
+        sourceType: row.sourceType,
+        slug: row.slug,
+      };
+    }
+  }
+  return null;
+}
+
+export async function attachSources(
+  incidentId: string,
+  sources: SeedIncident["sources"],
+) {
+  for (const s of sources) {
+    const exists = await prisma.source.findFirst({
+      where: { incidentId, url: s.url },
+      select: { id: true },
+    });
+    if (exists) continue;
+    await prisma.source.create({
+      data: {
+        incidentId,
+        url: s.url,
+        title: s.title ?? null,
+        publisher: s.publisher ?? null,
+      },
+    });
+  }
+}
+
+function incomingPlaceIsBetter(existing: ExistingIncident, inc: SeedIncident): boolean {
+  const incomingPlaces = extractPlaces(inc.title, inc.city);
+  if (!incomingPlaces.length || !inc.city) return false;
+  const existingInTitle = extractPlaces(existing.title, existing.city);
+  if (existingInTitle.some((p) => incomingPlaces.includes(p))) return false;
+  return incomingPlaces.some(
+    (p) =>
+      (inc.city ? p.includes(inc.city.toLowerCase()) : false) || inc.title.toLowerCase().includes(p),
+  );
 }
 
 export function withCoords(inc: SeedIncident): SeedIncident {
@@ -84,6 +237,32 @@ export function withCoords(inc: SeedIncident): SeedIncident {
 
 export async function persistIncident(inc: SeedIncident) {
   return withBusyRetry(() => persistIncidentOnce(inc));
+}
+
+export async function persistOrMerge(
+  inc: SeedIncident,
+): Promise<{ action: "created" | "merged"; id: string; slug?: string }> {
+  const existing = await findExistingIncident(inc);
+  if (existing) {
+    await attachSources(existing.id, inc.sources);
+    if (incomingPlaceIsBetter(existing, inc) && inc.city) {
+      const located = withCoords(inc);
+      await prisma.incident.update({
+        where: { id: existing.id },
+        data: {
+          city: located.city ?? existing.city,
+          stateProvince: located.stateProvince ?? existing.stateProvince,
+          lat: located.lat ?? undefined,
+          lng: located.lng ?? undefined,
+          occurredAt: existing.occurredAt ?? (located.occurredAt ? new Date(located.occurredAt) : undefined),
+          dateDisplay: existing.occurredAt ? undefined : located.dateDisplay ?? undefined,
+        },
+      });
+    }
+    return { action: "merged", id: existing.id, slug: existing.slug };
+  }
+  const row = await persistIncident(inc);
+  return { action: "created", id: row.id, slug: row.slug };
 }
 
 async function persistIncidentOnce(inc: SeedIncident) {

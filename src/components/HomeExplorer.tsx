@@ -3,11 +3,18 @@
 import { useCallback, useMemo, useState } from "react";
 import { IncidentCard } from "@/components/IncidentCard";
 import { IncidentFilters } from "@/components/IncidentFilters";
-import { IncidentMap } from "@/components/IncidentMap";
+import { IncidentMap, type MapCountry } from "@/components/IncidentMap";
 import type { ExplorerIncident } from "@/lib/explorer";
 import type { IncidentQuery } from "@/lib/filters";
 import { incidentLocation } from "@/lib/explorer";
+import { sourceBadge } from "@/lib/source-badge";
 import type { Species } from "@/lib/types";
+
+function countryFromQuery(query: IncidentQuery): MapCountry {
+  const c = (query.country ?? "").toUpperCase();
+  if (c === "US" || c === "CA") return c;
+  return "ALL";
+}
 
 export function HomeExplorer({
   incidents,
@@ -28,16 +35,24 @@ export function HomeExplorer({
     }
     return [];
   });
+  const [country, setCountry] = useState<MapCountry>(() => countryFromQuery(query));
 
   const visibleIncidents = useMemo(
-    () => incidents.filter((i) => !hidden.includes(i.species)),
-    [incidents, hidden],
+    () =>
+      incidents.filter((i) => {
+        if (hidden.includes(i.species)) return false;
+        if (country === "ALL") return true;
+        return i.country.toUpperCase() === country;
+      }),
+    [incidents, hidden, country],
   );
 
-  const syncUrl = useCallback((nextHidden: string[]) => {
+  const syncUrl = useCallback((nextHidden: string[], nextCountry: MapCountry) => {
     const url = new URL(window.location.href);
     if (nextHidden.length) url.searchParams.set("hide", nextHidden.join(","));
     else url.searchParams.delete("hide");
+    if (nextCountry === "ALL") url.searchParams.delete("country");
+    else url.searchParams.set("country", nextCountry);
     url.searchParams.delete("species");
     window.history.replaceState(null, "", url);
   }, []);
@@ -48,11 +63,19 @@ export function HomeExplorer({
         const next = prev.includes(species)
           ? prev.filter((s) => s !== species)
           : [...prev, species];
-        syncUrl(next);
+        syncUrl(next, country);
         return next;
       });
     },
-    [syncUrl],
+    [syncUrl, country],
+  );
+
+  const changeCountry = useCallback(
+    (next: MapCountry) => {
+      setCountry(next);
+      syncUrl(hidden, next);
+    },
+    [hidden, syncUrl],
   );
 
   return (
@@ -70,13 +93,21 @@ export function HomeExplorer({
           summary: i.summary,
           caliber: i.caliber,
           firearmType: i.firearmType,
+          country: i.country,
+          sourceLabel: sourceBadge(i).label,
         }))}
         hiddenSpecies={hidden}
         onToggleSpecies={toggleSpecies}
+        country={country}
+        onCountryChange={changeCountry}
       />
 
       <IncidentFilters
-        value={{ ...query, hide: hidden.join(",") }}
+        value={{
+          ...query,
+          hide: hidden.join(","),
+          country: country === "ALL" ? undefined : country,
+        }}
         states={states}
         hideSpeciesSelect
       />
@@ -96,7 +127,7 @@ export function HomeExplorer({
         <p className="border border-dashed border-kraft-500/30 p-8 text-center text-moss-300">
           {incidents.length === 0
             ? "No incidents match these ledger filters."
-            : "All species are hidden. Toggle an animal on the map to plot attacks again."}
+            : "Nothing plotted. Toggle a country or animal on the map to show attacks again."}
         </p>
       )}
     </div>

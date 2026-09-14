@@ -96,8 +96,8 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 - Matcher rejects sports/finance/legal “charged with” noise; a few early-session false positives may remain from before that tightening.
 - This SQLite session is not the production ledger. Seed the hosted DB (`npm run db:seed`) then resume waves there.
 - First-pass wildlife states (CA, TX, NY, …) were RSS-scanned; archive `--backfill` is the next depth, not a full re-crawl.
-- Canadian coverage is a curated local list, not a complete national census. CBC.ca regional RSS timed out from this VM (HTTP/2 stall); Radio-Canada ICI Grand Nord and territorial WordPress weeklies (Yellowknifer, Hay River Hub, Yukon News, Nunatsiaq) did produce archive hits.
-- Prairie / Black Press weeklies reprint the same Bella Coola and Maple Ridge stories; RESULTS counts unique titles after collapsing those URLs.
+- Canadian coverage is a curated local list, not a complete national census. This pass retries CBC / Radio-Canada regional feeds over HTTP/1.1 (`politeFetch` + listing scrape) after the prior HTTP/2 stall.
+- Prairie / Black Press weeklies reprint the same Bella Coola and Maple Ridge stories. Cross-URL event dedupe now collapses same-event clones (place + title/date), not just exact URLs. **Canada publication-linked unique count: 162 → 132** on the committed local-paper seed (30 reprints merged; Bella Coola school-group wire 19→1).
 - Agency feeds share hosts (NPS, Parks Canada); those rows use path-qualified domains so each park can be crawled.
 
 ## Matcher

@@ -22,6 +22,7 @@ export type ExplorerIncident = {
   defenseOutcome?: string | null;
   sourceType: string;
   verified: boolean;
+  publicationId?: string | null;
 };
 
 export function toExplorerIncident(row: {
@@ -44,6 +45,7 @@ export function toExplorerIncident(row: {
   defenseOutcome?: string | null;
   sourceType: string;
   verified: boolean;
+  publicationId?: string | null;
 }): ExplorerIncident {
   let lat = row.lat;
   let lng = row.lng;
@@ -75,6 +77,7 @@ export function toExplorerIncident(row: {
     defenseOutcome: row.defenseOutcome,
     sourceType: row.sourceType,
     verified: row.verified,
+    publicationId: row.publicationId,
   };
 }
 
