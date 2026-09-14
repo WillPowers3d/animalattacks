@@ -10,7 +10,8 @@ This is **not official wildlife-agency data**.
 
 - Incident database: species / subspecies, date, city–region–state/province, country (US / CA / MX), severity (fatal / injury / near-miss / property), summary, source URL(s), source type (news / facebook / ammoland / other), verified flag, lat/lng
 - Defensive-firearm fields used in Weingarten’s research: `firearmType`, `caliber`, `shotsFired`, `defenseOutcome` (success / failure / indeterminate), `combinationDefense`
-- Homepage map + **US / Canada / All** country toggle + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber) + source badges (Weingarten / local paper / agency / Google News)
+- Homepage map + **All / US / Canada / Mexico** country toggle + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber) + source badges (Weingarten / local paper / agency / Google News)
+- Weekly **fatal / injury digest** (`npm run digest` or `/api/digest`) — markdown of new serious incidents since the last run, no email vendor required
 - Shareable filter URLs and **CSV export** of the filtered ledger
 - Incident detail pages with attribution
 - Stats: species, region, yearly trend, **handgun caliber effectiveness**
@@ -139,7 +140,8 @@ It is **not** a complete census of every US town or an all-time scrape of every 
 5. Dedup by article URL. Location = parsed town/state when possible, otherwise the publication’s **town center**.
 6. **Snippets only** — title, URL, ≤400-character excerpt. No full-body archive.
 7. **Canada** — curated local/online papers for BC, AB, SK, MB, northern Ontario, YT, NT, NU (`data/publications/canada-local-news.json`). Incidents store `country=Canada` and town-center pins.
-8. **Agency / park feeds** — official RSS/newsroom pages (`data/publications/agency-feeds.json`) upsert as `sourceType=agency`.
+8. **Mexico** — curated northern + jaguar / black-bear range papers (`data/publications/mexico-local-news.json`): Sonora, Chihuahua, Coahuila, Nuevo León, Baja California / Sur, then Sinaloa, Durango, Tamaulipas, and Pacific / southeast jaguar states. Town-center geocode, `country=MX`. Spanish matcher: *oso*, *puma*, *león de montaña* + *ataque* / *atacó* / *agredió* / *embistió* (not *maullido*). Moose are N/A; elk is rare.
+9. **Agency / park feeds** — official RSS/newsroom pages (`data/publications/agency-feeds.json`) upsert as `sourceType=agency`.
 
 ### How the directory was built
 
@@ -170,16 +172,18 @@ npm run crawl:publications -- --state=MT --since=2018-01-01 --backfill
 npm run crawl:publications -- --states=IL,MA,OH,IN --limit=400 --concurrency=12 --since=1990-01-01
 npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN --unstated
 npm run crawl:canada
+npm run crawl:mexico
 npm run crawl:cbc
 npm run crawl:agencies
+npm run crawl:west-backfill
 npm run crawl:backfill-wildlife
 npm run crawl:publications:dry -- --limit=40 --state=AK
-# flags: --limit=N  --state=XX  --states=IL,MA  --country=CA  --wildlife  --agencies
+# flags: --limit=N  --state=XX  --states=IL,MA  --country=CA|MX  --wildlife  --west  --agencies
 #         --unstated  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
 ```
 
 - **Incremental (default):** RSS + recent sitemap URLs; skips publications crawled in the last ~18 hours.
-- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: skips `lastBackfillAt` (not the first-pass `lastCrawledAt`), so wildlife-state archives can be walked without re-doing the RSS pass. `--wildlife` limits to AK/MT/WY/ID/CO/WA/OR/CA/NM/UT/NV/ME/MN/WI/MI/NH/VT.
+- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: skips `lastBackfillAt` (not the first-pass `lastCrawledAt`), so wildlife-state archives can be walked without re-doing the RSS pass. `--west` is the deep western core only (AK, MT, WY, ID, CO). `--wildlife` is the wider set (those plus WA/OR/CA/NM/UT/NV/ME/MN/WI/MI/NH/VT).
 - **Legal / ethics:** `User-Agent` identifies the project; `robots.txt` is fetched and honored (including `Crawl-delay`); ≥1.5s between requests to the same host; no credential stuffing; no paywall bypass; no full-text warehouse.
 - **Precision:** matcher tests live in `npm run test:publications`.
 
@@ -192,6 +196,23 @@ Browse the directory at `/publications` (country + agency filters). Live coverag
 Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. The job uses concurrency 6 and documents rate limits in the step summary. Do not treat the runner’s SQLite file as production.
 
 `npm run ingest` (Google News + optional Facebook) is unchanged and still the national daily path.
+
+### Fatal / injury digest
+
+A weekly (or on-demand) markdown digest of **new fatal and injury incidents** since the last run. No email vendor — the output is a file you can paste, attach, or publish.
+
+```bash
+npm run digest                 # write data/digests/latest.md + dated file
+npm run digest -- --stdout     # print only
+npm run digest -- --days=14    # first-run lookback if no cursor
+npm run digest -- --since=2026-09-01
+```
+
+- Cursor: `data/digest-cursor.json` (last run timestamp + incident ids).
+- HTTP: `GET /api/digest` (markdown with `?format=md`). Authorized `GET`/`POST` (same `INGEST_SECRET` / `CRON_SECRET`) writes the artifact. Vercel Cron hits `/api/digest` Mondays 14:00 UTC.
+- GitHub Action `.github/workflows/digest.yml` — weekly Monday 14:00 UTC + manual dispatch; uploads the markdown as a workflow artifact and prints it in the job summary.
+
+Each row lists species, place, date, and the source link. Confirm with the original story. Weingarten historical rows only appear if they were *newly inserted* after the cursor.
 
 ## Scripts
 
@@ -211,6 +232,10 @@ Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. 
 | `npm run crawl:progress:export` | Write `crawl-progress.json` + `local-paper-incidents.json` |
 | `npm run crawl:progress:apply` | Restore lastCrawledAt / incidents onto a fresh seed |
 | `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
+| `npm run crawl:mexico` | Mexican local / regional papers (Spanish matcher, town-center pins) |
+| `npm run crawl:west-backfill` | Deep archive backfill for AK / MT / WY / ID / CO only |
+| `npm run digest` | Weekly fatal / injury markdown digest |
+| `npm run publications:build-mexico` | Rebuild `mexico-local-news.json` (curated + optional Wikidata) |
 | `npm run crawl:cbc` | CBC / Radio-Canada regional (HTTP/1.1 + listing scrape) |
 | `npm run collapse:reprints` | Merge reprint-farm clones already in the DB |
 | `npm run test:publications` | Keyword matcher + event-dedupe unit checks |

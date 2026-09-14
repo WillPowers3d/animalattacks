@@ -1,23 +1,43 @@
 import type { MatchResult } from "./types";
 import type { Species } from "../types";
 
+/** ASCII `\b` does not treat ó/á as word characters, so Spanish verbs need letter edges. */
+const L = String.raw`(?:^|[^\p{L}])`;
+const R = String.raw`(?=[^\p{L}]|$)`;
+
 const ANIMAL_PATTERNS: { species: Species; re: RegExp; term: string }[] = [
   {
     species: "bear",
     term: "bear",
-    re: /\b(grizzly|grizzli|brown bear|black bear|polar bear|bears?|ours(?:e|es|on|ons)?|ours polaire)\b/i,
+    re: new RegExp(
+      `${L}(grizzly|grizzli|brown bear|black bear|polar bear|bears?|ours(?:e|es|on|ons)?|ours polaire|osos?(?: negro| pardo| grizzly)?|osas?)${R}`,
+      "iu",
+    ),
   },
-  { species: "moose", term: "moose", re: /\b(moose|orignal(?:s|aux)?)\b/i },
-  { species: "elk", term: "elk", re: /\b(elk|wapiti(?:s)?)\b/i },
+  {
+    species: "moose",
+    term: "moose",
+    re: new RegExp(`${L}(moose|orignal(?:s|aux)?)${R}`, "iu"),
+  },
+  {
+    species: "elk",
+    term: "elk",
+    re: new RegExp(`${L}(elk|wapiti(?:s)?|uapit[ií]s?)${R}`, "iu"),
+  },
   {
     species: "mountain_lion",
     term: "mountain lion",
-    re: /\b(mountain lions?|cougars?|couguars?|pumas?)\b/i,
+    re: new RegExp(
+      `${L}(mountain lions?|cougars?|couguars?|pumas?|le[oó]n(?:es)? de monta[nñ]a)${R}`,
+      "iu",
+    ),
   },
 ];
 
-const ATTACK_RE =
-  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed|attaques?|attaqu[ée]e?s?|agress[ée]e?s?|mutil[ée]e?s?)\b/i;
+const ATTACK_RE = new RegExp(
+  `${L}(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed|attaques?|attaqu[ée]e?s?|agress[ée]e?s?|mutil[ée]e?s?|ataques?|atac[oó]|atacaron|atacad[oa]s?|agredi[oó]|agredieron|agredid[oa]s?|embisti[oó]|embistieron|embestidas?)${R}`,
+  "iu",
+);
 
 /** "bear charged a hiker" is an attack; "man charged with poaching elk" is not. */
 const ANIMAL_CHARGED_RE =
@@ -40,7 +60,7 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "search-query-echo" };
   }
   if (
-    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?)\b/i.test(
+    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?|pumas? (unam|cu|felinos)|unam pumas|club pumas|los pumas (ganan|vencen|derrotan|empatan|caen|golearon)|pumas vs|vs\.? pumas|ataque de los pumas)\b/i.test(
       text,
     )
   ) {
@@ -127,7 +147,7 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
 }
 
 const SEARCH_QUERY_ONLY_RE =
-  /^(bear attack|bear mauling|moose attack|elk attack|mountain lion attack|cougar attack|cougar mauling)$/i;
+  /^(bear attack|bear mauling|moose attack|elk attack|mountain lion attack|cougar attack|cougar mauling|ataque oso|oso atacó|ataque puma|puma atacó|león de montaña|oso negro ataque)$/i;
 
 /** Site-search pages often echo the query as the only "snippet" — that is not a match. */
 export function snippetIsSearchQueryEcho(snippet: string): boolean {
@@ -152,6 +172,16 @@ export const SEARCH_QUERIES_CA = [
   "attaque orignal",
   "attaque couguar",
   "moose attack",
+];
+
+/** Mexican local papers — Spanish attack verbs; moose N/A; elk rare. */
+export const SEARCH_QUERIES_MX = [
+  "ataque oso",
+  "oso atacó",
+  "ataque puma",
+  "puma atacó",
+  "león de montaña",
+  "oso negro ataque",
 ];
 
 export function urlLooksLikeMatch(url: string): boolean {

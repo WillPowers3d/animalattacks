@@ -16,6 +16,8 @@ export const NEWS_QUERIES = [
   { q: "elk attack OR elk gores visitor park", species: "elk" as const },
   { q: "moose attack Alaska OR Colorado OR Canada", species: "moose" as const },
   { q: "moose tramples OR moose gores", species: "moose" as const },
+  { q: "ataque oso México OR Sonora OR Chihuahua OR Coahuila", species: "bear" as const },
+  { q: "ataque puma México OR \"león de montaña\" OR Nuevo León", species: "mountain_lion" as const },
 ];
 
 function rssUrl(query: string) {

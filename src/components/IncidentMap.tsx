@@ -13,7 +13,7 @@ import {
 } from "@/lib/species-style";
 import { SEVERITY_LABELS, type Severity } from "@/lib/types";
 
-export type MapCountry = "ALL" | "US" | "CA";
+export type MapCountry = "ALL" | "US" | "CA" | "MX";
 
 export type MapPoint = {
   slug: string;
@@ -127,13 +127,14 @@ export function IncidentMap({
   );
 
   const countryCounts = useMemo(() => {
-    const next = { ALL: 0, US: 0, CA: 0 };
+    const next = { ALL: 0, US: 0, CA: 0, MX: 0 };
     for (const p of points) {
       if (hiddenSpecies.includes(p.species)) continue;
       next.ALL += 1;
       const c = (p.country ?? "").toUpperCase();
       if (c === "US") next.US += 1;
       if (c === "CA") next.CA += 1;
+      if (c === "MX") next.MX += 1;
     }
     return next;
   }, [points, hiddenSpecies]);
@@ -323,6 +324,7 @@ export function IncidentMap({
                       ["ALL", "All", countryCounts.ALL],
                       ["US", "US", countryCounts.US],
                       ["CA", "Canada", countryCounts.CA],
+                      ["MX", "Mexico", countryCounts.MX],
                     ] as const
                   ).map(([id, label, n]) => {
                     const on = country === id;

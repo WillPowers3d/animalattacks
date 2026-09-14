@@ -7,7 +7,7 @@ import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArtic
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
 import { matchAnimalAttack } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
-import { BACKFILL_STATES, LEFTOVER_STATES, wildlifeRank } from "./states";
+import { BACKFILL_STATES, LEFTOVER_STATES, WESTERN_CORE_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
 import { originOf } from "./domain";
 import type { ArticleCandidate } from "./types";
@@ -25,6 +25,8 @@ export type CrawlOptions = {
   countries?: string[];
   /** Wildlife-dense US states for archive backfill. */
   wildlife?: boolean;
+  /** Deep western core only: AK, MT, WY, ID, CO. */
+  west?: boolean;
   /** Official wildlife-agency / park press feeds only. */
   agencies?: boolean;
   /** CBC / Radio-Canada regional rows only. */
@@ -138,6 +140,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
         ...(opts.states ?? []),
         opts.state,
         ...(opts.wildlife ? BACKFILL_STATES : []),
+        ...(opts.west ? WESTERN_CORE_STATES : []),
       ]
         .filter((s): s is string => Boolean(s))
         .map((s) => s.toUpperCase()),
@@ -261,7 +264,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
         since: pub.lastCrawledAt ? since : null,
         minDelayMs,
         signal: ctrl.signal,
-        lite: Boolean(opts.lite) || pub.country === "CA",
+        lite: Boolean(opts.lite) || pub.country === "CA" || pub.country === "MX",
       });
     } finally {
       clearTimeout(timer);
@@ -438,7 +441,7 @@ async function crawlOne(
     if (opts.mode === "backfill") {
       const searchItems = await fetchSearchArticles(pub.homepageUrl, rules, {
         minDelayMs: delay,
-        maxQueries: pub.country === "CA" ? 4 : 3,
+        maxQueries: pub.country === "CA" || pub.country === "MX" ? 4 : 3,
         signal: opts.signal,
         country: pub.country,
       });

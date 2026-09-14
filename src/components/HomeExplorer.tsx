@@ -12,7 +12,7 @@ import type { Species } from "@/lib/types";
 
 function countryFromQuery(query: IncidentQuery): MapCountry {
   const c = (query.country ?? "").toUpperCase();
-  if (c === "US" || c === "CA") return c;
+  if (c === "US" || c === "CA" || c === "MX") return c;
   return "ALL";
 }
 

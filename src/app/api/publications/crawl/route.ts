@@ -36,6 +36,7 @@ export async function POST(req: Request) {
           .filter(Boolean)
       : undefined,
     wildlife: url.searchParams.get("wildlife") === "1",
+    west: url.searchParams.get("west") === "1",
     agencies: url.searchParams.get("agencies") === "1",
     limit: url.searchParams.get("limit") ? Number(url.searchParams.get("limit")) : 40,
     mode: url.searchParams.get("backfill") === "1" ? "backfill" : "incremental",

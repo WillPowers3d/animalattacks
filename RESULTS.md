@@ -11,6 +11,7 @@ Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The run
 | Unique US publications (`data/publications/us-local-news.json.gz`) | **14,847** |
 | Canadian local / digital papers (`data/publications/canada-local-news.json`) | **383** (curated + Wikidata/Wikipedia; BC / AB / SK / MB / ON north / YT / NT / NU prioritized) |
 | Canada priority extras (`data/publications/canada-priority-extra.json`) | **CBC regional + Radio-Canada + NNSL territories + northern weeklies** (path-qualified so they do not collide with national hosts) |
+| Mexican local / regional papers (`data/publications/mexico-local-news.json`) | **199** (99 curated northern + jaguar / black-bear range, plus Wikidata; ISO 3166-2:MX codes so BCN ≠ BC) |
 | Agency / park press feeds (`data/publications/agency-feeds.json`) | **49** (western state agencies, NPS parks, provincial newsrooms) |
 | Newspapers (default crawl set) | **11,377** US + Canadian newspapers |
 | TV / radio / broadcast (stored, skipped unless `--all-tiers`) | 3,470 |
@@ -49,11 +50,11 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
-**This continuation** does **not** re-scan the US first pass. It adds three new workstreams:
+**This continuation** does **not** re-scan the US first pass or re-litigate the Canada directory. New workstreams:
 
-1. **Wildlife-state archive backfill** (`--backfill --wildlife`) on AK, MT, WY, ID, CO, WA, OR, CA, NM, UT, NV, ME, MN, WI, MI, NH, VT — uses `lastBackfillAt`, so RSS-already-scanned papers still get sitemaps / site search.
-2. **Canadian local news** directory + crawl (`--country=CA`) with town-center geocode and `country=CA` pins.
-3. **Agency / park press feeds** (`--agencies`) stored as `sourceType=agency`.
+1. **Mexico coverage** — curated local/regional directory + Spanish matcher (`oso` / `puma` / `león de montaña` + `ataque` / `atacó` / `agredió` / `embistió`) + town-center geocode + `country=MX` + All/US/Canada/Mexico map filter.
+2. **Fatal / injury digest** — `npm run digest` / `GET /api/digest` / weekly GitHub Action. Markdown artifact of new serious incidents since the last run.
+3. **Deep western US archive backfill** — `--west --backfill` on **AK, MT, WY, ID, CO only** (skipped in PR #4). High-precision matcher; dedupe against existing incidents.
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -70,6 +71,15 @@ npm run crawl:waves -- --hours=3 --batch=250 --concurrency=10 --wildlife --backf
 
 # Canadian local papers (RSS + site-search; skips heavy sitemaps)
 npm run crawl:canada
+
+# Mexican local / regional papers (Spanish matcher; town-center pins)
+npm run crawl:mexico
+
+# Deep western US archives only (AK, MT, WY, ID, CO)
+npm run crawl:west-backfill
+
+# Fatal / injury markdown digest
+npm run digest
 
 # Official agency / park feeds
 npm run crawl:agencies

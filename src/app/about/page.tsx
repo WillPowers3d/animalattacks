@@ -77,21 +77,28 @@ export default function AboutPage() {
         <h2 className="font-display text-xl text-kraft-200">Local newspaper directory</h2>
         <p className="mt-2">
           In addition to Google News RSS, the site keeps a first-class{" "}
-          <a href="/publications">US and Canadian local-news publication table</a> seeded from open
-          directories (Wikidata, Wikipedia state newspaper lists, academic local-outlet datasets)
-          plus a curated Canadian list for BC, Alberta, Saskatchewan, Manitoba, northern Ontario,
-          Yukon, NWT, and Nunavut. <code>npm run crawl:publications</code> scans RSS, sitemaps, and
-          site-search pages for bear / moose / elk / mountain-lion (cougar, puma) reports that also
-          use an attack term (attack, mauling, charging, etc.). Matching rows become Incidents with
-          title, URL, and a short snippet only — never a full article body. If the story has no
-          precise place, the map uses the publication’s town-center coordinates. Robots.txt is
-          respected; the crawler is polite and resumable, not a claim that every town has been fully
-          archived.
+          <a href="/publications">US, Canadian, and Mexican local-news publication table</a> seeded
+          from open directories (Wikidata, Wikipedia state newspaper lists, academic local-outlet
+          datasets) plus a curated Canadian list for BC, Alberta, Saskatchewan, Manitoba, northern
+          Ontario, Yukon, NWT, and Nunavut, and a curated Mexican list for Sonora, Chihuahua,
+          Coahuila, Nuevo León, Baja, and jaguar / black-bear range states.{" "}
+          <code>npm run crawl:publications</code> scans RSS, sitemaps, and site-search pages for
+          bear / moose / elk / mountain-lion (cougar, puma) reports that also use an attack term
+          (attack, mauling, charging, ataque, atacó, agredió, embistió). Matching rows become
+          Incidents with title, URL, and a short snippet only — never a full article body. If the
+          story has no precise place, the map uses the publication’s town-center coordinates.
+          Robots.txt is respected; the crawler is polite and resumable, not a claim that every town
+          has been fully archived.
         </p>
         <p className="mt-2">
           Archive backfill (<code>--backfill</code>) walks deeper sitemaps and site search after the
           first RSS pass. Official wildlife-agency and park press feeds are stored with{" "}
           <code>sourceType=agency</code>. Live counts live on the <a href="/data">Data</a> page.
+        </p>
+        <p className="mt-2">
+          <code>npm run digest</code> (or <code>GET /api/digest</code>) writes a markdown digest of
+          new fatal and injury incidents since the last run. A weekly GitHub Action uploads that
+          file as an artifact — no email vendor.
         </p>
       </section>
 

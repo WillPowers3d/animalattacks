@@ -43,7 +43,8 @@ Repo secret: the same `DATABASE_URL`.
 | Workflow | When |
 | --- | --- |
 | `.github/workflows/ingest.yml` | Daily 12:00 UTC + manual dispatch |
-| `.github/workflows/crawl-publications.yml` | Daily incremental 13:30 UTC; weekly Sunday backfill; manual `country=CA`, `wildlife`, `agencies` |
+| `.github/workflows/crawl-publications.yml` | Daily incremental 13:30 UTC; weekly Sunday backfill; manual `country=CA` / `MX`, `wildlife`, `west`, `agencies` |
+| `.github/workflows/digest.yml` | Weekly Monday 14:00 UTC fatal / injury markdown digest + artifact |
 
 Vercel Cron is a short serverless burst. Use Actions (or a laptop) for `--backfill` / `npm run crawl:canada` / `npm run crawl:cbc`.
 
@@ -52,5 +53,5 @@ Vercel Cron is a short serverless burst. Use Actions (or a laptop) for `--backfi
 - [ ] Postgres `DATABASE_URL` on Vercel **and** GitHub Actions
 - [ ] `CRON_SECRET` on Vercel
 - [ ] Provider flipped + `prisma db push` + `db:seed` against that database
-- [ ] Open `/` (map + US/Canada toggle) and `/data` (last-crawl timestamp)
+- [ ] Open `/` (map + All/US/Canada/Mexico toggle) and `/data` (last-crawl timestamp + MX stats)
 - [ ] Optional: `npm run crawl:cbc` then `npm run crawl:progress:export` to commit new unique incidents

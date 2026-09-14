@@ -70,10 +70,10 @@ export default async function PublicationsPage({
         <p className="stamp text-[10px] text-rust-400">Expandable directory</p>
         <h1 className="font-display text-3xl text-kraft-200">Local news & agency publications</h1>
         <p className="mt-2 max-w-3xl text-sm text-moss-200">
-          US and Canadian local / small-town news sites plus official wildlife-agency and park press
-          feeds. The crawler scans RSS, sitemaps, and site search for bear / moose / elk /
-          mountain-lion attack reports and stores titles, URLs, and short snippets only. Filter
-          country=CA or tier=agency to isolate the new directories.
+          US, Canadian, and Mexican local / small-town news sites plus official wildlife-agency and
+          park press feeds. The crawler scans RSS, sitemaps, and site search for bear / moose / elk /
+          mountain-lion (puma) attack reports and stores titles, URLs, and short snippets only.
+          Filter country=CA, country=MX, or tier=agency to isolate the directories.
         </p>
       </section>
 
@@ -90,6 +90,7 @@ export default async function PublicationsPage({
           <option value="">All countries</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
+          <option value="MX">Mexico</option>
         </select>
         <select name="tier" defaultValue={tier} className="field-input sm:w-40">
           <option value="">All tiers</option>

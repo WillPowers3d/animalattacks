@@ -79,6 +79,14 @@ export const NATIONAL_OR_JUNK_HOSTS = new Set([
   "macleans.ca",
   "thewalrus.ca",
   "bnnbloomberg.ca",
+  "eluniversal.com.mx",
+  "excelsior.com.mx",
+  "reforma.com",
+  "milenio.com",
+  "jornada.com.mx",
+  "proceso.com.mx",
+  "televisa.com",
+  "tvazteca.com",
 ]);
 
 const JUNK_SUFFIXES = [

@@ -23,11 +23,15 @@ on:
         type: string
         default: ""
       country:
-        description: "Optional country filter (US, CA, or US,CA)"
+        description: "Optional country filter (US, CA, MX, or US,CA,MX)"
         type: string
         default: ""
       wildlife:
         description: "Limit to wildlife-dense US states"
+        type: boolean
+        default: false
+      west:
+        description: "Deep western core only (AK, MT, WY, ID, CO)"
         type: boolean
         default: false
       agencies:
@@ -85,6 +89,7 @@ jobs:
           STATE="${{ github.event.inputs.state }}"
           COUNTRY="${{ github.event.inputs.country }}"
           WILDLIFE="${{ github.event.inputs.wildlife }}"
+          WEST="${{ github.event.inputs.west }}"
           AGENCIES="${{ github.event.inputs.agencies }}"
           if [ "${{ github.event_name }}" = "schedule" ]; then
             if [ "${{ github.event.schedule }}" = "15 7 * * 0" ]; then
@@ -98,6 +103,7 @@ jobs:
           if [ -n "$STATE" ]; then ARGS="$ARGS --state=$STATE"; fi
           if [ -n "$COUNTRY" ]; then ARGS="$ARGS --country=$COUNTRY"; fi
           if [ "$WILDLIFE" = "true" ]; then ARGS="$ARGS --wildlife"; fi
+          if [ "$WEST" = "true" ]; then ARGS="$ARGS --west"; fi
           if [ "$AGENCIES" = "true" ]; then ARGS="$ARGS --agencies"; fi
           if [ "$BACKFILL" = "true" ]; then ARGS="$ARGS --backfill"; fi
           if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry-run"; fi

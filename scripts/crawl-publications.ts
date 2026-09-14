@@ -19,6 +19,7 @@ const force = Boolean(flag("force"));
 const lite = Boolean(flag("lite"));
 const unstated = Boolean(flag("unstated"));
 const wildlife = Boolean(flag("wildlife"));
+const west = Boolean(flag("west"));
 const agencies = Boolean(flag("agencies"));
 const cbc = Boolean(flag("cbc"));
 const newspapersOnly = agencies ? false : flag("all-tiers") ? false : true;
@@ -43,6 +44,7 @@ runPublicationCrawl({
   countries,
   unstated,
   wildlife,
+  west,
   agencies,
   cbc,
   since,

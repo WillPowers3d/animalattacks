@@ -16,6 +16,8 @@ export type SessionReport = {
   incidentsTotal: number;
   canadaPublications?: number;
   canadaScanned?: number;
+  mexicoPublications?: number;
+  mexicoScanned?: number;
   agencyPublications?: number;
   agencyScanned?: number;
   incidentsByCountry?: Record<string, number>;
@@ -66,6 +68,14 @@ export async function writeResultsReport(): Promise<SessionReport> {
     canadaPubLinked,
     canadaIncByProv,
     canadaRecent,
+    mexicoPubs,
+    mexicoScanned,
+    mexicoPubStats,
+    mexicoScannedByState,
+    mexicoIncidents,
+    mexicoPubLinked,
+    mexicoIncByState,
+    mexicoRecent,
     agencyPubs,
     agencyScanned,
     byCountry,
@@ -122,6 +132,32 @@ export async function writeResultsReport(): Promise<SessionReport> {
     }),
     prisma.incident.findMany({
       where: { country: "CA", publicationId: { not: null } },
+      orderBy: { createdAt: "desc" },
+      take: 18,
+      select: { title: true, stateProvince: true, species: true, severity: true, city: true },
+    }),
+    prisma.publication.count({ where: { country: "MX" } }),
+    prisma.publication.count({ where: { country: "MX", lastCrawledAt: { not: null } } }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "MX" },
+      _count: { _all: true },
+      _sum: { matchCount: true, scannedArticleCount: true },
+    }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "MX", lastCrawledAt: { not: null } },
+      _count: { _all: true },
+    }),
+    prisma.incident.count({ where: { country: "MX" } }),
+    prisma.incident.count({ where: { country: "MX", publicationId: { not: null } } }),
+    prisma.incident.groupBy({
+      by: ["stateProvince"],
+      where: { country: "MX" },
+      _count: { _all: true },
+    }),
+    prisma.incident.findMany({
+      where: { country: "MX", publicationId: { not: null } },
       orderBy: { createdAt: "desc" },
       take: 18,
       select: { title: true, stateProvince: true, species: true, severity: true, city: true },
@@ -187,7 +223,7 @@ export async function writeResultsReport(): Promise<SessionReport> {
   const snapshot = [
     "## Latest snapshot",
     "",
-    `Generated **${new Date().toISOString()}**. Combined with the committed first-pass baseline plus this VM’s Canada / agency / wildlife-backfill wave.`,
+    `Generated **${new Date().toISOString()}**. Combined with the committed first-pass baseline plus this VM’s Mexico / digest / western-core backfill wave.`,
     "",
     "| Metric | Count |",
     "| --- | ---: |",
@@ -204,6 +240,8 @@ export async function writeResultsReport(): Promise<SessionReport> {
     `| Incidents from local / agency feeds (combined) | **${mergedLocal.toLocaleString()}** |`,
     `| Canada publications (seeded / scanned) | **${canadaPubs} / ${canadaScanned}** |`,
     `| Canada incidents (all / publication-linked) | **${canadaIncidents} / ${canadaPubLinked}** |`,
+    `| Mexico publications (seeded / scanned) | **${mexicoPubs} / ${mexicoScanned}** |`,
+    `| Mexico incidents (all / publication-linked) | **${mexicoIncidents} / ${mexicoPubLinked}** |`,
     `| Agency feeds (seeded / scanned) | ${agencyPubs} / ${agencyScanned} |`,
     `| Incidents total | ${Math.max(prior?.incidentsTotal ?? 0, totalInc).toLocaleString()} |`,
     "",
@@ -242,6 +280,69 @@ export async function writeResultsReport(): Promise<SessionReport> {
     "",
     ...(canadaRecent.length
       ? canadaRecent.map(
+          (inc) =>
+            `- ${inc.title} (${inc.species}${inc.severity ? `, ${inc.severity}` : ""}${inc.city ? `, ${inc.city}` : ""}${inc.stateProvince ? `, ${inc.stateProvince}` : ""})`,
+        )
+      : ["- None in this database yet."]),
+    "",
+    "### Mexico coverage (new)",
+    "",
+    "Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then SIN / DUR / TAM and Pacific / southeast jaguar states. Moose N/A; elk rare. Spanish matcher: oso / puma / león de montaña + atacó / ataque / agredió / embistió.",
+    "",
+    "| State | Seeded | Scanned | Articles | Matches | Incidents |",
+    "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ...(() => {
+      const incMap = new Map(mexicoIncByState.map((r) => [r.stateProvince ?? "??", r._count._all]));
+      const scannedMap = new Map(mexicoScannedByState.map((r) => [r.state ?? "??", r._count._all]));
+      const order = [
+        "SON",
+        "CHH",
+        "COA",
+        "NLE",
+        "BCN",
+        "BCS",
+        "SIN",
+        "DUR",
+        "TAM",
+        "JAL",
+        "NAY",
+        "MIC",
+        "GRO",
+        "OAX",
+        "CHP",
+        "CAM",
+        "ROO",
+        "YUC",
+        "ZAC",
+        "SLP",
+        "CMX",
+        "??",
+      ];
+      const rows = mexicoPubStats.map((p) => ({
+        state: p.state ?? "??",
+        pubs: p._count._all,
+        scanned: scannedMap.get(p.state ?? "??") ?? 0,
+        articles: p._sum.scannedArticleCount ?? 0,
+        matches: p._sum.matchCount ?? 0,
+        incidents: incMap.get(p.state ?? "??") ?? 0,
+      }));
+      rows.sort((a, b) => {
+        const ai = order.indexOf(a.state);
+        const bi = order.indexOf(b.state);
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+      });
+      return rows.map(
+        (r) =>
+          `| ${r.state} ${regionName(r.state) || ""} | ${r.pubs} | ${r.scanned} | ${r.articles} | ${r.matches} | ${r.incidents} |`,
+      );
+    })(),
+    "",
+    `**Mexico totals:** ${mexicoPubs} pubs seeded, ${mexicoScanned} scanned, ${mexicoPubStats.reduce((n, p) => n + (p._sum.scannedArticleCount ?? 0), 0)} articles, ${mexicoPubStats.reduce((n, p) => n + (p._sum.matchCount ?? 0), 0)} matcher hits, ${mexicoPubLinked} publication-linked incidents (${mexicoIncidents} incidents with country=MX).`,
+    "",
+    "#### Recent / best Mexico finds",
+    "",
+    ...(mexicoRecent.length
+      ? mexicoRecent.map(
           (inc) =>
             `- ${inc.title} (${inc.species}${inc.severity ? `, ${inc.severity}` : ""}${inc.city ? `, ${inc.city}` : ""}${inc.stateProvince ? `, ${inc.stateProvince}` : ""})`,
         )
@@ -297,6 +398,8 @@ export async function writeResultsReport(): Promise<SessionReport> {
     incidentsTotal: Math.max(prior?.incidentsTotal ?? 0, totalInc),
     canadaPublications: canadaPubs,
     canadaScanned,
+    mexicoPublications: mexicoPubs,
+    mexicoScanned,
     agencyPublications: agencyPubs,
     agencyScanned,
     incidentsByCountry: countryMap,
