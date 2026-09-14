@@ -94,7 +94,7 @@ async function loadRobots(
   const res = await politeFetch(`${origin}/robots.txt`, {
     accept: "text/plain,*/*",
     minDelayMs,
-    timeoutMs: 8000,
+    timeoutMs: isCbcFamilyHost(homepageUrl) ? 4000 : 8000,
     signal,
   });
   if (!res.ok || !res.text) return emptyRobots(res.status === 404 ? "allow" : "unknown");
@@ -375,9 +375,8 @@ async function crawlOne(
 
     const discovered = await discoverFeeds(pub.homepageUrl, pub.rssUrl, rules, homepageHtml);
     if (isCbcFamilyHost(pub.homepageUrl) && pub.rssUrl) {
-      for (const alt of cbcAlternateFeedUrls(pub.rssUrl)) {
-        if (!discovered.rss.includes(alt)) discovered.rss.push(alt);
-      }
+      const preferred = cbcAlternateFeedUrls(pub.rssUrl);
+      discovered.rss = [...preferred, ...discovered.rss.filter((u) => !preferred.includes(u))];
     }
     const articles = new Map<string, ArticleCandidate>();
 
@@ -446,13 +445,13 @@ async function crawlOne(
       for (const item of searchItems) add(item);
     }
 
-    if (isCbcFamilyHost(pub.homepageUrl)) {
+    if (isCbcFamilyHost(pub.homepageUrl) && articles.size < 12) {
       const listing = await fetchCbcListingArticles(pub.homepageUrl, {
         minDelayMs: delay,
         signal: opts.signal,
       });
       for (const item of listing) add(item);
-      if (opts.mode === "backfill") {
+      if (opts.mode === "backfill" && articles.size < 8) {
         const cbcSearch = await fetchCbcSearchArticles(
           pub.homepageUrl,
           pub.country === "CA"

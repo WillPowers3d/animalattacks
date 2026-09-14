@@ -1,5 +1,6 @@
 import Parser from "rss-parser";
 import { canonicalArticleUrl, originOf } from "./domain";
+import { isCbcFamilyHost } from "./cbc";
 import { extractAlternateFeeds, extractSearchResultLinks, extractSitemapLocs, isSitemapIndex } from "./html";
 import { politeFetch } from "./http";
 import { SEARCH_QUERIES, SEARCH_QUERIES_CA, urlLooksLikeMatch } from "./match";
@@ -104,26 +105,9 @@ export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): P
     const items = await parseRssText(res.text);
     if (items.length) return items;
   }
-  // Last resort: rss-parser's own client (may stall on HTTP/2 hosts).
-  try {
-    const feed = await rssParser.parseURL(feedUrl);
-    const items: ArticleCandidate[] = [];
-    for (const entry of feed.items ?? []) {
-      const url = entry.link ? canonicalArticleUrl(entry.link) : "";
-      const title = (entry.title ?? "").trim();
-      if (!url || !title) continue;
-      items.push({
-        title,
-        url,
-        snippet: (entry.contentSnippet ?? entry.content ?? "").replace(/<[^>]+>/g, " ").slice(0, 400),
-        isoDate: entry.isoDate ?? entry.pubDate ?? null,
-        source: "rss",
-      });
-    }
-    return items;
-  } catch {
-    return [];
-  }
+  // Never use rss-parser's HTTP client on CBC — it negotiates HTTP/2 and can stall.
+  if (isCbcFamilyHost(feedUrl)) return [];
+  return [];
 }
 
 export async function fetchSitemapArticles(

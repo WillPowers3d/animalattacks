@@ -340,7 +340,7 @@ export function sameEvent(a: EventFields, b: EventFields): { match: boolean; rea
     Boolean(place) ||
     titleRegionMatch;
 
-  if (weingartenConflict(a, b) && score < 0.72 && !place) {
+  if (a.sourceType === "ammoland" || b.sourceType === "ammoland") {
     return { match: false, reason: "weingarten-guard", score };
   }
 

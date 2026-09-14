@@ -18,24 +18,31 @@ export function isCbcFamilyHost(urlOrHost: string): boolean {
 
 /** Alternate CBC RSS paths — webfeed often stalls on HTTP/2; cmlink / rss.cbc.ca are HTTP/1.1-friendly. */
 export function cbcAlternateFeedUrls(primary: string): string[] {
-  const out = new Set<string>([primary]);
+  const out: string[] = [];
+  const add = (u: string) => {
+    if (!out.includes(u)) out.push(u);
+  };
   try {
     const u = new URL(primary);
     const slug = u.pathname.split("/").filter(Boolean).pop() ?? "";
-    const region = slug.replace(/^rss-canada-/, "").replace(/^rss-/, "");
+    const region = slug
+      .replace(/^rss-canada-/, "")
+      .replace(/^canada-/, "")
+      .replace(/\.xml$/, "")
+      .replace(/^rss-/, "");
     if (u.hostname.includes("cbc.ca") && region) {
-      out.add(`https://www.cbc.ca/cmlink/rss-canada-${region}`);
-      out.add(`https://rss.cbc.ca/lineup/canada-${region}.xml`);
-      out.add(`https://www.cbc.ca/webfeed/rss/rss-canada-${region}`);
+      add(`https://rss.cbc.ca/lineup/canada-${region}.xml`);
+      add(`https://www.cbc.ca/cmlink/rss-canada-${region}`);
+      add(`https://www.cbc.ca/webfeed/rss/rss-canada-${region}`);
     }
     if (u.hostname.includes("radio-canada.ca")) {
-      out.add(primary.replace("/en-continu", ""));
-      out.add(primary.endsWith("/rss") ? primary : `${primary.replace(/\/$/, "")}/rss`);
+      add(primary.replace("/en-continu", ""));
     }
   } catch {
     /* keep primary */
   }
-  return [...out];
+  add(primary);
+  return out;
 }
 
 export function extractCbcListingArticles(html: string, base: string): ArticleCandidate[] {
@@ -73,7 +80,7 @@ export async function fetchCbcListingArticles(
 ): Promise<ArticleCandidate[]> {
   const res = await politeFetch(homepageUrl, {
     minDelayMs: opts.minDelayMs ?? 1500,
-    timeoutMs: 20000,
+    timeoutMs: 12000,
     forceHttp11: true,
     signal: opts.signal,
   });

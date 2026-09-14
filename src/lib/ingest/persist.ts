@@ -245,17 +245,19 @@ export async function persistOrMerge(
   const existing = await findExistingIncident(inc);
   if (existing) {
     await attachSources(existing.id, inc.sources);
-    if (incomingPlaceIsBetter(existing, inc) && inc.city) {
-      const located = withCoords(inc);
+    const located = withCoords(inc);
+    const placeBetter = incomingPlaceIsBetter(existing, inc) && inc.city;
+    if (placeBetter || inc.publicationId) {
       await prisma.incident.update({
         where: { id: existing.id },
         data: {
-          city: located.city ?? existing.city,
-          stateProvince: located.stateProvince ?? existing.stateProvince,
-          lat: located.lat ?? undefined,
-          lng: located.lng ?? undefined,
+          city: placeBetter ? located.city ?? existing.city : undefined,
+          stateProvince: placeBetter ? located.stateProvince ?? existing.stateProvince : undefined,
+          lat: placeBetter ? located.lat ?? undefined : undefined,
+          lng: placeBetter ? located.lng ?? undefined : undefined,
           occurredAt: existing.occurredAt ?? (located.occurredAt ? new Date(located.occurredAt) : undefined),
           dateDisplay: existing.occurredAt ? undefined : located.dateDisplay ?? undefined,
+          publicationId: inc.publicationId ?? undefined,
         },
       });
     }

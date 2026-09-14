@@ -114,6 +114,27 @@ const cases: Case[] = [
     want: false,
   },
   {
+    name: "do not merge Weingarten year-precision cases",
+    a: {
+      title: "Black bear defense, Walker, LA (2010) — .40 S&W",
+      occurredAt: "2010-01-01",
+      species: "bear",
+      country: "US",
+      city: "Walker",
+      stateProvince: "LA",
+      sourceType: "ammoland",
+    },
+    b: {
+      title: "Grizzly / brown bear defense, WY (2010) — .44 Magnum",
+      occurredAt: "2010-01-01",
+      species: "bear",
+      country: "US",
+      stateProvince: "WY",
+      sourceType: "ammoland",
+    },
+    want: false,
+  },
+  {
     name: "do not merge different species",
     a: { title: "Cougar attack reported outside Squamish, B.C.", species: "mountain_lion", country: "CA" },
     b: { title: "Bear attack reported outside Squamish, B.C.", species: "bear", country: "CA" },

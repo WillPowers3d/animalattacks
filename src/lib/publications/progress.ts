@@ -81,7 +81,7 @@ export async function exportCrawlProgress(): Promise<{
     where: { publicationId: { not: null } },
     include: { sources: true, publication: { select: { domain: true } } },
   });
-  const payload: SeedIncident[] = incidents.map((inc) => ({
+  const payload: (SeedIncident & { publicationDomain?: string | null })[] = incidents.map((inc) => ({
     title: inc.title,
     species: inc.species as SeedIncident["species"],
     subspecies: inc.subspecies,
@@ -104,6 +104,7 @@ export async function exportCrawlProgress(): Promise<{
     defenseOutcome: inc.defenseOutcome as SeedIncident["defenseOutcome"],
     combinationDefense: inc.combinationDefense,
     attribution: inc.attribution,
+    publicationDomain: inc.publication?.domain ?? null,
     sources: inc.sources.map((s) => ({
       url: s.url,
       title: s.title ?? undefined,
@@ -149,12 +150,66 @@ export async function applyCrawlProgress(opts: { log?: boolean } = {}) {
   let incidents = 0;
   const incPath = localIncidentsFilePath();
   if (fs.existsSync(incPath)) {
-    const rows = JSON.parse(fs.readFileSync(incPath, "utf8")) as SeedIncident[];
+    const rows = JSON.parse(fs.readFileSync(incPath, "utf8")) as (SeedIncident & {
+      publicationDomain?: string | null;
+    })[];
+    const domains = [
+      ...new Set(rows.map((r) => r.publicationDomain).filter((d): d is string => Boolean(d))),
+    ];
+    const pubs = domains.length
+      ? await prisma.publication.findMany({
+          where: { domain: { in: domains } },
+          select: { id: true, domain: true },
+        })
+      : [];
+    const byDomain = new Map(pubs.map((p) => [p.domain, p.id]));
     for (const inc of rows) {
-      await persistOrMerge(inc);
+      const publicationId = inc.publicationDomain ? byDomain.get(inc.publicationDomain) : undefined;
+      await persistOrMerge({ ...inc, publicationId });
       incidents += 1;
     }
   }
-  if (opts.log) console.log(`Applied crawl progress for ${applied} domains, ${incidents} local-paper incidents.`);
-  return { applied, incidents };
+  const relinked = await relinkIncidentsToPublications();
+  if (opts.log) {
+    console.log(
+      `Applied crawl progress for ${applied} domains, ${incidents} local-paper incidents, relinked ${relinked}.`,
+    );
+  }
+  return { applied, incidents, relinked };
+}
+
+export async function relinkIncidentsToPublications(): Promise<number> {
+  const pubs = await prisma.publication.findMany({
+    select: { id: true, domain: true, name: true },
+  });
+  const byHost = new Map<string, string>();
+  for (const p of pubs) {
+    const host = p.domain.split("/")[0].replace(/^www\./, "").toLowerCase();
+    if (host && !byHost.has(host)) byHost.set(host, p.id);
+  }
+  const orphans = await prisma.incident.findMany({
+    where: { publicationId: null, sourceType: { in: ["news", "agency"] } },
+    include: { sources: { select: { url: true, publisher: true } } },
+  });
+  let n = 0;
+  for (const inc of orphans) {
+    let pubId: string | undefined;
+    for (const s of inc.sources) {
+      try {
+        const host = new URL(s.url).hostname.replace(/^www\./, "").toLowerCase();
+        pubId = byHost.get(host);
+        if (pubId) break;
+      } catch {
+        /* skip */
+      }
+    }
+    if (!pubId && inc.sources[0]?.publisher) {
+      const named = pubs.find((p) => p.name === inc.sources[0].publisher);
+      pubId = named?.id;
+    }
+    if (!pubId) continue;
+    await prisma.incident.update({ where: { id: inc.id }, data: { publicationId: pubId } });
+    n += 1;
+  }
+  return n;
 }

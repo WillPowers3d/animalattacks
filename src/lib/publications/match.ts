@@ -49,6 +49,13 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
   if (/\b(killed by dogs|wasn['’]t a bear|not a bear that|not bear:)\b/i.test(text)) {
     return { matched: false, species: "other", reason: "not-animal-attack" };
   }
+  if (
+    /\b(cancer diagnosis|the current \| on demand|jimmy fallon|mentioned bear attack|study suggests attacking|says .{0,40}researcher|on demand - cbc)\b/i.test(
+      text,
+    )
+  ) {
+    return { matched: false, species: "other", reason: "commentary-not-incident" };
+  }
 
   if (NEGATIVE_RE.test(text) && !ATTACK_RE.test(text)) {
     return { matched: false, species: "other", reason: "negative-context" };

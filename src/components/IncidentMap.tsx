@@ -321,7 +321,7 @@ export function IncidentMap({
                   {(
                     [
                       ["ALL", "All", countryCounts.ALL],
-                      ["US", "United States", countryCounts.US],
+                      ["US", "US", countryCounts.US],
                       ["CA", "Canada", countryCounts.CA],
                     ] as const
                   ).map(([id, label, n]) => {

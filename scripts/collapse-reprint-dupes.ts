@@ -30,6 +30,7 @@ function keeperScore(row: Row): number {
 async function main() {
   const dry = process.argv.includes("--dry-run");
   const rows = await prisma.incident.findMany({
+    where: { sourceType: { not: "ammoland" } },
     include: { sources: { select: { url: true } } },
   });
   const mapped: Row[] = rows.map((r) => ({

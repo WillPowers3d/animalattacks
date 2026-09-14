@@ -1,3 +1,4 @@
+import { execFile } from "node:child_process";
 import http from "node:http";
 import https from "node:https";
 
@@ -35,6 +36,64 @@ function shouldForceHttp11(url: string, force?: boolean): boolean {
 }
 
 /** Node fetch/undici defaults to HTTP/2; CBC regional RSS stalls on H2 from some runners. */
+export function fetchViaCurl(
+  url: string,
+  opts: { timeoutMs?: number; accept?: string; signal?: AbortSignal } = {},
+): Promise<FetchResult> {
+  const timeoutMs = opts.timeoutMs ?? 15000;
+  const maxTime = Math.max(3, Math.ceil(timeoutMs / 1000));
+  return new Promise((resolve) => {
+    const args = [
+      "-sS",
+      "--http1.1",
+      "-L",
+      "--max-time",
+      String(maxTime),
+      "-A",
+      CRAWLER_UA,
+      "-H",
+      `Accept: ${opts.accept ?? "application/rss+xml,application/xml,text/html,*/*"}`,
+      "-H",
+      "Accept-Language: en-US,en,fr;q=0.8",
+      "-w",
+      "\n__CURLMETA__ %{http_code} %{content_type}",
+      url,
+    ];
+    const child = execFile("curl", args, { maxBuffer: 500_000, timeout: timeoutMs + 1000 }, (err, stdout) => {
+      const text = String(stdout ?? "");
+      const idx = text.lastIndexOf("\n__CURLMETA__ ");
+      const body = idx >= 0 ? text.slice(0, idx) : text;
+      const meta = idx >= 0 ? text.slice(idx + 14).trim() : "";
+      const [codeRaw, ...typeParts] = meta.split(" ");
+      const status = Number(codeRaw);
+      if (!Number.isFinite(status) || status === 0) {
+        resolve({
+          ok: false,
+          status: 0,
+          url,
+          text: "",
+          contentType: "",
+          error: err instanceof Error ? err.message : "curl-failed",
+        });
+        return;
+      }
+      resolve({
+        ok: status >= 200 && status < 300,
+        status,
+        url,
+        text: body.slice(0, 400_000),
+        contentType: typeParts.join(" "),
+        error: err instanceof Error && status >= 400 ? err.message : undefined,
+      });
+    });
+    const onAbort = () => child.kill("SIGTERM");
+    opts.signal?.addEventListener("abort", onAbort, { once: true });
+    child.on("error", (err) => {
+      resolve({ ok: false, status: 0, url, text: "", contentType: "", error: err.message });
+    });
+  });
+}
+
 export function fetchHttp11(
   url: string,
   opts: { timeoutMs?: number; accept?: string; signal?: AbortSignal; redirects?: number } = {},
@@ -56,7 +115,16 @@ export function fetchHttp11(
       return;
     }
     const lib = parsed.protocol === "http:" ? http : https;
-    const req = lib.request(
+    let req: http.ClientRequest;
+    const hardTimeout = setTimeout(() => {
+      req?.destroy();
+      finish({ ok: false, status: 0, url, text: "", contentType: "", error: "http1.1-timeout" });
+    }, timeoutMs);
+    const done = (result: FetchResult) => {
+      clearTimeout(hardTimeout);
+      finish(result);
+    };
+    req = lib.request(
       {
         protocol: parsed.protocol,
         hostname: parsed.hostname,
@@ -64,6 +132,7 @@ export function fetchHttp11(
         path: `${parsed.pathname}${parsed.search}`,
         method: "GET",
         timeout: timeoutMs,
+        family: 4,
         headers: {
           Host: parsed.host,
           "User-Agent": CRAWLER_UA,
@@ -80,7 +149,7 @@ export function fetchHttp11(
         if (status >= 300 && status < 400 && location && redirects < 5) {
           const next = new URL(location, url).toString();
           res.resume();
-          void fetchHttp11(next, { ...opts, redirects: redirects + 1 }).then(finish);
+          void fetchHttp11(next, { ...opts, redirects: redirects + 1 }).then(done);
           return;
         }
         const chunks: Buffer[] = [];
@@ -92,7 +161,7 @@ export function fetchHttp11(
         });
         res.on("end", () => {
           const text = Buffer.concat(chunks).toString("utf8").slice(0, 400_000);
-          finish({
+          done({
             ok: status >= 200 && status < 300,
             status,
             url,
@@ -101,7 +170,7 @@ export function fetchHttp11(
           });
         });
         res.on("error", (err) => {
-          finish({
+          done({
             ok: false,
             status,
             url,
@@ -114,15 +183,15 @@ export function fetchHttp11(
     );
     const onAbort = () => {
       req.destroy();
-      finish({ ok: false, status: 0, url, text: "", contentType: "", error: "aborted" });
+      done({ ok: false, status: 0, url, text: "", contentType: "", error: "aborted" });
     };
     opts.signal?.addEventListener("abort", onAbort, { once: true });
     req.on("timeout", () => {
       req.destroy();
-      finish({ ok: false, status: 0, url, text: "", contentType: "", error: "http1.1-timeout" });
+      done({ ok: false, status: 0, url, text: "", contentType: "", error: "http1.1-timeout" });
     });
     req.on("error", (err) => {
-      finish({
+      done({
         ok: false,
         status: 0,
         url,
@@ -161,12 +230,17 @@ export async function politeFetch(
 
   const preferHttp11 = shouldForceHttp11(url, opts.forceHttp11);
   if (preferHttp11) {
-    const http11 = await fetchHttp11(url, {
-      timeoutMs: Math.max(timeoutMs, 18000),
+    const viaCurl = await fetchViaCurl(url, {
+      timeoutMs: Math.max(timeoutMs, 15000),
       accept: opts.accept,
       signal: opts.signal,
     });
-    if (http11.ok || (http11.status > 0 && http11.status !== 0)) return http11;
+    if (viaCurl.ok || viaCurl.status > 0) return viaCurl;
+    return fetchHttp11(url, {
+      timeoutMs: Math.min(timeoutMs, 8000),
+      accept: opts.accept,
+      signal: opts.signal,
+    });
   }
 
   let last: FetchResult = {
