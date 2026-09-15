@@ -213,6 +213,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       if (/^\?{2,}$/.test(p.name.trim())) return false;
       if (/\.(tw|ru|cn|jp|kr)$/i.test(p.domain)) return false;
       if (p.state && exclude.has(p.state)) return false;
+      if (opts.west && mode === "backfill" && p.lastBackfillAt && !opts.force) return false;
       const stamp = mode === "backfill" ? p.lastBackfillAt : p.lastCrawledAt;
       return opts.force || !cutoff || !stamp || stamp < cutoff;
     })

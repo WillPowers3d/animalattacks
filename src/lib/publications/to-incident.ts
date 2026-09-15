@@ -174,7 +174,11 @@ export function articleToIncident(
     stateFromArticle = null;
   }
   if (!stateFromArticle) {
-    for (const [re, abbr] of [...MX_STATE_RE, ...PROVINCE_RE, ...STATE_RE]) {
+    const mxFirst = pub.country === "MX" || /\bM[eé]xico\b|\bMexico\b/i.test(blob);
+    const order = mxFirst
+      ? [...MX_STATE_RE, ...PROVINCE_RE, ...STATE_RE]
+      : [...PROVINCE_RE, ...STATE_RE];
+    for (const [re, abbr] of order) {
       if (re.test(`${article.title} ${article.snippet}`)) {
         stateFromArticle = abbr;
         break;
@@ -189,10 +193,13 @@ export function articleToIncident(
   else if (state && MX_STATE_NAMES[state]) country = "MX";
   else if (state && US_STATE_NAMES[state]) country = "US";
   const foreign =
-    blob.match(/\bJapan\b/i) ? "JP"
+    blob.match(/\bJapan\b|\bJap[oó]n\b/i) ? "JP"
     : blob.match(/\bSlovenia\b/i) ? "SI"
     : blob.match(/\bItaly\b|\bItalia\b/i) ? "IT"
     : blob.match(/\bRomania\b/i) ? "RO"
+    : blob.match(/\bBrazil\b|\bBrasil\b/i) ? "BR"
+    : blob.match(/\bIndia\b/i) ? "IN"
+    : blob.match(/\bNorway\b|\bNoruega\b/i) ? "NO"
     : null;
   if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {
     country = foreign;

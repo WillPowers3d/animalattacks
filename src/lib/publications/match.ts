@@ -70,7 +70,7 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "not-animal-attack" };
   }
   if (
-    /\b(cancer diagnosis|the current \| on demand|jimmy fallon|mentioned bear attack|study suggests attacking|says .{0,40}researcher|on demand - cbc)\b/i.test(
+    /\b(cancer diagnosis|the current \| on demand|jimmy fallon|mentioned bear attack|study suggests attacking|says .{0,40}researcher|on demand - cbc|hija de [“"']?el puma|el puma[”"']? por sus fotos)\b/i.test(
       text,
     )
   ) {

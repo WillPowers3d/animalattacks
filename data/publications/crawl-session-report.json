@@ -1,30 +1,33 @@
 {
-  "generatedAt": "2026-09-14T17:08:44.681Z",
-  "publicationsSeeded": 15308,
-  "publicationsScanned": 11761,
-  "remainingNewspapers": 6446,
-  "articlesFetched": 135182,
-  "matchingArticles": 1049,
-  "publicationsWithMatches": 68,
-  "incidentsFromLocalPapers": 188,
-  "incidentsTotal": 522,
+  "generatedAt": "2026-09-15T00:40:22.582Z",
+  "publicationsSeeded": 15491,
+  "publicationsScanned": 11888,
+  "remainingNewspapers": 6293,
+  "articlesFetched": 137743,
+  "matchingArticles": 1081,
+  "publicationsWithMatches": 77,
+  "incidentsFromLocalPapers": 284,
+  "incidentsTotal": 614,
   "canadaPublications": 432,
   "canadaScanned": 314,
+  "mexicoPublications": 199,
+  "mexicoScanned": 197,
   "agencyPublications": 49,
   "agencyScanned": 47,
   "incidentsByCountry": {
-    "CA": 223,
+    "CA": 224,
     "DE": 1,
     "NO": 10,
     "RU": 4,
-    "US": 292,
+    "US": 338,
     "JP": 2,
-    "SI": 1
+    "SI": 1,
+    "MX": 40
   },
   "incidentsBySource": {
     "agency": 7,
     "ammoland": 205,
-    "news": 305,
+    "news": 397,
     "other": 5
   },
   "crawledStates": [
@@ -32,8 +35,8 @@
       "state": "??",
       "name": "",
       "scanned": 2041,
-      "articles": 21525,
-      "matches": 0
+      "articles": 22396,
+      "matches": 27
     },
     {
       "state": "CA",
@@ -124,7 +127,7 @@
       "name": "Colorado",
       "scanned": 240,
       "articles": 4034,
-      "matches": 9
+      "matches": 10
     },
     {
       "state": "PA",
@@ -435,6 +438,20 @@
       "matches": 32
     },
     {
+      "state": "NLE",
+      "name": "Nuevo León",
+      "scanned": 13,
+      "articles": 185,
+      "matches": 0
+    },
+    {
+      "state": "CHH",
+      "name": "Chihuahua",
+      "scanned": 12,
+      "articles": 138,
+      "matches": 2
+    },
+    {
       "state": "NT",
       "name": "Northwest Territories",
       "scanned": 11,
@@ -442,10 +459,52 @@
       "matches": 40
     },
     {
+      "state": "BCN",
+      "name": "Baja California",
+      "scanned": 10,
+      "articles": 198,
+      "matches": 0
+    },
+    {
       "state": "NB",
       "name": "New Brunswick",
       "scanned": 8,
       "articles": 0,
+      "matches": 0
+    },
+    {
+      "state": "COA",
+      "name": "Coahuila",
+      "scanned": 8,
+      "articles": 134,
+      "matches": 0
+    },
+    {
+      "state": "MIC",
+      "name": "Michoacán",
+      "scanned": 8,
+      "articles": 28,
+      "matches": 0
+    },
+    {
+      "state": "SIN",
+      "name": "Sinaloa",
+      "scanned": 8,
+      "articles": 59,
+      "matches": 0
+    },
+    {
+      "state": "CHP",
+      "name": "Chiapas",
+      "scanned": 7,
+      "articles": 123,
+      "matches": 1
+    },
+    {
+      "state": "SON",
+      "name": "Sonora",
+      "scanned": 7,
+      "articles": 142,
       "matches": 0
     },
     {
@@ -456,10 +515,66 @@
       "matches": 10
     },
     {
+      "state": "BCS",
+      "name": "Baja California Sur",
+      "scanned": 6,
+      "articles": 54,
+      "matches": 0
+    },
+    {
+      "state": "JAL",
+      "name": "Jalisco",
+      "scanned": 6,
+      "articles": 147,
+      "matches": 0
+    },
+    {
+      "state": "TAM",
+      "name": "Tamaulipas",
+      "scanned": 6,
+      "articles": 64,
+      "matches": 0
+    },
+    {
+      "state": "ROO",
+      "name": "Quintana Roo",
+      "scanned": 5,
+      "articles": 122,
+      "matches": 0
+    },
+    {
+      "state": "YUC",
+      "name": "Yucatán",
+      "scanned": 5,
+      "articles": 63,
+      "matches": 0
+    },
+    {
       "state": "NS",
       "name": "Nova Scotia",
       "scanned": 4,
       "articles": 2,
+      "matches": 0
+    },
+    {
+      "state": "CAM",
+      "name": "Campeche",
+      "scanned": 4,
+      "articles": 34,
+      "matches": 1
+    },
+    {
+      "state": "GRO",
+      "name": "Guerrero",
+      "scanned": 4,
+      "articles": 3,
+      "matches": 0
+    },
+    {
+      "state": "ZAC",
+      "name": "Zacatecas",
+      "scanned": 4,
+      "articles": 30,
       "matches": 0
     },
     {
@@ -468,6 +583,41 @@
       "scanned": 3,
       "articles": 140,
       "matches": 15
+    },
+    {
+      "state": "DUR",
+      "name": "Durango",
+      "scanned": 3,
+      "articles": 54,
+      "matches": 0
+    },
+    {
+      "state": "NAY",
+      "name": "Nayarit",
+      "scanned": 3,
+      "articles": 0,
+      "matches": 0
+    },
+    {
+      "state": "OAX",
+      "name": "Oaxaca",
+      "scanned": 3,
+      "articles": 81,
+      "matches": 0
+    },
+    {
+      "state": "SLP",
+      "name": "San Luis Potosí",
+      "scanned": 3,
+      "articles": 10,
+      "matches": 0
+    },
+    {
+      "state": "CMX",
+      "name": "Ciudad de México",
+      "scanned": 2,
+      "articles": 21,
+      "matches": 0
     },
     {
       "state": "NL",
@@ -485,14 +635,14 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 206,
-    "mountain_lion": 81,
-    "elk": 4,
-    "moose": 10
+    "bear": 266,
+    "mountain_lion": 103,
+    "elk": 6,
+    "moose": 22
   },
   "localIncidentsByState": {
-    "CO": 15,
-    "AK": 22,
+    "CO": 64,
+    "AK": 23,
     "MT": 11,
     "CA": 7,
     "WY": 10,
@@ -504,12 +654,12 @@
     "WA": 8,
     "FL": 5,
     "NC": 1,
-    "NM": 4,
+    "NM": 5,
     "NV": 1,
     "NY": 1,
     "OK": 1,
     "TN": 1,
-    "AB": 26,
+    "AB": 27,
     "BC": 84,
     "MB": 13,
     "NT": 69,
@@ -520,8 +670,19 @@
     "UT": 5,
     "NH": 1,
     "VT": 7,
-    "??": 2,
+    "??": 17,
     "ON": 14,
-    "YT": 14
+    "YT": 15,
+    "CAM": 1,
+    "CHH": 3,
+    "CHP": 1,
+    "COA": 4,
+    "DUR": 7,
+    "IN": 1,
+    "MIC": 4,
+    "NAY": 1,
+    "NLE": 1,
+    "OAX": 2,
+    "TAM": 1
   }
 }

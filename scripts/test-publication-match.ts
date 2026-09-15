@@ -54,6 +54,7 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Los Pumas vencen a América en el ataque final", want: false },
   { title: "Club Pumas vs Tigres: un ataque ofensivo", want: false },
   { title: "Maullido de gato asusta a vecinos en Tijuana", want: false },
+  { title: 'Despedazan a hija de “El Puma” por sus fotos en bikini', want: false },
 ]
 
 let failed = 0;

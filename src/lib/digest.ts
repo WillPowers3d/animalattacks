@@ -129,10 +129,12 @@ export async function buildFatalInjuryDigest(opts: {
       : defaultSince(opts.days ?? 7);
   const generatedAt = new Date();
 
+  const firstRun = !cursor && !opts.since;
   const rows = await prisma.incident.findMany({
     where: {
       severity: { in: ["fatal", "injury"] },
-      createdAt: { gt: since },
+      sourceType: { not: "ammoland" },
+      ...(firstRun ? { occurredAt: { gte: since } } : { createdAt: { gt: since } }),
     },
     orderBy: [{ severity: "asc" }, { occurredAt: "desc" }, { createdAt: "desc" }],
     include: { sources: { take: 1, orderBy: { createdAt: "asc" } } },
