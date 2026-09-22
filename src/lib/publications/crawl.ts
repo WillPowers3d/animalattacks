@@ -266,7 +266,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   let incidentsUpserted = 0;
   let skipped = 0;
   let robotsBlocked = 0;
-  let deadSkipped = candidates.filter((p) => skipDead && isDeadHostError(p.lastError)).length;
+  const deadSkipped = candidates.filter((p) => skipDead && isDeadHostError(p.lastError)).length;
   let deadMarked = 0;
 
   const bumpState = (st: string | null, field: "scanned" | "matches" | "upserted") => {

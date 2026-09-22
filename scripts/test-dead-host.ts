@@ -17,6 +17,7 @@ assert(!isDeadHostError("pub-timeout-300s"), "timeouts are retryable, not dead")
 assert(!isDeadHostError("robots.txt disallows crawling"), "robots block is not dead");
 assert(!isDeadHostError(null), "null is not dead");
 
+async function main() {
 const missing = await probeHost("https://this-host-should-not-exist-aa-overnight-9f3.example/");
 assert(!missing.ok && isDeadHostError(missing.reason), "DNS probe marks missing host dead");
 
@@ -28,3 +29,9 @@ if (failed) {
   process.exit(1);
 }
 console.log("All dead-host tests passed.");
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

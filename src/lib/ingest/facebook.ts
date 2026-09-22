@@ -72,7 +72,7 @@ export function parseFacebookPageIds(raw?: string | string[] | null): string[] {
   return [...new Set(list.map((s) => s.trim()).filter(Boolean))];
 }
 
-export function resolveFacebookConfig(env: NodeJS.ProcessEnv = process.env): {
+export function resolveFacebookConfig(env: Record<string, string | undefined> = process.env): {
   token: string | null;
   pageIds: string[];
   graphVersion: string;

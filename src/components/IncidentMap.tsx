@@ -295,7 +295,6 @@ export function IncidentMap({
       popupRef.current = null;
     };
     // Mount once; data updates go through the source.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { geocodeIncident, offsetCoord } from "../geo";
-import type { SeedIncident, Species } from "../types";
+import type { Country, SeedIncident, Species } from "../types";
 import { matchAnimalAttack } from "./match";
 import { CA_PROVINCE_NAMES, MX_STATE_NAMES, US_STATE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
@@ -188,17 +188,17 @@ export function articleToIncident(
 
   const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
   const state = stateFromArticle ?? pub.state ?? null;
-  let country = pub.country === "CA" ? "CA" : pub.country === "MX" ? "MX" : "US";
+  let country: Country = pub.country === "CA" ? "CA" : pub.country === "MX" ? "MX" : "US";
   if (state && CA_PROVINCE_NAMES[state]) country = "CA";
   else if (state && MX_STATE_NAMES[state]) country = "MX";
   else if (state && US_STATE_NAMES[state]) country = "US";
-  const foreign =
-    blob.match(/\bJapan\b|\bJap[oó]n\b/i) ? "JP"
-    : blob.match(/\bSlovenia\b/i) ? "SI"
-    : blob.match(/\bItaly\b|\bItalia\b/i) ? "IT"
-    : blob.match(/\bRomania\b/i) ? "RO"
-    : blob.match(/\bBrazil\b|\bBrasil\b/i) ? "BR"
-    : blob.match(/\bIndia\b/i) ? "IN"
+  const foreign: Country | null =
+    blob.match(/\bJapan\b|\bJap[oó]n\b/i) ? "OTHER"
+    : blob.match(/\bSlovenia\b/i) ? "OTHER"
+    : blob.match(/\bItaly\b|\bItalia\b/i) ? "OTHER"
+    : blob.match(/\bRomania\b/i) ? "OTHER"
+    : blob.match(/\bBrazil\b|\bBrasil\b/i) ? "OTHER"
+    : blob.match(/\bIndia\b/i) ? "OTHER"
     : blob.match(/\bNorway\b|\bNoruega\b/i) ? "NO"
     : null;
   if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {

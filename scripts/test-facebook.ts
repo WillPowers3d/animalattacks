@@ -21,7 +21,7 @@ function assert(cond: unknown, msg: string) {
 assert(parseFacebookPageIds("123, 456 789").join(",") === "123,456,789", "parse comma/space page IDs");
 assert(parseFacebookPageIds(["YellowstoneNPS", ""]).join(",") === "YellowstoneNPS", "parse array page IDs");
 
-const mockCfg = resolveFacebookConfig({} as NodeJS.ProcessEnv);
+const mockCfg = resolveFacebookConfig({});
 assert(!mockCfg.token && mockCfg.pageIds.length === 0, "empty env → no live creds");
 assert(mockCfg.graphVersion === "v19.0", "default Graph version v19.0");
 
@@ -30,10 +30,11 @@ const liveCfg = resolveFacebookConfig({
   FACEBOOK_PAGE_IDS: "111,222",
   FACEBOOK_GRAPH_VERSION: "v21.0",
   FACEBOOK_POST_LIMIT: "10",
-} as NodeJS.ProcessEnv);
+});
 assert(liveCfg.token === "token" && liveCfg.pageIds.length === 2, "env token + page IDs");
 assert(liveCfg.graphVersion === "v21.0" && liveCfg.postLimit === 10, "env version + limit");
 
+async function main() {
 const mockFetcher = createFacebookFetcher();
 assert(mockFetcher.mode === "mock", "missing creds → mock fetcher");
 const mockPosts = await mockFetcher.fetchPosts();
@@ -125,3 +126,9 @@ if (failed) {
   process.exit(1);
 }
 console.log("All Facebook Graph / mock tests passed.");
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
