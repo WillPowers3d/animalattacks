@@ -14,6 +14,8 @@ const LANDMARKS: [RegExp, LandmarkPlace][] = [
   [/Grand Teton(?:s|\s+National(?:\s+Park)?)?\b/i, { city: "Jackson", stateProvince: "WY", country: "US" }],
   [/Rocky Mountain(?:\s+National(?:\s+Park)?|\s+NP)\b/i, { city: "Estes Park", stateProvince: "CO", country: "US" }],
   [/\bEstes Park\b/i, { city: "Estes Park", stateProvince: "CO", country: "US" }],
+  [/\bSteamboat Springs\b/i, { city: "Steamboat Springs", stateProvince: "CO", country: "US" }],
+  [/\bTelluride\b/i, { city: "Telluride", stateProvince: "CO", country: "US" }],
   [/\bDenali(?:\s+National(?:\s+Park)?)?\b/i, { city: "Denali", stateProvince: "AK", country: "US" }],
   [/\bKatmai(?:\s+National(?:\s+Park)?)?\b/i, { city: "Katmai", stateProvince: "AK", country: "US" }],
   [/\bYosemite(?:\s+National(?:\s+Park)?)?\b/i, { city: "Yosemite", stateProvince: "CA", country: "US" }],

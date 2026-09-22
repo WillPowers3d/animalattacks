@@ -25,6 +25,9 @@ function main() {
 
   assert(inferLandmarkPlace("City council debates bear-proof bins") === null, "no landmark → null");
 
+  const steamboat = inferLandmarkPlace("Steamboat Springs bear encounter marks 8th attack this year");
+  assert(steamboat?.city === "Steamboat Springs" && steamboat.stateProvince === "CO", "Steamboat Springs → CO");
+
   const reprint = articleToIncident(
     {
       url: "https://www.akronnewsreporter.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",

@@ -6933,7 +6933,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Brandon Sun. Snippet only — not official agency data.",
-    "publicationDomain": "brandonsun.com",
+    "publicationDomain": "gazette.com",
     "sources": [
       {
         "url": "https://www.brandonsun.com/world/2026/01/01/woman-killed-in-suspected-mountain-lion-attack-while-hiking-in-northern-colorado",
@@ -6944,6 +6944,11 @@
         "url": "https://www.winnipegfreepress.com/world/2026/01/01/woman-killed-in-suspected-mountain-lion-attack-while-hiking-in-northern-colorado",
         "title": "Woman killed in suspected mountain lion attack while hiking in northern Colorado",
         "publisher": "Winnipeg Free Press"
+      },
+      {
+        "url": "https://gazette.com/2026/01/02/woman-killed-in-suspected-colorado-mountain-lion-attack/",
+        "title": "Woman killed in suspected Colorado mountain lion attack",
+        "publisher": "Colorado Springs Gazette"
       }
     ]
   },
@@ -12057,12 +12062,12 @@
     "occurredAt": "2026-09-14",
     "datePrecision": "exact",
     "dateDisplay": "2026-09-14",
-    "city": "Denver",
+    "city": "Colorado",
     "region": null,
     "stateProvince": "CO",
     "country": "US",
-    "lat": 39.840562,
-    "lng": -105.007985,
+    "lat": 38.78121100000001,
+    "lng": -105.025504,
     "severity": "property",
     "summary": "Tent attack and home break-in add two more, thankfully minor, injuries to a record season of conflicts with humans",
     "sourceType": "news",
@@ -12201,7 +12206,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: coloradosun.com. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "coloradosun.com",
     "sources": [
       {
         "url": "https://coloradosun.com/2026/06/22/bear-attack-colorado-jefferson-county/",
@@ -13577,6 +13582,230 @@
         "url": "https://www.coloradohometownweekly.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
         "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
         "publisher": "Colorado Hometown Weekly"
+      }
+    ]
+  },
+  {
+    "title": "Steamboat Springs bear encounter marks 8th attack this year",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Steamboat Springs",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.485,
+    "lng": -106.831,
+    "severity": "near_miss",
+    "summary": "Steamboat Springs bear encounter marks 8th attack this year",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
+    "publicationDomain": "gazette.com",
+    "sources": [
+      {
+        "url": "https://gazette.com/2026/09/07/steamboat-springs-bear-encounter-marks-8th-attack-this-year/",
+        "title": "Steamboat Springs bear encounter marks 8th attack this year",
+        "publisher": "Colorado Springs Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Montana man mauled by grizzly bear doing well but faces long recovery | OUT WEST ROUNDUP",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "El Paso",
+    "region": null,
+    "stateProvince": "MT",
+    "country": "US",
+    "lat": 38.828692,
+    "lng": -104.84063,
+    "severity": "near_miss",
+    "summary": "Montana man mauled by grizzly bear doing well but faces long recovery | OUT WEST ROUNDUP",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
+    "publicationDomain": "gazette.com",
+    "sources": [
+      {
+        "url": "https://gazette.com/2023/09/24/montana-man-mauled-by-grizzly-bear-doing-well-but-faces-long-recovery-out-west-roundup-fad3c2fd-a683-5bac-9a3a-ae93175d6741/",
+        "title": "Montana man mauled by grizzly bear doing well but faces long recovery | OUT WEST ROUNDUP",
+        "publisher": "Colorado Springs Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Moose attacks hiker, dogs in Teller County",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Teller County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.29641100000001,
+    "lng": -106.047504,
+    "severity": "near_miss",
+    "summary": "Moose attacks hiker, dogs in Teller County",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
+    "publicationDomain": "gazette.com",
+    "sources": [
+      {
+        "url": "https://gazette.com/2026/06/23/moose-attacks-hiker-dogs-in-teller-county/",
+        "title": "Moose attacks hiker, dogs in Teller County",
+        "publisher": "Colorado Springs Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Law enforcement called to scene after elk charge man in Telluride",
+    "species": "elk",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Telluride",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.736011,
+    "lng": -105.910304,
+    "severity": "near_miss",
+    "summary": "The San Miguel County Sheriff’s Office is warning the public about active elk in the area after an incident that took place on the Telluride Trail, found at the ski area. Their agency received a report of a hiker in distress on Tuesday morning involving two bull elk of a larger herd reportedly charging a [&hellip;]",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
+    "publicationDomain": "gazette.com",
+    "sources": [
+      {
+        "url": "https://gazette.com/2026/06/16/law-enforcement-called-to-scene-after-elk-charge-man-in-telluride/",
+        "title": "Law enforcement called to scene after elk charge man in Telluride",
+        "publisher": "Colorado Springs Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Man kills moose while it’s attacking his girlfriend in Colorado",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.779811,
+    "lng": -105.994304,
+    "severity": "near_miss",
+    "summary": "Man kills moose while it’s attacking his girlfriend in Colorado",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
+    "publicationDomain": "gazette.com",
+    "sources": [
+      {
+        "url": "https://gazette.com/2025/06/09/man-kills-moose-while-its-attacking-his-girlfriend-in-colorado/",
+        "title": "Man kills moose while it’s attacking his girlfriend in Colorado",
+        "publisher": "Colorado Springs Gazette"
+      }
+    ]
+  },
+  {
+    "title": "Bear attacks Estes Park woman amid state's 'extraordinary bear year'",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-08-28",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-08-28",
+    "city": "Estes Park",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.156,
+    "lng": -105.6575,
+    "severity": "near_miss",
+    "summary": "Bear attacks Estes Park woman amid state's 'extraordinary bear year'",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Coloradoan. Snippet only — not official agency data.",
+    "publicationDomain": "coloradoan.com",
+    "sources": [
+      {
+        "url": "https://www.coloradoan.com/story/news/2026/08/28/bear-attacks-estes-park-woman-amid-states-extraordinary-bear-year/91511125007/",
+        "title": "Bear attacks Estes Park woman amid state's 'extraordinary bear year'",
+        "publisher": "Coloradoan"
+      }
+    ]
+  },
+  {
+    "title": "Camper bitten by bear in southern Colorado recalls moment it \"came crashing\" into tent",
+    "species": "bear",
+    "subspecies": "black",
+    "occurredAt": "2026-09-21",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-09-21",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.840562,
+    "lng": -105.007985,
+    "severity": "injury",
+    "summary": "South Fork camper tells the harrowing tale of punching away an attacking black bear through her tent wall",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: coloradosun.com. Snippet only — not official agency data.",
+    "publicationDomain": "coloradosun.com",
+    "sources": [
+      {
+        "url": "https://coloradosun.com/2026/09/17/camper-colorado-bear-attack-bitten/",
+        "title": "Camper bitten by bear in southern Colorado recalls moment it \"came crashing\" into tent",
+        "publisher": "coloradosun.com"
       }
     ]
   }
