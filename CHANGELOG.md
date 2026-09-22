@@ -37,7 +37,7 @@ Features shipped across the stacked PRs. Merge order: **#1 → #5**, then this o
 
 ## Unreleased — overnight (this PR, stacked on #5)
 
-- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). **36** completed / **36** timeouts / **23** new unique. Ledger **614 → 639**. Gazette + Greeley Tribune recovered the new uniques. In flight: CPR / Kiowa County Press. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
+- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). Closed **17:03 UTC**: **48** completed / **41** timeouts / **0** dead hosts / **25** new unique. Ledger **614 → 641**. Gazette + Greeley Tribune + Lamar Ledger recovered the new uniques. CPR / Kiowa / KRDO completed (reprints). **117** CO newspapers still never-backfilled. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
 - **Facebook Graph ingest:** pluggable `createFacebookFetcher()` — live `/{page-id}/posts` when `FACEBOOK_ACCESS_TOKEN` + `FACEBOOK_PAGE_IDS` are set; labeled mock path otherwise. Attack keyword filter uses the newspaper matcher. Pagination + `FACEBOOK_GRAPH_VERSION` / `FACEBOOK_POST_LIMIT`.
 - **Product:** homepage coverage strip shows US/CA/MX **incident + publication** counts; digest `--fatal-only` / `?severity=fatal`. Landmark overrides (Glacier NP → MT, Yellowstone → WY, Banff → AB) so reprint wires are not pinned to the paper’s town.
 - **Hygiene:** `npm test` (matcher, dedupe, Facebook, digest, dead-host), `CHANGELOG.md`, README / DEPLOY / `.env.example` for the full stack.

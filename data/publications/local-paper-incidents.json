@@ -11661,12 +11661,12 @@
     "occurredAt": null,
     "datePrecision": "unknown",
     "dateDisplay": "Date unknown",
-    "city": "Kit Carson",
+    "city": "Glenwood Springs",
     "region": null,
     "stateProvince": "CO",
     "country": "US",
-    "lat": 39.3124,
-    "lng": -102.25094,
+    "lat": 39.106011,
+    "lng": -105.883704,
     "severity": "near_miss",
     "summary": "Colorado woman severely injured in moose attack",
     "sourceType": "news",
@@ -11677,12 +11677,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: burlington-record.com. Snippet only — not official agency data.",
-    "publicationDomain": "burlington-record.com",
+    "publicationDomain": "lamarledger.com",
     "sources": [
       {
         "url": "https://www.burlington-record.com/2021/08/19/colorado-moose-attack-woman-injured/",
         "title": "Colorado woman severely injured in moose attack",
         "publisher": "burlington-record.com"
+      },
+      {
+        "url": "https://www.lamarledger.com/2021/08/18/colorado-moose-attack-woman-injured/",
+        "title": "Woman severely injured in moose attack near Glenwood Springs",
+        "publisher": "Lamar Ledger"
       }
     ]
   },
@@ -11709,12 +11714,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: burlington-record.com. Snippet only — not official agency data.",
-    "publicationDomain": "burlington-record.com",
+    "publicationDomain": "lamarledger.com",
     "sources": [
       {
         "url": "https://www.burlington-record.com/2021/08/25/moose-attack-winter-park/",
         "title": "Moose attacks, injures New Mexico man in Winter Park",
         "publisher": "burlington-record.com"
+      },
+      {
+        "url": "https://www.lamarledger.com/2021/08/25/moose-attack-winter-park/",
+        "title": "Moose attacks, injures New Mexico man in Winter Park",
+        "publisher": "Lamar Ledger"
       }
     ]
   },
@@ -11933,12 +11943,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Colorado Daily. Snippet only — not official agency data.",
-    "publicationDomain": "coloradodaily.com",
+    "publicationDomain": "lamarledger.com",
     "sources": [
       {
         "url": "https://www.coloradodaily.com/2020/03/29/breckenridge-moose-attack-trampled/",
         "title": "Moose tramples woman who tried to shoo it away from Summit County home",
         "publisher": "Colorado Daily"
+      },
+      {
+        "url": "https://www.lamarledger.com/2020/03/29/breckenridge-moose-attack-trampled/",
+        "title": "Moose tramples woman who tried to shoo it away from Summit County home",
+        "publisher": "Lamar Ledger"
       }
     ]
   },
@@ -14015,6 +14030,70 @@
         "url": "https://www.cpr.org/2019/02/15/it-was-like-a-wrestling-match-trail-runner-recounts-harrowing-mountain-lion-attack/",
         "title": "'It Was Like A Wrestling Match': Trail Runner Recounts Harrowing Mountain Lion Attack",
         "publisher": "KCFR 105.9 FM"
+      }
+    ]
+  },
+  {
+    "title": "Moose attacks, injures man in Coal Creek Canyon",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Coal Creek",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 45.606,
+    "lng": -111.9276,
+    "severity": "near_miss",
+    "summary": "Moose attacks, injures man in Coal Creek Canyon",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Lamar Ledger. Snippet only — not official agency data.",
+    "publicationDomain": "lamarledger.com",
+    "sources": [
+      {
+        "url": "https://www.lamarledger.com/2023/06/19/moose-attack-coal-creek-canyon/",
+        "title": "Moose attacks, injures man in Coal Creek Canyon",
+        "publisher": "Lamar Ledger"
+      }
+    ]
+  },
+  {
+    "title": "Boulder County deputy kills moose after attack that injured two hikers, dog",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Prowers",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.08759,
+    "lng": -102.61855,
+    "severity": "near_miss",
+    "summary": "Boulder County deputy kills moose after attack that injured two hikers, dog",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Lamar Ledger. Snippet only — not official agency data.",
+    "publicationDomain": "lamarledger.com",
+    "sources": [
+      {
+        "url": "https://www.lamarledger.com/2022/06/08/moose-attack-boulder-county-nederland/",
+        "title": "Boulder County deputy kills moose after attack that injured two hikers, dog",
+        "publisher": "Lamar Ledger"
       }
     ]
   }

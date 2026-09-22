@@ -31,13 +31,13 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) | **+12** southern MX extras + **3** MX agency rows (no US/CA/MX first-pass rebuild) |
 | US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) | not re-scanned |
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
-| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | southern extras queued (`--uncrawled`); first-pass MX not re-walked |
-| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | TBD after extras crawl |
-| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **36** completed / **36** `pub-timeout-300s` / **~4,850** articles / **~87** matcher hits / **23** new unique. Ledger **614 → 639**. ~128 CO newspapers still never-backfilled. Greeley Tribune added two mountain-lion wires. In flight: CPR + Kiowa County Press. AK/MT/WY/ID not re-walked. |
+| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | **212** seeded (first-pass 199 + 12 southern extras + Epoch Times junk). **197** scanned. Southern extras still `--uncrawled` next; first-pass MX not re-walked. |
+| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | **34** (unchanged; extras crawl not started at west close-out) |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **48** completed / **41** `pub-timeout-300s` / **0** dead hosts / **25** new unique. Ledger **614 → 641**. CO newspapers lastBackfill **123**; **117** still never-backfilled (retryable timeouts). Lamar Ledger added Coal Creek + Boulder moose. CPR / Kiowa / KRDO completed (mostly reprints). West-retry **stopped 17:03 UTC** after 4h budget. AK/MT/WY/ID not re-walked. |
 | Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
 | Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
-| Incidents total in this VM | **487** | **522** | **614** | **639** (+25; 23 publication-linked uniques) |
+| Incidents total in this VM | **487** | **522** | **614** | **641** (+27; 25 publication-linked uniques) |
 | Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) | **205** ammoland (unchanged) |
 
 ### Best finds this wave
@@ -54,18 +54,19 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **West-core backfill (PR #5):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
 
-**Overnight west-retry (this PR, 16:34 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Wall-clock watchdog + 60s heartbeat. This restart wave printed **25/80 · 2,030 articles · 38 matches · 5 upserts**.
+**Overnight west-retry (this PR, closed 17:03 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Wall-clock watchdog + 60s heartbeat. Restart wave printed **25/80 · 2,030 articles · 38 matches · 5 upserts**, then continued past the 4h wave budget until SIGTERM at 17:03. Dead-host DNS probe: **0** skipped.
 
-Recovered unique incidents this run (**23**):
+Recovered unique incidents this run (**25**):
 
 - Denver Post: Winter Park moose; Estes Park / Aspen / drought-year bears
 - North Forty News: Red Feather Lakes CPW search
 - Collegian / Herald Times / South Platte / Akron: Rocky Mountain bear-conflict wires
 - **Gazette:** Steamboat Springs 8th bear attack; Estes Park woman; Teller County moose; Telluride elk charge; moose vs girlfriend; southern-Colorado tent bite; Montana grizzly wire (landmark → MT)
 - **Greeley Tribune:** trail-runner mountain-lion attack; “Proving Cougars Attack the Weak” (matcher still noisy on opinion wires)
-- Daily Camera / Vail Daily / EP Trail: reprints of the Gazette set
+- **Lamar Ledger:** Coal Creek Canyon moose injury; Boulder County deputy kills moose after two hikers and a dog were injured (city wrongly pinned to Prowers)
+- Daily Camera (9) / Vail Daily (2) / EP Trail (11) / CPR (3) / Kiowa (4) / KRDO (6): reprints of the Gazette / Greeley set
 
-Completed (36): prior 33 plus **greeleytribune.com**, myjohnstownbreeze, ijn.com. Timeouts (36): prior 31 plus greeleytrib, hfherald, theindyonline, julesburgadvocate, 63.147.65.18. In flight: **cpr.org**, **kiowacountypress.net**.
+Completed (**48** CO lastBackfill after 07:00 UTC), including **cpr.org**, **kiowacountypress.net**, **krdo.com**, **lamarledger.com**. Timeouts (**41** `pub-timeout-300s`; leftover `nps.gov/romo` 45s). Mid-batch at stop: lonetreevoice.net / longmontmagazine.com marked timeout. **117** CO newspapers still never-backfilled — retryable, not a first-pass redo.
 
 Landmark retag: Glacier NP reprints → MT; Steamboat Springs / Telluride stay in the right Colorado towns.
 
@@ -73,10 +74,10 @@ Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, 
 
 **This continuation** does **not** re-scan the US first pass or re-litigate the Canada / Mexico first-pass directories. New workstreams:
 
-1. **Finish west-core queue** — retry surviving CO hosts; skip dead domains; report recovered incidents.
+1. **Finish west-core queue** — retry pass **closed 17:03 UTC**. 48 completed / 41 timeouts / 25 uniques / ledger 641. 117 CO newspapers remain never-backfilled (timeouts), not re-queued this wave.
 2. **Facebook / Meta public-page ingest** — `createFacebookFetcher()` Graph path + mock fallback + attack keyword filter.
 3. **Digest fatal-only** + homepage coverage strip (US/CA/MX pub + incident counts).
-4. **Southern Mexico extras** — Tabasco / Veracruz / more Chiapas–Oaxaca–Campeche papers via `extra.json` (`--uncrawled` only).
+4. **Southern Mexico extras** — Tabasco / Veracruz / more Chiapas–Oaxaca–Campeche papers via `extra.json` (`--uncrawled` only). Starting after this west close-out.
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -146,27 +147,27 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T16:34:05.582Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T17:03:40.922Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 15,504 |
 | Scanned at least once (combined) | **11,888** |
-| This-VM pubs scanned | 5,726 |
-| Uncrawled newspapers remaining | 6,303 |
-| Article records fetched (combined) | **139,325** |
-| This-VM articles | 48,178 |
-| Matching articles (combined) | **1,168** |
-| This-VM publication-linked incidents | 422 |
+| This-VM pubs scanned | 5,738 |
+| Uncrawled newspapers remaining | 6,291 |
+| Article records fetched (combined) | **139,969** |
+| This-VM articles | 48,822 |
+| Matching articles (combined) | **1,186** |
+| This-VM publication-linked incidents | 424 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 97 |
+| Publications with a match | 101 |
 | Incidents from local / agency feeds (combined) | **284** |
 | Canada publications (seeded / scanned) | **432 / 314** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
 | Mexico publications (seeded / scanned) | **212 / 197** |
 | Mexico incidents (all / publication-linked) | **34 / 34** |
 | Agency feeds (seeded / scanned) | 52 / 47 |
-| Incidents total | 639 |
+| Incidents total | 641 |
 
 ### Canada coverage (priority)
 
@@ -268,7 +269,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by country
 
-- US: 363
+- US: 365
 - CA: 224
 - MX: 40
 - NO: 10
@@ -279,7 +280,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by source type
 
-- news: 422
+- news: 424
 - ammoland: 205
 - agency: 7
 - other: 5
@@ -301,7 +302,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 5616 | 97 |
+| CO Colorado | 240 | 6260 | 115 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
@@ -379,12 +380,12 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 - bear: 284
 - mountain_lion: 105
-- moose: 26
+- moose: 28
 - elk: 7
 
 ### Local / agency incidents by region
 
-- CO: 87
+- CO: 89
 - BC: 84
 - NT: 69
 - AB: 27
