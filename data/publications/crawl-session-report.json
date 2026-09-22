@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-09-22T17:09:57.474Z",
+  "generatedAt": "2026-09-22T17:23:31.840Z",
   "publicationsSeeded": 15504,
-  "publicationsScanned": 11898,
+  "publicationsScanned": 11903,
   "remainingNewspapers": 6281,
-  "articlesFetched": 140072,
-  "matchingArticles": 1187,
-  "publicationsWithMatches": 102,
-  "incidentsFromLocalPapers": 285,
-  "incidentsTotal": 641,
+  "articlesFetched": 140199,
+  "matchingArticles": 1214,
+  "publicationsWithMatches": 104,
+  "incidentsFromLocalPapers": 302,
+  "incidentsTotal": 658,
   "canadaPublications": 432,
-  "canadaScanned": 314,
+  "canadaScanned": 316,
   "mexicoPublications": 212,
-  "mexicoScanned": 207,
+  "mexicoScanned": 210,
   "agencyPublications": 52,
-  "agencyScanned": 47,
+  "agencyScanned": 52,
   "incidentsByCountry": {
     "CA": 224,
     "DE": 1,
     "NO": 10,
     "RU": 4,
-    "US": 365,
+    "US": 382,
     "JP": 2,
     "SI": 1,
     "MX": 40
   },
   "incidentsBySource": {
-    "agency": 7,
+    "agency": 24,
     "ammoland": 205,
     "news": 425,
     "other": 5
@@ -126,8 +126,8 @@
       "state": "CO",
       "name": "Colorado",
       "scanned": 240,
-      "articles": 6260,
-      "matches": 115
+      "articles": 6341,
+      "matches": 139
     },
     {
       "state": "PA",
@@ -141,7 +141,7 @@
       "name": "Washington",
       "scanned": 224,
       "articles": 2675,
-      "matches": 2
+      "matches": 5
     },
     {
       "state": "VA",
@@ -335,8 +335,8 @@
     {
       "state": "ON",
       "name": "Ontario",
-      "scanned": 67,
-      "articles": 857,
+      "scanned": 68,
+      "articles": 858,
       "matches": 21
     },
     {
@@ -357,7 +357,7 @@
       "state": "DC",
       "name": "District of Columbia",
       "scanned": 58,
-      "articles": 397,
+      "articles": 438,
       "matches": 0
     },
     {
@@ -398,8 +398,8 @@
     {
       "state": "AB",
       "name": "Alberta",
-      "scanned": 42,
-      "articles": 475,
+      "scanned": 43,
+      "articles": 476,
       "matches": 20
     },
     {
@@ -564,6 +564,13 @@
       "matches": 0
     },
     {
+      "state": "CMX",
+      "name": "Ciudad de México",
+      "scanned": 5,
+      "articles": 24,
+      "matches": 0
+    },
+    {
       "state": "NS",
       "name": "Nova Scotia",
       "scanned": 4,
@@ -627,13 +634,6 @@
       "matches": 0
     },
     {
-      "state": "CMX",
-      "name": "Ciudad de México",
-      "scanned": 2,
-      "articles": 21,
-      "matches": 0
-    },
-    {
       "state": "NL",
       "name": "Newfoundland and Labrador",
       "scanned": 1,
@@ -649,13 +649,13 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 284,
+    "bear": 296,
     "mountain_lion": 106,
-    "elk": 7,
-    "moose": 28
+    "elk": 8,
+    "moose": 31
   },
   "localIncidentsByState": {
-    "CO": 89,
+    "CO": 106,
     "AK": 23,
     "MT": 15,
     "CA": 7,

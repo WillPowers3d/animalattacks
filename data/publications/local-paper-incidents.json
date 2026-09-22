@@ -12076,12 +12076,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Coloradoan. Snippet only — not official agency data.",
-    "publicationDomain": "coloradoan.com",
+    "publicationDomain": "cpw.state.co.us",
     "sources": [
       {
         "url": "https://www.coloradoan.com/story/news/local/colorado/2026/05/27/colorado-hiker-seriously-injured-in-moose-attack-near-winter-park/90268301007/",
         "title": "Colorado hiker seriously injured in moose attack near Winter Park",
         "publisher": "Coloradoan"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/05262026/cpw-highlights-wildlife-safety-following-moose-attack-winter-park-sunday",
+        "title": "CPW highlights wildlife safety following a moose attack in Winter Park on Sunday",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   },
@@ -12278,12 +12283,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: coloradosun.com. Snippet only — not official agency data.",
-    "publicationDomain": "coloradosun.com",
+    "publicationDomain": "cpw.state.co.us",
     "sources": [
       {
         "url": "https://coloradosun.com/2024/10/06/colorado-bear-attack-man-lake-city/",
         "title": "Bear with cubs attacks 74-year-old man inside southwestern Colorado home",
         "publisher": "coloradosun.com"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/10062024/black-bear-three-cubs-enters-lake-city-home-attacks-74-year-old",
+        "title": "Black bear with three cubs enters Lake City home, attacks 74-year-old",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   },
@@ -13744,9 +13754,9 @@
     "title": "Steamboat Springs bear encounter marks 8th attack this year",
     "species": "bear",
     "subspecies": null,
-    "occurredAt": null,
+    "occurredAt": "2026-09-04",
     "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
+    "dateDisplay": "2026-09-04",
     "city": "Steamboat Springs",
     "region": null,
     "stateProvince": "CO",
@@ -13763,12 +13773,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Colorado Springs Gazette. Snippet only — not official agency data.",
-    "publicationDomain": "gazette.com",
+    "publicationDomain": "cpw.state.co.us",
     "sources": [
       {
         "url": "https://gazette.com/2026/09/07/steamboat-springs-bear-encounter-marks-8th-attack-this-year/",
         "title": "Steamboat Springs bear encounter marks 8th attack this year",
         "publisher": "Colorado Springs Gazette"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/09052026/colorado-parks-and-wildlife-responds-bear-attack-steamboat-springs",
+        "title": "Colorado Parks and Wildlife responds to bear attack in Steamboat Springs",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   },
@@ -13923,12 +13938,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Coloradoan. Snippet only — not official agency data.",
-    "publicationDomain": "coloradoan.com",
+    "publicationDomain": "cpw.state.co.us",
     "sources": [
       {
         "url": "https://www.coloradoan.com/story/news/2026/08/28/bear-attacks-estes-park-woman-amid-states-extraordinary-bear-year/91511125007/",
         "title": "Bear attacks Estes Park woman amid state's 'extraordinary bear year'",
         "publisher": "Coloradoan"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/08282026/cpw-investigating-bear-attack-estes-park",
+        "title": "CPW investigating bear attack in Estes Park",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   },
@@ -14037,9 +14057,9 @@
     "title": "Moose attacks, injures man in Coal Creek Canyon",
     "species": "moose",
     "subspecies": null,
-    "occurredAt": null,
+    "occurredAt": "2024-04-23",
     "datePrecision": "unknown",
-    "dateDisplay": "Date unknown",
+    "dateDisplay": "2024-04-23",
     "city": "Coal Creek",
     "region": null,
     "stateProvince": "CO",
@@ -14056,12 +14076,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Lamar Ledger. Snippet only — not official agency data.",
-    "publicationDomain": "lamarledger.com",
+    "publicationDomain": "cpw.state.co.us",
     "sources": [
       {
         "url": "https://www.lamarledger.com/2023/06/19/moose-attack-coal-creek-canyon/",
         "title": "Moose attacks, injures man in Coal Creek Canyon",
         "publisher": "Lamar Ledger"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/06192023/moose-attacks-tramples-man-walking-dogs-near-coal-creek",
+        "title": "Moose attacks, tramples man walking dogs near Coal Creek",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   },
@@ -14094,6 +14119,560 @@
         "url": "https://www.lamarledger.com/2022/06/08/moose-attack-boulder-county-nederland/",
         "title": "Boulder County deputy kills moose after attack that injured two hikers, dog",
         "publisher": "Lamar Ledger"
+      }
+    ]
+  },
+  {
+    "title": "CPW's Southwest Region responds to two reported bear attacks in recent days",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-09-14",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-09-14",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.7392,
+    "lng": -104.9903,
+    "severity": "near_miss",
+    "summary": "CPW's Southwest Region responds to two reported bear attacks in recent days",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/09142026/cpws-southwest-region-responds-two-reported-bear-attacks-recent-days",
+        "title": "CPW's Southwest Region responds to two reported bear attacks in recent days",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW investigating angler attacked by bear in Jefferson County",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-08-22",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-08-22",
+    "city": "Jefferson County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.771411,
+    "lng": -107.021904,
+    "severity": "near_miss",
+    "summary": "CPW investigating angler attacked by bear in Jefferson County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/08222026/cpw-investigating-angler-attacked-bear-jefferson-county",
+        "title": "CPW investigating angler attacked by bear in Jefferson County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW responds to two separate bear attacks in Steamboat Springs and Aspen, encourages people to be vigilant and remove attractants",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-08-19",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-08-19",
+    "city": "Steamboat Springs",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.8,
+    "lng": -106.3977,
+    "severity": "near_miss",
+    "summary": "CPW responds to two separate bear attacks in Steamboat Springs and Aspen, encourages people to be vigilant and remove attractants",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/08192026/cpw-responds-two-separate-bear-attacks-steamboat-springs-and-aspen-encourages-people",
+        "title": "CPW responds to two separate bear attacks in Steamboat Springs and Aspen, encourages people to be vigilant and remove attractants",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW responds to bear attack in Eagle County",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-08-18",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-08-18",
+    "city": "Eagle County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.42141100000001,
+    "lng": -106.369504,
+    "severity": "near_miss",
+    "summary": "CPW responds to bear attack in Eagle County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/08182026/cpw-responds-bear-attack-eagle-county",
+        "title": "CPW responds to bear attack in Eagle County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Medical incident in Boulder Co determined not to be bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-07-24",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-07-24",
+    "city": "Boulder Co",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.8148,
+    "lng": -106.4017,
+    "severity": "near_miss",
+    "summary": "Medical incident in Boulder Co determined not to be bear attack",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/07252026/medical-incident-boulder-co-determined-not-be-bear-attack",
+        "title": "Medical incident in Boulder Co determined not to be bear attack",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW investigating reported bear attack in Jefferson County",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-06-22",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-06-22",
+    "city": "Jefferson County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.149411,
+    "lng": -105.096904,
+    "severity": "near_miss",
+    "summary": "CPW investigating reported bear attack in Jefferson County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/06222026/cpw-investigating-reported-bear-attack-jefferson-county",
+        "title": "CPW investigating reported bear attack in Jefferson County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW investigating suspected fatal mountain lion attack in Larimer County",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2026-01-02",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-01-02",
+    "city": "Larimer County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.1792,
+    "lng": -104.8364,
+    "severity": "fatal",
+    "summary": "CPW investigating suspected fatal mountain lion attack in Larimer County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/01022026/cpw-investigating-suspected-fatal-mountain-lion-attack-larimer-county",
+        "title": "CPW investigating suspected fatal mountain lion attack in Larimer County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Bull moose attacks woman in Boulder County",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": "2025-11-06",
+    "datePrecision": "exact",
+    "dateDisplay": "2025-11-06",
+    "city": "Boulder County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.6272,
+    "lng": -107.0429,
+    "severity": "near_miss",
+    "summary": "Bull moose attacks woman in Boulder County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/11062025/bull-moose-attacks-woman-boulder-county",
+        "title": "Bull moose attacks woman in Boulder County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Boulder residents reminded to secure trash following bear attack",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2025-10-16",
+    "datePrecision": "exact",
+    "dateDisplay": "2025-10-16",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.7392,
+    "lng": -104.9903,
+    "severity": "near_miss",
+    "summary": "Boulder residents reminded to secure trash following bear attack",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/09092025/boulder-residents-reminded-secure-trash-following-bear-attack",
+        "title": "Boulder residents reminded to secure trash following bear attack",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "May 2025 Moose attack near woodland park; reminder to watch out for wildlife",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": "2025-05-30",
+    "datePrecision": "exact",
+    "dateDisplay": "2025-05-30",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.7392,
+    "lng": -104.9903,
+    "severity": "near_miss",
+    "summary": "May 2025 Moose attack near woodland park; reminder to watch out for wildlife",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/05282025/may-2025-moose-attack-near-woodland-park-reminder-watch-out-wildlife",
+        "title": "May 2025 Moose attack near woodland park; reminder to watch out for wildlife",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW responding to unprecedented third cow elk attack in Estes Park",
+    "species": "elk",
+    "subspecies": null,
+    "occurredAt": "2024-06-07",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-06-07",
+    "city": "Estes Park",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.20500000000001,
+    "lng": -106.8559,
+    "severity": "near_miss",
+    "summary": "CPW responding to unprecedented third cow elk attack in Estes Park",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/06072024/cpw-responding-unprecedented-third-cow-elk-attack-estes-park",
+        "title": "CPW responding to unprecedented third cow elk attack in Estes Park",
+        "publisher": "Colorado Parks and Wildlife"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/06042024/cpw-urging-awareness-aggressive-cow-elk-estes-park-following-second-attack",
+        "title": "CPW is urging awareness of aggressive cow elk in Estes Park following second attack",
+        "publisher": "Colorado Parks and Wildlife"
+      },
+      {
+        "url": "https://cpw.state.co.us/news/05312024/colorado-parks-and-wildlife-investigating-cow-elk-attack-girl-estes-park",
+        "title": "Colorado Parks and Wildlife investigating cow elk attack on girl in Estes Park",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Colorado Parks and Wildlife responds to bear attack in Steamboat Springs Tuesday morning",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2024-05-22",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-05-22",
+    "city": "Steamboat Springs",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.4094,
+    "lng": -108.6405,
+    "severity": "near_miss",
+    "summary": "Colorado Parks and Wildlife responds to bear attack in Steamboat Springs Tuesday morning",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/05222024/colorado-parks-and-wildlife-responds-bear-attack-steamboat-springs-tuesday-morning",
+        "title": "Colorado Parks and Wildlife responds to bear attack in Steamboat Springs Tuesday morning",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Dangerous bear that charged two boys put down by CPW",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2024-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-04-23",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.7392,
+    "lng": -104.9903,
+    "severity": "near_miss",
+    "summary": "Dangerous bear that charged two boys put down by CPW",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/10062023/dangerous-bear-charged-two-boys-put-down-cpw",
+        "title": "Dangerous bear that charged two boys put down by CPW",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Sheep herder attacked by bear northeast of Durango",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2024-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-04-23",
+    "city": "Denver",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.7392,
+    "lng": -104.9903,
+    "severity": "near_miss",
+    "summary": "Sheep herder attacked by bear northeast of Durango",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/07122023/sheep-herder-attacked-bear-northeast-durango",
+        "title": "Sheep herder attacked by bear northeast of Durango",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "Woman attacked by moose while walking dog in Boulder County",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": "2024-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-04-23",
+    "city": "Boulder County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.176,
+    "lng": -105.4665,
+    "severity": "near_miss",
+    "summary": "Woman attacked by moose while walking dog in Boulder County",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/09202023/woman-attacked-moose-while-walking-dog-boulder-county",
+        "title": "Woman attacked by moose while walking dog in Boulder County",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW wildlife officers respond to a bear attack in Aspen late Monday night",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2024-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-04-23",
+    "city": "Aspen",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.6871,
+    "lng": -107.4293,
+    "severity": "near_miss",
+    "summary": "CPW wildlife officers respond to a bear attack in Aspen late Monday night",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/10242023/cpw-wildlife-officers-respond-bear-attack-aspen-late-monday-night",
+        "title": "CPW wildlife officers respond to a bear attack in Aspen late Monday night",
+        "publisher": "Colorado Parks and Wildlife"
+      }
+    ]
+  },
+  {
+    "title": "CPW wildlife officers locate bear involved in Monday’s attack in Aspen",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2024-04-23",
+    "datePrecision": "exact",
+    "dateDisplay": "2024-04-23",
+    "city": "Monday",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.792411,
+    "lng": -106.876304,
+    "severity": "near_miss",
+    "summary": "CPW wildlife officers locate bear involved in Monday’s attack in Aspen",
+    "sourceType": "agency",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Official agency / park press: Colorado Parks and Wildlife. Snippet only — confirm with the source.",
+    "publicationDomain": "cpw.state.co.us",
+    "sources": [
+      {
+        "url": "https://cpw.state.co.us/news/10262023/cpw-wildlife-officers-locate-bear-involved-mondays-attack-aspen",
+        "title": "CPW wildlife officers locate bear involved in Monday’s attack in Aspen",
+        "publisher": "Colorado Parks and Wildlife"
       }
     ]
   }

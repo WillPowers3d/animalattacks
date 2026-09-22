@@ -31,13 +31,13 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) | **+12** southern MX extras + **3** MX agency rows (no US/CA/MX first-pass rebuild) |
 | US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) | not re-scanned |
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
-| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | **212** seeded / **207** scanned. Extras wave: **10** `--uncrawled` southern papers, **103** articles, **0** new wildlife uniques. **elsoldeoaxaca.com.mx** dead-host; **imagendelgolfo.mx** robots-blocked. Epoch Times `.jp/.ru` skipped by TLD filter. First-pass MX not re-walked. |
+| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | **212** seeded / **210** scanned (10 extras + 3 MX agencies). Extras: **103** articles, **0** new wildlife uniques. **elsoldeoaxaca.com.mx** dead-host; **imagendelgolfo.mx** robots-blocked. Epoch Times `.jp/.ru` skipped by TLD filter. First-pass MX not re-walked. |
 | Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | **34** (soccer “Ataque Puma queda en evidencia” matched then dropped; `/deportes/` + Liga MX Pumas rejected) |
 | West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **48** completed / **41** `pub-timeout-300s` / **0** dead hosts / **25** new unique. Ledger **614 → 641**. CO newspapers lastBackfill **123**; **117** still never-backfilled (retryable timeouts). Lamar Ledger added Coal Creek + Boulder moose. CPR / Kiowa / KRDO completed (mostly reprints). West-retry **stopped 17:03 UTC** after 4h budget. AK/MT/WY/ID not re-walked. |
-| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
+| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | **52 / 52** refreshed (1,058 articles, 29 matches, **17** new). CONANP / PROFEPA / SEMARNAT crawled (thin gob.mx pages, 0 matches). CPW recovered Aspen / Steamboat / Boulder / Durango / Estes official wires. |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
 | Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
-| Incidents total in this VM | **487** | **522** | **614** | **641** (+27; 25 publication-linked uniques) |
+| Incidents total in this VM | **487** | **522** | **614** | **658** (+44; 25 paper uniques + 17 agency) |
 | Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) | **205** ammoland (unchanged) |
 
 ### Best finds this wave
@@ -46,7 +46,7 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **Canada (priority, prior wave):** Mayo, YT woman and 10-month-old killed; Tulita, NT musician killed; Hay River, NT child injured; Iqaluit-area worker killed by polar bear; Sanirajak / Naujaat / Auyuittuq polar-bear attacks; Fort Frances / Kenora / Armstrong, ON black-bear injuries; Bella Coola school-group grizzly; Maple Ridge / Anmore / Squamish / Whistler / Vanderhoof / Pemberton / Shuswap; Rocky Mountain House and Banff-area cougars; Jasper / Waterton grizzlies; Prince Albert NP mother/son; Buffalo Narrows, SK; Shamattawa, MB. French Radio-Canada / territorial weeklies now match `ours` / `orignal` / `couguar` + `attaque`.
 
-**Agency:** WDFW cougar attack on a Summit Lake jogger; cougar that attacked a child in Stevens County; elk hunter who fended off a cougar; NM Game & Fish bear incidents near Red River and Cedar Crest.
+**Agency (overnight refresh):** **52 / 52** feeds, **1,058** articles, **17** new. CPW: Aspen bear (two-day follow-up); Boulder County moose vs dog-walker; Durango-area sheepherder; Steamboat / Eagle County bears; Estes Park third cow-elk charge; Larimer County suspected fatal mountain lion; Jefferson County angler. WDFW Stevens County child + elk-hunter cougar wires remain. CONANP / PROFEPA / SEMARNAT answered but had no matcher hits.
 
 **US archive backfill:** Yellowstone hiker injuries; Grizzly 399 / Lander; Glacier NP fatal; Ovando cyclist; Big Sky hunter; Columbia Falls; Cody hunter.
 
@@ -77,7 +77,8 @@ Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, 
 1. **Finish west-core queue** — retry pass **closed 17:03 UTC**. 48 completed / 41 timeouts / 25 uniques / ledger 641. 117 CO newspapers remain never-backfilled (timeouts), not re-queued this wave.
 2. **Facebook / Meta public-page ingest** — `createFacebookFetcher()` Graph path + mock fallback + attack keyword filter.
 3. **Digest fatal-only** + homepage coverage strip (US/CA/MX pub + incident counts).
-4. **Southern Mexico extras** — **done.** 10 uncrawled TAB/VER/CHP/OAX/CAM papers scanned; 0 new jaguar/black-bear uniques. Matcher now drops Liga MX / `/deportes/` “Ataque Puma” sports wires. CONANP / PROFEPA / SEMARNAT still queued for `crawl:agencies`.
+4. **Southern Mexico extras** — **done.** 10 uncrawled TAB/VER/CHP/OAX/CAM papers scanned; 0 new jaguar/black-bear uniques. Matcher now drops Liga MX / `/deportes/` “Ataque Puma” sports wires.
+5. **Agency refresh** — **done.** 52/52 including CONANP / PROFEPA / SEMARNAT. Ledger **641 → 658**.
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -147,27 +148,27 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T17:09:57.462Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T17:23:31.829Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 15,504 |
-| Scanned at least once (combined) | **11,898** |
-| This-VM pubs scanned | 5,748 |
+| Scanned at least once (combined) | **11,903** |
+| This-VM pubs scanned | 5,753 |
 | Uncrawled newspapers remaining | 6,281 |
-| Article records fetched (combined) | **140,072** |
-| This-VM articles | 48,925 |
-| Matching articles (combined) | **1,187** |
-| This-VM publication-linked incidents | 424 |
+| Article records fetched (combined) | **140,199** |
+| This-VM articles | 49,983 |
+| Matching articles (combined) | **1,214** |
+| This-VM publication-linked incidents | 441 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 102 |
-| Incidents from local / agency feeds (combined) | **285** |
-| Canada publications (seeded / scanned) | **432 / 314** |
+| Publications with a match | 104 |
+| Incidents from local / agency feeds (combined) | **302** |
+| Canada publications (seeded / scanned) | **432 / 316** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
-| Mexico publications (seeded / scanned) | **212 / 207** |
+| Mexico publications (seeded / scanned) | **212 / 210** |
 | Mexico incidents (all / publication-linked) | **34 / 34** |
-| Agency feeds (seeded / scanned) | 52 / 47 |
-| Incidents total | 641 |
+| Agency feeds (seeded / scanned) | 52 / 52 |
+| Incidents total | 658 |
 
 ### Canada coverage (priority)
 
@@ -179,10 +180,10 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 | NT Northwest Territories | 11 | 11 | 448 | 40 | 69 |
 | NU Nunavut | 3 | 3 | 140 | 15 | 4 |
 | BC British Columbia | 88 | 88 | 2120 | 795 | 68 |
-| AB Alberta | 43 | 42 | 475 | 20 | 31 |
+| AB Alberta | 43 | 43 | 476 | 20 | 31 |
 | SK Saskatchewan | 16 | 16 | 241 | 32 | 8 |
 | MB Manitoba | 17 | 17 | 331 | 55 | 10 |
-| ON Ontario | 68 | 67 | 857 | 21 | 15 |
+| ON Ontario | 68 | 68 | 858 | 21 | 15 |
 | QC Quebec | 24 | 8 | 28 | 0 | 0 |
 | NB New Brunswick | 8 | 5 | 0 | 0 | 0 |
 | NS Nova Scotia | 4 | 1 | 2 | 0 | 0 |
@@ -190,7 +191,7 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 | PE Prince Edward Island | 1 | 0 | 0 | 0 | 0 |
 | ??  | 142 | 49 | 330 | 0 | 0 |
 
-**Canada totals:** 432 pubs seeded, 314 scanned, 5072 articles, 988 matcher hits, 210 publication-linked incidents (224 incidents with country=CA).
+**Canada totals:** 432 pubs seeded, 316 scanned, 5074 articles, 988 matcher hits, 210 publication-linked incidents (224 incidents with country=CA).
 
 #### Recent / best Canada finds
 
@@ -241,10 +242,10 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | YUC Yucatán | 5 | 5 | 63 | 0 | 0 |
 | ZAC Zacatecas | 4 | 4 | 30 | 0 | 0 |
 | SLP San Luis Potosí | 3 | 3 | 10 | 0 | 0 |
-| CMX Ciudad de México | 5 | 2 | 21 | 0 | 0 |
+| CMX Ciudad de México | 5 | 5 | 24 | 0 | 0 |
 | ??  | 72 | 70 | 1026 | 27 | 15 |
 
-**Mexico totals:** 212 pubs seeded, 207 scanned, 2819 articles, 32 matcher hits, 34 publication-linked incidents (34 incidents with country=MX).
+**Mexico totals:** 212 pubs seeded, 210 scanned, 2822 articles, 32 matcher hits, 34 publication-linked incidents (34 incidents with country=MX).
 
 #### Recent / best Mexico finds
 
@@ -269,7 +270,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by country
 
-- US: 365
+- US: 382
 - CA: 224
 - MX: 40
 - NO: 10
@@ -282,7 +283,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 - news: 425
 - ammoland: 205
-- agency: 7
+- agency: 24
 - other: 5
 
 ### Coverage by state / province (scanned publications)
@@ -302,9 +303,9 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 6260 | 115 |
+| CO Colorado | 240 | 6341 | 139 |
 | PA Pennsylvania | 240 | 4602 | 4 |
-| WA Washington | 224 | 2675 | 2 |
+| WA Washington | 224 | 2675 | 5 |
 | VA Virginia | 215 | 3942 | 0 |
 | IN Indiana | 214 | 975 | 0 |
 | IA Iowa | 208 | 1179 | 0 |
@@ -332,16 +333,16 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | UT Utah | 81 | 1021 | 1 |
 | WV West Virginia | 80 | 1141 | 0 |
 | NV Nevada | 69 | 1312 | 1 |
-| ON Ontario | 67 | 857 | 21 |
+| ON Ontario | 68 | 858 | 21 |
 | NH New Hampshire | 63 | 836 | 0 |
 | SD South Dakota | 61 | 1062 | 0 |
-| DC District of Columbia | 58 | 397 | 0 |
+| DC District of Columbia | 58 | 438 | 0 |
 | AK Alaska | 58 | 1252 | 6 |
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
 | HI Hawaii | 48 | 348 | 0 |
 | WY Wyoming | 45 | 880 | 3 |
-| AB Alberta | 42 | 475 | 20 |
+| AB Alberta | 43 | 476 | 20 |
 | RI Rhode Island | 41 | 195 | 0 |
 | DE Delaware | 38 | 223 | 0 |
 | QC Quebec | 24 | 28 | 0 |
@@ -365,6 +366,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | YUC Yucatán | 5 | 63 | 0 |
 | CAM Campeche | 5 | 34 | 1 |
 | OAX Oaxaca | 5 | 81 | 0 |
+| CMX Ciudad de México | 5 | 24 | 0 |
 | NS Nova Scotia | 4 | 2 | 0 |
 | GRO Guerrero | 4 | 3 | 0 |
 | ZAC Zacatecas | 4 | 30 | 0 |
@@ -374,20 +376,19 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | SLP San Luis Potosí | 3 | 10 | 0 |
 | TAB Tabasco | 3 | 50 | 0 |
 | VER Veracruz | 3 | 0 | 0 |
-| CMX Ciudad de México | 2 | 21 | 0 |
 | NL Newfoundland and Labrador | 1 | 1 | 0 |
 | PE Prince Edward Island | 1 | 0 | 0 |
 
 ### Local / agency incidents by species
 
-- bear: 284
+- bear: 296
 - mountain_lion: 106
-- moose: 28
-- elk: 7
+- moose: 31
+- elk: 8
 
 ### Local / agency incidents by region
 
-- CO: 89
+- CO: 106
 - BC: 84
 - NT: 69
 - AB: 27
