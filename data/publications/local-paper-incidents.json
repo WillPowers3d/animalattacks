@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "southplattesentinel.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1460,6 +1460,11 @@
         "url": "https://www.denverpost.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.journal-advocate.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "southplattesentinel.com"
       }
     ]
   },
@@ -13211,6 +13216,230 @@
         "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
         "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
         "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "UPDATE: Colorado Parks and Wildlife determines bear attack unlikely in Red Feather Lakes incident",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2018-06-24",
+    "datePrecision": "exact",
+    "dateDisplay": "2018-06-24",
+    "city": "Red Feather",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.914211,
+    "lng": -106.272904,
+    "severity": "near_miss",
+    "summary": "CPW is closing this investigation with no further action being taken.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: northfortynews.com. Snippet only — not official agency data.",
+    "publicationDomain": "northfortynews.com",
+    "sources": [
+      {
+        "url": "https://northfortynews.com/category/new-scene/outdoors/update-colorado-parks-and-wildlife-determines-bear-attack-unlikely-in-red-feather-lakes-incident/",
+        "title": "UPDATE: Colorado Parks and Wildlife determines bear attack unlikely in Red Feather Lakes incident",
+        "publisher": "northfortynews.com"
+      }
+    ]
+  },
+  {
+    "title": "Colorado Parks and Wildlife seeking bear after attack near Red Feather Lakes",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2018-06-08",
+    "datePrecision": "exact",
+    "dateDisplay": "2018-06-08",
+    "city": "Red Feather",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.428411,
+    "lng": -106.363904,
+    "severity": "fatal",
+    "summary": "At 11 p.m. on Tue., June 5, Colorado Parks and Wildlife and the Larimer County Sheriff’s Office responded to a report of a bear attack in the Red Feather Lakes area of Northern Larimer County.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: northfortynews.com. Snippet only — not official agency data.",
+    "publicationDomain": "northfortynews.com",
+    "sources": [
+      {
+        "url": "https://northfortynews.com/category/new-scene/outdoors/colorado-parks-and-wildlife-seeking-bear-after-attack-near-red-feather-lakes/",
+        "title": "Colorado Parks and Wildlife seeking bear after attack near Red Feather Lakes",
+        "publisher": "northfortynews.com"
+      }
+    ]
+  },
+  {
+    "title": "Learning to live with bears is the new normal in Colorado",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.65621100000001,
+    "lng": -106.648104,
+    "severity": "property",
+    "summary": "RBC | After several recent bear conflicts in Colorado, including close encounters, home invasions and an attack on a sleeping camper in Boulder County, July 9, Colorado Parks and Wildlife is stressing education as one of the most effective ways to prevent wildlife conflicts. CPW officials say although many bear conflicts may seem unprovoked or",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Rangely Herald Times. Snippet only — not official agency data.",
+    "publicationDomain": "theheraldtimes.com",
+    "sources": [
+      {
+        "url": "https://www.theheraldtimes.com/learning-to-live-with-bears-is-the-new-normal-in-colorado/rio-blanco-county/",
+        "title": "Learning to live with bears is the new normal in Colorado",
+        "publisher": "Rangely Herald Times"
+      }
+    ]
+  },
+  {
+    "title": "DAYS GONE BY – September 4th, 2025",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Rio Blanco",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.011447,
+    "lng": -108.77528,
+    "severity": "near_miss",
+    "summary": "Meeker Herald ~ 125 years ago The automobile craze bears many earmarks of the first attack of the bicycle craze, a few years ago, especially in the organization of new manufacturing companies. According to present plans an extra session of the state legislature will be called in November for the purpose of raising the ‘wind’",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Rangely Herald Times. Snippet only — not official agency data.",
+    "publicationDomain": "theheraldtimes.com",
+    "sources": [
+      {
+        "url": "https://www.theheraldtimes.com/days-gone-by-september-4th-2025/rio-blanco-county/",
+        "title": "DAYS GONE BY – September 4th, 2025",
+        "publisher": "Rangely Herald Times"
+      }
+    ]
+  },
+  {
+    "title": "Bear attacks happen",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Larimer",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.5703,
+    "lng": -105.0902,
+    "severity": "near_miss",
+    "summary": "Bear attacks happen",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Rocky Mountain Collegian. Snippet only — not official agency data.",
+    "publicationDomain": "collegian.com",
+    "sources": [
+      {
+        "url": "https://collegian.com/articles/news/2013/08/bear-attacks-happen/",
+        "title": "Bear attacks happen",
+        "publisher": "Rocky Mountain Collegian"
+      }
+    ]
+  },
+  {
+    "title": "Lawyer mauled by polar bear while camping",
+    "species": "bear",
+    "subspecies": "polar",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Larimer",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.5703,
+    "lng": -105.0902,
+    "severity": "near_miss",
+    "summary": "Lawyer mauled by polar bear while camping",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Rocky Mountain Collegian. Snippet only — not official agency data.",
+    "publicationDomain": "collegian.com",
+    "sources": [
+      {
+        "url": "https://collegian.com/articles/news/2013/07/lawyer-mauled-by-polar-bear-while-camping/",
+        "title": "Lawyer mauled by polar bear while camping",
+        "publisher": "Rocky Mountain Collegian"
+      }
+    ]
+  },
+  {
+    "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+    "species": "bear",
+    "subspecies": "black",
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Logan",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.633845,
+    "lng": -103.21574,
+    "severity": "near_miss",
+    "summary": "Bears are wandering into urban areas and sometimes attacking people.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
+    "publicationDomain": "southplattesentinel.com",
+    "sources": [
+      {
+        "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "southplattesentinel.com"
       }
     ]
   }
