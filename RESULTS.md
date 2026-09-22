@@ -33,7 +33,7 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
 | Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | southern extras queued (`--uncrawled`); first-pass MX not re-walked |
 | Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | TBD after extras crawl |
-| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **30** completed / **26** `pub-timeout-300s` / **~4,030** articles / **~66** matcher hits / **21** new unique. Ledger **614 → 637**. ~134 CO newspapers still never-backfilled. Watchdog cleared Dove Creek / Colorado Community Media after a third VM pause. Now on Vail Daily + Erie Historical Society. AK/MT/WY/ID not re-walked. |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **33** completed / **31** `pub-timeout-300s` / **~4,450** articles / **~79** matcher hits / **21** new unique. Ledger **614 → 637**. ~131 CO newspapers still never-backfilled. Vail Daily + EP Trail were reprints. Wave budget ~41 min left; now on Greeley Tribune. AK/MT/WY/ID not re-walked. |
 | Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
 | Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
@@ -54,7 +54,7 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **West-core backfill (PR #5):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
 
-**Overnight west-retry (this PR, 14:44 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Wall-clock watchdog + 60s heartbeat. Recent `pub-timeout` hosts are not immediately re-queued.
+**Overnight west-retry (this PR, 15:50 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Wall-clock watchdog + 60s heartbeat. Wave budget ~41 min left (~16:31 UTC).
 
 Recovered unique incidents this run (**21**; later hosts mostly reprints):
 
@@ -62,9 +62,9 @@ Recovered unique incidents this run (**21**; later hosts mostly reprints):
 - North Forty News: Red Feather Lakes CPW search
 - Collegian / Herald Times / South Platte / Akron: Rocky Mountain bear-conflict wires
 - **Gazette:** Steamboat Springs 8th bear attack; Estes Park woman; Teller County moose; Telluride elk charge; moose vs girlfriend; southern-Colorado tent bite; Montana grizzly wire (landmark → MT)
-- Daily Camera: 9 matcher hits, all reprints of the above
+- Daily Camera (9), Vail Daily (2), EP Trail (11): reprints of the above
 
-Completed (30): prior 24 plus crestoneeagle, **dailycamera.com**, daystar, denverurbanspectrum, denvervoice, denverite. Timeouts (26): prior 23 plus deltacountyindependent, **dovecreekpress.com**, **coloradocommunitymedia.com** (watchdog after a third VM pause ~13:51–14:14). In flight: vaildaily.com, eriehistoricalsociety.org.
+Completed (33): prior 30 plus **vaildaily.com**, eriehistoricalsociety, **eptrail.com**. Timeouts (31): prior 26 plus estesparknews, fortlewis.edu, ftluptonpress, fortmorgantimes, frontporchne (watchdog after a fourth VM pause ~14:56–15:06). In flight: greeleytrib.com, greeleytribune.com.
 
 Landmark retag: Glacier NP reprints → MT; Steamboat Springs / Telluride stay in the right Colorado towns.
 
@@ -145,7 +145,7 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T14:44:01.900Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T15:50:28.493Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
@@ -153,12 +153,12 @@ Generated **2026-09-22T14:44:01.900Z**. Combined with the committed first-pass b
 | Scanned at least once (combined) | **11,888** |
 | This-VM pubs scanned | 5,726 |
 | Uncrawled newspapers remaining | 6,303 |
-| Article records fetched (combined) | **138,508** |
-| This-VM articles | 47,361 |
-| Matching articles (combined) | **1,147** |
+| Article records fetched (combined) | **138,930** |
+| This-VM articles | 47,783 |
+| Matching articles (combined) | **1,160** |
 | This-VM publication-linked incidents | 420 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 94 |
+| Publications with a match | 96 |
 | Incidents from local / agency feeds (combined) | **284** |
 | Canada publications (seeded / scanned) | **432 / 314** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
@@ -300,7 +300,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 4799 | 76 |
+| CO Colorado | 240 | 5221 | 89 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |

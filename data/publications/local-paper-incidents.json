@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1495,6 +1495,11 @@
         "url": "https://www.dailycamera.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -12211,7 +12216,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: coloradosun.com. Snippet only — not official agency data.",
-    "publicationDomain": "coloradosun.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://coloradosun.com/2026/06/22/bear-attack-colorado-jefferson-county/",
@@ -12222,6 +12227,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/06/22/jefferson-county-apex-park-bear/",
         "title": "Colorado’s first reported bear attack of the year shuts down Jefferson County park",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/06/22/jefferson-county-apex-park-bear/",
+        "title": "Colorado’s first reported bear attack of the year shuts down Jefferson County park",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13021,7 +13031,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
@@ -13037,6 +13047,11 @@
         "url": "https://www.dailycamera.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
         "title": "2 injured as bear attacks reach record high in Colorado amid drought",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
+        "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13063,7 +13078,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-attack-colorado-eagle-vail/",
@@ -13084,6 +13099,11 @@
         "url": "https://www.dailycamera.com/2026/08/19/bear-attack-colorado-eagle-vail/",
         "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/08/19/bear-attack-colorado-eagle-vail/",
+        "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13110,7 +13130,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-bites-homeless-man-aspen/",
@@ -13126,6 +13146,11 @@
         "url": "https://www.dailycamera.com/2026/08/19/bear-bites-homeless-man-aspen/",
         "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/08/19/bear-bites-homeless-man-aspen/",
+        "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13152,7 +13177,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
@@ -13178,6 +13203,11 @@
         "url": "https://www.dailycamera.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
         "title": "Man injured in Boulder County mountains not attacked by bear",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13204,7 +13234,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
@@ -13215,6 +13245,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
         "title": "Fisherman attacked by bear on Colorado mountain trail",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
+        "title": "Fisherman attacked by bear on Colorado mountain trail",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13241,7 +13276,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/28/bear-estes-park-attacks-woman/",
@@ -13252,6 +13287,11 @@
         "url": "https://www.dailycamera.com/2026/08/28/bear-estes-park-attacks-woman/",
         "title": "Bear enters Estes Park home, attacks woman",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/08/28/bear-estes-park-attacks-woman/",
+        "title": "Bear enters Estes Park home, attacks woman",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13278,7 +13318,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/06/23/moose-attack-colorado-woodland-park/",
@@ -13289,6 +13329,11 @@
         "url": "https://www.dailycamera.com/2026/06/23/moose-attack-colorado-woodland-park/",
         "title": "Moose attacks hiker, dogs on Colorado mountain trail",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/06/23/moose-attack-colorado-woodland-park/",
+        "title": "Moose attacks hiker, dogs on Colorado mountain trail",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13315,7 +13360,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
@@ -13331,6 +13376,11 @@
         "url": "https://www.dailycamera.com/2026/05/27/moose-attack-colorado-winter-park/",
         "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/05/27/moose-attack-colorado-winter-park/",
+        "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
@@ -13549,7 +13599,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "dailycamera.com",
+    "publicationDomain": "eptrail.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
@@ -13585,6 +13635,11 @@
         "url": "https://www.dailycamera.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "Daily Camera"
+      },
+      {
+        "url": "https://www.eptrail.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "Estes Park Trail-Gazette"
       }
     ]
   },
