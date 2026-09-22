@@ -287,20 +287,44 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
   await mapPool(queued, concurrency, async (pub) => {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), pubTimeoutMs);
+    const label = timeoutLabel(pubTimeoutMs);
+    let clearDeadline: (() => void) | undefined;
+    const deadline = new Promise<never>((_, reject) => {
+      const timer = setTimeout(() => {
+        ctrl.abort();
+        reject(new Error(label));
+      }, pubTimeoutMs);
+      clearDeadline = () => clearTimeout(timer);
+    });
     let result: Awaited<ReturnType<typeof crawlOne>>;
     try {
-      result = await crawlOne(pub, {
-        dryRun,
-        mode,
-        since: pub.lastCrawledAt ? since : null,
-        minDelayMs,
-        signal: ctrl.signal,
-        lite: Boolean(opts.lite) || pub.country === "CA" || pub.country === "MX",
-        timeoutLabel: timeoutLabel(pubTimeoutMs),
-      });
+      result = await Promise.race([
+        crawlOne(pub, {
+          dryRun,
+          mode,
+          since: pub.lastCrawledAt ? since : null,
+          minDelayMs,
+          signal: ctrl.signal,
+          lite: Boolean(opts.lite) || pub.country === "CA" || pub.country === "MX",
+          timeoutLabel: label,
+        }),
+        deadline,
+      ]);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : label;
+      const marked = message.startsWith("pub-timeout") ? message : label;
+      await markTimedOutPub(pub, marked);
+      result = {
+        fetched: 0,
+        matched: 0,
+        upserted: 0,
+        skipped: 0,
+        robotsBlocked: false,
+        error: marked,
+        samples: [],
+      };
     } finally {
-      clearTimeout(timer);
+      clearDeadline?.();
     }
     if (result.error && isDeadHostError(result.error)) deadMarked += 1;
     scanned += 1;
@@ -639,6 +663,24 @@ async function crawlOne(
     });
     return { fetched: 0, matched: 0, upserted: 0, skipped: 0, robotsBlocked: false, error: message, samples };
   }
+}
+
+async function markTimedOutPub(pub: PubRow, message: string) {
+  await withBusyRetry(() =>
+    prisma.publicationCrawl.updateMany({
+      where: { publicationId: pub.id, finishedAt: null },
+      data: { finishedAt: new Date(), error: message },
+    }),
+  );
+  await withBusyRetry(() =>
+    prisma.publication.update({
+      where: { id: pub.id },
+      data: {
+        lastCrawledAt: new Date(),
+        lastError: message,
+      },
+    }),
+  );
 }
 
 async function finishPub(

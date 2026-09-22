@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "akronnewsreporter.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1470,6 +1470,21 @@
         "url": "https://www.akronnewsreporter.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "akronnewsreporter.com"
+      },
+      {
+        "url": "https://www.broomfieldenterprise.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "broomfieldenterprise.com"
+      },
+      {
+        "url": "https://www.fortmorgantimes.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "brushnewstribune.com"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -3021,12 +3036,12 @@
     "occurredAt": "2026-05-09",
     "datePrecision": "exact",
     "dateDisplay": "2026-05-09",
-    "city": "Glacier Park",
+    "city": "Glacier",
     "region": null,
-    "stateProvince": "FL",
+    "stateProvince": "MT",
     "country": "US",
-    "lat": 28.035079,
-    "lng": -81.47538300000001,
+    "lat": 48.696,
+    "lng": -113.718,
     "severity": "fatal",
     "summary": "If confirmed, the death of the Florida man would be the first fatal bear attack in Glacier National Park since 1998.",
     "sourceType": "news",
@@ -3245,12 +3260,12 @@
     "occurredAt": "2026-06-07",
     "datePrecision": "exact",
     "dateDisplay": "2026-06-07",
-    "city": "Glacier National",
+    "city": "Glacier",
     "region": null,
-    "stateProvince": "CA",
+    "stateProvince": "MT",
     "country": "US",
-    "lat": 36.960259,
-    "lng": -121.138531,
+    "lat": 48.696,
+    "lng": -113.718,
     "severity": "property",
     "summary": "A San Diego man said he feels lucky to be alive and recovering at home this week after surviving a grizzly bear attack at Glacier National Park on May 28. “I’m honestly grateful I still have an arm,” said Daniel Crago, 32, in an interview Sunday with The Times. “It’s pretty painful, but I’m making progress day by day.” The attack unfolded at the end of the last hike on the last day of a ...",
     "sourceType": "news",
@@ -12181,12 +12196,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: coloradosun.com. Snippet only — not official agency data.",
-    "publicationDomain": "coloradosun.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://coloradosun.com/2026/06/22/bear-attack-colorado-jefferson-county/",
         "title": "Officials shut down Jefferson County park after first reported bear attack of 2026",
         "publisher": "coloradosun.com"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/06/22/jefferson-county-apex-park-bear/",
+        "title": "Colorado’s first reported bear attack of the year shuts down Jefferson County park",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -12986,12 +13006,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
         "title": "2 injured as bear attacks reach record high in Colorado amid drought",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
+        "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13018,7 +13043,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-attack-colorado-eagle-vail/",
@@ -13029,6 +13054,11 @@
         "url": "https://www.denverpost.com/2026/09/09/bear-killed-colorado-vail-eagle/",
         "title": "Bear shot, killed after charging deputies in Colorado mountain town",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/08/19/bear-attack-colorado-eagle-vail/",
+        "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13055,12 +13085,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-bites-homeless-man-aspen/",
         "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/08/19/bear-bites-homeless-man-aspen/",
+        "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13087,12 +13122,22 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
         "title": "Man injured in Boulder County mountains not attacked by bear",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.broomfieldenterprise.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "broomfieldenterprise.com"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13119,12 +13164,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
         "title": "Fisherman attacked by bear on Colorado mountain trail",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
+        "title": "Fisherman attacked by bear on Colorado mountain trail",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13215,12 +13265,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
         "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/05/27/moose-attack-colorado-winter-park/",
+        "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13439,7 +13494,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "akronnewsreporter.com",
+    "publicationDomain": "canoncitydailyrecord.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
@@ -13450,6 +13505,21 @@
         "url": "https://www.akronnewsreporter.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "akronnewsreporter.com"
+      },
+      {
+        "url": "https://www.broomfieldenterprise.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "broomfieldenterprise.com"
+      },
+      {
+        "url": "https://www.fortmorgantimes.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "brushnewstribune.com"
+      },
+      {
+        "url": "https://www.canoncitydailyrecord.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "Canon City Daily Record Sports"
       }
     ]
   },
@@ -13460,12 +13530,12 @@
     "occurredAt": null,
     "datePrecision": "unknown",
     "dateDisplay": "Date unknown",
-    "city": "Glacier National",
+    "city": "Glacier",
     "region": null,
-    "stateProvince": "CO",
+    "stateProvince": "MT",
     "country": "US",
-    "lat": 38.896011,
-    "lng": -106.102104,
+    "lat": 48.696,
+    "lng": -113.718,
     "severity": "near_miss",
     "summary": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
     "sourceType": "news",
@@ -13476,12 +13546,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: akronnewsreporter.com. Snippet only — not official agency data.",
-    "publicationDomain": "akronnewsreporter.com",
+    "publicationDomain": "broomfieldenterprise.com",
     "sources": [
       {
         "url": "https://www.akronnewsreporter.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
         "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
         "publisher": "akronnewsreporter.com"
+      },
+      {
+        "url": "https://www.broomfieldenterprise.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
+        "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
+        "publisher": "broomfieldenterprise.com"
       }
     ]
   }
