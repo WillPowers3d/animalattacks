@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-22T15:50:28.505Z",
+  "generatedAt": "2026-09-22T16:34:05.594Z",
   "publicationsSeeded": 15504,
   "publicationsScanned": 11888,
   "remainingNewspapers": 6303,
-  "articlesFetched": 138930,
-  "matchingArticles": 1160,
-  "publicationsWithMatches": 96,
+  "articlesFetched": 139325,
+  "matchingArticles": 1168,
+  "publicationsWithMatches": 97,
   "incidentsFromLocalPapers": 284,
-  "incidentsTotal": 637,
+  "incidentsTotal": 639,
   "canadaPublications": 432,
   "canadaScanned": 314,
   "mexicoPublications": 212,
@@ -19,7 +19,7 @@
     "DE": 1,
     "NO": 10,
     "RU": 4,
-    "US": 361,
+    "US": 363,
     "JP": 2,
     "SI": 1,
     "MX": 40
@@ -27,7 +27,7 @@
   "incidentsBySource": {
     "agency": 7,
     "ammoland": 205,
-    "news": 420,
+    "news": 422,
     "other": 5
   },
   "crawledStates": [
@@ -126,8 +126,8 @@
       "state": "CO",
       "name": "Colorado",
       "scanned": 240,
-      "articles": 5221,
-      "matches": 89
+      "articles": 5616,
+      "matches": 97
     },
     {
       "state": "PA",
@@ -636,12 +636,12 @@
   ],
   "localIncidentsBySpecies": {
     "bear": 284,
-    "mountain_lion": 103,
+    "mountain_lion": 105,
     "elk": 7,
     "moose": 26
   },
   "localIncidentsByState": {
-    "CO": 85,
+    "CO": 87,
     "AK": 23,
     "MT": 15,
     "CA": 7,

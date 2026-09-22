@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1500,6 +1500,11 @@
         "url": "https://www.eptrail.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13031,7 +13036,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
@@ -13052,6 +13057,11 @@
         "url": "https://www.eptrail.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
         "title": "2 injured as bear attacks reach record high in Colorado amid drought",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
+        "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13078,7 +13088,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-attack-colorado-eagle-vail/",
@@ -13104,6 +13114,11 @@
         "url": "https://www.eptrail.com/2026/08/19/bear-attack-colorado-eagle-vail/",
         "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/08/19/bear-attack-colorado-eagle-vail/",
+        "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13130,7 +13145,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-bites-homeless-man-aspen/",
@@ -13151,6 +13166,11 @@
         "url": "https://www.eptrail.com/2026/08/19/bear-bites-homeless-man-aspen/",
         "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/08/19/bear-bites-homeless-man-aspen/",
+        "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13276,7 +13296,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/28/bear-estes-park-attacks-woman/",
@@ -13292,6 +13312,11 @@
         "url": "https://www.eptrail.com/2026/08/28/bear-estes-park-attacks-woman/",
         "title": "Bear enters Estes Park home, attacks woman",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/08/28/bear-estes-park-attacks-woman/",
+        "title": "Bear enters Estes Park home, attacks woman",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13318,7 +13343,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/06/23/moose-attack-colorado-woodland-park/",
@@ -13334,6 +13359,11 @@
         "url": "https://www.eptrail.com/2026/06/23/moose-attack-colorado-woodland-park/",
         "title": "Moose attacks hiker, dogs on Colorado mountain trail",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/06/23/moose-attack-colorado-woodland-park/",
+        "title": "Moose attacks hiker, dogs on Colorado mountain trail",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13360,7 +13390,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
@@ -13381,6 +13411,11 @@
         "url": "https://www.eptrail.com/2026/05/27/moose-attack-colorado-winter-park/",
         "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/05/27/moose-attack-colorado-winter-park/",
+        "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13599,7 +13634,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "eptrail.com",
+    "publicationDomain": "greeleytribune.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
@@ -13640,6 +13675,11 @@
         "url": "https://www.eptrail.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "Estes Park Trail-Gazette"
+      },
+      {
+        "url": "https://www.greeleytribune.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "greeleytribune.com"
       }
     ]
   },
@@ -13906,6 +13946,75 @@
         "url": "https://coloradosun.com/2026/09/17/camper-colorado-bear-attack-bitten/",
         "title": "Camper bitten by bear in southern Colorado recalls moment it \"came crashing\" into tent",
         "publisher": "coloradosun.com"
+      }
+    ]
+  },
+  {
+    "title": "Proving Cougars Attack the Weak",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2019-07-01",
+    "datePrecision": "exact",
+    "dateDisplay": "2019-07-01",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.38781100000001,
+    "lng": -107.349504,
+    "severity": "near_miss",
+    "summary": "Mountain lions in Colorado have a knack for killing deer with chronic wasting disease -- even ones who aren't showing overt signs of illness. Wildlife",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: KCFR 105.9 FM. Snippet only — not official agency data.",
+    "publicationDomain": "cpr.org",
+    "sources": [
+      {
+        "url": "https://www.cpr.org/2010/01/06/proving-cougars-attack-the-weak-2/",
+        "title": "Proving Cougars Attack the Weak",
+        "publisher": "KCFR 105.9 FM"
+      },
+      {
+        "url": "https://www.cpr.org/2010/04/05/proving-cougars-attack-the-weak/",
+        "title": "Proving Cougars Attack the Weak",
+        "publisher": "KCFR 105.9 FM"
+      }
+    ]
+  },
+  {
+    "title": "'It Was Like A Wrestling Match': Trail Runner Recounts Harrowing Mountain Lion Attack",
+    "species": "mountain_lion",
+    "subspecies": "cougar",
+    "occurredAt": "2019-07-01",
+    "datePrecision": "exact",
+    "dateDisplay": "2019-07-01",
+    "city": "Arapahoe",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.726303,
+    "lng": -104.856808,
+    "severity": "near_miss",
+    "summary": "Travis Kauffman says he was \"pretty bummed out\" to turn around and see a mountain lion chasing him during a trail run earlier this month.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: KCFR 105.9 FM. Snippet only — not official agency data.",
+    "publicationDomain": "cpr.org",
+    "sources": [
+      {
+        "url": "https://www.cpr.org/2019/02/15/it-was-like-a-wrestling-match-trail-runner-recounts-harrowing-mountain-lion-attack/",
+        "title": "'It Was Like A Wrestling Match': Trail Runner Recounts Harrowing Mountain Lion Attack",
+        "publisher": "KCFR 105.9 FM"
       }
     ]
   }
