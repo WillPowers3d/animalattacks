@@ -233,6 +233,16 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       if (opts.west && mode === "backfill" && p.lastBackfillAt && !opts.force) return false;
       if (skipDead && isDeadHostError(p.lastError)) return false;
       if (opts.uncrawled && (p.lastCrawledAt || p.lastBackfillAt)) return false;
+      // Do not immediately re-queue a host that just hit the per-pub timeout.
+      if (
+        mode === "backfill" &&
+        p.lastError?.startsWith("pub-timeout") &&
+        p.lastCrawledAt &&
+        cutoff &&
+        p.lastCrawledAt >= cutoff
+      ) {
+        return false;
+      }
       const stamp = mode === "backfill" ? p.lastBackfillAt : p.lastCrawledAt;
       return opts.force || !cutoff || !stamp || stamp < cutoff;
     })
