@@ -37,7 +37,7 @@ Features shipped across the stacked PRs. Merge order: **#1 → #5**, then this o
 
 ## Unreleased — overnight (this PR, stacked on #5)
 
-- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). Mid-wave: 17 CO pubs finished, **13** new unique incidents (Denver Post + Red Feather Lakes + Collegian / Herald Times / South Platte), 9× `pub-timeout-300s`. Ledger 614 → 629. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
+- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). Wave 1 at 25/80: **14** new unique incidents, 12 completed, 13× `pub-timeout-300s`. Ledger 614 → 630. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
 - **Facebook Graph ingest:** pluggable `createFacebookFetcher()` — live `/{page-id}/posts` when `FACEBOOK_ACCESS_TOKEN` + `FACEBOOK_PAGE_IDS` are set; labeled mock path otherwise. Attack keyword filter uses the newspaper matcher. Pagination + `FACEBOOK_GRAPH_VERSION` / `FACEBOOK_POST_LIMIT`.
 - **Product:** homepage coverage strip shows US/CA/MX **incident + publication** counts; digest `--fatal-only` / `?severity=fatal`.
 - **Hygiene:** `npm test` (matcher, dedupe, Facebook, digest, dead-host), `CHANGELOG.md`, README / DEPLOY / `.env.example` for the full stack.

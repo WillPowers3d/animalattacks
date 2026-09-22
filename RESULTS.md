@@ -33,11 +33,11 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
 | Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | southern extras queued (`--uncrawled`); first-pass MX not re-walked |
 | Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | TBD after extras crawl |
-| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | Wave 1 still running: **17** CO pubs finished (1,105 articles, 23 matcher hits, **13** new unique). **8** completed; **9** `pub-timeout-300s`. ~157 still queued. AK/MT/WY/ID not re-walked. |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | Wave 1 at **25/80**: 1,590 articles, 29 matcher hits, **14** new unique. **12** completed; **13** `pub-timeout-300s`. ~153 still queued. AK/MT/WY/ID not re-walked. |
 | Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
 | Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
-| Incidents total in this VM | **487** | **522** | **614** | **629** (+15 this run; 13 publication-linked uniques) |
+| Incidents total in this VM | **487** | **522** | **614** | **630** (+16; 14 publication-linked uniques) |
 | Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) | **205** ammoland (unchanged) |
 
 ### Best finds this wave
@@ -54,17 +54,15 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **West-core backfill (PR #5):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
 
-**Overnight west-retry (this PR, mid-wave 09:05 UTC):** Remaining queued western-core pubs were **Colorado only** (AK/MT/WY/ID already stamped). Runner uses `--timeout-ms=300000 --concurrency=2 --skip-dead`. Recent `pub-timeout` hosts are not immediately re-queued in the next wave.
+**Overnight west-retry (this PR, 10:07 UTC, wave 1 25/80):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Recent `pub-timeout` hosts are not immediately re-queued.
 
-Recovered unique incidents this run:
+Recovered unique incidents this run (14):
 
 - Denver Post: Winter Park moose vs dog walker; moose vs hiker/dogs; Estes Park bear in a home; trail fisherman vs bear; Aspen homeless-man bite; mountain-town apartment attack; drought-year record bear attacks
-- North Forty News: CPW seeking a bear after a Red Feather Lakes attack (plus the later “attack unlikely” update — matcher still noisy on negation)
-- CSU Collegian: polar-bear camping mauling wire; generic “bear attacks happen”
-- Herald Times: “Learning to live with bears” / Days Gone By historical
-- South Platte Sentinel: hungry black bears in the Rockies
+- North Forty News: CPW seeking a bear after a Red Feather Lakes attack (plus the later “attack unlikely” update)
+- CSU Collegian / Herald Times / South Platte Sentinel / Akron News Reporter: Rocky Mountain bear-conflict wires (Glacier NP fatal reprint, “learning to live with bears”)
 
-Completed hosts: `denverpost.com`, `hcn.org`, `crestedbuttenews.com`, `mountainjackpot.com`, `berthoudrecorder.com`, `theheraldtimes.com`, `collegian.com`, `southplattesentinel.com`. Timeouts (retryable): 9news, Boulder Weekly, BizWest, Aspen Public Radio, La Prensa de Colorado, Montrose Press, The Mountain-Ear, North Forty News (partial upserts before timeout), The Crite.
+Completed (12): denverpost, hcn, crestedbuttenews, mountainjackpot, berthoudrecorder, theheraldtimes, collegian, southplattesentinel, 5280, akronnewsreporter, aspenjournalism, thebusinesstimes. Timeouts (13, retryable): 9news, Boulder Weekly, BizWest, Westword, GJ Sentinel, Aspen Public Radio, La Prensa de Colorado, Montrose Press, The Mountain-Ear, North Forty News, The Crite, Arvada Press, Prowers Journal.
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
@@ -143,7 +141,7 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T09:05:46.508Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T10:07:29.556Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
@@ -152,18 +150,18 @@ Generated **2026-09-22T09:05:46.508Z**. Combined with the committed first-pass b
 | This-VM pubs scanned | 5,726 |
 | Uncrawled newspapers remaining | 6,303 |
 | Article records fetched (combined) | **137,743** |
-| This-VM articles | 44,437 |
-| Matching articles (combined) | **1,104** |
-| This-VM publication-linked incidents | 412 |
+| This-VM articles | 44,922 |
+| Matching articles (combined) | **1,110** |
+| This-VM publication-linked incidents | 413 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 84 |
+| Publications with a match | 86 |
 | Incidents from local / agency feeds (combined) | **284** |
 | Canada publications (seeded / scanned) | **432 / 314** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
 | Mexico publications (seeded / scanned) | **212 / 197** |
 | Mexico incidents (all / publication-linked) | **34 / 34** |
 | Agency feeds (seeded / scanned) | 52 / 47 |
-| Incidents total | 629 |
+| Incidents total | 630 |
 
 ### Canada coverage (priority)
 
@@ -265,7 +263,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by country
 
-- US: 353
+- US: 354
 - CA: 224
 - MX: 40
 - NO: 10
@@ -276,7 +274,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by source type
 
-- news: 412
+- news: 413
 - ammoland: 205
 - agency: 7
 - other: 5
@@ -298,7 +296,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 4034 | 33 |
+| CO Colorado | 240 | 4034 | 39 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
@@ -374,7 +372,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Local / agency incidents by species
 
-- bear: 279
+- bear: 280
 - mountain_lion: 103
 - moose: 24
 - elk: 6
@@ -382,7 +380,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 ### Local / agency incidents by region
 
 - BC: 84
-- CO: 79
+- CO: 80
 - NT: 69
 - AB: 27
 - AK: 23

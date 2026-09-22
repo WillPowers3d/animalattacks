@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "southplattesentinel.com",
+    "publicationDomain": "akronnewsreporter.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1465,6 +1465,11 @@
         "url": "https://www.journal-advocate.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "southplattesentinel.com"
+      },
+      {
+        "url": "https://www.akronnewsreporter.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "akronnewsreporter.com"
       }
     ]
   },
@@ -13434,12 +13439,49 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "southplattesentinel.com",
+    "publicationDomain": "akronnewsreporter.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "southplattesentinel.com"
+      },
+      {
+        "url": "https://www.akronnewsreporter.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "akronnewsreporter.com"
+      }
+    ]
+  },
+  {
+    "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Glacier National",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.896011,
+    "lng": -106.102104,
+    "severity": "near_miss",
+    "summary": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: akronnewsreporter.com. Snippet only — not official agency data.",
+    "publicationDomain": "akronnewsreporter.com",
+    "sources": [
+      {
+        "url": "https://www.akronnewsreporter.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
+        "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
+        "publisher": "akronnewsreporter.com"
       }
     ]
   }
