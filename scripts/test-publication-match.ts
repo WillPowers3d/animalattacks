@@ -1,4 +1,4 @@
-import { matchAnimalAttack } from "../src/lib/publications/match";
+import { matchAnimalAttack, urlLooksLikeSportsDesk } from "../src/lib/publications/match";
 
 const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Grizzly bear attacks hiker near West Yellowstone", want: true },
@@ -53,6 +53,8 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Oso atacó a dos personas en Arteaga, Coahuila", want: true },
   { title: "Los Pumas vencen a América en el ataque final", want: false },
   { title: "Club Pumas vs Tigres: un ataque ofensivo", want: false },
+  { title: "Ataque Puma queda en evidencia", want: false },
+  { title: "Pumas golea en la Liga MX con un ataque letal", want: false },
   { title: "Maullido de gato asusta a vecinos en Tijuana", want: false },
   { title: 'Despedazan a hija de “El Puma” por sus fotos en bikini', want: false },
 ]
@@ -67,6 +69,19 @@ for (const c of cases) {
     console.log(`ok  "${c.title}" -> ${got.matched ? got.species : "skip"}`);
   }
 }
+const urlCases: { url: string; want: boolean }[] = [
+  { url: "https://diariodechiapas.com/deportes/ataque-puma-queda-en-evidencia/", want: true },
+  { url: "https://diariodechiapas.com/chiapas/puma-ataco-a-nino-en-la-concordia/", want: false },
+  { url: "https://example.com/sports/cougars-win", want: true },
+];
+for (const c of urlCases) {
+  const got = urlLooksLikeSportsDesk(c.url);
+  if (got !== c.want) {
+    failed += 1;
+    console.error(`FAIL url "${c.url}" want=${c.want} got=${got}`);
+  }
+}
+
 if (failed) {
   console.error(`${failed} matcher tests failed`);
   process.exit(1);

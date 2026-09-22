@@ -31,8 +31,8 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) | **+12** southern MX extras + **3** MX agency rows (no US/CA/MX first-pass rebuild) |
 | US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) | not re-scanned |
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
-| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | **212** seeded (first-pass 199 + 12 southern extras + Epoch Times junk). **197** scanned. Southern extras still `--uncrawled` next; first-pass MX not re-walked. |
-| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | **34** (unchanged; extras crawl not started at west close-out) |
+| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | **212** seeded / **207** scanned. Extras wave: **10** `--uncrawled` southern papers, **103** articles, **0** new wildlife uniques. **elsoldeoaxaca.com.mx** dead-host; **imagendelgolfo.mx** robots-blocked. Epoch Times `.jp/.ru` skipped by TLD filter. First-pass MX not re-walked. |
+| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | **34** (soccer “Ataque Puma queda en evidencia” matched then dropped; `/deportes/` + Liga MX Pumas rejected) |
 | West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **48** completed / **41** `pub-timeout-300s` / **0** dead hosts / **25** new unique. Ledger **614 → 641**. CO newspapers lastBackfill **123**; **117** still never-backfilled (retryable timeouts). Lamar Ledger added Coal Creek + Boulder moose. CPR / Kiowa / KRDO completed (mostly reprints). West-retry **stopped 17:03 UTC** after 4h budget. AK/MT/WY/ID not re-walked. |
 | Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
@@ -77,7 +77,7 @@ Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, 
 1. **Finish west-core queue** — retry pass **closed 17:03 UTC**. 48 completed / 41 timeouts / 25 uniques / ledger 641. 117 CO newspapers remain never-backfilled (timeouts), not re-queued this wave.
 2. **Facebook / Meta public-page ingest** — `createFacebookFetcher()` Graph path + mock fallback + attack keyword filter.
 3. **Digest fatal-only** + homepage coverage strip (US/CA/MX pub + incident counts).
-4. **Southern Mexico extras** — Tabasco / Veracruz / more Chiapas–Oaxaca–Campeche papers via `extra.json` (`--uncrawled` only). Starting after this west close-out.
+4. **Southern Mexico extras** — **done.** 10 uncrawled TAB/VER/CHP/OAX/CAM papers scanned; 0 new jaguar/black-bear uniques. Matcher now drops Liga MX / `/deportes/` “Ataque Puma” sports wires. CONANP / PROFEPA / SEMARNAT still queued for `crawl:agencies`.
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -105,7 +105,7 @@ npm run crawl:west-backfill
 npm run crawl:west-retry
 
 # New Mexico extras only (does not re-walk first-pass MX)
-npm run crawl:publications -- --country=MX --backfill --lite --uncrawled --concurrency=4 --skip-dead
+npm run crawl:mexico-extras
 
 # Fatal / injury markdown digest (optional --fatal-only)
 npm run digest
@@ -147,24 +147,24 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T17:03:40.922Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T17:09:57.462Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 15,504 |
-| Scanned at least once (combined) | **11,888** |
-| This-VM pubs scanned | 5,738 |
-| Uncrawled newspapers remaining | 6,291 |
-| Article records fetched (combined) | **139,969** |
-| This-VM articles | 48,822 |
-| Matching articles (combined) | **1,186** |
+| Scanned at least once (combined) | **11,898** |
+| This-VM pubs scanned | 5,748 |
+| Uncrawled newspapers remaining | 6,281 |
+| Article records fetched (combined) | **140,072** |
+| This-VM articles | 48,925 |
+| Matching articles (combined) | **1,187** |
 | This-VM publication-linked incidents | 424 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 101 |
-| Incidents from local / agency feeds (combined) | **284** |
+| Publications with a match | 102 |
+| Incidents from local / agency feeds (combined) | **285** |
 | Canada publications (seeded / scanned) | **432 / 314** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
-| Mexico publications (seeded / scanned) | **212 / 197** |
+| Mexico publications (seeded / scanned) | **212 / 207** |
 | Mexico incidents (all / publication-linked) | **34 / 34** |
 | Agency feeds (seeded / scanned) | 52 / 47 |
 | Incidents total | 641 |
@@ -232,11 +232,11 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | NAY Nayarit | 3 | 3 | 0 | 0 | 1 |
 | MIC Michoacán | 8 | 8 | 28 | 0 | 4 |
 | GRO Guerrero | 4 | 4 | 3 | 0 | 0 |
-| OAX Oaxaca | 5 | 3 | 81 | 0 | 2 |
-| CHP Chiapas | 8 | 7 | 123 | 1 | 1 |
-| TAB Tabasco | 3 | 0 | 0 | 0 | 0 |
-| VER Veracruz | 3 | 0 | 0 | 0 | 0 |
-| CAM Campeche | 5 | 4 | 34 | 1 | 1 |
+| OAX Oaxaca | 5 | 5 | 81 | 0 | 2 |
+| CHP Chiapas | 8 | 8 | 176 | 2 | 1 |
+| TAB Tabasco | 3 | 3 | 50 | 0 | 0 |
+| VER Veracruz | 3 | 3 | 0 | 0 | 0 |
+| CAM Campeche | 5 | 5 | 34 | 1 | 1 |
 | ROO Quintana Roo | 5 | 5 | 122 | 0 | 0 |
 | YUC Yucatán | 5 | 5 | 63 | 0 | 0 |
 | ZAC Zacatecas | 4 | 4 | 30 | 0 | 0 |
@@ -244,7 +244,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | CMX Ciudad de México | 5 | 2 | 21 | 0 | 0 |
 | ??  | 72 | 70 | 1026 | 27 | 15 |
 
-**Mexico totals:** 212 pubs seeded, 197 scanned, 2716 articles, 31 matcher hits, 34 publication-linked incidents (34 incidents with country=MX).
+**Mexico totals:** 212 pubs seeded, 207 scanned, 2819 articles, 32 matcher hits, 34 publication-linked incidents (34 incidents with country=MX).
 
 #### Recent / best Mexico finds
 
@@ -280,7 +280,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 
 ### Incidents by source type
 
-- news: 424
+- news: 425
 - ammoland: 205
 - agency: 7
 - other: 5
@@ -355,7 +355,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | COA Coahuila | 8 | 134 | 0 |
 | MIC Michoacán | 8 | 28 | 0 |
 | SIN Sinaloa | 8 | 59 | 0 |
-| CHP Chiapas | 7 | 123 | 1 |
+| CHP Chiapas | 8 | 176 | 2 |
 | SON Sonora | 7 | 142 | 0 |
 | YT Yukon | 6 | 99 | 10 |
 | BCS Baja California Sur | 6 | 54 | 0 |
@@ -363,15 +363,17 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | TAM Tamaulipas | 6 | 64 | 0 |
 | ROO Quintana Roo | 5 | 122 | 0 |
 | YUC Yucatán | 5 | 63 | 0 |
+| CAM Campeche | 5 | 34 | 1 |
+| OAX Oaxaca | 5 | 81 | 0 |
 | NS Nova Scotia | 4 | 2 | 0 |
-| CAM Campeche | 4 | 34 | 1 |
 | GRO Guerrero | 4 | 3 | 0 |
 | ZAC Zacatecas | 4 | 30 | 0 |
 | NU Nunavut | 3 | 140 | 15 |
 | DUR Durango | 3 | 54 | 0 |
 | NAY Nayarit | 3 | 0 | 0 |
-| OAX Oaxaca | 3 | 81 | 0 |
 | SLP San Luis Potosí | 3 | 10 | 0 |
+| TAB Tabasco | 3 | 50 | 0 |
+| VER Veracruz | 3 | 0 | 0 |
 | CMX Ciudad de México | 2 | 21 | 0 |
 | NL Newfoundland and Labrador | 1 | 1 | 0 |
 | PE Prince Edward Island | 1 | 0 | 0 |
@@ -379,7 +381,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 ### Local / agency incidents by species
 
 - bear: 284
-- mountain_lion: 105
+- mountain_lion: 106
 - moose: 28
 - elk: 7
 
@@ -414,6 +416,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 - IL: 2
 - MN: 2
 - PA: 2
+- CHP: 2
 - OAX: 2
 - NC: 1
 - NV: 1
@@ -423,7 +426,6 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 - WI: 1
 - NH: 1
 - CAM: 1
-- CHP: 1
 - IN: 1
 - NAY: 1
 - NLE: 1

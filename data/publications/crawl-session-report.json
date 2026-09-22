@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-22T17:03:40.934Z",
+  "generatedAt": "2026-09-22T17:09:57.474Z",
   "publicationsSeeded": 15504,
-  "publicationsScanned": 11888,
-  "remainingNewspapers": 6291,
-  "articlesFetched": 139969,
-  "matchingArticles": 1186,
-  "publicationsWithMatches": 101,
-  "incidentsFromLocalPapers": 284,
+  "publicationsScanned": 11898,
+  "remainingNewspapers": 6281,
+  "articlesFetched": 140072,
+  "matchingArticles": 1187,
+  "publicationsWithMatches": 102,
+  "incidentsFromLocalPapers": 285,
   "incidentsTotal": 641,
   "canadaPublications": 432,
   "canadaScanned": 314,
   "mexicoPublications": 212,
-  "mexicoScanned": 197,
+  "mexicoScanned": 207,
   "agencyPublications": 52,
   "agencyScanned": 47,
   "incidentsByCountry": {
@@ -27,7 +27,7 @@
   "incidentsBySource": {
     "agency": 7,
     "ammoland": 205,
-    "news": 424,
+    "news": 425,
     "other": 5
   },
   "crawledStates": [
@@ -496,9 +496,9 @@
     {
       "state": "CHP",
       "name": "Chiapas",
-      "scanned": 7,
-      "articles": 123,
-      "matches": 1
+      "scanned": 8,
+      "articles": 176,
+      "matches": 2
     },
     {
       "state": "SON",
@@ -550,18 +550,25 @@
       "matches": 0
     },
     {
+      "state": "CAM",
+      "name": "Campeche",
+      "scanned": 5,
+      "articles": 34,
+      "matches": 1
+    },
+    {
+      "state": "OAX",
+      "name": "Oaxaca",
+      "scanned": 5,
+      "articles": 81,
+      "matches": 0
+    },
+    {
       "state": "NS",
       "name": "Nova Scotia",
       "scanned": 4,
       "articles": 2,
       "matches": 0
-    },
-    {
-      "state": "CAM",
-      "name": "Campeche",
-      "scanned": 4,
-      "articles": 34,
-      "matches": 1
     },
     {
       "state": "GRO",
@@ -599,17 +606,24 @@
       "matches": 0
     },
     {
-      "state": "OAX",
-      "name": "Oaxaca",
-      "scanned": 3,
-      "articles": 81,
-      "matches": 0
-    },
-    {
       "state": "SLP",
       "name": "San Luis Potosí",
       "scanned": 3,
       "articles": 10,
+      "matches": 0
+    },
+    {
+      "state": "TAB",
+      "name": "Tabasco",
+      "scanned": 3,
+      "articles": 50,
+      "matches": 0
+    },
+    {
+      "state": "VER",
+      "name": "Veracruz",
+      "scanned": 3,
+      "articles": 0,
       "matches": 0
     },
     {
@@ -636,7 +650,7 @@
   ],
   "localIncidentsBySpecies": {
     "bear": 284,
-    "mountain_lion": 105,
+    "mountain_lion": 106,
     "elk": 7,
     "moose": 28
   },
@@ -675,7 +689,7 @@
     "YT": 15,
     "CAM": 1,
     "CHH": 3,
-    "CHP": 1,
+    "CHP": 2,
     "COA": 4,
     "DUR": 7,
     "IN": 1,

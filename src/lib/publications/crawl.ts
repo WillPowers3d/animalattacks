@@ -5,7 +5,7 @@ import { extractPageSnippet } from "./html";
 import { cbcAlternateFeedUrls, fetchCbcListingArticles, fetchCbcSearchArticles, isCbcFamilyHost } from "./cbc";
 import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArticles } from "./feeds";
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
-import { matchAnimalAttack } from "./match";
+import { matchAnimalAttack, urlLooksLikeSportsDesk } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
 import { BACKFILL_STATES, LEFTOVER_STATES, WESTERN_CORE_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
@@ -585,6 +585,7 @@ async function crawlOne(
 
     for (const article of articles.values()) {
       if (opts.signal?.aborted) throw new Error(timedOut);
+      if (urlLooksLikeSportsDesk(article.url)) continue;
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
