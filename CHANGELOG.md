@@ -37,7 +37,7 @@ Features shipped across the stacked PRs. Merge order: **#1 → #5**, then this o
 
 ## Unreleased — overnight (this PR, stacked on #5)
 
-- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). **24** completed / **23** timeouts / **21** new unique. Watchdog survived a second VM freeze (Coloradoan / Colorado Sun). Ledger **614 → 637**. Gazette recovered Steamboat / Estes Park / Telluride / Teller County attacks. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
+- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). **30** completed / **26** timeouts / **21** new unique. Watchdog survived a third VM freeze. Ledger **614 → 637**. Gazette recovered Steamboat / Estes Park / Telluride / Teller County; Daily Camera reprints only. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
 - **Facebook Graph ingest:** pluggable `createFacebookFetcher()` — live `/{page-id}/posts` when `FACEBOOK_ACCESS_TOKEN` + `FACEBOOK_PAGE_IDS` are set; labeled mock path otherwise. Attack keyword filter uses the newspaper matcher. Pagination + `FACEBOOK_GRAPH_VERSION` / `FACEBOOK_POST_LIMIT`.
 - **Product:** homepage coverage strip shows US/CA/MX **incident + publication** counts; digest `--fatal-only` / `?severity=fatal`. Landmark overrides (Glacier NP → MT, Yellowstone → WY, Banff → AB) so reprint wires are not pinned to the paper’s town.
 - **Hygiene:** `npm test` (matcher, dedupe, Facebook, digest, dead-host), `CHANGELOG.md`, README / DEPLOY / `.env.example` for the full stack.

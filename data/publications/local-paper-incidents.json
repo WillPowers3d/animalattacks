@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "coloradohometownweekly.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1490,6 +1490,11 @@
         "url": "https://www.coloradohometownweekly.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "Colorado Hometown Weekly"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13016,7 +13021,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
@@ -13027,6 +13032,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
         "title": "2 injured as bear attacks reach record high in Colorado amid drought",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
+        "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13053,7 +13063,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-attack-colorado-eagle-vail/",
@@ -13069,6 +13079,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/08/19/bear-attack-colorado-eagle-vail/",
         "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/08/19/bear-attack-colorado-eagle-vail/",
+        "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13095,7 +13110,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/19/bear-bites-homeless-man-aspen/",
@@ -13106,6 +13121,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/08/19/bear-bites-homeless-man-aspen/",
         "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/08/19/bear-bites-homeless-man-aspen/",
+        "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13132,7 +13152,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "coloradohometownweekly.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
@@ -13153,6 +13173,11 @@
         "url": "https://www.coloradohometownweekly.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
         "title": "Man injured in Boulder County mountains not attacked by bear",
         "publisher": "Colorado Hometown Weekly"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13200,12 +13225,12 @@
     "occurredAt": null,
     "datePrecision": "unknown",
     "dateDisplay": "Date unknown",
-    "city": "Arapahoe",
+    "city": "Estes Park",
     "region": null,
     "stateProvince": "CO",
     "country": "US",
-    "lat": 39.726303,
-    "lng": -104.856808,
+    "lat": 40.541,
+    "lng": -106.5591,
     "severity": "property",
     "summary": "Bear enters Estes Park home, attacks woman",
     "sourceType": "news",
@@ -13216,12 +13241,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/08/28/bear-estes-park-attacks-woman/",
         "title": "Bear enters Estes Park home, attacks woman",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/08/28/bear-estes-park-attacks-woman/",
+        "title": "Bear enters Estes Park home, attacks woman",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13248,12 +13278,17 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "denverpost.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/06/23/moose-attack-colorado-woodland-park/",
         "title": "Moose attacks hiker, dogs on Colorado mountain trail",
         "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/06/23/moose-attack-colorado-woodland-park/",
+        "title": "Moose attacks hiker, dogs on Colorado mountain trail",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13280,7 +13315,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
@@ -13291,6 +13326,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/05/27/moose-attack-colorado-winter-park/",
         "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/05/27/moose-attack-colorado-winter-park/",
+        "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+        "publisher": "Daily Camera"
       }
     ]
   },
@@ -13509,7 +13549,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "coloradohometownweekly.com",
+    "publicationDomain": "dailycamera.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
@@ -13540,6 +13580,11 @@
         "url": "https://www.coloradohometownweekly.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "Colorado Hometown Weekly"
+      },
+      {
+        "url": "https://www.dailycamera.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "Daily Camera"
       }
     ]
   },
