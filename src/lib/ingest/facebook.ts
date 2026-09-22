@@ -1,5 +1,6 @@
 import type { SeedIncident } from "../types";
 import { geocodeIncident, offsetCoord } from "../geo";
+import { inferLandmarkPlace } from "../publications/landmarks";
 import { matchAnimalAttack } from "../publications/match";
 
 export type FacebookPost = {
@@ -205,28 +206,12 @@ function inferFacebookLocation(text: string): {
   stateProvince: string | null;
   country: "US" | "CA" | "MX";
 } {
-  const places: [RegExp, string, string, "US" | "CA" | "MX"][] = [
-    [/Anchorage/i, "Anchorage", "AK", "US"],
-    [/Estes Park/i, "Estes Park", "CO", "US"],
-    [/Banff/i, "Banff", "AB", "CA"],
-    [/Jasper/i, "Jasper", "AB", "CA"],
-    [/Canmore/i, "Canmore", "AB", "CA"],
-    [/Yellowstone/i, "Yellowstone", "WY", "US"],
-    [/Bozeman/i, "Bozeman", "MT", "US"],
-    [/Jackson/i, "Jackson", "WY", "US"],
-    [/Fairbanks/i, "Fairbanks", "AK", "US"],
-    [/Homer/i, "Homer", "AK", "US"],
-    [/Boulder/i, "Boulder", "CO", "US"],
-    [/Whistler/i, "Whistler", "BC", "CA"],
-    [/Glacier( National Park)?/i, "Glacier", "MT", "US"],
-    [/Rocky Mountain( National Park)?/i, "Estes Park", "CO", "US"],
-    [/Denali/i, "Denali", "AK", "US"],
-    [/Chihuahua/i, "Chihuahua", "CHH", "MX"],
-    [/Monterrey/i, "Monterrey", "NLE", "MX"],
-  ];
-  for (const [re, city, state, country] of places) {
-    if (re.test(text)) return { city, stateProvince: state, country };
-  }
+  const landmark = inferLandmarkPlace(text);
+  if (landmark) return landmark;
+  if (/\bBoulder\b/i.test(text)) return { city: "Boulder", stateProvince: "CO", country: "US" };
+  if (/\bJackson\b/i.test(text)) return { city: "Jackson", stateProvince: "WY", country: "US" };
+  if (/\bChihuahua\b/i.test(text)) return { city: "Chihuahua", stateProvince: "CHH", country: "MX" };
+  if (/\bMonterrey\b/i.test(text)) return { city: "Monterrey", stateProvince: "NLE", country: "MX" };
   if (/\bAlaska\b/i.test(text)) return { city: null, stateProvince: "AK", country: "US" };
   if (/\bMontana\b/i.test(text)) return { city: null, stateProvince: "MT", country: "US" };
   if (/\bColorado\b/i.test(text)) return { city: null, stateProvince: "CO", country: "US" };

@@ -1,5 +1,6 @@
 import { geocodeIncident, offsetCoord } from "../geo";
 import type { Country, SeedIncident, Species } from "../types";
+import { inferLandmarkPlace } from "./landmarks";
 import { matchAnimalAttack } from "./match";
 import { CA_PROVINCE_NAMES, MX_STATE_NAMES, US_STATE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
@@ -186,9 +187,11 @@ export function articleToIncident(
     }
   }
 
-  const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
-  const state = stateFromArticle ?? pub.state ?? null;
-  let country: Country = pub.country === "CA" ? "CA" : pub.country === "MX" ? "MX" : "US";
+  const landmark = inferLandmarkPlace(blob);
+  const city = landmark?.city ?? cityFromArticle ?? pub.city ?? pub.town ?? null;
+  const state = landmark?.stateProvince ?? stateFromArticle ?? pub.state ?? null;
+  let country: Country = landmark?.country
+    ?? (pub.country === "CA" ? "CA" : pub.country === "MX" ? "MX" : "US");
   if (state && CA_PROVINCE_NAMES[state]) country = "CA";
   else if (state && MX_STATE_NAMES[state]) country = "MX";
   else if (state && US_STATE_NAMES[state]) country = "US";
@@ -204,7 +207,7 @@ export function articleToIncident(
   if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {
     country = foreign;
   }
-  const hasPrecisePlace = Boolean(cityFromArticle);
+  const hasPrecisePlace = Boolean(landmark || cityFromArticle);
   let lat = pub.lat ?? null;
   let lng = pub.lng ?? null;
   if (hasPrecisePlace || lat == null || lng == null) {

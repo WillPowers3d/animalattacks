@@ -28,7 +28,7 @@
     "crawl:west-backfill": "tsx scripts/crawl-waves.ts --hours=3 --batch=150 --concurrency=8 --west --backfill",
     "crawl:west-retry": "tsx scripts/crawl-waves.ts --hours=4 --batch=80 --concurrency=2 --west --backfill --timeout-ms=300000 --skip-dead",
     "digest": "tsx scripts/digest.ts",
-    "test": "tsx scripts/test-publication-match.ts && tsx scripts/test-event-dedupe.ts && tsx scripts/test-facebook.ts && tsx scripts/test-digest.ts && tsx scripts/test-dead-host.ts",
+    "test": "tsx scripts/test-publication-match.ts && tsx scripts/test-event-dedupe.ts && tsx scripts/test-facebook.ts && tsx scripts/test-digest.ts && tsx scripts/test-dead-host.ts && tsx scripts/test-landmarks.ts",
     "test:facebook": "tsx scripts/test-facebook.ts",
     "test:digest": "tsx scripts/test-digest.ts",
     "test:dead-host": "tsx scripts/test-dead-host.ts",

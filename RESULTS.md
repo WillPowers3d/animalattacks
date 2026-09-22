@@ -64,6 +64,8 @@ Recovered unique incidents this run (14):
 
 Completed (12): denverpost, hcn, crestedbuttenews, mountainjackpot, berthoudrecorder, theheraldtimes, collegian, southplattesentinel, 5280, akronnewsreporter, aspenjournalism, thebusinesstimes. Timeouts (13, retryable): 9news, Boulder Weekly, BizWest, Westword, GJ Sentinel, Aspen Public Radio, La Prensa de Colorado, Montrose Press, The Mountain-Ear, North Forty News, The Crite, Arvada Press, Prowers Journal.
 
+Landmark retag: 3 Glacier NP reprints that had been pinned to the paper’s state (CO / CA / FL) now sit in Montana. New crawls use `inferLandmarkPlace()` before falling back to `Publication.state`.
+
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
 **This continuation** does **not** re-scan the US first pass or re-litigate the Canada / Mexico first-pass directories. New workstreams:
