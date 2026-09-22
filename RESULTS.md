@@ -33,7 +33,7 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 | Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
 | Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | southern extras queued (`--uncrawled`); first-pass MX not re-walked |
 | Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | TBD after extras crawl |
-| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | Wave 1 **~33/80** then hung: **~2,152** articles, **44** matcher hits, **14** new unique. **16** completed; **17** `pub-timeout-300s`. ~149 CO newspapers still never-backfilled. Hard per-pub deadline added; crawl restarted. AK/MT/WY/ID not re-walked. |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | **19** completed / **21** `pub-timeout-300s` / **~2,568** articles / **49** matcher hits / **14** new unique. ~145 CO newspapers still never-backfilled. Wall-clock watchdog after a VM-freeze dropped `setTimeout` deadlines. AK/MT/WY/ID not re-walked. |
 | Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
 | Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
 | Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
@@ -54,7 +54,7 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **West-core backfill (PR #5):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
 
-**Overnight west-retry (this PR, 11:23 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Recent `pub-timeout` hosts are not immediately re-queued.
+**Overnight west-retry (this PR, 12:30 UTC):** Remaining queued western-core pubs were **Colorado only**. `--timeout-ms=300000 --concurrency=2 --skip-dead`. Recent `pub-timeout` hosts are not immediately re-queued.
 
 Recovered unique incidents this run (14; later CO hosts were reprints):
 
@@ -62,9 +62,9 @@ Recovered unique incidents this run (14; later CO hosts were reprints):
 - North Forty News: CPW seeking a bear after a Red Feather Lakes attack (plus the later “attack unlikely” update)
 - CSU Collegian / Herald Times / South Platte Sentinel / Akron News Reporter: Rocky Mountain bear-conflict wires (Glacier NP fatal reprint, “learning to live with bears”)
 
-Completed (16): denverpost, hcn, crestedbuttenews, mountainjackpot, berthoudrecorder, theheraldtimes, collegian, southplattesentinel, 5280, akronnewsreporter, aspenjournalism, thebusinesstimes, broomfieldenterprise, brushnewstribune, canoncitydailyrecord (9 matcher hits, all reprints), tucasamagazinecolorado. Timeouts (17, retryable): 9news, Boulder Weekly, BizWest, Westword, GJ Sentinel, Aspen Public Radio, La Prensa de Colorado, Montrose Press, The Mountain-Ear, North Forty News, The Crite, Arvada Press, Prowers Journal, aspenalive, canyoncourier, **castlerockjournal.com**, **castlerocknewspress.net**.
+Completed (19): prior 16 plus `duclarion.com` (1 reprint match), `coloradoexpression.com`, `coloradohometownweekly.com` (4 reprint matches). Timeouts (21, retryable): prior 17 plus trinidadchroniclenews, clearcreekcourant, **colabnews.co**, **coloradonewsline.com**.
 
-Castle Rock pair hung from 10:18–11:22 (abort signal ignored while `res.text()` never finished). Soft 300s abort is now a **hard `Promise.race` deadline** that marks `pub-timeout-Ns` and frees the pool slot; response bodies also have a read timeout. Crawl restarted on that code; those two hosts skipped for this window.
+A VM pause around 11:36–12:15 dropped the one-shot `setTimeout` deadlines, so Colab / Colorado Newsline stayed in-flight. Deadline is now a **wall-clock `setInterval` watchdog** (`Date.now()` jumps on resume). Heartbeat every 60s. Body-read timeout still in place.
 
 Landmark retag: 3 Glacier NP reprints that had been pinned to the paper’s state (CO / CA / FL) now sit in Montana. New crawls use `inferLandmarkPlace()` before falling back to `Publication.state`.
 
@@ -145,7 +145,7 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-22T11:22:54.669Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
+Generated **2026-09-22T12:30:33.138Z**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.
 
 | Metric | Count |
 | --- | ---: |
@@ -154,11 +154,11 @@ Generated **2026-09-22T11:22:54.669Z**. Combined with the committed first-pass b
 | This-VM pubs scanned | 5,726 |
 | Uncrawled newspapers remaining | 6,303 |
 | Article records fetched (combined) | **137,743** |
-| This-VM articles | 45,484 |
-| Matching articles (combined) | **1,125** |
+| This-VM articles | 45,900 |
+| Matching articles (combined) | **1,130** |
 | This-VM publication-linked incidents | 413 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 89 |
+| Publications with a match | 91 |
 | Incidents from local / agency feeds (combined) | **284** |
 | Canada publications (seeded / scanned) | **432 / 314** |
 | Canada incidents (all / publication-linked) | **224 / 210** |
@@ -300,7 +300,7 @@ Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then 
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 4034 | 54 |
+| CO Colorado | 240 | 4034 | 59 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |

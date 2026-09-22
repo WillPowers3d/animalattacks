@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "coloradohometownweekly.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1485,6 +1485,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/05/05/yellowstone-bear-attack/",
         "title": "Bear attack injures two hikers in Yellowstone National Park",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.coloradohometownweekly.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "Colorado Hometown Weekly"
       }
     ]
   },
@@ -13122,7 +13127,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "coloradohometownweekly.com",
     "sources": [
       {
         "url": "https://www.denverpost.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
@@ -13138,6 +13143,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
         "title": "Man injured in Boulder County mountains not attacked by bear",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.coloradohometownweekly.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "Colorado Hometown Weekly"
       }
     ]
   },
@@ -13494,7 +13504,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: southplattesentinel.com. Snippet only — not official agency data.",
-    "publicationDomain": "canoncitydailyrecord.com",
+    "publicationDomain": "coloradohometownweekly.com",
     "sources": [
       {
         "url": "https://www.journal-advocate.com/2026/09/08/drought-bear-trouble/",
@@ -13520,6 +13530,11 @@
         "url": "https://www.canoncitydailyrecord.com/2026/09/08/drought-bear-trouble/",
         "title": "Hungry black bears are running into trouble in the Rocky Mountains",
         "publisher": "Canon City Daily Record Sports"
+      },
+      {
+        "url": "https://www.coloradohometownweekly.com/2026/09/08/drought-bear-trouble/",
+        "title": "Hungry black bears are running into trouble in the Rocky Mountains",
+        "publisher": "Colorado Hometown Weekly"
       }
     ]
   },
@@ -13546,7 +13561,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: akronnewsreporter.com. Snippet only — not official agency data.",
-    "publicationDomain": "broomfieldenterprise.com",
+    "publicationDomain": "coloradohometownweekly.com",
     "sources": [
       {
         "url": "https://www.akronnewsreporter.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
@@ -13557,6 +13572,11 @@
         "url": "https://www.broomfieldenterprise.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
         "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
         "publisher": "broomfieldenterprise.com"
+      },
+      {
+        "url": "https://www.coloradohometownweekly.com/2026/05/08/glacier-national-park-bear-attack-hiker-dead/",
+        "title": "Deadly bear attack in Glacier National Park is the first in decades at the iconic park",
+        "publisher": "Colorado Hometown Weekly"
       }
     ]
   }

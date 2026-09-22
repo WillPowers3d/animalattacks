@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-22T11:22:54.682Z",
+  "generatedAt": "2026-09-22T12:30:33.151Z",
   "publicationsSeeded": 15504,
   "publicationsScanned": 11888,
   "remainingNewspapers": 6303,
   "articlesFetched": 137743,
-  "matchingArticles": 1125,
-  "publicationsWithMatches": 89,
+  "matchingArticles": 1130,
+  "publicationsWithMatches": 91,
   "incidentsFromLocalPapers": 284,
   "incidentsTotal": 630,
   "canadaPublications": 432,
@@ -127,7 +127,7 @@
       "name": "Colorado",
       "scanned": 240,
       "articles": 4034,
-      "matches": 54
+      "matches": 59
     },
     {
       "state": "PA",

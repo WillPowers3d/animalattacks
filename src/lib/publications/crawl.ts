@@ -286,15 +286,24 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   };
 
   await mapPool(queued, concurrency, async (pub) => {
+    progress(`[crawl] start ${pub.domain}`);
     const ctrl = new AbortController();
     const label = timeoutLabel(pubTimeoutMs);
+    const startedAt = Date.now();
     let clearDeadline: (() => void) | undefined;
+    // Wall-clock interval (not a single setTimeout) so a VM freeze/resume
+    // still trips the deadline — Date.now() jumps, the next tick fires.
     const deadline = new Promise<never>((_, reject) => {
-      const timer = setTimeout(() => {
+      const tick = () => {
+        if (Date.now() - startedAt < pubTimeoutMs) return;
         ctrl.abort();
         reject(new Error(label));
-      }, pubTimeoutMs);
-      clearDeadline = () => clearTimeout(timer);
+        if (watch) clearInterval(watch);
+      };
+      const watch = setInterval(tick, 2_000);
+      watch.unref?.();
+      tick();
+      clearDeadline = () => clearInterval(watch);
     });
     let result: Awaited<ReturnType<typeof crawlOne>>;
     try {
@@ -313,7 +322,13 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
     } catch (err) {
       const message = err instanceof Error ? err.message : label;
       const marked = message.startsWith("pub-timeout") ? message : label;
-      await markTimedOutPub(pub, marked);
+      try {
+        await markTimedOutPub(pub, marked);
+      } catch (markErr) {
+        progress(
+          `[crawl] timeout-mark failed ${pub.domain}: ${markErr instanceof Error ? markErr.message : markErr}`,
+        );
+      }
       result = {
         fetched: 0,
         matched: 0,

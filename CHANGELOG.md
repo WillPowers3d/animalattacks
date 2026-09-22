@@ -37,7 +37,7 @@ Features shipped across the stacked PRs. Merge order: **#1 → #5**, then this o
 
 ## Unreleased — overnight (this PR, stacked on #5)
 
-- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). Wave 1 ~33/80 then Castle Rock hang: **14** new unique, 16 completed, 17× `pub-timeout-300s`. Hard per-pub `Promise.race` deadline + body-read timeout so one host cannot stall the pool. Ledger 614 → 630. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
+- **West-core retry:** DNS dead-host probe, `--skip-dead`, `--timeout-ms` (300s), `--uncrawled`, `npm run crawl:west-retry` (concurrency 2). **19** completed / **21** timeouts / **14** new unique. Wall-clock interval watchdog (survives VM freeze) + body-read timeout + 60s heartbeat. Ledger 614 → 630. Does not redo finished US/CA/MX first-pass or completed AK/MT/WY/ID archives.
 - **Facebook Graph ingest:** pluggable `createFacebookFetcher()` — live `/{page-id}/posts` when `FACEBOOK_ACCESS_TOKEN` + `FACEBOOK_PAGE_IDS` are set; labeled mock path otherwise. Attack keyword filter uses the newspaper matcher. Pagination + `FACEBOOK_GRAPH_VERSION` / `FACEBOOK_POST_LIMIT`.
 - **Product:** homepage coverage strip shows US/CA/MX **incident + publication** counts; digest `--fatal-only` / `?severity=fatal`. Landmark overrides (Glacier NP → MT, Yellowstone → WY, Banff → AB) so reprint wires are not pinned to the paper’s town.
 - **Hygiene:** `npm test` (matcher, dedupe, Facebook, digest, dead-host), `CHANGELOG.md`, README / DEPLOY / `.env.example` for the full stack.

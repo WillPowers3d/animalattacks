@@ -112,21 +112,32 @@ async function main() {
         skipDead ? " · skip-dead" : ""
       }${pubTimeoutMs ? ` · timeout ${Math.round(pubTimeoutMs / 1000)}s` : ""} ===`,
     );
-    const result = await runPublicationCrawl({
-      limit: batch,
-      concurrency,
-      mode: backfill ? "backfill" : "incremental",
-      since: "1990-01-01",
-      newspapersOnly: !agencies,
-      agencies,
-      wildlife,
-      west,
-      states,
-      countries,
-      unstated,
-      pubTimeoutMs,
-      skipDead,
-    });
+    const beat = setInterval(() => {
+      log(
+        `[heartbeat] wave ${wave} still running · ${Math.round((deadline - Date.now()) / 60000)} min left`,
+      );
+    }, 60_000);
+    beat.unref?.();
+    let result: Awaited<ReturnType<typeof runPublicationCrawl>>;
+    try {
+      result = await runPublicationCrawl({
+        limit: batch,
+        concurrency,
+        mode: backfill ? "backfill" : "incremental",
+        since: "1990-01-01",
+        newspapersOnly: !agencies,
+        agencies,
+        wildlife,
+        west,
+        states,
+        countries,
+        unstated,
+        pubTimeoutMs,
+        skipDead,
+      });
+    } finally {
+      clearInterval(beat);
+    }
     totals.scanned += result.scanned;
     totals.matches += result.matchingArticles;
     totals.upserted += result.incidentsUpserted;
