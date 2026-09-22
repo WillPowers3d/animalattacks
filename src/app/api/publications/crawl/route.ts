@@ -41,6 +41,11 @@ export async function POST(req: Request) {
     limit: url.searchParams.get("limit") ? Number(url.searchParams.get("limit")) : 40,
     mode: url.searchParams.get("backfill") === "1" ? "backfill" : "incremental",
     since: url.searchParams.get("since") ?? undefined,
+    pubTimeoutMs: url.searchParams.get("timeoutMs")
+      ? Number(url.searchParams.get("timeoutMs"))
+      : undefined,
+    skipDead: url.searchParams.get("skipDead") === "1",
+    uncrawled: url.searchParams.get("uncrawled") === "1",
   });
   return NextResponse.json(result, { status: result.errors.length > 80 ? 502 : 200 });
 }

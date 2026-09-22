@@ -259,6 +259,8 @@ export const WILDLIFE_MX_STATES = [
   "GRO",
   "OAX",
   "CHP",
+  "TAB",
+  "VER",
   "CAM",
   "ROO",
   "YUC",

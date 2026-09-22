@@ -28,10 +28,15 @@ export async function GET(req: Request) {
   if (writeFlag === "1" && !authed) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
+  const fatalOnly =
+    url.searchParams.get("fatalOnly") === "1" ||
+    url.searchParams.get("fatal-only") === "1" ||
+    url.searchParams.get("severity") === "fatal";
   const result = await buildFatalInjuryDigest({
     since: url.searchParams.get("since") ?? undefined,
     days: url.searchParams.get("days") ? Number(url.searchParams.get("days")) : undefined,
     write,
+    fatalOnly,
   });
   const accept = req.headers.get("accept") ?? "";
   if (accept.includes("text/markdown") || url.searchParams.get("format") === "md") {
@@ -60,10 +65,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
   const url = new URL(req.url);
+  const fatalOnly =
+    url.searchParams.get("fatalOnly") === "1" ||
+    url.searchParams.get("fatal-only") === "1" ||
+    url.searchParams.get("severity") === "fatal";
   const result = await buildFatalInjuryDigest({
     since: url.searchParams.get("since") ?? undefined,
     days: url.searchParams.get("days") ? Number(url.searchParams.get("days")) : undefined,
     write: url.searchParams.get("write") !== "0",
+    fatalOnly,
   });
   return NextResponse.json(result);
 }

@@ -26,18 +26,19 @@ Sources (facts only — name, URL, place): 3DLNews / WM News Lab, sTechLab ICWSM
 
 Refresh by re-running the live DB; the table is rewritten as the sweep continues.
 
-| | After Canada-priority (PR #3) | After dedupe + CBC (PR #4) | After Mexico + west + digest (this PR) |
-| --- | ---: | ---: | ---: |
-| Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) |
-| US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) |
-| Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) |
-| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) |
-| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) |
-| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. |
-| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** |
-| Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) |
-| Incidents total in this VM | **487** | **522** | **614** |
-| Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) |
+| | After Canada-priority (PR #3) | After dedupe + CBC (PR #4) | After Mexico + west + digest (PR #5) | Overnight (this PR) |
+| --- | ---: | ---: | ---: | ---: |
+| Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) | **+12** southern MX extras + **3** MX agency rows (no US/CA/MX first-pass rebuild) |
+| US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) | not re-scanned |
+| Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) | not re-crawled |
+| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) | southern extras queued (`--uncrawled`); first-pass MX not re-walked |
+| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) | TBD after extras crawl |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. | Retry remaining **CO** queue: 300s timeout, concurrency 2, DNS dead-host skip. AK/MT/WY/ID not re-walked. |
+| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** | +3 MX (CONANP / PROFEPA / SEMARNAT) |
+| Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) | `--fatal-only` / `?severity=fatal` |
+| Facebook Graph | mock stub | mock stub | mock stub | pluggable live Graph + matcher filter; mock if no token |
+| Incidents total in this VM | **487** | **522** | **614** | refresh after west-retry |
+| Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) | **205** ammoland (unchanged) |
 
 ### Best finds this wave
 
@@ -51,15 +52,18 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **Mexico (this PR):** Coahuila livestock / crop black-bear and puma conflict (El Heraldo de Saltillo); Tamaulipas farmers who killed an attacking puma; Chiapas La Concordia child puma attack; Oaxaca Mazatec child killed by puma; Nuevo León bear walking through a party (no injuries). Northern papers also reprint world wires (Japón, Italia, Brasil) — country inference now keys off Japón/Brasil/Noruega and does not apply Mexican state names to US publications (Durango, CO stays US).
 
-**West-core backfill (this PR):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
+**West-core backfill (PR #5):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
+
+**Overnight west-retry (this PR):** Remaining queued western-core pubs were **Colorado only** (AK/MT/WY/ID already stamped). Runner uses `--timeout-ms=300000 --concurrency=2 --skip-dead`. DNS `ENOTFOUND` / `ECONNREFUSED` hosts are marked `dead-host:` and dropped from the queue; timeouts stay retryable. Recovered incident titles land in the snapshot below after the wave.
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
-**This continuation** does **not** re-scan the US first pass or re-litigate the Canada directory. New workstreams:
+**This continuation** does **not** re-scan the US first pass or re-litigate the Canada / Mexico first-pass directories. New workstreams:
 
-1. **Mexico coverage** — curated local/regional directory + Spanish matcher (`oso` / `puma` / `león de montaña` + `ataque` / `atacó` / `agredió` / `embistió`) + town-center geocode + `country=MX` + All/US/Canada/Mexico map filter.
-2. **Fatal / injury digest** — `npm run digest` / `GET /api/digest` / weekly GitHub Action. Markdown artifact of new serious incidents since the last run.
-3. **Deep western US archive backfill** — `--west --backfill` on **AK, MT, WY, ID, CO only** (skipped in PR #4). High-precision matcher; dedupe against existing incidents.
+1. **Finish west-core queue** — retry surviving CO hosts; skip dead domains; report recovered incidents.
+2. **Facebook / Meta public-page ingest** — `createFacebookFetcher()` Graph path + mock fallback + attack keyword filter.
+3. **Digest fatal-only** + homepage coverage strip (US/CA/MX pub + incident counts).
+4. **Southern Mexico extras** — Tabasco / Veracruz / more Chiapas–Oaxaca–Campeche papers via `extra.json` (`--uncrawled` only).
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -83,8 +87,15 @@ npm run crawl:mexico
 # Deep western US archives only (AK, MT, WY, ID, CO)
 npm run crawl:west-backfill
 
-# Fatal / injury markdown digest
+# Leftover west queue (CO timeouts / dead hosts) — longer timeout, lower concurrency
+npm run crawl:west-retry
+
+# New Mexico extras only (does not re-walk first-pass MX)
+npm run crawl:publications -- --country=MX --backfill --lite --uncrawled --concurrency=4 --skip-dead
+
+# Fatal / injury markdown digest (optional --fatal-only)
 npm run digest
+npm run digest -- --fatal-only --stdout
 
 # Official agency / park feeds
 npm run crawl:agencies

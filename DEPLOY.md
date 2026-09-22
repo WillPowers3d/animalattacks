@@ -17,7 +17,8 @@ Production needs a **hosted Postgres** URL. The GitHub Actions runner and Vercel
 | `INGEST_SECRET` | recommended | Alternate bearer for manual `POST /api/ingest` and `/api/publications/crawl`. |
 | `NEXT_PUBLIC_SITE_URL` | recommended | Canonical public URL. |
 | `OPENAI_API_KEY` | no | Optional LLM cleanup on ingest (`--enrich`). |
-| `FACEBOOK_ACCESS_TOKEN` / `FACEBOOK_PAGE_IDS` | no | Optional Graph ingest. |
+| `FACEBOOK_ACCESS_TOKEN` / `FACEBOOK_PAGE_IDS` | no | Optional public-page Graph ingest. Mock path if unset. |
+| `FACEBOOK_GRAPH_VERSION` / `FACEBOOK_POST_LIMIT` | no | Defaults `v19.0` / `50`. |
 
 4. After the first successful deploy, **once**:
 
@@ -53,5 +54,8 @@ Vercel Cron is a short serverless burst. Use Actions (or a laptop) for `--backfi
 - [ ] Postgres `DATABASE_URL` on Vercel **and** GitHub Actions
 - [ ] `CRON_SECRET` on Vercel
 - [ ] Provider flipped + `prisma db push` + `db:seed` against that database
-- [ ] Open `/` (map + All/US/Canada/Mexico toggle) and `/data` (last-crawl timestamp + MX stats)
+- [ ] Open `/` (map + All/US/Canada/Mexico toggle + coverage strip with US/CA/MX pub + incident counts) and `/data`
+- [ ] Confirm source badges after seed (Weingarten / local paper / agency / Google News / Facebook)
+- [ ] Optional: `npm run crawl:west-retry` then `npm run crawl:progress:export` to commit recovered Colorado archives
 - [ ] Optional: `npm run crawl:cbc` then `npm run crawl:progress:export` to commit new unique incidents
+- [ ] Merge stack: PR #1 → #5, then this overnight PR. See [CHANGELOG.md](CHANGELOG.md).

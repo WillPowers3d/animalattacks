@@ -14,7 +14,7 @@ export default async function HomePage({
   const sp = parseSearchParams(await searchParams);
   const where = toWhere({ ...sp, species: undefined, hide: undefined, country: undefined });
 
-  const [rows, states, total, lastIngest, coverage] = await Promise.all([
+  const [rows, states, total, lastIngest, coverage, pubs] = await Promise.all([
     prisma.incident.findMany({
       where,
       orderBy: [{ occurredAt: "desc" }, { createdAt: "desc" }],
@@ -30,7 +30,15 @@ export default async function HomePage({
       orderBy: { startedAt: "desc" },
     }),
     prisma.incident.groupBy({ by: ["country"], _count: { _all: true } }),
+    prisma.publication.groupBy({
+      by: ["country"],
+      where: { enabled: true },
+      _count: { _all: true },
+    }),
   ]);
+
+  const incOf = (cc: string) => coverage.find((c) => c.country === cc)?._count._all ?? 0;
+  const pubsOf = (cc: string) => pubs.find((c) => c.country === cc)?._count._all ?? 0;
 
   const incidents = rows.map(toExplorerIncident);
   const latest = incidents.slice(0, 8);
@@ -54,10 +62,9 @@ export default async function HomePage({
           government data.
         </p>
         <p className="mt-3 border border-kraft-500/30 bg-moss-950/70 px-3 py-2 font-mono text-[11px] text-kraft-200">
-          Coverage: {coverage.find((c) => c.country === "US")?._count._all ?? 0} US ·{" "}
-          {coverage.find((c) => c.country === "CA")?._count._all ?? 0} Canada ·{" "}
-          {coverage.find((c) => c.country === "MX")?._count._all ?? 0} Mexico · {total} in this
-          view.{" "}
+          Coverage: US {incOf("US")} incidents / {pubsOf("US").toLocaleString()} pubs · Canada{" "}
+          {incOf("CA")} / {pubsOf("CA").toLocaleString()} · Mexico {incOf("MX")} /{" "}
+          {pubsOf("MX").toLocaleString()} · {total} in this view.{" "}
           <a href="/data" className="text-kraft-300 underline decoration-kraft-500/40">
             Live crawl stats →
           </a>

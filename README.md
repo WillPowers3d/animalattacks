@@ -11,7 +11,7 @@ This is **not official wildlife-agency data**.
 - Incident database: species / subspecies, date, city–region–state/province, country (US / CA / MX), severity (fatal / injury / near-miss / property), summary, source URL(s), source type (news / facebook / ammoland / other), verified flag, lat/lng
 - Defensive-firearm fields used in Weingarten’s research: `firearmType`, `caliber`, `shotsFired`, `defenseOutcome` (success / failure / indeterminate), `combinationDefense`
 - Homepage map + **All / US / Canada / Mexico** country toggle + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber) + source badges (Weingarten / local paper / agency / Google News)
-- Weekly **fatal / injury digest** (`npm run digest` or `/api/digest`) — markdown of new serious incidents since the last run, no email vendor required
+- Weekly **fatal / injury digest** (`npm run digest` or `/api/digest`) — markdown of new serious incidents since the last run, no email vendor required. `--fatal-only` / `?severity=fatal` skips injury rows.
 - Shareable filter URLs and **CSV export** of the filtered ledger
 - Incident detail pages with attribution
 - Stats: species, region, yearly trend, **handgun caliber effectiveness**
@@ -91,7 +91,7 @@ Partial RSS failures are warnings: other queries still ingest.
 ### What ingest pulls
 
 - **News:** Google News RSS queries for NA bear / cougar / elk / moose attacks.
-- **Facebook:** If `FACEBOOK_ACCESS_TOKEN` and `FACEBOOK_PAGE_IDS` (comma-separated) are set, posts are pulled from Graph API `/{page-id}/posts`. Otherwise a **mock/stub** path runs so the pipeline is testable.
+- **Facebook:** Pluggable Graph fetcher (`createFacebookFetcher` in `src/lib/ingest/facebook.ts`). If `FACEBOOK_ACCESS_TOKEN` and `FACEBOOK_PAGE_IDS` (comma-separated numeric IDs or slugs) are set, posts are pulled from Graph API `/{page-id}/posts` (v19.0, paginated). Posts must pass the same animal+attack keyword matcher as local papers before upsert (`sourceType=facebook`). Otherwise a **labeled mock** path runs so the pipeline is testable. Optional: `FACEBOOK_GRAPH_VERSION`, `FACEBOOK_POST_LIMIT`.
 - **Dedupe:** canonical URL, same article path on reprint-farm hosts, then title + date + place. Cross-URL reprints (Black Press / CP wire) collapse when the same event shares a distinctive place or a high title overlap.
 - **Parse:** keyword heuristics + city/state geocode. Set `OPENAI_API_KEY` and pass `--enrich` (or set the key for `/api/ingest`) for optional LLM field cleanup.
 - **HTTP:** `GET`/`POST /api/ingest` (Bearer `INGEST_SECRET` or `CRON_SECRET`, or `?secret=`). Last runs: `/api/ingest/status`.
@@ -112,12 +112,17 @@ The job writes a GitHub step summary with the ingest JSON (fetched / upserted / 
 
 `vercel.json` hits `/api/ingest` daily at 12:00 UTC. Set `CRON_SECRET` (Vercel sends `Authorization: Bearer $CRON_SECRET`) and/or `INGEST_SECRET`, plus a production Postgres `DATABASE_URL`. Do not put the secret in the cron path.
 
-### Facebook token setup
+### Facebook token setup (public wildlife / park pages)
 
-1. Create a Meta app with **pages_read_engagement** (and a Page token you are allowed to use).
-2. Collect numeric Page IDs for public pages that post wildlife-conflict reports.
-3. Put the long-lived Page token in `FACEBOOK_ACCESS_TOKEN` and IDs in `FACEBOOK_PAGE_IDS`.
-4. Without those env vars, ingest still runs using two clearly labeled mock posts.
+This is a **Page-token Graph ingest**, not a scrape of facebook.com. You can only read pages your token is allowed to access.
+
+1. Create a Meta app → add **Facebook Login** / Graph API → request **`pages_read_engagement`** (and generate a **long-lived Page token**, not a short user token).
+2. Collect **numeric Page IDs** for public wildlife-agency / park pages (Meta Business Suite → Page settings, or Graph Explorer `?ids=https://www.facebook.com/<slug>`). Suggested slugs: `alaskadfg`, `ColoradoParksandWildlife`, `MTFWP`, `WyomingGameandFish`, `idahofishandgame`, `YellowstoneNPS`, `GlacierNPS`, `RockyNPS`, `ParksCanada`, `BCParks`.
+3. Set `FACEBOOK_ACCESS_TOKEN` (the Page token) and `FACEBOOK_PAGE_IDS` (comma-separated). Optional: `FACEBOOK_GRAPH_VERSION=v19.0`, `FACEBOOK_POST_LIMIT=50`.
+4. Run `npm run ingest` or the daily Action. Each post is keyword-filtered (`matchAnimalAttack`); sports / ads are dropped; survivors upsert as `sourceType=facebook`.
+5. Without those env vars, ingest still runs using **labeled mock posts** (one sports stub is filtered). `npm run test:facebook` covers mock + a fake Graph fixture.
+
+Do **not** put a user token in production. Rotate the Page token if it leaks. The crawler never hits facebook.com HTML.
 
 ## Postgres
 
@@ -176,14 +181,16 @@ npm run crawl:mexico
 npm run crawl:cbc
 npm run crawl:agencies
 npm run crawl:west-backfill
+npm run crawl:west-retry
 npm run crawl:backfill-wildlife
 npm run crawl:publications:dry -- --limit=40 --state=AK
 # flags: --limit=N  --state=XX  --states=IL,MA  --country=CA|MX  --wildlife  --west  --agencies
 #         --unstated  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
+#         --timeout-ms=300000  --skip-dead  --uncrawled
 ```
 
 - **Incremental (default):** RSS + recent sitemap URLs; skips publications crawled in the last ~18 hours.
-- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: skips `lastBackfillAt` (not the first-pass `lastCrawledAt`), so wildlife-state archives can be walked without re-doing the RSS pass. `--west` is the deep western core only (AK, MT, WY, ID, CO). `--wildlife` is the wider set (those plus WA/OR/CA/NM/UT/NV/ME/MN/WI/MI/NH/VT).
+- **Backfill (`--backfill`):** deeper sitemaps + site search (`/?s=bear+attack`, etc.). Resume-friendly: skips `lastBackfillAt` (not the first-pass `lastCrawledAt`), so wildlife-state archives can be walked without re-doing the RSS pass. `--west` is the deep western core only (AK, MT, WY, ID, CO). `--wildlife` is the wider set (those plus WA/OR/CA/NM/UT/NV/ME/MN/WI/MI/NH/VT). `--west-retry` / `--timeout-ms` + `--skip-dead` finishes the leftover Colorado queue: DNS-dead hosts are marked `dead-host:` and dropped; surviving hosts get a 300s cap at concurrency 2. `--uncrawled` is only never-seen rows (safe for new Mexico extras).
 - **Legal / ethics:** `User-Agent` identifies the project; `robots.txt` is fetched and honored (including `Crawl-delay`); ≥1.5s between requests to the same host; no credential stuffing; no paywall bypass; no full-text warehouse.
 - **Precision:** matcher tests live in `npm run test:publications`.
 
@@ -206,10 +213,11 @@ npm run digest                 # write data/digests/latest.md + dated file
 npm run digest -- --stdout     # print only
 npm run digest -- --days=14    # first-run lookback if no cursor
 npm run digest -- --since=2026-09-01
+npm run digest -- --fatal-only --stdout
 ```
 
 - Cursor: `data/digest-cursor.json` (last run timestamp + incident ids).
-- HTTP: `GET /api/digest` (markdown with `?format=md`). Authorized `GET`/`POST` (same `INGEST_SECRET` / `CRON_SECRET`) writes the artifact. Vercel Cron hits `/api/digest` Mondays 14:00 UTC.
+- HTTP: `GET /api/digest` (markdown with `?format=md`). `?severity=fatal` or `?fatalOnly=1` drops injury rows. Authorized `GET`/`POST` (same `INGEST_SECRET` / `CRON_SECRET`) writes the artifact. Vercel Cron hits `/api/digest` Mondays 14:00 UTC.
 - GitHub Action `.github/workflows/digest.yml` — weekly Monday 14:00 UTC + manual dispatch; uploads the markdown as a workflow artifact and prints it in the job summary.
 
 Each row lists species, place, date, and the source link. Confirm with the original story. Weingarten historical rows only appear if they were *newly inserted* after the cursor.
@@ -234,7 +242,9 @@ Each row lists species, place, date, and the source link. Confirm with the origi
 | `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
 | `npm run crawl:mexico` | Mexican local / regional papers (Spanish matcher, town-center pins) |
 | `npm run crawl:west-backfill` | Deep archive backfill for AK / MT / WY / ID / CO only |
-| `npm run digest` | Weekly fatal / injury markdown digest |
+| `npm run crawl:west-retry` | Finish leftover west queue (300s timeout, concurrency 2, skip dead hosts) |
+| `npm run digest` | Weekly fatal / injury markdown digest (`--fatal-only` optional) |
+| `npm test` | Matcher + dedupe + Facebook + digest + dead-host checks |
 | `npm run publications:build-mexico` | Rebuild `mexico-local-news.json` (curated + optional Wikidata) |
 | `npm run crawl:cbc` | CBC / Radio-Canada regional (HTTP/1.1 + listing scrape) |
 | `npm run collapse:reprints` | Merge reprint-farm clones already in the DB |

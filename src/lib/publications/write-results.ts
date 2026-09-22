@@ -223,7 +223,7 @@ export async function writeResultsReport(): Promise<SessionReport> {
   const snapshot = [
     "## Latest snapshot",
     "",
-    `Generated **${new Date().toISOString()}**. Combined with the committed first-pass baseline plus this VM’s Mexico / digest / western-core backfill wave.`,
+    `Generated **${new Date().toISOString()}**. Combined with the committed first-pass baseline plus Mexico / west-core plus this overnight west-retry / Facebook / digest wave.`,
     "",
     "| Metric | Count |",
     "| --- | ---: |",
@@ -310,6 +310,8 @@ export async function writeResultsReport(): Promise<SessionReport> {
         "GRO",
         "OAX",
         "CHP",
+        "TAB",
+        "VER",
         "CAM",
         "ROO",
         "YUC",

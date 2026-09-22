@@ -150,6 +150,8 @@ export default async function DataPage() {
     "GRO",
     "OAX",
     "CHP",
+    "TAB",
+    "VER",
     "CAM",
     "ROO",
     "YUC",
