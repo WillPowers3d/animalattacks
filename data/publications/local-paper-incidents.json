@@ -1434,7 +1434,7 @@
     "defenseOutcome": null,
     "combinationDefense": false,
     "attribution": "Local newspaper crawl: Winnipeg Free Press. Snippet only — not official agency data.",
-    "publicationDomain": "winnipegfreepress.com",
+    "publicationDomain": "denverpost.com",
     "sources": [
       {
         "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/05/05/bear-attack-injures-two-hikers-in-yellowstone-national-park",
@@ -1455,6 +1455,11 @@
         "url": "https://wyomingtruth.org/bear-attack-injures-two-hikers-in-yellowstone-national-park/",
         "title": "Bear Attack Injures Two Hikers in Yellowstone National Park - The Wyoming Truth",
         "publisher": "The Wyoming Truth"
+      },
+      {
+        "url": "https://www.denverpost.com/2026/05/05/yellowstone-bear-attack/",
+        "title": "Bear attack injures two hikers in Yellowstone National Park",
+        "publisher": "Denver Post"
       }
     ]
   },
@@ -12945,6 +12950,267 @@
         "url": "https://krdo.com/news/2011/08/20/camper-fights-off-bear-attack/",
         "title": "Camper Fights Off Bear Attack",
         "publisher": "KRDO NewsChannel 13 / KRDO.com"
+      }
+    ]
+  },
+  {
+    "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": "2026-09-15",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-09-15",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.72341100000001,
+    "lng": -107.335504,
+    "severity": "property",
+    "summary": "A woman was bit while camping in the Rio Grande National Forest near South Fork, and a teenager was scratched by a bear that snuck into her Durango home through the window, officials said.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/09/15/bear-attacks-colorado-drought-wildlife/",
+        "title": "2 injured as bear attacks reach record high in Colorado amid drought",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.907211,
+    "lng": -106.677504,
+    "severity": "near_miss",
+    "summary": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/08/19/bear-attack-colorado-eagle-vail/",
+        "title": "Bear attacks, injures man at apartment complex in Colorado mountain town",
+        "publisher": "Denver Post"
+      },
+      {
+        "url": "https://www.denverpost.com/2026/09/09/bear-killed-colorado-vail-eagle/",
+        "title": "Bear shot, killed after charging deputies in Colorado mountain town",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Aspen",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.3815,
+    "lng": -107.2739,
+    "severity": "near_miss",
+    "summary": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/08/19/bear-bites-homeless-man-aspen/",
+        "title": "Bear bites homeless man in Aspen as Colorado sees record bear activity",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Man injured in Boulder County mountains not attacked by bear",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Boulder County",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 40.5134,
+    "lng": -105.0507,
+    "severity": "near_miss",
+    "summary": "Man injured in Boulder County mountains not attacked by bear",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/07/24/boulder-county-helicopter-beaver-reservoir/",
+        "title": "Man injured in Boulder County mountains not attacked by bear",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Fisherman attacked by bear on Colorado mountain trail",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Arapahoe",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.726303,
+    "lng": -104.856808,
+    "severity": "near_miss",
+    "summary": "Fisherman attacked by bear on Colorado mountain trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/08/22/bear-attack-colorado-fisherman-mountain/",
+        "title": "Fisherman attacked by bear on Colorado mountain trail",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Bear enters Estes Park home, attacks woman",
+    "species": "bear",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Arapahoe",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.726303,
+    "lng": -104.856808,
+    "severity": "property",
+    "summary": "Bear enters Estes Park home, attacks woman",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/08/28/bear-estes-park-attacks-woman/",
+        "title": "Bear enters Estes Park home, attacks woman",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Moose attacks hiker, dogs on Colorado mountain trail",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Arapahoe",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 39.726303,
+    "lng": -104.856808,
+    "severity": "near_miss",
+    "summary": "Moose attacks hiker, dogs on Colorado mountain trail",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/06/23/moose-attack-colorado-woodland-park/",
+        "title": "Moose attacks hiker, dogs on Colorado mountain trail",
+        "publisher": "Denver Post"
+      }
+    ]
+  },
+  {
+    "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+    "species": "moose",
+    "subspecies": null,
+    "occurredAt": null,
+    "datePrecision": "unknown",
+    "dateDisplay": "Date unknown",
+    "city": "Colorado",
+    "region": null,
+    "stateProvince": "CO",
+    "country": "US",
+    "lat": 38.912811,
+    "lng": -104.807104,
+    "severity": "near_miss",
+    "summary": "Moose attacks dog walker in Colorado mountains near Winter Park",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: Denver Post. Snippet only — not official agency data.",
+    "publicationDomain": "denverpost.com",
+    "sources": [
+      {
+        "url": "https://www.denverpost.com/2026/05/27/moose-attack-colorado-winter-park/",
+        "title": "Moose attacks dog walker in Colorado mountains near Winter Park",
+        "publisher": "Denver Post"
       }
     ]
   }
