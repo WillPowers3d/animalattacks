@@ -25,6 +25,7 @@
     "crawl:waves": "tsx scripts/crawl-waves.ts",
     "crawl:canada": "tsx scripts/crawl-publications.ts --country=CA --since=1990-01-01 --backfill --lite --concurrency=6",
     "crawl:mexico": "tsx scripts/crawl-publications.ts --country=MX --since=1990-01-01 --backfill --lite --concurrency=6",
+    "crawl:mexico-extras": "tsx scripts/crawl-waves.ts --hours=2 --batch=20 --concurrency=4 --country=MX --backfill --lite --uncrawled --skip-dead --timeout-ms=180000",
     "crawl:west-backfill": "tsx scripts/crawl-waves.ts --hours=3 --batch=150 --concurrency=8 --west --backfill",
     "crawl:west-retry": "tsx scripts/crawl-waves.ts --hours=4 --batch=80 --concurrency=2 --west --backfill --timeout-ms=300000 --skip-dead",
     "digest": "tsx scripts/digest.ts",

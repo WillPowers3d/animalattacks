@@ -40,6 +40,8 @@ const wildlife = Boolean(flag("wildlife"));
 const west = Boolean(flag("west"));
 const agencies = Boolean(flag("agencies"));
 const skipDead = Boolean(flag("skip-dead") || flag("skipDead"));
+const uncrawled = Boolean(flag("uncrawled"));
+const lite = Boolean(flag("lite"));
 const timeoutRaw = flag("timeout-ms") ?? flag("timeoutMs");
 const pubTimeoutMs = timeoutRaw ? Number(timeoutRaw) : west ? 300_000 : undefined;
 const stateFlag = flag("state");
@@ -83,6 +85,9 @@ async function remaining() {
       circulationTier: agencies
         ? { in: ["agency"] }
         : { in: ["newspaper", "weekly", "digital", "other"] },
+      ...(uncrawled
+        ? { lastCrawledAt: null, lastBackfillAt: null }
+        : {}),
       ...(stateClauses.length === 1
         ? stateClauses[0]
         : stateClauses.length > 1
@@ -110,7 +115,9 @@ async function main() {
         wildlife ? " · wildlife" : ""
       }${west ? " · west-core" : ""}${agencies ? " · agencies" : ""}${backfill ? " · backfill" : ""}${
         skipDead ? " · skip-dead" : ""
-      }${pubTimeoutMs ? ` · timeout ${Math.round(pubTimeoutMs / 1000)}s` : ""} ===`,
+      }${uncrawled ? " · uncrawled" : ""}${lite ? " · lite" : ""}${
+        pubTimeoutMs ? ` · timeout ${Math.round(pubTimeoutMs / 1000)}s` : ""
+      } ===`,
     );
     const beat = setInterval(() => {
       log(
@@ -134,6 +141,8 @@ async function main() {
         unstated,
         pubTimeoutMs,
         skipDead,
+        uncrawled,
+        lite,
       });
     } finally {
       clearInterval(beat);

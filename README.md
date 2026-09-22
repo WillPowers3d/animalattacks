@@ -178,6 +178,7 @@ npm run crawl:publications -- --states=IL,MA,OH,IN --limit=400 --concurrency=12 
 npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN --unstated
 npm run crawl:canada
 npm run crawl:mexico
+npm run crawl:mexico-extras
 npm run crawl:cbc
 npm run crawl:agencies
 npm run crawl:west-backfill
@@ -241,6 +242,7 @@ Each row lists species, place, date, and the source link. Confirm with the origi
 | `npm run crawl:progress:apply` | Restore lastCrawledAt / incidents onto a fresh seed |
 | `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
 | `npm run crawl:mexico` | Mexican local / regional papers (Spanish matcher, town-center pins) |
+| `npm run crawl:mexico-extras` | Never-crawled MX extras only (does not re-walk first-pass Mexico) |
 | `npm run crawl:west-backfill` | Deep archive backfill for AK / MT / WY / ID / CO only |
 | `npm run crawl:west-retry` | Finish leftover west queue (300s timeout, concurrency 2, skip dead hosts) |
 | `npm run digest` | Weekly fatal / injury markdown digest (`--fatal-only` optional) |

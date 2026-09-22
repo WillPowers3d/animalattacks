@@ -57,5 +57,6 @@ Vercel Cron is a short serverless burst. Use Actions (or a laptop) for `--backfi
 - [ ] Open `/` (map + All/US/Canada/Mexico toggle + coverage strip with US/CA/MX pub + incident counts) and `/data`
 - [ ] Confirm source badges after seed (Weingarten / local paper / agency / Google News / Facebook)
 - [ ] Optional: `npm run crawl:west-retry` then `npm run crawl:progress:export` to commit recovered Colorado archives
+- [ ] Optional: `npm run crawl:mexico-extras` then `npm run crawl:progress:export` (southern jaguar-range extras only; does not re-walk first-pass Mexico)
 - [ ] Optional: `npm run crawl:cbc` then `npm run crawl:progress:export` to commit new unique incidents
 - [ ] Merge stack: PR #1 → #5, then this overnight PR. See [CHANGELOG.md](CHANGELOG.md).
