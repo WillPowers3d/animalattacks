@@ -7,6 +7,8 @@ import {
   FIREARM_TYPES,
   SEVERITIES,
   SEVERITY_LABELS,
+  SOURCE_TYPE_LABELS,
+  SOURCE_TYPES,
   SPECIES,
   SPECIES_LABELS,
 } from "@/lib/types";
@@ -137,6 +139,26 @@ export function IncidentFilters({
           placeholder="place, name, keyword"
           className="field-input"
         />
+      </label>
+      <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
+        Country
+        <select name="country" defaultValue={value.country ?? ""} className="field-input">
+          <option value="">All countries</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="MX">Mexico</option>
+        </select>
+      </label>
+      <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
+        Source
+        <select name="sourceType" defaultValue={value.sourceType ?? ""} className="field-input">
+          <option value="">All sources</option>
+          {SOURCE_TYPES.map((s) => (
+            <option key={s} value={s}>
+              {SOURCE_TYPE_LABELS[s]}
+            </option>
+          ))}
+        </select>
       </label>
       <label className="flex flex-col gap-1 text-[10px] uppercase tracking-wider text-moss-300">
         Geography

@@ -6,7 +6,7 @@ import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArtic
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
 import { matchAnimalAttack } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
-import { LEFTOVER_STATES, wildlifeRank } from "./states";
+import { BACKFILL_STATES, LEFTOVER_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
 import { originOf } from "./domain";
 import type { ArticleCandidate } from "./types";
@@ -20,6 +20,12 @@ export type CrawlOptions = {
   unstated?: boolean;
   /** Skip these states (well-scanned in a prior session). */
   excludeStates?: string[];
+  /** ISO country codes. Default US newspapers; omit / pass several for Canada + agencies. */
+  countries?: string[];
+  /** Wildlife-dense US states for archive backfill. */
+  wildlife?: boolean;
+  /** Official wildlife-agency / park press feeds only. */
+  agencies?: boolean;
   since?: string;
   dryRun?: boolean;
   concurrency?: number;
@@ -28,6 +34,8 @@ export type CrawlOptions = {
   force?: boolean;
   minDelayMs?: number;
   skipRecentHours?: number;
+  /** RSS + site-search only — skip sitemap walks so archive queries actually run. */
+  lite?: boolean;
 };
 
 export type CrawlResult = {
@@ -55,10 +63,12 @@ type PubRow = {
   town: string | null;
   city: string | null;
   state: string | null;
+  country: string | null;
   lat: number | null;
   lng: number | null;
   circulationTier: string | null;
   lastCrawledAt: Date | null;
+  lastBackfillAt: Date | null;
   crawlCursor: string | null;
   robotsStatus: string | null;
 };
@@ -121,7 +131,11 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
   const stateList = [
     ...new Set(
-      [...(opts.states ?? []), opts.state]
+      [
+        ...(opts.states ?? []),
+        opts.state,
+        ...(opts.wildlife ? BACKFILL_STATES : []),
+      ]
         .filter((s): s is string => Boolean(s))
         .map((s) => s.toUpperCase()),
     ),
@@ -132,18 +146,27 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   else if (stateList.length > 1) stateClauses.push({ state: { in: stateList } });
   if (opts.unstated) stateClauses.push({ state: null });
 
-  const where: Record<string, unknown> = { enabled: true, country: "US" };
-  if (opts.newspapersOnly !== false) {
+  const countries = (opts.countries ?? (opts.agencies ? [] : ["US"]))
+    .map((c) => c.toUpperCase())
+    .filter(Boolean);
+  const where: Record<string, unknown> = { enabled: true };
+  if (countries.length === 1) where.country = countries[0];
+  else if (countries.length > 1) where.country = { in: countries };
+  if (opts.agencies) {
+    where.circulationTier = { in: ["agency"] };
+  } else if (opts.newspapersOnly !== false) {
     where.circulationTier = { in: ["newspaper", "weekly", "digital", "other"] };
   }
   if (stateClauses.length === 1) Object.assign(where, stateClauses[0]);
   else if (stateClauses.length > 1) where.OR = stateClauses;
 
-  const publicationsSeeded = await prisma.publication.count({ where: { country: "US" } });
+  const publicationsSeeded = await prisma.publication.count(
+    countries.length ? { where: { country: { in: countries } } } : undefined,
+  );
   const candidates = await prisma.publication.findMany({
     where: where as {
       enabled: boolean;
-      country: string;
+      country?: string | { in: string[] };
       state?: string | null | { in: string[] };
       circulationTier?: { in: string[] };
       OR?: Array<{ state: string | null } | { state: { in: string[] } }>;
@@ -158,10 +181,12 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       town: true,
       city: true,
       state: true,
+      country: true,
       lat: true,
       lng: true,
       circulationTier: true,
       lastCrawledAt: true,
+      lastBackfillAt: true,
       crawlCursor: true,
       robotsStatus: true,
     },
@@ -175,7 +200,8 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       if (/^\?{2,}$/.test(p.name.trim())) return false;
       if (/\.(tw|ru|cn|jp|kr)$/i.test(p.domain)) return false;
       if (p.state && exclude.has(p.state)) return false;
-      return opts.force || !cutoff || !p.lastCrawledAt || p.lastCrawledAt < cutoff;
+      const stamp = mode === "backfill" ? p.lastBackfillAt : p.lastCrawledAt;
+      return opts.force || !cutoff || !stamp || stamp < cutoff;
     })
     .sort((a, b) => {
       const leftoverA = a.state
@@ -216,7 +242,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
   await mapPool(queued, concurrency, async (pub) => {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 45_000);
+    const timer = setTimeout(() => ctrl.abort(), 150_000);
     let result: Awaited<ReturnType<typeof crawlOne>>;
     try {
       result = await crawlOne(pub, {
@@ -225,6 +251,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
         since: pub.lastCrawledAt ? since : null,
         minDelayMs,
         signal: ctrl.signal,
+        lite: Boolean(opts.lite) || pub.country === "CA",
       });
     } finally {
       clearTimeout(timer);
@@ -283,7 +310,14 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
 
 async function crawlOne(
   pub: PubRow,
-  opts: { dryRun: boolean; mode: string; since: Date | null; minDelayMs: number; signal?: AbortSignal },
+  opts: {
+    dryRun: boolean;
+    mode: string;
+    since: Date | null;
+    minDelayMs: number;
+    signal?: AbortSignal;
+    lite?: boolean;
+  },
 ): Promise<{
   fetched: number;
   matched: number;
@@ -305,7 +339,7 @@ async function crawlOne(
   );
 
   try {
-    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
     const rules = await loadRobots(pub.homepageUrl, opts.minDelayMs, opts.signal);
     const origin = originOf(pub.homepageUrl);
     if (!rules.fetchable || (origin && !robotsAllows(rules, "/"))) {
@@ -338,10 +372,10 @@ async function crawlOne(
       if (!articles.has(key)) articles.set(key, item);
     };
 
-    if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
-    const rssTargets = discovered.rss.slice(0, opts.mode === "backfill" ? 6 : 3);
+    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+    const rssTargets = discovered.rss.slice(0, opts.lite ? 1 : opts.mode === "backfill" ? 6 : 3);
     for (const feed of rssTargets) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
       let feedUrl = feed;
       let feedPath = "/";
       try {
@@ -358,7 +392,10 @@ async function crawlOne(
     }
 
     const rssFilled = [...articles.values()].some((a) => a.source === "rss");
-    const skipSitemap = opts.mode === "incremental" && rssFilled && articles.size >= 8;
+    const skipSitemap =
+      Boolean(opts.lite) ||
+      (opts.mode === "incremental" && rssFilled && articles.size >= 8) ||
+      (opts.mode === "backfill" && rssFilled && articles.size >= 12 && Boolean(pub.rssUrl));
     const sitemapCap = opts.mode === "backfill" ? 4 : 2;
     const sitemapTargets = skipSitemap
       ? []
@@ -380,8 +417,9 @@ async function crawlOne(
     if (opts.mode === "backfill") {
       const searchItems = await fetchSearchArticles(pub.homepageUrl, rules, {
         minDelayMs: delay,
-        maxQueries: 3,
+        maxQueries: pub.country === "CA" ? 4 : 3,
         signal: opts.signal,
+        country: pub.country,
       });
       for (const item of searchItems) add(item);
     }
@@ -405,12 +443,14 @@ async function crawlOne(
     if (!firstRss && discovered.rss.length) firstRss = discovered.rss[0];
 
     for (const article of articles.values()) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
+      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
+      const titleOnly = matchAnimalAttack(title, "");
       const needsFetch =
         article.source === "sitemap" ||
+        (article.source === "search" && !titleOnly.matched) ||
         (!preview.matched && (!title || !snippet) && article.source !== "homepage");
 
       if (needsFetch) {
@@ -517,7 +557,8 @@ async function finishPub(
       where: { id: pub.id },
       data: {
         lastCrawledAt: new Date(),
-        lastBackfillAt: data.backfill ? new Date() : undefined,
+        lastBackfillAt:
+          data.backfill && !data.lastError?.startsWith("pub-timeout") ? new Date() : undefined,
         robotsStatus: data.robotsStatus,
         robotsCheckedAt: new Date(),
         robotsCrawlDelay: data.robotsCrawlDelay ?? undefined,

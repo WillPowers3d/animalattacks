@@ -124,10 +124,83 @@ export const WILDLIFE_STATES = [
   "IL",
 ] as const;
 
+/** Canadian provinces / territories where bear, moose, elk, or cougar reports concentrate. */
+export const CA_PROVINCE_NAMES: Record<string, string> = {
+  AB: "Alberta",
+  BC: "British Columbia",
+  MB: "Manitoba",
+  NB: "New Brunswick",
+  NL: "Newfoundland and Labrador",
+  NS: "Nova Scotia",
+  NT: "Northwest Territories",
+  NU: "Nunavut",
+  ON: "Ontario",
+  PE: "Prince Edward Island",
+  QC: "Quebec",
+  SK: "Saskatchewan",
+  YT: "Yukon",
+};
+
+const CA_NAME_TO_ABBR = new Map(
+  Object.entries(CA_PROVINCE_NAMES).flatMap(([abbr, name]) => [
+    [name.toLowerCase(), abbr],
+    [abbr.toLowerCase(), abbr],
+  ]),
+);
+CA_NAME_TO_ABBR.set("b.c.", "BC");
+CA_NAME_TO_ABBR.set("alta.", "AB");
+CA_NAME_TO_ABBR.set("sask.", "SK");
+CA_NAME_TO_ABBR.set("nwt", "NT");
+CA_NAME_TO_ABBR.set("n.w.t.", "NT");
+CA_NAME_TO_ABBR.set("yukon territory", "YT");
+
+export function provinceAbbr(input?: string | null): string | null {
+  if (!input) return null;
+  const raw = input.trim();
+  if (!raw) return null;
+  return CA_NAME_TO_ABBR.get(raw.toLowerCase()) ?? (CA_PROVINCE_NAMES[raw.toUpperCase()] ? raw.toUpperCase() : null);
+}
+
+export function regionAbbr(input?: string | null): string | null {
+  return stateAbbr(input) ?? provinceAbbr(input);
+}
+
+export function regionName(abbr?: string | null): string {
+  if (!abbr) return "";
+  return US_STATE_NAMES[abbr] ?? CA_PROVINCE_NAMES[abbr] ?? "";
+}
+
+export const WILDLIFE_PROVINCES = ["YT", "NT", "NU", "BC", "AB", "SK", "MB", "ON"] as const;
+
+/** Wildlife-dense US states for archive backfill (RSS-first pass already done). */
+export const BACKFILL_STATES = [
+  "AK",
+  "MT",
+  "WY",
+  "ID",
+  "CO",
+  "WA",
+  "OR",
+  "CA",
+  "NM",
+  "UT",
+  "NV",
+  "ME",
+  "MN",
+  "WI",
+  "MI",
+  "NH",
+  "VT",
+] as const;
+
 export function wildlifeRank(state?: string | null): number {
   if (!state) return 80;
+  const backfill = (BACKFILL_STATES as readonly string[]).indexOf(state);
+  if (backfill !== -1) return backfill;
+  const prov = (WILDLIFE_PROVINCES as readonly string[]).indexOf(state);
+  if (prov !== -1) return 20 + prov;
   const i = WILDLIFE_STATES.indexOf(state as (typeof WILDLIFE_STATES)[number]);
-  return i === -1 ? 50 : i;
+  return i === -1 ? 50 : 40 + i;
 }
 
 /** Under-scanned leftovers after the first nationwide sweep (~7.2k pubs). */

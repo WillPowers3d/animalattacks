@@ -2,25 +2,29 @@ import type { MatchResult } from "./types";
 import type { Species } from "../types";
 
 const ANIMAL_PATTERNS: { species: Species; re: RegExp; term: string }[] = [
-  { species: "bear", term: "bear", re: /\b(grizzly|brown bear|black bear|polar bear|bears?)\b/i },
-  { species: "moose", term: "moose", re: /\bmoose\b/i },
-  { species: "elk", term: "elk", re: /\belk\b/i },
+  {
+    species: "bear",
+    term: "bear",
+    re: /\b(grizzly|grizzli|brown bear|black bear|polar bear|bears?|ours(?:e|es|on|ons)?|ours polaire)\b/i,
+  },
+  { species: "moose", term: "moose", re: /\b(moose|orignal(?:s|aux)?)\b/i },
+  { species: "elk", term: "elk", re: /\b(elk|wapiti(?:s)?)\b/i },
   {
     species: "mountain_lion",
     term: "mountain lion",
-    re: /\b(mountain lions?|cougars?|pumas?)\b/i,
+    re: /\b(mountain lions?|cougars?|couguars?|pumas?)\b/i,
   },
 ];
 
 const ATTACK_RE =
-  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed)\b/i;
+  /\b(attacks?|attacked|attacking|mauling|mauled|mauls|charging|gores|gored|tramples?|trampled|bites?|bitten|clawed|attaques?|attaqu[ée]e?s?|agress[ée]e?s?|mutil[ée]e?s?)\b/i;
 
 /** "bear charged a hiker" is an attack; "man charged with poaching elk" is not. */
 const ANIMAL_CHARGED_RE =
   /\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b[^.]{0,40}\bcharged\b|\bcharged\b[^.]{0,40}\b(bears?|grizzly|moose|elk|mountain lions?|cougars?|pumas?)\b/i;
 
 const NEGATIVE_RE =
-  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate|coca[- ]cola|santa claus|halloween costume|stuffed animal)\b/i;
+  /\b(bear market|bearish|teddy bear|build[- ]a[- ]bear|chicago bears|baylor bears|ucla bruins|boston bruins|bear stearns|paddington|care bear|smokey bear merchandise|puma (shoes?|sneakers?|brand|store)|cougar (bar|club)|charging station|charging (a |an )?(fee|phone)|moose knuckle|elk grove (village|high|school)|mountain lion (energy|drink)|charged with|poach(?:ing|ed)?|climate attacks?|are climate|coca[- ]cola|santa claus|halloween costume|stuffed animal|bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|killed by dogs|wasn['’]t a bear|not a bear that)\b/i;
 
 const FICTION_AD_RE =
   /\b(coca[- ]cola|santa (claus|getting)|cartoon|advertisement|ad campaign|halloween costume|stuffed animal)\b/i;
@@ -29,8 +33,22 @@ const PLACE_ONLY_RE =
   /\b(bear (creek|lake|river|mountain|valley|canyon|gap|butte)|elk (grove|city|rapids|horn|river|ton|point)|moose (jaw|lake|pass)|cougar (mountain|town))\b/i;
 
 export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
-  const text = `${title}\n${snippet}`.replace(/\s+/g, " ").trim();
+  const cleanSnippet = snippetIsSearchQueryEcho(snippet) ? "" : snippet;
+  const text = `${title}\n${cleanSnippet}`.replace(/\s+/g, " ").trim();
   if (!text) return { matched: false, species: "other", reason: "empty" };
+  if (snippetIsSearchQueryEcho(snippet) && !matchAnimalAttack(title, "").matched) {
+    return { matched: false, species: "other", reason: "search-query-echo" };
+  }
+  if (
+    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?)\b/i.test(
+      text,
+    )
+  ) {
+    return { matched: false, species: "other", reason: "university-sports" };
+  }
+  if (/\b(killed by dogs|wasn['’]t a bear|not a bear that|not bear:)\b/i.test(text)) {
+    return { matched: false, species: "other", reason: "not-animal-attack" };
+  }
 
   if (NEGATIVE_RE.test(text) && !ATTACK_RE.test(text)) {
     return { matched: false, species: "other", reason: "negative-context" };
@@ -46,11 +64,16 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "legal-charged-with" };
   }
 
+  const attackIdx = text.search(ATTACK_RE);
   let animalHit: (typeof ANIMAL_PATTERNS)[number] | undefined;
+  let bestDist = Infinity;
   for (const pat of ANIMAL_PATTERNS) {
-    if (pat.re.test(text)) {
+    const m = text.match(pat.re);
+    if (!m || m.index == null) continue;
+    const dist = attackIdx >= 0 ? Math.abs(m.index - attackIdx) : m.index;
+    if (!animalHit || dist < bestDist) {
       animalHit = pat;
-      break;
+      bestDist = dist;
     }
   }
   if (!animalHit) return { matched: false, species: "other", reason: "no-animal-term" };
@@ -62,6 +85,18 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     if (!animalHit.re.test(stripped) && !new RegExp(`${place}.{0,40}${ATTACK_RE.source}`, "i").test(text)) {
       return { matched: false, species: animalHit.species, reason: "place-name-only" };
     }
+  }
+
+  if (/\barchives?\b/i.test(title) && /^(bear|moose|elk|cougar|mountain lion) attack/i.test(title.trim())) {
+    return { matched: false, species: "other", reason: "archive-index" };
+  }
+
+  if (
+    /\bbear[- ](spray|mace)(ed|ing)?\b/i.test(text) &&
+    !/\b(bears?|grizzly)\s+(attack|maul|charg)/i.test(text) &&
+    !/\b(attacked|mauled|charged)\s+by\s+(a\s+)?(bears?|grizzly)/i.test(text)
+  ) {
+    return { matched: false, species: animalHit.species, reason: "bear-spray-assault" };
   }
 
   if (FICTION_AD_RE.test(text) && !/\b(hiker|hunter|camper|wildlife (officials?|officers?)|hospital)\b/i.test(text)) {
@@ -84,6 +119,14 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
   };
 }
 
+const SEARCH_QUERY_ONLY_RE =
+  /^(bear attack|bear mauling|moose attack|elk attack|mountain lion attack|cougar attack|cougar mauling)$/i;
+
+/** Site-search pages often echo the query as the only "snippet" — that is not a match. */
+export function snippetIsSearchQueryEcho(snippet: string): boolean {
+  return SEARCH_QUERY_ONLY_RE.test(snippet.replace(/\s+/g, " ").trim());
+}
+
 export const SEARCH_QUERIES = [
   "bear attack",
   "bear mauling",
@@ -92,6 +135,16 @@ export const SEARCH_QUERIES = [
   "mountain lion attack",
   "cougar attack",
   "cougar mauling",
+];
+
+/** Extra queries for Canadian papers (English + French local newsrooms). */
+export const SEARCH_QUERIES_CA = [
+  "bear attack",
+  "attaque ours",
+  "cougar attack",
+  "attaque orignal",
+  "attaque couguar",
+  "moose attack",
 ];
 
 export function urlLooksLikeMatch(url: string): boolean {

@@ -1,4 +1,12 @@
-export type CirculationTier = "newspaper" | "weekly" | "digital" | "tv" | "radio" | "broadcast" | "other";
+export type CirculationTier =
+  | "newspaper"
+  | "weekly"
+  | "digital"
+  | "tv"
+  | "radio"
+  | "broadcast"
+  | "agency"
+  | "other";
 
 export type PublicationSeed = {
   name: string;
@@ -10,7 +18,7 @@ export type PublicationSeed = {
   city?: string | null;
   state?: string | null;
   county?: string | null;
-  country: "US";
+  country: "US" | "CA";
   lat?: number | null;
   lng?: number | null;
   circulationTier?: CirculationTier | string | null;

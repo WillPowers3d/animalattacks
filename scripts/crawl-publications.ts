@@ -11,15 +11,25 @@ function flag(name: string): string | undefined {
 const limitRaw = flag("limit");
 const state = flag("state");
 const statesRaw = flag("states");
+const countryRaw = flag("country") ?? flag("countries");
 const since = flag("since");
 const dryRun = Boolean(flag("dry-run") || flag("dryRun"));
 const backfill = Boolean(flag("backfill"));
 const force = Boolean(flag("force"));
+const lite = Boolean(flag("lite"));
 const unstated = Boolean(flag("unstated"));
-const newspapersOnly = flag("all-tiers") ? false : true;
+const wildlife = Boolean(flag("wildlife"));
+const agencies = Boolean(flag("agencies"));
+const newspapersOnly = agencies ? false : flag("all-tiers") ? false : true;
 const concurrency = flag("concurrency") ? Number(flag("concurrency")) : undefined;
 const states = statesRaw
   ? statesRaw
+      .split(",")
+      .map((s) => s.trim().toUpperCase())
+      .filter(Boolean)
+  : undefined;
+const countries = countryRaw
+  ? countryRaw
       .split(",")
       .map((s) => s.trim().toUpperCase())
       .filter(Boolean)
@@ -29,11 +39,15 @@ runPublicationCrawl({
   limit: limitRaw ? Number(limitRaw) : undefined,
   state: state?.toUpperCase(),
   states,
+  countries,
   unstated,
+  wildlife,
+  agencies,
   since,
   dryRun,
   mode: backfill ? "backfill" : "incremental",
   force,
+  lite,
   newspapersOnly,
   concurrency,
 })

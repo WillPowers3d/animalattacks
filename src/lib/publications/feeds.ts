@@ -2,7 +2,7 @@ import Parser from "rss-parser";
 import { canonicalArticleUrl, originOf } from "./domain";
 import { extractAlternateFeeds, extractSearchResultLinks, extractSitemapLocs, isSitemapIndex } from "./html";
 import { politeFetch } from "./http";
-import { SEARCH_QUERIES, urlLooksLikeMatch } from "./match";
+import { SEARCH_QUERIES, SEARCH_QUERIES_CA, urlLooksLikeMatch } from "./match";
 import { robotsAllows, type RobotsRules } from "./robots";
 import type { ArticleCandidate } from "./types";
 
@@ -163,11 +163,17 @@ export async function fetchSitemapArticles(
 export async function fetchSearchArticles(
   homepageUrl: string,
   rules: RobotsRules,
-  opts: { minDelayMs?: number; maxQueries?: number; signal?: AbortSignal } = {},
+  opts: {
+    minDelayMs?: number;
+    maxQueries?: number;
+    signal?: AbortSignal;
+    country?: string | null;
+  } = {},
 ): Promise<ArticleCandidate[]> {
   const origin = originOf(homepageUrl);
   if (!origin) return [];
-  const queries = SEARCH_QUERIES.slice(0, opts.maxQueries ?? 4);
+  const pool = opts.country === "CA" ? SEARCH_QUERIES_CA : SEARCH_QUERIES;
+  const queries = pool.slice(0, opts.maxQueries ?? 4);
   const out: ArticleCandidate[] = [];
   const seen = new Set<string>();
 
@@ -190,7 +196,7 @@ export async function fetchSearchArticles(
       for (const item of extractSearchResultLinks(res.text, origin)) {
         if (seen.has(item.url)) continue;
         seen.add(item.url);
-        out.push({ ...item, snippet: item.snippet || q });
+        out.push({ ...item, snippet: item.snippet });
       }
       if (out.length) break;
     }

@@ -6,9 +6,10 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const state = url.searchParams.get("state")?.toUpperCase() ?? undefined;
+  const country = url.searchParams.get("country")?.toUpperCase() ?? undefined;
   const limit = Math.min(500, Math.max(1, Number(url.searchParams.get("limit") ?? "100") || 100));
   const rows = await prisma.publication.findMany({
-    where: { country: "US", ...(state ? { state } : {}) },
+    where: { ...(country ? { country } : {}), ...(state ? { state } : {}) },
     orderBy: [{ matchCount: "desc" }, { state: "asc" }, { name: "asc" }],
     take: limit,
     select: {
@@ -18,6 +19,7 @@ export async function GET(req: Request) {
       town: true,
       city: true,
       state: true,
+      country: true,
       lat: true,
       lng: true,
       circulationTier: true,

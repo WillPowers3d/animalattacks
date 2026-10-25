@@ -1,6 +1,7 @@
 import { geocodeIncident, offsetCoord } from "../geo";
 import type { SeedIncident, Species } from "../types";
 import { matchAnimalAttack } from "./match";
+import { CA_PROVINCE_NAMES, US_STATE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
 
 const STATE_RE: [RegExp, string][] = [
@@ -54,18 +55,34 @@ const STATE_RE: [RegExp, string][] = [
   [/\bHawaii\b|\bHI\b/, "HI"],
 ];
 
+const PROVINCE_RE: [RegExp, string][] = [
+  [/\bBritish Columbia\b|\bB\.C\.\b|\bColombie[- ]Britannique\b|\bC\.-B\.\b/, "BC"],
+  [/\bAlberta\b|\bAlta\.\b/, "AB"],
+  [/\bSaskatchewan\b|\bSask\.\b/, "SK"],
+  [/\bManitoba\b/, "MB"],
+  [/\bOntario\b/, "ON"],
+  [/\bYukon\b/, "YT"],
+  [/\bNorthwest Territories\b|\bN\.W\.T\.\b|\bNWT\b|\bTerritoires du Nord[- ]Ouest\b/, "NT"],
+  [/\bNunavut\b/, "NU"],
+  [/\bQuebec\b|\bQuébec\b/, "QC"],
+  [/\bNew Brunswick\b|\bNouveau[- ]Brunswick\b/, "NB"],
+  [/\bNova Scotia\b|\bNouvelle[- ]Écosse\b/, "NS"],
+  [/\bNewfoundland\b|\bLabrador\b|\bTerre[- ]Neuve\b/, "NL"],
+];
+
 function inferSeverity(text: string): SeedIncident["severity"] {
-  if (/\b(killed|dead|dies|fatal|fatally|died)\b/i.test(text)) return "fatal";
-  if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed)\b/i.test(text)) return "injury";
-  if (/\b(home|cabin|property|break-in|livestock|pet)\b/i.test(text)) return "property";
+  if (/\b(killed|dead|dies|fatal|fatally|died|tu[ée]e?s?|mortel(?:le)?)\b/i.test(text)) return "fatal";
+  if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed|bless[ée]e?s?|hospitalis[ée]e?s?)\b/i.test(text))
+    return "injury";
+  if (/\b(home|cabin|property|break-in|livestock|pet|bétail|propriété)\b/i.test(text)) return "property";
   return "near_miss";
 }
 
 function inferSubspecies(species: Species, text: string): string | null {
   if (species === "bear") {
-    if (/grizzly|brown bear/i.test(text)) return "grizzly";
-    if (/black bear/i.test(text)) return "black";
-    if (/polar/i.test(text)) return "polar";
+    if (/grizzly|grizzli|brown bear/i.test(text)) return "grizzly";
+    if (/black bear|ours noir/i.test(text)) return "black";
+    if (/polar|ours polaire/i.test(text)) return "polar";
   }
   if (species === "mountain_lion") return "cougar";
   return null;
@@ -77,6 +94,8 @@ export type PublicationLocation = {
   town?: string | null;
   city?: string | null;
   state?: string | null;
+  country?: string | null;
+  circulationTier?: string | null;
   lat?: number | null;
   lng?: number | null;
 };
@@ -93,7 +112,7 @@ export function articleToIncident(
     /\b([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?),\s*([A-Z]{2})\b/,
   );
   const cityMatch = blob.match(
-    /\b(?:in|near|outside|at)[ \t]+([A-Z][A-Za-z]+(?:[ \t][A-Z][A-Za-z]+)?)/,
+    /\b(?:in|near|outside|at|près de|pres de)[ \t]+([A-ZÀ-Ÿ][A-Za-zÀ-ÿ'-]+(?:[ \t][A-ZÀ-Ÿ][A-Za-zÀ-ÿ'-]+)?)/,
   );
   const MONTHS = new Set([
     "January",
@@ -112,9 +131,12 @@ export function articleToIncident(
   const rawCity = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
   const cityFromArticle = rawCity && !MONTHS.has(rawCity) ? rawCity : null;
   let stateFromArticle: string | null = cityState?.[2] ?? null;
+  if (stateFromArticle && !CA_PROVINCE_NAMES[stateFromArticle] && !STATE_RE.some(([, abbr]) => abbr === stateFromArticle)) {
+    stateFromArticle = null;
+  }
   if (!stateFromArticle) {
-    for (const [re, abbr] of STATE_RE) {
-      if (re.test(`${article.title}`)) {
+    for (const [re, abbr] of [...PROVINCE_RE, ...STATE_RE]) {
+      if (re.test(`${article.title} ${article.snippet}`)) {
         stateFromArticle = abbr;
         break;
       }
@@ -123,11 +145,23 @@ export function articleToIncident(
 
   const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
   const state = stateFromArticle ?? pub.state ?? null;
+  let country = pub.country === "CA" ? "CA" : "US";
+  if (state && CA_PROVINCE_NAMES[state]) country = "CA";
+  else if (state && US_STATE_NAMES[state]) country = "US";
+  const foreign =
+    blob.match(/\bJapan\b/i) ? "JP"
+    : blob.match(/\bSlovenia\b/i) ? "SI"
+    : blob.match(/\bItaly\b|\bItalia\b/i) ? "IT"
+    : blob.match(/\bRomania\b/i) ? "RO"
+    : null;
+  if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {
+    country = foreign;
+  }
   const hasPrecisePlace = Boolean(cityFromArticle);
   let lat = pub.lat ?? null;
   let lng = pub.lng ?? null;
   if (hasPrecisePlace || lat == null || lng == null) {
-    const geo = offsetCoord(geocodeIncident({ city, stateProvince: state, country: "US" }), article.title);
+    const geo = offsetCoord(geocodeIncident({ city, stateProvince: state, country }), article.title);
     if (hasPrecisePlace || lat == null) {
       lat = geo.lat;
       lng = geo.lng;
@@ -136,6 +170,7 @@ export function articleToIncident(
 
   const occurredAt = article.isoDate ? article.isoDate.slice(0, 10) : null;
   const snippet = (article.snippet || article.title).slice(0, 400);
+  const isAgency = pub.circulationTier === "agency";
 
   return {
     title: article.title.slice(0, 180),
@@ -146,14 +181,16 @@ export function articleToIncident(
     dateDisplay: occurredAt ?? "Date unknown",
     city,
     stateProvince: state,
-    country: "US",
+    country,
     lat,
     lng,
     severity: inferSeverity(blob),
     summary: snippet,
-    sourceType: "news",
+    sourceType: isAgency ? "agency" : "news",
     verified: false,
-    attribution: `Local newspaper crawl: ${pub.name}. Snippet only — not official agency data.`,
+    attribution: isAgency
+      ? `Official agency / park press: ${pub.name}. Snippet only — confirm with the source.`
+      : `Local newspaper crawl: ${pub.name}. Snippet only — not official agency data.`,
     publicationId: pub.id,
     sources: [
       {

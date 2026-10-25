@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { US_STATE_NAMES } from "@/lib/publications/states";
+import { regionName } from "@/lib/publications/states";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Local news directory" };
+export const metadata = { title: "Local news & agency directory" };
 
 export default async function PublicationsPage({
   searchParams,
@@ -16,13 +16,16 @@ export default async function PublicationsPage({
     return Array.isArray(v) ? v[0] : v;
   };
   const state = (one("state") ?? "").toUpperCase();
+  const country = (one("country") ?? "").toUpperCase();
+  const tier = (one("tier") ?? "").toLowerCase();
   const q = (one("q") ?? "").trim();
   const page = Math.max(1, Number(one("page") ?? "1") || 1);
   const pageSize = 75;
 
   const where = {
-    country: "US",
+    ...(country ? { country } : {}),
     ...(state ? { state } : {}),
+    ...(tier ? { circulationTier: tier } : {}),
     ...(q
       ? {
           OR: [
@@ -65,12 +68,12 @@ export default async function PublicationsPage({
     <div className="space-y-6">
       <section>
         <p className="stamp text-[10px] text-rust-400">Expandable directory</p>
-        <h1 className="font-display text-3xl text-kraft-200">US local news publications</h1>
+        <h1 className="font-display text-3xl text-kraft-200">Local news & agency publications</h1>
         <p className="mt-2 max-w-3xl text-sm text-moss-200">
-          Starter directory of US small-town and local online news sites, merged from open newspaper
-          lists (Wikidata, Wikipedia state lists, academic local-news datasets). The crawler scans
-          RSS, sitemaps, and site search for bear / moose / elk / mountain-lion attack reports and
-          stores titles, URLs, and short snippets only.
+          US and Canadian local / small-town news sites plus official wildlife-agency and park press
+          feeds. The crawler scans RSS, sitemaps, and site search for bear / moose / elk /
+          mountain-lion attack reports and stores titles, URLs, and short snippets only. Filter
+          country=CA or tier=agency to isolate the new directories.
         </p>
       </section>
 
@@ -83,12 +86,23 @@ export default async function PublicationsPage({
 
       <form action="/publications" method="get" className="flex flex-col gap-2 sm:flex-row">
         <input name="q" defaultValue={q} placeholder="Name, town, domain…" className="field-input flex-1" />
+        <select name="country" defaultValue={country} className="field-input sm:w-36">
+          <option value="">All countries</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+        </select>
+        <select name="tier" defaultValue={tier} className="field-input sm:w-40">
+          <option value="">All tiers</option>
+          <option value="newspaper">Newspaper</option>
+          <option value="digital">Digital</option>
+          <option value="agency">Agency / park</option>
+        </select>
         <select name="state" defaultValue={state} className="field-input sm:w-48">
-          <option value="">All states</option>
+          <option value="">All regions</option>
           {byState.map((s) =>
             s.state ? (
               <option key={s.state} value={s.state}>
-                {s.state} — {US_STATE_NAMES[s.state] ?? s.state} ({s._count._all})
+                {s.state} — {regionName(s.state) || s.state} ({s._count._all})
               </option>
             ) : null,
           )}
@@ -107,7 +121,8 @@ export default async function PublicationsPage({
             <tr>
               <th className="px-3 py-2">Publication</th>
               <th className="px-3 py-2">Town</th>
-              <th className="px-3 py-2">State</th>
+              <th className="px-3 py-2">Region</th>
+              <th className="px-3 py-2">Country</th>
               <th className="px-3 py-2">Tier</th>
               <th className="px-3 py-2">Last crawl</th>
               <th className="px-3 py-2">Robots</th>
@@ -130,6 +145,7 @@ export default async function PublicationsPage({
                 </td>
                 <td className="px-3 py-2 text-moss-200">{p.town || p.city || "—"}</td>
                 <td className="px-3 py-2 font-mono text-xs">{p.state || "—"}</td>
+                <td className="px-3 py-2 font-mono text-xs">{p.country || "—"}</td>
                 <td className="px-3 py-2 text-xs text-moss-300">{p.circulationTier || "—"}</td>
                 <td className="px-3 py-2 font-mono text-[10px] text-moss-300">
                   {p.lastCrawledAt ? p.lastCrawledAt.toISOString().slice(0, 16).replace("T", " ") : "never"}
@@ -152,7 +168,7 @@ export default async function PublicationsPage({
         <div className="flex gap-2">
           {page > 1 && (
             <Link
-              href={`/publications?${new URLSearchParams({ q, state, page: String(page - 1) })}`}
+              href={`/publications?${new URLSearchParams({ q, state, country, tier, page: String(page - 1) })}`}
               className="border border-kraft-500/40 px-2 py-1 text-kraft-300"
             >
               Prev
@@ -160,7 +176,7 @@ export default async function PublicationsPage({
           )}
           {page < pages && (
             <Link
-              href={`/publications?${new URLSearchParams({ q, state, page: String(page + 1) })}`}
+              href={`/publications?${new URLSearchParams({ q, state, country, tier, page: String(page + 1) })}`}
               className="border border-kraft-500/40 px-2 py-1 text-kraft-300"
             >
               Next
