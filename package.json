@@ -1,0 +1,63 @@
+{
+  "name": "animalattacks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "North American Animal Attack Tracker — news, social, and historical incident database",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma db push --force-reset && tsx prisma/seed.ts",
+    "parse:weingarten": "tsx scripts/parse-weingarten.ts",
+    "ingest": "tsx scripts/ingest.ts",
+    "ingest:dry": "tsx scripts/ingest.ts --dry-run",
+    "geocode:report": "tsx scripts/geocode-report.ts",
+    "db:provider": "tsx scripts/configure-db-provider.ts",
+    "publications:build": "tsx scripts/build-publications-directory.ts",
+    "publications:seed": "tsx prisma/seed.ts",
+    "crawl:publications": "tsx scripts/crawl-publications.ts",
+    "crawl:publications:dry": "tsx scripts/crawl-publications.ts --dry-run",
+    "crawl:waves": "tsx scripts/crawl-waves.ts",
+    "publications:fill-states": "tsx scripts/fill-publication-states.ts --rewrite-seed",
+    "publications:fill-states:seed": "tsx scripts/fill-publication-states.ts --rewrite-seed --seed-only",
+    "test:publications": "tsx scripts/test-publication-match.ts",
+    "results:write": "tsx scripts/write-results.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.544.0",
+    "maplibre-gl": "^5.7.0",
+    "next": "^15.5.3",
+    "openai": "^4.104.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "recharts": "^2.15.4",
+    "rss-parser": "^3.13.0",
+    "slugify": "^1.6.6",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "autoprefixer": "^10.4.21",
+    "@eslint/eslintrc": "^3.3.1",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "^15.5.3",
+    "postcss": "^8.5.6",
+    "prisma": "^6.16.0",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

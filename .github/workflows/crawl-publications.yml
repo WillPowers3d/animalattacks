@@ -1,0 +1,104 @@
+name: Local newspaper crawl
+
+on:
+  schedule:
+    - cron: "30 13 * * *" # daily incremental, after Google News ingest
+    - cron: "15 7 * * 0" # weekly backfill sweep
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (scan + match, do not write incidents)"
+        type: boolean
+        default: false
+      backfill:
+        description: "Backfill archives / sitemaps / site search (slower)"
+        type: boolean
+        default: false
+      limit:
+        description: "Max publications this run"
+        type: string
+        default: "400"
+      state:
+        description: "Optional two-letter state filter"
+        type: string
+        default: ""
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve database
+        env:
+          SECRET_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -n "$SECRET_DATABASE_URL" ]; then
+            echo "DATABASE_URL=$SECRET_DATABASE_URL" >> "$GITHUB_ENV"
+            echo "DB_MODE=hosted" >> "$GITHUB_ENV"
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "::error::Scheduled publication crawl requires a DATABASE_URL repo secret (Postgres)."
+            exit 1
+          else
+            echo 'DATABASE_URL=file:./dev.db' >> "$GITHUB_ENV"
+            echo "DB_MODE=sqlite-smoke" >> "$GITHUB_ENV"
+            echo "::warning::No DATABASE_URL secret. Ephemeral SQLite smoke only."
+          fi
+
+      - name: Configure Prisma provider
+        run: npx tsx scripts/configure-db-provider.ts
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Smoke seed (ephemeral SQLite only)
+        if: env.DB_MODE == 'sqlite-smoke'
+        run: |
+          npx prisma db push
+          npm run db:seed
+
+      - name: Crawl local publications
+        env:
+          CRAWL_CONCURRENCY: "6"
+        run: |
+          DRY="${{ github.event.inputs.dry_run }}"
+          BACKFILL="${{ github.event.inputs.backfill }}"
+          LIMIT="${{ github.event.inputs.limit }}"
+          STATE="${{ github.event.inputs.state }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "15 7 * * 0" ]; then
+              BACKFILL=true
+              LIMIT="${LIMIT:-250}"
+            else
+              LIMIT="${LIMIT:-500}"
+            fi
+          fi
+          ARGS="--limit=${LIMIT:-400} --concurrency=6"
+          if [ -n "$STATE" ]; then ARGS="$ARGS --state=$STATE"; fi
+          if [ "$BACKFILL" = "true" ]; then ARGS="$ARGS --backfill"; fi
+          if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          echo "Running: npm run crawl:publications -- $ARGS"
+          echo "Polite defaults: ~1.5s/host, robots.txt honored, snippets only."
+          npm run crawl:publications -- $ARGS | tee crawl-out.json
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Local newspaper crawl"
+            echo ""
+            echo "Rate limits: concurrency 6, ≥1.5s between hits on the same host, robots.txt respected."
+            echo "Secrets: hosted \`DATABASE_URL\` (required for schedule). No extra crawl secrets."
+            echo ""
+            if [ -f crawl-out.json ]; then
+              echo '```json'
+              tail -n 80 crawl-out.json
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-09-11T23:43:19.156Z",
+  "publicationCount": 14847,
+  "uniqueDomains": 14847,
+  "byState": {
+    "AK": 104,
+    "AL": 261,
+    "AR": 200,
+    "AZ": 222,
+    "CA": 1006,
+    "CO": 321,
+    "CT": 217,
+    "DC": 83,
+    "DE": 55,
+    "FL": 597,
+    "GA": 366,
+    "GU": 3,
+    "HI": 69,
+    "IA": 267,
+    "ID": 101,
+    "IL": 503,
+    "IN": 299,
+    "KS": 200,
+    "KY": 232,
+    "LA": 197,
+    "MA": 438,
+    "MD": 146,
+    "ME": 125,
+    "MI": 379,
+    "MN": 392,
+    "MO": 352,
+    "MS": 162,
+    "MT": 122,
+    "NC": 390,
+    "ND": 80,
+    "NE": 178,
+    "NH": 100,
+    "NJ": 209,
+    "NM": 112,
+    "NV": 106,
+    "NY": 555,
+    "OH": 469,
+    "OK": 178,
+    "OR": 198,
+    "PA": 354,
+    "PR": 22,
+    "RI": 61,
+    "SC": 174,
+    "SD": 85,
+    "TN": 297,
+    "TX": 841,
+    "UT": 98,
+    "VA": 245,
+    "VT": 62,
+    "WA": 288,
+    "WI": 243,
+    "WV": 104,
+    "WY": 67,
+    "??": 1912
+  },
+  "byTier": {
+    "broadcast": 649,
+    "newspaper": 11377,
+    "radio": 2308,
+    "tv": 513
+  },
+  "bySource": {
+    "3dlnews": 10743,
+    "news-homepages": 850,
+    "stechlab": 6768,
+    "us-news-sites": 5019,
+    "wikidata": 2608,
+    "wikipedia": 568
+  },
+  "withCoords": 14847,
+  "withRss": 4051,
+  "withTown": 12252,
+  "sources": [
+    {
+      "id": "3dlnews",
+      "label": "3DLNews / WM News Lab US local media outlets (newspapers, TV, radio)",
+      "license": "Academic compilation of public directory facts (usnpl / thepaperboy / 50states). Name, URL, town, coordinates only.",
+      "url": "https://github.com/wm-newslab/3DLNews"
+    },
+    {
+      "id": "stechlab",
+      "label": "sTechLab / ICWSM 2022 local news outlets dataset (~10k)",
+      "license": "Research dataset; we store name / website / city / state only and cite the paper.",
+      "url": "https://github.com/sTechLab/local-news-dataset"
+    },
+    {
+      "id": "us-news-sites",
+      "label": "firephil/us-news-sites local & regional domains",
+      "license": "Public domain list of news domains.",
+      "url": "https://github.com/firephil/us-news-sites"
+    },
+    {
+      "id": "news-homepages",
+      "label": "palewire/news-homepages US site roster",
+      "license": "GPL-3.0 project; factual site names/URLs used as directory entries.",
+      "url": "https://github.com/palewire/news-homepages"
+    },
+    {
+      "id": "wikidata",
+      "label": "Wikidata newspapers / weekly newspapers / news websites (P17=US, P856 website)",
+      "license": "CC0",
+      "url": "https://query.wikidata.org/"
+    },
+    {
+      "id": "wikipedia",
+      "label": "Wikipedia lists of newspapers by US state (external links)",
+      "license": "CC BY-SA 4.0 — attribute Wikipedia / contributors",
+      "url": "https://en.wikipedia.org/wiki/List_of_newspapers_in_the_United_States"
+    }
+  ],
+  "coverageNotes": [
+    "This is an expandable starter directory, not a complete census of every US town paper.",
+    "Many weeklies have died, moved, or lost websites since the source snapshots (2016–2024).",
+    "National wires and platforms are filtered; metro dailies are kept because they still cover nearby towns.",
+    "TV/radio news sites are included (marked circulationTier) but the crawler defaults to newspapers/weeklies/digital.",
+    "Town-center coordinates come from the source dataset, a US cities gazetteer, or state centroids as last resort.",
+    "Expand by re-running npm run publications:build, then adding rows to data/publications/extra.json."
+  ]
+}
