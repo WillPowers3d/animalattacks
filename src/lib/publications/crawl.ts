@@ -6,7 +6,7 @@ import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArtic
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
 import { matchAnimalAttack } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
-import { wildlifeRank } from "./states";
+import { LEFTOVER_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
 import { originOf } from "./domain";
 import type { ArticleCandidate } from "./types";
@@ -14,6 +14,12 @@ import type { ArticleCandidate } from "./types";
 export type CrawlOptions = {
   limit?: number;
   state?: string;
+  /** Multiple states, e.g. leftover IL/MA/OH/IN. Combined with `state` if both set. */
+  states?: string[];
+  /** Include directory rows with no parsed state (domain-only). */
+  unstated?: boolean;
+  /** Skip these states (well-scanned in a prior session). */
+  excludeStates?: string[];
   since?: string;
   dryRun?: boolean;
   concurrency?: number;
@@ -113,20 +119,35 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   const samples: CrawlResult["samples"] = [];
   const byState: CrawlResult["byState"] = {};
 
-  const where: {
-    enabled: boolean;
-    country: string;
-    state?: string;
-    circulationTier?: { in: string[] };
-  } = { enabled: true, country: "US" };
-  if (opts.state) where.state = opts.state.toUpperCase();
+  const stateList = [
+    ...new Set(
+      [...(opts.states ?? []), opts.state]
+        .filter((s): s is string => Boolean(s))
+        .map((s) => s.toUpperCase()),
+    ),
+  ];
+  const exclude = new Set((opts.excludeStates ?? []).map((s) => s.toUpperCase()));
+  const stateClauses: Array<{ state: string | null } | { state: { in: string[] } }> = [];
+  if (stateList.length === 1) stateClauses.push({ state: stateList[0] });
+  else if (stateList.length > 1) stateClauses.push({ state: { in: stateList } });
+  if (opts.unstated) stateClauses.push({ state: null });
+
+  const where: Record<string, unknown> = { enabled: true, country: "US" };
   if (opts.newspapersOnly !== false) {
     where.circulationTier = { in: ["newspaper", "weekly", "digital", "other"] };
   }
+  if (stateClauses.length === 1) Object.assign(where, stateClauses[0]);
+  else if (stateClauses.length > 1) where.OR = stateClauses;
 
   const publicationsSeeded = await prisma.publication.count({ where: { country: "US" } });
   const candidates = await prisma.publication.findMany({
-    where,
+    where: where as {
+      enabled: boolean;
+      country: string;
+      state?: string | null | { in: string[] };
+      circulationTier?: { in: string[] };
+      OR?: Array<{ state: string | null } | { state: { in: string[] } }>;
+    },
     select: {
       id: true,
       name: true,
@@ -153,9 +174,18 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
     .filter((p) => {
       if (/^\?{2,}$/.test(p.name.trim())) return false;
       if (/\.(tw|ru|cn|jp|kr)$/i.test(p.domain)) return false;
+      if (p.state && exclude.has(p.state)) return false;
       return opts.force || !cutoff || !p.lastCrawledAt || p.lastCrawledAt < cutoff;
     })
     .sort((a, b) => {
+      const leftoverA = a.state
+        ? (LEFTOVER_STATES as readonly string[]).indexOf(a.state)
+        : -1;
+      const leftoverB = b.state
+        ? (LEFTOVER_STATES as readonly string[]).indexOf(b.state)
+        : -1;
+      const lr = (leftoverA === -1 ? 99 : leftoverA) - (leftoverB === -1 ? 99 : leftoverB);
+      if (lr !== 0) return lr;
       const wr = wildlifeRank(a.state) - wildlifeRank(b.state);
       if (wr !== 0) return wr;
       const ar = a.rssUrl ? 0 : 1;
@@ -312,8 +342,17 @@ async function crawlOne(
     const rssTargets = discovered.rss.slice(0, opts.mode === "backfill" ? 6 : 3);
     for (const feed of rssTargets) {
       if (opts.signal?.aborted) throw new Error("pub-timeout-45s");
-      if (!robotsAllows(rules, new URL(feed).pathname)) continue;
-      const items = await fetchRssArticles(feed, opts.signal);
+      let feedUrl = feed;
+      let feedPath = "/";
+      try {
+        const resolved = new URL(feed, origin || pub.homepageUrl);
+        feedUrl = resolved.toString();
+        feedPath = resolved.pathname;
+      } catch {
+        continue;
+      }
+      if (!robotsAllows(rules, feedPath)) continue;
+      const items = await fetchRssArticles(feedUrl, opts.signal);
       for (const item of items) add(item);
       if (items.length) break;
     }

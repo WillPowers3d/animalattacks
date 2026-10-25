@@ -165,8 +165,10 @@ Town-center coordinates: source lat/lng when present, else a US cities gazetteer
 ```bash
 npm run crawl:publications -- --limit=200
 npm run crawl:publications -- --state=MT --since=2018-01-01 --backfill
+npm run crawl:publications -- --states=IL,MA,OH,IN --limit=400 --concurrency=12 --since=1990-01-01
+npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN --unstated
 npm run crawl:publications:dry -- --limit=40 --state=AK
-# flags: --limit=N  --state=XX  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
+# flags: --limit=N  --state=XX  --states=IL,MA  --unstated  --since=YYYY-MM-DD  --dry-run  --backfill  --force  --all-tiers  --concurrency=8
 ```
 
 - **Incremental (default):** RSS + recent sitemap URLs; skips publications crawled in the last ~18 hours.
@@ -198,7 +200,9 @@ Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. 
 | `npm run publications:build` | Rebuild `data/publications/us-local-news.json.gz` from open sources |
 | `npm run publications:fill-states` | Infer missing states; rewrite seed + live DB |
 | `npm run crawl:publications` / `crawl:publications:dry` | Scan local papers → upsert incidents |
-| `npm run crawl:waves` | Unattended batches until `--hours` budget |
+| `npm run crawl:waves` | Unattended batches until `--hours` budget (`--states`, `--unstated`) |
+| `npm run crawl:progress:export` | Write `crawl-progress.json` + `local-paper-incidents.json` |
+| `npm run crawl:progress:apply` | Restore lastCrawledAt / incidents onto a fresh seed |
 | `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
 | `npm run test:publications` | Keyword matcher unit checks |
 | `npm run geocode:report` | City / state / country geocode coverage |

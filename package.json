@@ -26,7 +26,9 @@
     "publications:fill-states": "tsx scripts/fill-publication-states.ts --rewrite-seed",
     "publications:fill-states:seed": "tsx scripts/fill-publication-states.ts --rewrite-seed --seed-only",
     "test:publications": "tsx scripts/test-publication-match.ts",
-    "results:write": "tsx scripts/write-results.ts"
+    "results:write": "tsx scripts/write-results.ts",
+    "crawl:progress:export": "tsx scripts/export-crawl-progress.ts",
+    "crawl:progress:apply": "tsx scripts/apply-crawl-progress.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

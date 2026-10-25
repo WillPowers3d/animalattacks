@@ -129,3 +129,22 @@ export function wildlifeRank(state?: string | null): number {
   const i = WILDLIFE_STATES.indexOf(state as (typeof WILDLIFE_STATES)[number]);
   return i === -1 ? 50 : i;
 }
+
+/** Under-scanned leftovers after the first nationwide sweep (~7.2k pubs). */
+export const LEFTOVER_STATES = [
+  "IL",
+  "MA",
+  "OH",
+  "IN",
+  "MS",
+  "LA",
+  "AL",
+  "SC",
+  "CT",
+  "MD",
+  "NJ",
+  "DE",
+  "RI",
+  "HI",
+  "DC",
+] as const;

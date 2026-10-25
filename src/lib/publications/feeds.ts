@@ -50,7 +50,13 @@ export async function discoverFeeds(
   const origin = originOf(homepageUrl) ?? homepageUrl;
   const rss = new Set<string>();
   const sitemaps = new Set<string>(rules.sitemaps);
-  if (knownRss) rss.add(knownRss);
+  if (knownRss) {
+    try {
+      rss.add(new URL(knownRss, origin.endsWith("/") ? origin : `${origin}/`).toString());
+    } catch {
+      /* skip unresolvable seed RSS */
+    }
+  }
 
   if (homepageHtml) {
     for (const f of extractAlternateFeeds(homepageHtml, origin)) rss.add(f);

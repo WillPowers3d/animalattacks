@@ -19,7 +19,11 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Boulder policemen charged in elk shooting", want: false },
   { title: "Cocaine Bear thrives with outstanding gore", want: false },
   { title: "Bear attacks in Colorado are climate attacks", want: false },
-];
+  {
+    title: "I am confused by those Coca Cola cans that show Santa getting mauled by a polar bear",
+    want: false,
+  },
+]
 
 let failed = 0;
 for (const c of cases) {

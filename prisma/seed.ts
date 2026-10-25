@@ -100,6 +100,8 @@ async function main() {
   }
   console.log(`Seeded ${n} incidents.`);
   await seedPublications({ log: true });
+  const { applyCrawlProgress } = await import("../src/lib/publications/progress");
+  await applyCrawlProgress({ log: true });
 }
 
 main()

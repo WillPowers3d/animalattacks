@@ -1,0 +1,64 @@
+[
+  {
+    "title": "[Fox News] Disabled veteran who survived attack by grizzly bear recalls when instincts kicked in",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": "2024-05-18",
+    "datePrecision": "month",
+    "dateDisplay": "May 2024",
+    "city": "West Glacier",
+    "region": null,
+    "stateProvince": "MT",
+    "country": "US",
+    "lat": 48.4969,
+    "lng": -113.9819,
+    "severity": "injury",
+    "summary": "A disabled veteran Army reservist this week described a harrowing grizzly bear attack he survived by playing dead and holding onto his can of bear spray.  Shayne Patrick Burke, 35, called the atta…",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: The Baltimore Post. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://thebaltimorepost.com/2024/05/25/fox-news-disabled-veteran-who-survived-attack-by-grizzly-bear-recalls-when-instincts-kicked-in/",
+        "title": "[Fox News] Disabled veteran who survived attack by grizzly bear recalls when instincts kicked in",
+        "publisher": "The Baltimore Post"
+      }
+    ]
+  },
+  {
+    "title": "Seattle Kraken hockey player, sea troll charged by grizzly bear during Alaska fishing trip",
+    "species": "bear",
+    "subspecies": "grizzly",
+    "occurredAt": "2026-08-18",
+    "datePrecision": "exact",
+    "dateDisplay": "2026-08-18",
+    "city": null,
+    "region": null,
+    "stateProvince": "AK",
+    "country": "US",
+    "lat": 64.2008,
+    "lng": -153.4937,
+    "severity": "near_miss",
+    "summary": "Video provided by Kraken shows the bear watching the fishers from the other side of the shallow river.",
+    "sourceType": "news",
+    "verified": false,
+    "firearmType": null,
+    "caliber": null,
+    "shotsFired": null,
+    "defenseOutcome": null,
+    "combinationDefense": false,
+    "attribution": "Local newspaper crawl: wpgh53.com. Snippet only — not official agency data.",
+    "sources": [
+      {
+        "url": "https://wpgh53.com/news/offbeat/seattle-kraken-hockey-player-sea-troll-charged-by-grizzly-bear-during-alaska-fishing-trip-weird-news-funny-championship-outreach-community-partnership-mascot",
+        "title": "Seattle Kraken hockey player, sea troll charged by grizzly bear during Alaska fishing trip",
+        "publisher": "wpgh53.com"
+      }
+    ]
+  }
+]

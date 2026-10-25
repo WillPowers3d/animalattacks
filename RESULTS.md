@@ -24,19 +24,28 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 | | Count |
 | --- | ---: |
-| Publications scanned at least once | **7,200+** (see latest snapshot — leftover-state wave still running) |
-| Article records fetched (titles/snippets/RSS items) | **100,000+** |
-| High-precision matches (animal + attack term) | **59** |
-| Incidents upserted from local papers | **64** (one climate-metaphor false positive removed) |
+| Publications scanned at least once | **11,325** combined (leftover named states + domain-only rows done) |
+| Article records fetched (titles/snippets/RSS items) | **130,153** combined |
+| High-precision matches (animal + attack term) | **61** (59 prior + 2 this leftover/unstated wave; Coke/Santa ad rejected) |
+| Incidents upserted from local papers | **66** (64 prior + 2 new: Glacier NP grizzly survivor; AK Kraken-trip charge) |
 | Historical Weingarten + extra seed | 231 (unchanged) |
 
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
+**This continuation** skips re-scanning the well-covered first-wave states and targets leftover **IL, MA, OH, IN**, then other under-scanned states (MS, LA, AL, SC, CT, MD, NJ, DE, RI, HI, DC), then domain-only (`state` null) rows. Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` after `npm run db:seed`.
+
 ## How to resume (do not start over)
 
-Already-crawled rows have `lastCrawledAt` and are skipped unless `--force`.
+Already-crawled rows have `lastCrawledAt` and are skipped unless `--force`. On a fresh VM, seed first — `db:seed` applies `crawl-progress.json` if present.
 
 ```bash
+# Restore directory + lastCrawledAt / local-paper incidents
+npx prisma db push && npm run db:seed
+
+# Leftover named states + domain-only are done on this branch.
+# Next: hosted Postgres backfill, or incremental nationwide (skips lastCrawledAt)
+npm run crawl:waves -- --hours=2 --batch=400 --concurrency=12 --backfill
+
 # Next batch of never-crawled newspapers, wildlife states first
 npm run crawl:publications -- --limit=800 --concurrency=12 --since=1990-01-01
 
@@ -61,7 +70,8 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 ## Known gaps
 
 - Dead domains, ownership changes, and paywalled weeklies.
-- **1,912** directory rows still have no reliable state (mostly firephil / Wikidata / sTechLab domain-only rows parked on the US centroid — not treated as Kansas).
+- **1,912** directory rows had no reliable state; **1,907** of those newspapers are now scanned (5 skipped: `??` names or foreign TLDs).
+- First-wave wildlife states (CA, TX, NY, …) were **not** re-crawled this VM. Combined remaining **~52** is the leftover-priority queue, not every newspaper in the directory.
 - Incremental mode prefers RSS; `--backfill` is required for deeper sitemaps/site-search.
 - Matcher rejects sports/finance/legal “charged with” noise; a few early-session false positives may remain from before that tightening.
 - This SQLite session is not the production ledger. Seed the hosted DB (`npm run db:seed`) then resume waves there.
@@ -73,46 +83,62 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
+Generated **2026-09-12T06:21:57.441Z**. Combined with prior-session aggregates (lost ephemeral SQLite) plus this VM’s leftover-state wave.
 
 | Metric | Count |
 | --- | ---: |
 | Publications in directory | 14,847 |
-| Scanned at least once | **7,262** |
-| Uncrawled newspapers remaining | 4,115 |
-| Article records fetched | **100,391** |
-| Matching articles | **59** |
-| Publications with a match | 46 |
-| Incidents from local papers | **64** |
-| Incidents total (incl. historical seed) | 294 |
+| Scanned at least once (combined) | **11,325** |
+| This-VM leftover wave scanned | 4,329 |
+| Uncrawled newspapers remaining (est.) | 52 |
+| Article records fetched (combined) | **130,153** |
+| This-VM leftover articles | 33,590 |
+| Matching articles (combined) | **61** |
+| This-VM leftover matches | 2 |
+| Publications with a match | 48 |
+| Incidents from local papers (combined) | **66** |
+| This-VM leftover incidents | 2 |
+| Incidents total (incl. historical seed) | 296 |
 
 ### Coverage by state (scanned publications)
 
 | State | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
+| ??  | 1907 | 21238 | 0 |
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
+| IL Illinois | 399 | 2337 | 1 |
+| MA Massachusetts | 368 | 1465 | 0 |
 | FL Florida | 354 | 5195 | 1 |
 | MN Minnesota | 302 | 3585 | 2 |
 | NC North Carolina | 299 | 4671 | 2 |
 | GA Georgia | 290 | 1626 | 0 |
+| OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
 | CO Colorado | 240 | 4034 | 9 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
+| IN Indiana | 214 | 975 | 0 |
 | IA Iowa | 208 | 1179 | 0 |
 | TN Tennessee | 196 | 5819 | 1 |
 | KY Kentucky | 187 | 1269 | 0 |
 | WI Wisconsin | 176 | 3212 | 1 |
+| CT Connecticut | 168 | 698 | 0 |
+| AL Alabama | 166 | 970 | 0 |
 | KS Kansas | 158 | 1207 | 0 |
+| NJ New Jersey | 157 | 771 | 0 |
 | AR Arkansas | 152 | 1205 | 1 |
 | OR Oregon | 146 | 2412 | 0 |
 | AZ Arizona | 145 | 2328 | 0 |
+| MS Mississippi | 141 | 757 | 0 |
+| LA Louisiana | 129 | 986 | 0 |
 | OK Oklahoma | 117 | 692 | 0 |
 | NE Nebraska | 115 | 992 | 0 |
+| MD Maryland | 108 | 604 | 0 |
+| SC South Carolina | 105 | 572 | 0 |
 | ME Maine | 97 | 1124 | 0 |
 | MT Montana | 90 | 2553 | 12 |
 | NM New Mexico | 84 | 1330 | 1 |
@@ -122,28 +148,18 @@ Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
 | NV Nevada | 69 | 1312 | 1 |
 | NH New Hampshire | 62 | 836 | 0 |
 | SD South Dakota | 61 | 1062 | 0 |
+| DC District of Columbia | 57 | 397 | 0 |
 | AK Alaska | 55 | 1252 | 6 |
 | ND North Dakota | 55 | 688 | 0 |
 | VT Vermont | 55 | 796 | 0 |
-| IL Illinois | 45 | 735 | 1 |
+| HI Hawaii | 48 | 348 | 0 |
 | WY Wyoming | 42 | 880 | 3 |
-| OH Ohio | 38 | 303 | 0 |
-| IN Indiana | 32 | 303 | 0 |
-| MA Massachusetts | 29 | 613 | 0 |
-| MS Mississippi | 21 | 65 | 0 |
-| LA Louisiana | 20 | 265 | 0 |
-| AL Alabama | 18 | 514 | 0 |
-| CT Connecticut | 17 | 120 | 0 |
-| MD Maryland | 15 | 280 | 0 |
-| SC South Carolina | 12 | 169 | 0 |
-| NJ New Jersey | 7 | 87 | 0 |
-| HI Hawaii | 6 | 226 | 0 |
-| DC District of Columbia | 5 | 148 | 0 |
-| RI Rhode Island | 1 | 0 | 0 |
+| RI Rhode Island | 41 | 195 | 0 |
+| DE Delaware | 38 | 223 | 0 |
 
 ### Local-paper incidents by species
 
-- bear: 42
+- bear: 44
 - mountain_lion: 15
 - elk: 4
 - moose: 3
@@ -151,8 +167,8 @@ Generated **2026-09-12T03:01:05.424Z** on this machine’s SQLite database.
 ### Local-paper incidents by state
 
 - CO: 15
-- AK: 10
-- MT: 10
+- AK: 11
+- MT: 11
 - CA: 7
 - WY: 3
 - AR: 2
