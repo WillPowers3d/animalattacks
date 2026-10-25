@@ -60,7 +60,7 @@ export function matchAnimalAttack(title: string, snippet = ""): MatchResult {
     return { matched: false, species: "other", reason: "search-query-echo" };
   }
   if (
-    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?|pumas? (unam|cu|felinos)|unam pumas|club pumas|los pumas (ganan|vencen|derrotan|empatan|caen|golearon)|pumas vs|vs\.? pumas|ataque de los pumas)\b/i.test(
+    /\b(bisons? (mauled|trample)|mauled by cougars|trample(?:d|s)? (over )?cougars|clawed by the cougars|golden bears|bears (hockey|football|volleyball)|dinos take|pandas legacy|varsity sports|racism in sport|offensive attack|raiders? (past|hold off|defeat) cougars|hold off cougar attack|propels raiders|kootenay ice|ice (brace|face) .{0,20}cougar|giants in cougar attack|francophones?|pumas? (unam|cu|felinos)|unam pumas|club pumas|los pumas (ganan|vencen|derrotan|empatan|caen|golearon)|pumas vs|vs\.? pumas|ataque de los pumas|ataque puma queda en evidencia|liga mx|pumas? (golea|empata|cae|gana|pierde|vence))\b/i.test(
       text,
     )
   ) {
@@ -184,6 +184,15 @@ export const SEARCH_QUERIES_MX = [
   "oso negro ataque",
 ];
 
+export function urlLooksLikeSportsDesk(url: string): boolean {
+  try {
+    return /\/(deportes|sports|futbol|f[uú]tbol|soccer|olympics)\b/i.test(new URL(url).pathname);
+  } catch {
+    return /\/(deportes|sports|futbol|soccer|olympics)\b/i.test(url);
+  }
+}
+
 export function urlLooksLikeMatch(url: string): boolean {
+  if (urlLooksLikeSportsDesk(url)) return false;
   return matchAnimalAttack(decodeURIComponent(url.replace(/[-_/]+/g, " "))).matched;
 }

@@ -285,12 +285,6 @@ function sameCountryOrUnknown(a?: string | null, b?: string | null): boolean {
   return a.toUpperCase() === b.toUpperCase();
 }
 
-/** Protect Weingarten rows from being absorbed unless URL/path already matches. */
-function weingartenConflict(a: EventFields, b: EventFields): boolean {
-  const types = [a.sourceType, b.sourceType];
-  return types.includes("ammoland") && types.some((t) => t && t !== "ammoland");
-}
-
 export function urlsShareReprintPath(aUrls: string[] = [], bUrls: string[] = []): boolean {
   const keys = new Set(
     aUrls.map(reprintPathKey).filter((k): k is string => Boolean(k)),

@@ -115,16 +115,7 @@ export function fetchHttp11(
       return;
     }
     const lib = parsed.protocol === "http:" ? http : https;
-    let req: http.ClientRequest;
-    const hardTimeout = setTimeout(() => {
-      req?.destroy();
-      finish({ ok: false, status: 0, url, text: "", contentType: "", error: "http1.1-timeout" });
-    }, timeoutMs);
-    const done = (result: FetchResult) => {
-      clearTimeout(hardTimeout);
-      finish(result);
-    };
-    req = lib.request(
+    const req = lib.request(
       {
         protocol: parsed.protocol,
         hostname: parsed.hostname,
@@ -181,6 +172,14 @@ export function fetchHttp11(
         });
       },
     );
+    const hardTimeout = setTimeout(() => {
+      req.destroy();
+      finish({ ok: false, status: 0, url, text: "", contentType: "", error: "http1.1-timeout" });
+    }, timeoutMs);
+    const done = (result: FetchResult) => {
+      clearTimeout(hardTimeout);
+      finish(result);
+    };
     const onAbort = () => {
       req.destroy();
       done({ ok: false, status: 0, url, text: "", contentType: "", error: "aborted" });
@@ -271,7 +270,20 @@ export async function politeFetch(
         },
       });
       const contentType = res.headers.get("content-type") ?? "";
-      const text = await res.text();
+      let bodyTimer: ReturnType<typeof setTimeout> | undefined;
+      const text = await Promise.race([
+        res.text().finally(() => {
+          if (bodyTimer) clearTimeout(bodyTimer);
+        }),
+        new Promise<string>((_, reject) => {
+          bodyTimer = setTimeout(() => reject(new Error("body-timeout")), timeoutMs);
+          const onAbort = () => {
+            if (bodyTimer) clearTimeout(bodyTimer);
+            reject(new Error("aborted"));
+          };
+          opts.signal?.addEventListener("abort", onAbort, { once: true });
+        }),
+      ]);
       last = {
         ok: res.ok,
         status: res.status,

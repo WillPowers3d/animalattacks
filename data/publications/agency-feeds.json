@@ -733,5 +733,50 @@
     "circulationTier": "agency",
     "directorySource": "curated-canada",
     "notes": null
+  },
+  {
+    "name": "CONANP — Comisión Nacional de Áreas Naturales Protegidas",
+    "homepageUrl": "https://www.gob.mx/conanp",
+    "domain": "gob.mx/conanp",
+    "rssUrl": null,
+    "town": "Mexico City",
+    "city": "Mexico City",
+    "state": "CMX",
+    "country": "MX",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "circulationTier": "agency",
+    "directorySource": "curated-agency-mx",
+    "notes": "Federal protected-area newsroom; jaguar / black-bear range"
+  },
+  {
+    "name": "PROFEPA — Procuraduría Federal de Protección al Ambiente",
+    "homepageUrl": "https://www.gob.mx/profepa",
+    "domain": "gob.mx/profepa",
+    "rssUrl": null,
+    "town": "Mexico City",
+    "city": "Mexico City",
+    "state": "CMX",
+    "country": "MX",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "circulationTier": "agency",
+    "directorySource": "curated-agency-mx",
+    "notes": "Wildlife conflict / seizure press"
+  },
+  {
+    "name": "SEMARNAT — Secretaría de Medio Ambiente y Recursos Naturales",
+    "homepageUrl": "https://www.gob.mx/semarnat",
+    "domain": "gob.mx/semarnat",
+    "rssUrl": null,
+    "town": "Mexico City",
+    "city": "Mexico City",
+    "state": "CMX",
+    "country": "MX",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "circulationTier": "agency",
+    "directorySource": "curated-agency-mx",
+    "notes": null
   }
 ]

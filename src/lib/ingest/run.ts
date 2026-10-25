@@ -1,7 +1,7 @@
 import { prisma } from "../prisma";
 import { NEWS_QUERIES, fetchNewsItems } from "./news";
 import { heuristicParse, maybeEnrichWithOpenAI } from "./parse";
-import { facebookToIncident, fetchFacebookPosts } from "./facebook";
+import { createFacebookFetcher, facebookToIncident } from "./facebook";
 import { alreadyExists, persistIncident } from "./persist";
 
 export type IngestOptions = {
@@ -29,8 +29,8 @@ export async function runIngest(opts: IngestOptions = {}): Promise<IngestResult>
   let fetched = 0;
   let upserted = 0;
   let skipped = 0;
-  const facebookMode: IngestResult["facebookMode"] =
-    process.env.FACEBOOK_ACCESS_TOKEN && process.env.FACEBOOK_PAGE_IDS ? "live" : "mock";
+  const facebook = createFacebookFetcher();
+  const facebookMode: IngestResult["facebookMode"] = facebook.mode;
 
   const run = await prisma.ingestRun.create({
     data: { source: "news+facebook", dryRun },
@@ -67,7 +67,10 @@ export async function runIngest(opts: IngestOptions = {}): Promise<IngestResult>
     }
 
     if (opts.includeFacebook !== false) {
-      const posts = await fetchFacebookPosts();
+      if (facebook.mode === "mock") {
+        console.log("Facebook: no token/page IDs — using mock posts.");
+      }
+      const posts = await facebook.fetchPosts();
       fetched += posts.length;
       if (facebookMode === "live" && posts.length === 0) {
         errors.push(

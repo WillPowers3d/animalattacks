@@ -16,9 +16,10 @@ export function parseRobotsTxt(body: string, origin: string): RobotsRules {
   const blocks: AgentBlock[] = [];
   let current: AgentBlock | null = null;
 
-  const startBlock = () => {
-    current = { agents: [], crawlDelay: null, allow: [], disallow: [] };
-    blocks.push(current);
+  const newBlock = (): AgentBlock => {
+    const block: AgentBlock = { agents: [], crawlDelay: null, allow: [], disallow: [] };
+    blocks.push(block);
+    return block;
   };
 
   for (const line of lines) {
@@ -37,19 +38,19 @@ export function parseRobotsTxt(body: string, origin: string): RobotsRules {
     }
     if (key === "user-agent") {
       if (!current || current.allow.length || current.disallow.length || current.crawlDelay != null) {
-        startBlock();
+        current = newBlock();
       }
-      current!.agents.push(value.toLowerCase());
+      current.agents.push(value.toLowerCase());
       continue;
     }
-    if (!current) startBlock();
+    if (!current) current = newBlock();
     if (key === "crawl-delay") {
       const n = Number(value);
-      if (Number.isFinite(n) && n >= 0) current!.crawlDelay = n;
+      if (Number.isFinite(n) && n >= 0) current.crawlDelay = n;
     } else if (key === "disallow") {
-      current!.disallow.push(value);
+      current.disallow.push(value);
     } else if (key === "allow") {
-      current!.allow.push(value);
+      current.allow.push(value);
     }
   }
 

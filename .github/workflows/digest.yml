@@ -9,6 +9,10 @@ on:
         description: "Look-back days if no cursor (default 7)"
         type: string
         default: "7"
+      fatal_only:
+        description: "Fatal incidents only (skip injury rows)"
+        type: boolean
+        default: false
 
 jobs:
   digest:
@@ -53,8 +57,10 @@ jobs:
       - name: Build digest
         run: |
           DAYS="${{ github.event.inputs.days }}"
+          FATAL="${{ github.event.inputs.fatal_only }}"
           ARGS="--write"
           if [ -n "$DAYS" ]; then ARGS="$ARGS --days=$DAYS"; fi
+          if [ "$FATAL" = "true" ]; then ARGS="$ARGS --fatal-only"; fi
           npm run digest -- $ARGS | tee digest.md
 
       - name: Upload markdown artifact

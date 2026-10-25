@@ -12,8 +12,9 @@ function flag(name: string): string | undefined {
 const since = flag("since");
 const days = flag("days") ? Number(flag("days")) : undefined;
 const write = Boolean(flag("write")) || !flag("stdout");
+const fatalOnly = Boolean(flag("fatal-only") || flag("fatalOnly"));
 
-buildFatalInjuryDigest({ since, days, write })
+buildFatalInjuryDigest({ since, days, write, fatalOnly })
   .then((result) => {
     process.stdout.write(result.markdown);
     if (write) {

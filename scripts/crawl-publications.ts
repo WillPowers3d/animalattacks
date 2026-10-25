@@ -24,6 +24,10 @@ const agencies = Boolean(flag("agencies"));
 const cbc = Boolean(flag("cbc"));
 const newspapersOnly = agencies ? false : flag("all-tiers") ? false : true;
 const concurrency = flag("concurrency") ? Number(flag("concurrency")) : undefined;
+const timeoutRaw = flag("timeout-ms") ?? flag("timeoutMs");
+const pubTimeoutMs = timeoutRaw ? Number(timeoutRaw) : undefined;
+const skipDead = Boolean(flag("skip-dead") || flag("skipDead"));
+const uncrawled = Boolean(flag("uncrawled"));
 const states = statesRaw
   ? statesRaw
       .split(",")
@@ -54,6 +58,9 @@ runPublicationCrawl({
   lite,
   newspapersOnly,
   concurrency,
+  pubTimeoutMs,
+  skipDead,
+  uncrawled,
 })
   .then((result) => {
     console.log(JSON.stringify(result, null, 2));

@@ -6,6 +6,7 @@
  *   npx tsx scripts/crawl-waves.ts --hours=2 --batch=400 --concurrency=12 --wildlife --backfill
  *   npx tsx scripts/crawl-waves.ts --hours=1 --batch=200 --concurrency=10 --country=CA --backfill
  *   npx tsx scripts/crawl-waves.ts --hours=1 --batch=80 --concurrency=8 --agencies
+ *   npx tsx scripts/crawl-waves.ts --hours=4 --batch=80 --concurrency=2 --west --backfill --timeout-ms=300000 --skip-dead
  */
 import { writeSync } from "node:fs";
 import { runPublicationCrawl } from "../src/lib/publications/crawl";
@@ -38,7 +39,13 @@ const unstated = Boolean(flag("unstated"));
 const wildlife = Boolean(flag("wildlife"));
 const west = Boolean(flag("west"));
 const agencies = Boolean(flag("agencies"));
-const statesRaw = flag("states");
+const skipDead = Boolean(flag("skip-dead") || flag("skipDead"));
+const uncrawled = Boolean(flag("uncrawled"));
+const lite = Boolean(flag("lite"));
+const timeoutRaw = flag("timeout-ms") ?? flag("timeoutMs");
+const pubTimeoutMs = timeoutRaw ? Number(timeoutRaw) : west ? 300_000 : undefined;
+const stateFlag = flag("state");
+const statesRaw = flag("states") ?? stateFlag;
 const countryRaw = flag("country") ?? flag("countries");
 const states = statesRaw
   ? statesRaw
@@ -78,6 +85,9 @@ async function remaining() {
       circulationTier: agencies
         ? { in: ["agency"] }
         : { in: ["newspaper", "weekly", "digital", "other"] },
+      ...(uncrawled
+        ? { lastCrawledAt: null, lastBackfillAt: null }
+        : {}),
       ...(stateClauses.length === 1
         ? stateClauses[0]
         : stateClauses.length > 1
@@ -103,21 +113,40 @@ async function main() {
         states ? ` · states ${states.join(",")}` : ""
       }${countries ? ` · ${countries.join(",")}` : ""}${unstated ? " · +unstated" : ""}${
         wildlife ? " · wildlife" : ""
-      }${west ? " · west-core" : ""}${agencies ? " · agencies" : ""}${backfill ? " · backfill" : ""} ===`,
+      }${west ? " · west-core" : ""}${agencies ? " · agencies" : ""}${backfill ? " · backfill" : ""}${
+        skipDead ? " · skip-dead" : ""
+      }${uncrawled ? " · uncrawled" : ""}${lite ? " · lite" : ""}${
+        pubTimeoutMs ? ` · timeout ${Math.round(pubTimeoutMs / 1000)}s` : ""
+      } ===`,
     );
-    const result = await runPublicationCrawl({
-      limit: batch,
-      concurrency,
-      mode: backfill ? "backfill" : "incremental",
-      since: "1990-01-01",
-      newspapersOnly: !agencies,
-      agencies,
-      wildlife,
-      west,
-      states,
-      countries,
-      unstated,
-    });
+    const beat = setInterval(() => {
+      log(
+        `[heartbeat] wave ${wave} still running · ${Math.round((deadline - Date.now()) / 60000)} min left`,
+      );
+    }, 60_000);
+    beat.unref?.();
+    let result: Awaited<ReturnType<typeof runPublicationCrawl>>;
+    try {
+      result = await runPublicationCrawl({
+        limit: batch,
+        concurrency,
+        mode: backfill ? "backfill" : "incremental",
+        since: "1990-01-01",
+        newspapersOnly: !agencies,
+        agencies,
+        wildlife,
+        west,
+        states,
+        countries,
+        unstated,
+        pubTimeoutMs,
+        skipDead,
+        uncrawled,
+        lite,
+      });
+    } finally {
+      clearInterval(beat);
+    }
     totals.scanned += result.scanned;
     totals.matches += result.matchingArticles;
     totals.upserted += result.incidentsUpserted;

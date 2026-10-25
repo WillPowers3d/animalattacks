@@ -1,33 +1,33 @@
 {
-  "generatedAt": "2026-09-15T00:40:22.582Z",
-  "publicationsSeeded": 15491,
-  "publicationsScanned": 11888,
-  "remainingNewspapers": 6293,
-  "articlesFetched": 137743,
-  "matchingArticles": 1081,
-  "publicationsWithMatches": 77,
-  "incidentsFromLocalPapers": 284,
-  "incidentsTotal": 614,
+  "generatedAt": "2026-09-22T17:23:31.840Z",
+  "publicationsSeeded": 15504,
+  "publicationsScanned": 11903,
+  "remainingNewspapers": 6281,
+  "articlesFetched": 140199,
+  "matchingArticles": 1214,
+  "publicationsWithMatches": 104,
+  "incidentsFromLocalPapers": 302,
+  "incidentsTotal": 658,
   "canadaPublications": 432,
-  "canadaScanned": 314,
-  "mexicoPublications": 199,
-  "mexicoScanned": 197,
-  "agencyPublications": 49,
-  "agencyScanned": 47,
+  "canadaScanned": 316,
+  "mexicoPublications": 212,
+  "mexicoScanned": 210,
+  "agencyPublications": 52,
+  "agencyScanned": 52,
   "incidentsByCountry": {
     "CA": 224,
     "DE": 1,
     "NO": 10,
     "RU": 4,
-    "US": 338,
+    "US": 382,
     "JP": 2,
     "SI": 1,
     "MX": 40
   },
   "incidentsBySource": {
-    "agency": 7,
+    "agency": 24,
     "ammoland": 205,
-    "news": 397,
+    "news": 425,
     "other": 5
   },
   "crawledStates": [
@@ -126,8 +126,8 @@
       "state": "CO",
       "name": "Colorado",
       "scanned": 240,
-      "articles": 4034,
-      "matches": 10
+      "articles": 6341,
+      "matches": 139
     },
     {
       "state": "PA",
@@ -141,7 +141,7 @@
       "name": "Washington",
       "scanned": 224,
       "articles": 2675,
-      "matches": 2
+      "matches": 5
     },
     {
       "state": "VA",
@@ -335,8 +335,8 @@
     {
       "state": "ON",
       "name": "Ontario",
-      "scanned": 67,
-      "articles": 857,
+      "scanned": 68,
+      "articles": 858,
       "matches": 21
     },
     {
@@ -357,7 +357,7 @@
       "state": "DC",
       "name": "District of Columbia",
       "scanned": 58,
-      "articles": 397,
+      "articles": 438,
       "matches": 0
     },
     {
@@ -398,8 +398,8 @@
     {
       "state": "AB",
       "name": "Alberta",
-      "scanned": 42,
-      "articles": 475,
+      "scanned": 43,
+      "articles": 476,
       "matches": 20
     },
     {
@@ -496,9 +496,9 @@
     {
       "state": "CHP",
       "name": "Chiapas",
-      "scanned": 7,
-      "articles": 123,
-      "matches": 1
+      "scanned": 8,
+      "articles": 176,
+      "matches": 2
     },
     {
       "state": "SON",
@@ -550,18 +550,32 @@
       "matches": 0
     },
     {
+      "state": "CAM",
+      "name": "Campeche",
+      "scanned": 5,
+      "articles": 34,
+      "matches": 1
+    },
+    {
+      "state": "OAX",
+      "name": "Oaxaca",
+      "scanned": 5,
+      "articles": 81,
+      "matches": 0
+    },
+    {
+      "state": "CMX",
+      "name": "Ciudad de México",
+      "scanned": 5,
+      "articles": 24,
+      "matches": 0
+    },
+    {
       "state": "NS",
       "name": "Nova Scotia",
       "scanned": 4,
       "articles": 2,
       "matches": 0
-    },
-    {
-      "state": "CAM",
-      "name": "Campeche",
-      "scanned": 4,
-      "articles": 34,
-      "matches": 1
     },
     {
       "state": "GRO",
@@ -599,13 +613,6 @@
       "matches": 0
     },
     {
-      "state": "OAX",
-      "name": "Oaxaca",
-      "scanned": 3,
-      "articles": 81,
-      "matches": 0
-    },
-    {
       "state": "SLP",
       "name": "San Luis Potosí",
       "scanned": 3,
@@ -613,10 +620,17 @@
       "matches": 0
     },
     {
-      "state": "CMX",
-      "name": "Ciudad de México",
-      "scanned": 2,
-      "articles": 21,
+      "state": "TAB",
+      "name": "Tabasco",
+      "scanned": 3,
+      "articles": 50,
+      "matches": 0
+    },
+    {
+      "state": "VER",
+      "name": "Veracruz",
+      "scanned": 3,
+      "articles": 0,
       "matches": 0
     },
     {
@@ -635,15 +649,15 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 266,
-    "mountain_lion": 103,
-    "elk": 6,
-    "moose": 22
+    "bear": 296,
+    "mountain_lion": 106,
+    "elk": 8,
+    "moose": 31
   },
   "localIncidentsByState": {
-    "CO": 64,
+    "CO": 106,
     "AK": 23,
-    "MT": 11,
+    "MT": 15,
     "CA": 7,
     "WY": 10,
     "AR": 2,
@@ -675,7 +689,7 @@
     "YT": 15,
     "CAM": 1,
     "CHH": 3,
-    "CHP": 1,
+    "CHP": 2,
     "COA": 4,
     "DUR": 7,
     "IN": 1,

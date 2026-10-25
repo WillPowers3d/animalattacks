@@ -80,6 +80,7 @@ export function renderDigestMarkdown(input: {
   generatedAt: Date;
   since: Date;
   incidents: DigestIncident[];
+  fatalOnly?: boolean;
 }): string {
   const fatal = input.incidents.filter((i) => i.severity === "fatal");
   const injury = input.incidents.filter((i) => i.severity === "injury");
@@ -92,16 +93,21 @@ export function renderDigestMarkdown(input: {
         })
       : ["- None in this window."];
 
-  return [
-    "# Fatal / injury alert digest",
+  const heading = input.fatalOnly ? "# Fatal alert digest" : "# Fatal / injury alert digest";
+  const windowCopy = input.fatalOnly
+    ? `New ledger rows with severity fatal only since **${input.since.toISOString()}**.`
+    : `New ledger rows with severity fatal or injury since **${input.since.toISOString()}**.`;
+
+  const parts = [
+    heading,
     "",
-    `Generated **${input.generatedAt.toISOString()}**. New ledger rows with severity fatal or injury since **${input.since.toISOString()}**.`,
+    `Generated **${input.generatedAt.toISOString()}**. ${windowCopy}`,
     "",
     `| | Count |`,
     `| --- | ---: |`,
     `| New incidents | **${input.incidents.length}** |`,
     `| Fatal | ${fatal.length} |`,
-    `| Injury | ${injury.length} |`,
+    ...(input.fatalOnly ? [] : [`| Injury | ${injury.length} |`]),
     "",
     "This is not official wildlife-agency data. Confirm every row with the source link.",
     "",
@@ -109,17 +115,18 @@ export function renderDigestMarkdown(input: {
     "",
     ...lines(fatal),
     "",
-    `## Injury (${injury.length})`,
-    "",
-    ...lines(injury),
-    "",
-  ].join("\n");
+  ];
+  if (!input.fatalOnly) {
+    parts.push(`## Injury (${injury.length})`, "", ...lines(injury), "");
+  }
+  return parts.join("\n");
 }
 
 export async function buildFatalInjuryDigest(opts: {
   since?: string | Date;
   days?: number;
   write?: boolean;
+  fatalOnly?: boolean;
 } = {}): Promise<DigestResult> {
   const cursor = loadDigestCursor();
   const since = opts.since
@@ -128,11 +135,12 @@ export async function buildFatalInjuryDigest(opts: {
       ? new Date(cursor.lastRunAt)
       : defaultSince(opts.days ?? 7);
   const generatedAt = new Date();
+  const fatalOnly = Boolean(opts.fatalOnly);
 
   const firstRun = !cursor && !opts.since;
   const rows = await prisma.incident.findMany({
     where: {
-      severity: { in: ["fatal", "injury"] },
+      severity: { in: fatalOnly ? ["fatal"] : ["fatal", "injury"] },
       sourceType: { not: "ammoland" },
       ...(firstRun ? { occurredAt: { gte: since } } : { createdAt: { gt: since } }),
     },
@@ -155,7 +163,7 @@ export async function buildFatalInjuryDigest(opts: {
     sourceTitle: r.sources[0]?.title ?? r.sources[0]?.publisher ?? null,
   }));
 
-  const markdown = renderDigestMarkdown({ generatedAt, since, incidents });
+  const markdown = renderDigestMarkdown({ generatedAt, since, incidents, fatalOnly });
   const cursorPath = path.join(rootDir(), DIGEST_CURSOR_PATH);
   const latestPath = path.join(rootDir(), DIGEST_LATEST_PATH);
 

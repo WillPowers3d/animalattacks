@@ -5,11 +5,12 @@ import { extractPageSnippet } from "./html";
 import { cbcAlternateFeedUrls, fetchCbcListingArticles, fetchCbcSearchArticles, isCbcFamilyHost } from "./cbc";
 import { discoverFeeds, fetchRssArticles, fetchSearchArticles, fetchSitemapArticles } from "./feeds";
 import { mapPool, politeFetch, sleep, withBusyRetry } from "./http";
-import { matchAnimalAttack } from "./match";
+import { matchAnimalAttack, urlLooksLikeSportsDesk } from "./match";
 import { emptyRobots, parseRobotsTxt, robotsAllows, type RobotsRules } from "./robots";
 import { BACKFILL_STATES, LEFTOVER_STATES, WESTERN_CORE_STATES, wildlifeRank } from "./states";
 import { articleToIncident } from "./to-incident";
 import { originOf } from "./domain";
+import { isDeadHostError, probeHost } from "./dead-host";
 import type { ArticleCandidate } from "./types";
 
 export type CrawlOptions = {
@@ -41,6 +42,12 @@ export type CrawlOptions = {
   skipRecentHours?: number;
   /** RSS + site-search only — skip sitemap walks so archive queries actually run. */
   lite?: boolean;
+  /** Per-publication hard cap. Default 150s; west-retry uses 300s. */
+  pubTimeoutMs?: number;
+  /** Skip hosts already marked dead-host / ENOTFOUND / ECONNREFUSED. */
+  skipDead?: boolean;
+  /** Only publications that have never been crawled or backfilled. */
+  uncrawled?: boolean;
 };
 
 export type CrawlResult = {
@@ -56,6 +63,8 @@ export type CrawlResult = {
   mode: string;
   byState: Record<string, { scanned: number; matches: number; upserted: number }>;
   samples: { title: string; url: string; publication: string; action: string }[];
+  deadSkipped: number;
+  deadMarked: number;
 };
 
 type PubRow = {
@@ -76,7 +85,12 @@ type PubRow = {
   lastBackfillAt: Date | null;
   crawlCursor: string | null;
   robotsStatus: string | null;
+  lastError: string | null;
 };
+
+function timeoutLabel(ms: number) {
+  return `pub-timeout-${Math.max(1, Math.round(ms / 1000))}s`;
+}
 
 function progress(msg: string) {
   try {
@@ -128,6 +142,8 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   const mode = opts.mode ?? "incremental";
   const concurrency = opts.concurrency ?? 8;
   const minDelayMs = opts.minDelayMs ?? 1500;
+  const pubTimeoutMs = opts.pubTimeoutMs ?? 150_000;
+  const skipDead = Boolean(opts.skipDead);
   const skipRecentHours = opts.skipRecentHours ?? (opts.force ? 0 : mode === "incremental" ? 18 : 72);
   const since = sinceDate(opts);
   const errors: string[] = [];
@@ -202,6 +218,7 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       lastBackfillAt: true,
       crawlCursor: true,
       robotsStatus: true,
+      lastError: true,
     },
   });
 
@@ -214,6 +231,18 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
       if (/\.(tw|ru|cn|jp|kr)$/i.test(p.domain)) return false;
       if (p.state && exclude.has(p.state)) return false;
       if (opts.west && mode === "backfill" && p.lastBackfillAt && !opts.force) return false;
+      if (skipDead && isDeadHostError(p.lastError)) return false;
+      if (opts.uncrawled && (p.lastCrawledAt || p.lastBackfillAt)) return false;
+      // Do not immediately re-queue a host that just hit the per-pub timeout.
+      if (
+        mode === "backfill" &&
+        p.lastError?.startsWith("pub-timeout") &&
+        p.lastCrawledAt &&
+        cutoff &&
+        p.lastCrawledAt >= cutoff
+      ) {
+        return false;
+      }
       const stamp = mode === "backfill" ? p.lastBackfillAt : p.lastCrawledAt;
       return opts.force || !cutoff || !stamp || stamp < cutoff;
     })
@@ -247,6 +276,8 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   let incidentsUpserted = 0;
   let skipped = 0;
   let robotsBlocked = 0;
+  const deadSkipped = candidates.filter((p) => skipDead && isDeadHostError(p.lastError)).length;
+  let deadMarked = 0;
 
   const bumpState = (st: string | null, field: "scanned" | "matches" | "upserted") => {
     const key = st ?? "??";
@@ -255,21 +286,62 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
   };
 
   await mapPool(queued, concurrency, async (pub) => {
+    progress(`[crawl] start ${pub.domain}`);
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 150_000);
+    const label = timeoutLabel(pubTimeoutMs);
+    const startedAt = Date.now();
+    let clearDeadline: (() => void) | undefined;
+    // Wall-clock interval (not a single setTimeout) so a VM freeze/resume
+    // still trips the deadline — Date.now() jumps, the next tick fires.
+    const deadline = new Promise<never>((_, reject) => {
+      const tick = () => {
+        if (Date.now() - startedAt < pubTimeoutMs) return;
+        ctrl.abort();
+        reject(new Error(label));
+        if (watch) clearInterval(watch);
+      };
+      const watch = setInterval(tick, 2_000);
+      watch.unref?.();
+      tick();
+      clearDeadline = () => clearInterval(watch);
+    });
     let result: Awaited<ReturnType<typeof crawlOne>>;
     try {
-      result = await crawlOne(pub, {
-        dryRun,
-        mode,
-        since: pub.lastCrawledAt ? since : null,
-        minDelayMs,
-        signal: ctrl.signal,
-        lite: Boolean(opts.lite) || pub.country === "CA" || pub.country === "MX",
-      });
+      result = await Promise.race([
+        crawlOne(pub, {
+          dryRun,
+          mode,
+          since: pub.lastCrawledAt ? since : null,
+          minDelayMs,
+          signal: ctrl.signal,
+          lite: Boolean(opts.lite) || pub.country === "CA" || pub.country === "MX",
+          timeoutLabel: label,
+        }),
+        deadline,
+      ]);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : label;
+      const marked = message.startsWith("pub-timeout") ? message : label;
+      try {
+        await markTimedOutPub(pub, marked);
+      } catch (markErr) {
+        progress(
+          `[crawl] timeout-mark failed ${pub.domain}: ${markErr instanceof Error ? markErr.message : markErr}`,
+        );
+      }
+      result = {
+        fetched: 0,
+        matched: 0,
+        upserted: 0,
+        skipped: 0,
+        robotsBlocked: false,
+        error: marked,
+        samples: [],
+      };
     } finally {
-      clearTimeout(timer);
+      clearDeadline?.();
     }
+    if (result.error && isDeadHostError(result.error)) deadMarked += 1;
     scanned += 1;
     fetchedArticles += result.fetched;
     matchingArticles += result.matched;
@@ -319,6 +391,8 @@ export async function runPublicationCrawl(opts: CrawlOptions = {}): Promise<Craw
     mode,
     byState,
     samples,
+    deadSkipped,
+    deadMarked,
   };
 }
 
@@ -331,6 +405,7 @@ async function crawlOne(
     minDelayMs: number;
     signal?: AbortSignal;
     lite?: boolean;
+    timeoutLabel?: string;
   },
 ): Promise<{
   fetched: number;
@@ -352,8 +427,31 @@ async function crawlOne(
     }),
   );
 
+  const timedOut = opts.timeoutLabel ?? "pub-timeout-150s";
+
   try {
-    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+    if (opts.signal?.aborted) throw new Error(timedOut);
+    const probe = await probeHost(pub.homepageUrl);
+    if (!probe.ok) {
+      await finishPub(pub, crawlRow.id, {
+        robotsStatus: pub.robotsStatus,
+        lastError: probe.reason,
+        fetched: 0,
+        matched: 0,
+        upserted: 0,
+        skipped: 0,
+        backfill: opts.mode === "backfill",
+      });
+      return {
+        fetched: 0,
+        matched: 0,
+        upserted: 0,
+        skipped: 0,
+        robotsBlocked: false,
+        error: probe.reason,
+        samples: [],
+      };
+    }
     const rules = await loadRobots(pub.homepageUrl, opts.minDelayMs, opts.signal);
     const origin = originOf(pub.homepageUrl);
     if (!rules.fetchable || (origin && !robotsAllows(rules, "/"))) {
@@ -390,7 +488,7 @@ async function crawlOne(
       if (!articles.has(key)) articles.set(key, item);
     };
 
-    if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+    if (opts.signal?.aborted) throw new Error(timedOut);
     const rssCap = isCbcFamilyHost(pub.homepageUrl)
       ? 6
       : opts.lite
@@ -400,7 +498,7 @@ async function crawlOne(
           : 3;
     const rssTargets = discovered.rss.slice(0, rssCap);
     for (const feed of rssTargets) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+      if (opts.signal?.aborted) throw new Error(timedOut);
       let feedUrl = feed;
       let feedPath = "/";
       try {
@@ -486,7 +584,8 @@ async function crawlOne(
     if (!firstRss && discovered.rss.length) firstRss = discovered.rss[0];
 
     for (const article of articles.values()) {
-      if (opts.signal?.aborted) throw new Error("pub-timeout-150s");
+      if (opts.signal?.aborted) throw new Error(timedOut);
+      if (urlLooksLikeSportsDesk(article.url)) continue;
       let title = article.title;
       let snippet = article.snippet;
       const preview = matchAnimalAttack(title, snippet);
@@ -565,7 +664,10 @@ async function crawlOne(
 
     return { fetched: articles.size, matched, upserted, skipped, robotsBlocked: false, samples };
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
+    let message = err instanceof Error ? err.message : String(err);
+    if (isDeadHostError(message) && !message.startsWith("dead-host")) {
+      message = `dead-host: ${message}`;
+    }
     await finishPub(pub, crawlRow.id, {
       robotsStatus: pub.robotsStatus,
       lastError: message,
@@ -577,6 +679,24 @@ async function crawlOne(
     });
     return { fetched: 0, matched: 0, upserted: 0, skipped: 0, robotsBlocked: false, error: message, samples };
   }
+}
+
+async function markTimedOutPub(pub: PubRow, message: string) {
+  await withBusyRetry(() =>
+    prisma.publicationCrawl.updateMany({
+      where: { publicationId: pub.id, finishedAt: null },
+      data: { finishedAt: new Date(), error: message },
+    }),
+  );
+  await withBusyRetry(() =>
+    prisma.publication.update({
+      where: { id: pub.id },
+      data: {
+        lastCrawledAt: new Date(),
+        lastError: message,
+      },
+    }),
+  );
 }
 
 async function finishPub(
