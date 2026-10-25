@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-12T17:20:20.031Z",
+  "generatedAt": "2026-09-14T17:08:44.681Z",
   "publicationsSeeded": 15308,
   "publicationsScanned": 11761,
   "remainingNewspapers": 6446,
-  "articlesFetched": 134883,
+  "articlesFetched": 135182,
   "matchingArticles": 1049,
   "publicationsWithMatches": 68,
   "incidentsFromLocalPapers": 188,
-  "incidentsTotal": 487,
+  "incidentsTotal": 522,
   "canadaPublications": 432,
   "canadaScanned": 314,
   "agencyPublications": 49,
   "agencyScanned": 47,
   "incidentsByCountry": {
-    "CA": 177,
+    "CA": 223,
     "DE": 1,
     "NO": 10,
     "RU": 4,
@@ -24,7 +24,7 @@
   "incidentsBySource": {
     "agency": 7,
     "ammoland": 205,
-    "news": 270,
+    "news": 305,
     "other": 5
   },
   "crawledStates": [
@@ -291,7 +291,7 @@
       "state": "BC",
       "name": "British Columbia",
       "scanned": 88,
-      "articles": 2071,
+      "articles": 2120,
       "matches": 795
     },
     {
@@ -333,7 +333,7 @@
       "state": "ON",
       "name": "Ontario",
       "scanned": 67,
-      "articles": 807,
+      "articles": 857,
       "matches": 21
     },
     {
@@ -396,7 +396,7 @@
       "state": "AB",
       "name": "Alberta",
       "scanned": 42,
-      "articles": 425,
+      "articles": 475,
       "matches": 20
     },
     {
@@ -424,21 +424,21 @@
       "state": "MB",
       "name": "Manitoba",
       "scanned": 17,
-      "articles": 281,
+      "articles": 331,
       "matches": 55
     },
     {
       "state": "SK",
       "name": "Saskatchewan",
       "scanned": 16,
-      "articles": 191,
+      "articles": 241,
       "matches": 32
     },
     {
       "state": "NT",
       "name": "Northwest Territories",
       "scanned": 11,
-      "articles": 398,
+      "articles": 448,
       "matches": 40
     },
     {
@@ -485,14 +485,14 @@
     }
   ],
   "localIncidentsBySpecies": {
-    "bear": 173,
-    "mountain_lion": 73,
+    "bear": 206,
+    "mountain_lion": 81,
     "elk": 4,
-    "moose": 9
+    "moose": 10
   },
   "localIncidentsByState": {
     "CO": 15,
-    "AK": 21,
+    "AK": 22,
     "MT": 11,
     "CA": 7,
     "WY": 10,
@@ -501,7 +501,7 @@
     "IL": 2,
     "MN": 2,
     "PA": 2,
-    "WA": 7,
+    "WA": 8,
     "FL": 5,
     "NC": 1,
     "NM": 4,
@@ -509,12 +509,12 @@
     "NY": 1,
     "OK": 1,
     "TN": 1,
-    "AB": 22,
+    "AB": 26,
     "BC": 84,
     "MB": 13,
-    "NT": 11,
-    "NU": 3,
-    "SK": 7,
+    "NT": 69,
+    "NU": 4,
+    "SK": 8,
     "WI": 1,
     "ME": 5,
     "UT": 5,
@@ -522,6 +522,6 @@
     "VT": 7,
     "??": 2,
     "ON": 14,
-    "YT": 10
+    "YT": 14
   }
 }

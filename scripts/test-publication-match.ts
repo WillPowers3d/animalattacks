@@ -42,6 +42,11 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
   { title: "Les Canadiens attaquent en troisième période", want: false },
   { title: "Balanced offensive attack propels Raiders past Cougars", want: false },
   { title: "Raiders hold off Cougar attack", want: false },
+  {
+    title: "How a bear attack story helped this author understand her cancer diagnosis | The Current | On Demand - CBC",
+    want: false,
+  },
+  { title: "Jimmy Fallon mentioned bear attack of La Ronge, Sask., man during show | CBC News - CBC", want: false },
 ]
 
 let failed = 0;

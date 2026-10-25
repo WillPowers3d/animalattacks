@@ -1,5 +1,6 @@
 import Parser from "rss-parser";
 import { canonicalArticleUrl, originOf } from "./domain";
+import { isCbcFamilyHost } from "./cbc";
 import { extractAlternateFeeds, extractSearchResultLinks, extractSitemapLocs, isSitemapIndex } from "./html";
 import { politeFetch } from "./http";
 import { SEARCH_QUERIES, SEARCH_QUERIES_CA, urlLooksLikeMatch } from "./match";
@@ -71,10 +72,9 @@ export async function discoverFeeds(
   return { rss: [...rss], sitemaps: [...sitemaps] };
 }
 
-export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): Promise<ArticleCandidate[]> {
-  if (signal?.aborted) return [];
+export async function parseRssText(xml: string): Promise<ArticleCandidate[]> {
   try {
-    const feed = await rssParser.parseURL(feedUrl);
+    const feed = await rssParser.parseString(xml);
     const items: ArticleCandidate[] = [];
     for (const entry of feed.items ?? []) {
       const url = entry.link ? canonicalArticleUrl(entry.link) : "";
@@ -92,6 +92,22 @@ export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): P
   } catch {
     return [];
   }
+}
+
+export async function fetchRssArticles(feedUrl: string, signal?: AbortSignal): Promise<ArticleCandidate[]> {
+  if (signal?.aborted) return [];
+  const res = await politeFetch(feedUrl, {
+    accept: "application/rss+xml,application/atom+xml,application/xml,text/xml,*/*",
+    timeoutMs: 18000,
+    signal,
+  });
+  if (res.ok && res.text && /<(rss|feed|rdf)\b/i.test(res.text)) {
+    const items = await parseRssText(res.text);
+    if (items.length) return items;
+  }
+  // Never use rss-parser's HTTP client on CBC — it negotiates HTTP/2 and can stall.
+  if (isCbcFamilyHost(feedUrl)) return [];
+  return [];
 }
 
 export async function fetchSitemapArticles(

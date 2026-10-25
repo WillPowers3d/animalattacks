@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatLocation } from "@/lib/incident-utils";
+import { sourceBadge } from "@/lib/source-badge";
 import { SEVERITY_LABELS, SPECIES_LABELS, type Severity, type Species } from "@/lib/types";
 
 export type IncidentCardData = {
@@ -19,6 +20,7 @@ export type IncidentCardData = {
   defenseOutcome?: string | null;
   sourceType: string;
   verified: boolean;
+  publicationId?: string | null;
   summary: string;
 };
 
@@ -50,6 +52,12 @@ export function IncidentCard({ incident }: { incident: IncidentCardData }) {
           {SPECIES_LABELS[incident.species as Species] ?? incident.species}
           {incident.subspecies ? ` · ${incident.subspecies}` : ""}
         </span>
+        {(() => {
+          const badge = sourceBadge(incident);
+          return (
+            <span className={`border px-1.5 py-0.5 ${badge.className}`}>{badge.label}</span>
+          );
+        })()}
         {incident.verified && (
           <span className="border border-moss-400/50 px-1.5 py-0.5 text-moss-200">Logged source</span>
         )}
@@ -60,7 +68,7 @@ export function IncidentCard({ incident }: { incident: IncidentCardData }) {
         </Link>
       </h3>
       <p className="mt-1 font-mono text-xs text-moss-300">
-        {date} · {formatLocation(incident)} · {incident.sourceType}
+        {date} · {formatLocation(incident)}
         {incident.caliber ? ` · ${incident.caliber}` : ""}
         {incident.defenseOutcome ? ` · defense ${incident.defenseOutcome}` : ""}
       </p>

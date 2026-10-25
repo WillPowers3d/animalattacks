@@ -10,7 +10,7 @@ This is **not official wildlife-agency data**.
 
 - Incident database: species / subspecies, date, city–region–state/province, country (US / CA / MX), severity (fatal / injury / near-miss / property), summary, source URL(s), source type (news / facebook / ammoland / other), verified flag, lat/lng
 - Defensive-firearm fields used in Weingarten’s research: `firearmType`, `caliber`, `shotsFired`, `defenseOutcome` (success / failure / indeterminate), `combinationDefense`
-- Homepage map + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber)
+- Homepage map + **US / Canada / All** country toggle + **latest attacks** feed + list with filters (species, region, date, severity, firearm type / caliber) + source badges (Weingarten / local paper / agency / Google News)
 - Shareable filter URLs and **CSV export** of the filtered ledger
 - Incident detail pages with attribution
 - Stats: species, region, yearly trend, **handgun caliber effectiveness**
@@ -34,7 +34,7 @@ npm run db:seed
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). Production: **[DEPLOY.md](DEPLOY.md)** (Vercel + Postgres `DATABASE_URL` + cron secrets).
 
 ## Seed data (Weingarten / Ammoland)
 
@@ -91,7 +91,7 @@ Partial RSS failures are warnings: other queries still ingest.
 
 - **News:** Google News RSS queries for NA bear / cougar / elk / moose attacks.
 - **Facebook:** If `FACEBOOK_ACCESS_TOKEN` and `FACEBOOK_PAGE_IDS` (comma-separated) are set, posts are pulled from Graph API `/{page-id}/posts`. Otherwise a **mock/stub** path runs so the pipeline is testable.
-- **Dedupe:** canonical URL, then title + date + location.
+- **Dedupe:** canonical URL, same article path on reprint-farm hosts, then title + date + place. Cross-URL reprints (Black Press / CP wire) collapse when the same event shares a distinctive place or a high title overlap.
 - **Parse:** keyword heuristics + city/state geocode. Set `OPENAI_API_KEY` and pass `--enrich` (or set the key for `/api/ingest`) for optional LLM field cleanup.
 - **HTTP:** `GET`/`POST /api/ingest` (Bearer `INGEST_SECRET` or `CRON_SECRET`, or `?secret=`). Last runs: `/api/ingest/status`.
 
@@ -170,6 +170,7 @@ npm run crawl:publications -- --state=MT --since=2018-01-01 --backfill
 npm run crawl:publications -- --states=IL,MA,OH,IN --limit=400 --concurrency=12 --since=1990-01-01
 npm run crawl:waves -- --hours=3 --batch=400 --concurrency=12 --states=IL,MA,OH,IN --unstated
 npm run crawl:canada
+npm run crawl:cbc
 npm run crawl:agencies
 npm run crawl:backfill-wildlife
 npm run crawl:publications:dry -- --limit=40 --state=AK
@@ -182,7 +183,7 @@ npm run crawl:publications:dry -- --limit=40 --state=AK
 - **Legal / ethics:** `User-Agent` identifies the project; `robots.txt` is fetched and honored (including `Crawl-delay`); ≥1.5s between requests to the same host; no credential stuffing; no paywall bypass; no full-text warehouse.
 - **Precision:** matcher tests live in `npm run test:publications`.
 
-Browse the directory at `/publications` (country + agency filters). Live coverage totals: `/data`. JSON: `GET /api/publications`. Protected crawl trigger: `POST /api/publications/crawl` (same `INGEST_SECRET` / `CRON_SECRET` as news ingest).
+Browse the directory at `/publications` (country + agency filters). Live coverage totals: `/data` (includes last-crawl timestamp). JSON: `GET /api/publications`. Protected crawl trigger: `POST /api/publications/crawl` (same `INGEST_SECRET` / `CRON_SECRET` as news ingest). Production deploy: [DEPLOY.md](DEPLOY.md).
 
 ### GitHub Action (local papers)
 
@@ -210,7 +211,9 @@ Same `DATABASE_URL` secret as daily Google News ingest. No extra crawl secrets. 
 | `npm run crawl:progress:export` | Write `crawl-progress.json` + `local-paper-incidents.json` |
 | `npm run crawl:progress:apply` | Restore lastCrawledAt / incidents onto a fresh seed |
 | `npm run results:write` | Refresh RESULTS.md + crawl-session-report.json |
-| `npm run test:publications` | Keyword matcher unit checks |
+| `npm run crawl:cbc` | CBC / Radio-Canada regional (HTTP/1.1 + listing scrape) |
+| `npm run collapse:reprints` | Merge reprint-farm clones already in the DB |
+| `npm run test:publications` | Keyword matcher + event-dedupe unit checks |
 | `npm run geocode:report` | City / state / country geocode coverage |
 
 ## License / ethics

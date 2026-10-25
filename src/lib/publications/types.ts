@@ -46,7 +46,7 @@ export type ArticleCandidate = {
   url: string;
   snippet: string;
   isoDate?: string | null;
-  source: "rss" | "sitemap" | "search" | "homepage";
+  source: "rss" | "sitemap" | "search" | "homepage" | "listing";
 };
 
 export type MatchResult = {

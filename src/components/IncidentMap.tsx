@@ -13,6 +13,8 @@ import {
 } from "@/lib/species-style";
 import { SEVERITY_LABELS, type Severity } from "@/lib/types";
 
+export type MapCountry = "ALL" | "US" | "CA";
+
 export type MapPoint = {
   slug: string;
   title: string;
@@ -25,12 +27,16 @@ export type MapPoint = {
   summary?: string;
   caliber?: string | null;
   firearmType?: string | null;
+  country?: string | null;
+  sourceLabel?: string | null;
 };
 
 type Props = {
   points: MapPoint[];
   hiddenSpecies?: string[];
   onToggleSpecies?: (species: Species) => void;
+  country?: MapCountry;
+  onCountryChange?: (country: MapCountry) => void;
   showLegend?: boolean;
   compact?: boolean;
 };
@@ -45,6 +51,8 @@ type IncidentProps = {
   summary: string;
   caliber: string;
   firearmType: string;
+  country: string;
+  sourceLabel: string;
 };
 
 function toFeatureCollection(points: MapPoint[]): GeoJSON.FeatureCollection {
@@ -65,6 +73,8 @@ function toFeatureCollection(points: MapPoint[]): GeoJSON.FeatureCollection {
           summary: (p.summary ?? "").slice(0, 220),
           caliber: p.caliber ?? "",
           firearmType: p.firearmType ?? "",
+          country: p.country ?? "",
+          sourceLabel: p.sourceLabel ?? "",
         } satisfies IncidentProps,
       })),
   };
@@ -86,7 +96,7 @@ function popupHtml(p: IncidentProps) {
       <span class="map-pop-sev">${escapeHtml(severity)}</span>
     </div>
     <p class="map-pop-title">${escapeHtml(p.title)}</p>
-    <p class="map-pop-meta">${escapeHtml([p.dateDisplay, p.location].filter(Boolean).join(" · "))}</p>
+    <p class="map-pop-meta">${escapeHtml([p.dateDisplay, p.location, p.sourceLabel].filter(Boolean).join(" · "))}</p>
     ${summary}
     ${gun}
     <a class="map-pop-link" href="/incidents/${encodeURIComponent(p.slug)}">Open full report →</a>
@@ -97,6 +107,8 @@ export function IncidentMap({
   points,
   hiddenSpecies = [],
   onToggleSpecies,
+  country = "ALL",
+  onCountryChange,
   showLegend = true,
   compact = false,
 }: Props) {
@@ -105,9 +117,26 @@ export function IncidentMap({
   const popupRef = useRef<maplibregl.Popup | null>(null);
 
   const visible = useMemo(
-    () => points.filter((p) => !hiddenSpecies.includes(p.species)),
-    [points, hiddenSpecies],
+    () =>
+      points.filter((p) => {
+        if (hiddenSpecies.includes(p.species)) return false;
+        if (country === "ALL") return true;
+        return (p.country ?? "").toUpperCase() === country;
+      }),
+    [points, hiddenSpecies, country],
   );
+
+  const countryCounts = useMemo(() => {
+    const next = { ALL: 0, US: 0, CA: 0 };
+    for (const p of points) {
+      if (hiddenSpecies.includes(p.species)) continue;
+      next.ALL += 1;
+      const c = (p.country ?? "").toUpperCase();
+      if (c === "US") next.US += 1;
+      if (c === "CA") next.CA += 1;
+    }
+    return next;
+  }, [points, hiddenSpecies]);
   const visibleRef = useRef(visible);
   visibleRef.current = visible;
 
@@ -285,6 +314,38 @@ export function IncidentMap({
       {showLegend && (
         <div className="pointer-events-auto absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-2 sm:inset-x-auto sm:left-3 sm:top-3 sm:max-w-[340px] sm:p-0">
           <div className="border border-kraft-500/40 bg-moss-950/92 p-2 shadow-field backdrop-blur-md sm:p-3">
+            {onCountryChange && (
+              <div className="mb-2">
+                <p className="stamp mb-1.5 text-[10px] text-kraft-400">Country</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {(
+                    [
+                      ["ALL", "All", countryCounts.ALL],
+                      ["US", "US", countryCounts.US],
+                      ["CA", "Canada", countryCounts.CA],
+                    ] as const
+                  ).map(([id, label, n]) => {
+                    const on = country === id;
+                    return (
+                      <button
+                        key={id}
+                        type="button"
+                        aria-pressed={on}
+                        onClick={() => onCountryChange(id)}
+                        className={`inline-flex min-h-11 items-center gap-2 border px-3 py-1.5 font-mono text-xs uppercase tracking-wider transition ${
+                          on
+                            ? "border-kraft-400/70 bg-moss-800 text-kraft-100"
+                            : "border-moss-600 bg-moss-950/70 text-moss-400"
+                        }`}
+                      >
+                        {label}
+                        <span className="text-[10px] text-moss-300">{n}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             <p className="stamp mb-2 text-[10px] text-kraft-400">Species on the map</p>
             <div className="flex flex-wrap gap-1.5">
               {presentSpecies.map((s) => {
