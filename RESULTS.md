@@ -11,6 +11,7 @@ Environment for the numbers below: Cloud Agent SQLite (`file:./dev.db`). The run
 | Unique US publications (`data/publications/us-local-news.json.gz`) | **14,847** |
 | Canadian local / digital papers (`data/publications/canada-local-news.json`) | **383** (curated + Wikidata/Wikipedia; BC / AB / SK / MB / ON north / YT / NT / NU prioritized) |
 | Canada priority extras (`data/publications/canada-priority-extra.json`) | **CBC regional + Radio-Canada + NNSL territories + northern weeklies** (path-qualified so they do not collide with national hosts) |
+| Mexican local / regional papers (`data/publications/mexico-local-news.json`) | **199** (99 curated northern + jaguar / black-bear range, plus Wikidata; ISO 3166-2:MX codes so BCN ≠ BC) |
 | Agency / park press feeds (`data/publications/agency-feeds.json`) | **49** (western state agencies, NPS parks, provincial newsrooms) |
 | Newspapers (default crawl set) | **11,377** US + Canadian newspapers |
 | TV / radio / broadcast (stored, skipped unless `--all-tiers`) | 3,470 |
@@ -25,17 +26,18 @@ Sources (facts only — name, URL, place): 3DLNews / WM News Lab, sTechLab ICWSM
 
 Refresh by re-running the live DB; the table is rewritten as the sweep continues.
 
-| | After Canada-priority (PR #3) | After dedupe + CBC (this PR) |
-| --- | ---: | ---: |
-| Directory rows | **15,308** | **15,308** (CBC RSS URLs pointed at `rss.cbc.ca` lineup) |
-| US pubs scanned (RSS first pass) | **11,325** | **11,325** (not re-scanned) |
-| Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC/Radio-Canada regional re-crawled |
-| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** |
-| Canada publication-linked unique incidents | **162** (988 raw matcher hits) | **132** after event-dedupe on the committed seed, then **208** after CBC Google News + listings (77 new CBC stories, 10 merged reprints) |
-| CBC regional RSS | HTTP/2 stall | **299** articles via HTTP/1.1 / `rss.cbc.ca` (14 pubs; 1 Edmonton timeout). Current feeds had no live attack items; historical stories came from Google News `site:cbc.ca` + listing scrape (**256** URLs, **87** matcher hits). |
-| Agency incidents (`sourceType=agency`) | **7** | **7** |
-| Incidents total in this VM | **487** | **522** (205 Weingarten + extras + deduped locals + CBC) |
-| Historical Weingarten | 205–231 | **205** ammoland (unchanged; fuzzy merge never absorbs Weingarten) |
+| | After Canada-priority (PR #3) | After dedupe + CBC (PR #4) | After Mexico + west + digest (this PR) |
+| --- | ---: | ---: | ---: |
+| Directory rows | **15,308** | **15,308** | **15,491** (+199 MX) |
+| US pubs scanned (RSS first pass) | **11,325** | **11,325** | **11,325** (not re-scanned) |
+| Canada pubs seeded / scanned | **432 / 314** | **432 / 314** + **14** CBC | **432 / 314** (not re-crawled) |
+| Mexico pubs seeded / scanned | — | — | **199 / 197** (2,572 articles, 31 matcher hits, 28 upserts; 3 reprints merged) |
+| Mexico incidents (`country=MX`) | — | — | **34** on the map / `/data` after Durango-CO retags (Mexican papers also reprinted some world wires) |
+| West-core archive backfill (AK/MT/WY/ID/CO) | skipped | skipped | **150** never-backfilled pubs scanned this wave (757 articles, **10** new unique incidents). **165** still queued (mostly 150s timeouts / dead hosts). Already-backfilled western papers were not re-walked. |
+| Agency feeds seeded / scanned | **49 / 47** | **49 / 47** | **49 / 47** |
+| Fatal / injury digest | — | — | `npm run digest` + weekly Action; first-run window uses `occurredAt` (not the whole seeded corpus) |
+| Incidents total in this VM | **487** | **522** | **614** |
+| Historical Weingarten | 205–231 | **205** ammoland | **205** ammoland (unchanged) |
 
 ### Best finds this wave
 
@@ -47,13 +49,17 @@ Refresh by re-running the live DB; the table is rewritten as the sweep continues
 
 **US archive backfill:** Yellowstone hiker injuries; Grizzly 399 / Lander; Glacier NP fatal; Ovando cyclist; Big Sky hunter; Columbia Falls; Cody hunter.
 
+**Mexico (this PR):** Coahuila livestock / crop black-bear and puma conflict (El Heraldo de Saltillo); Tamaulipas farmers who killed an attacking puma; Chiapas La Concordia child puma attack; Oaxaca Mazatec child killed by puma; Nuevo León bear walking through a party (no injuries). Northern papers also reprint world wires (Japón, Italia, Brasil) — country inference now keys off Japón/Brasil/Noruega and does not apply Mexican state names to US publications (Durango, CO stays US).
+
+**West-core backfill (this PR):** Colorado Sun / KJCT Eagle County deputy vs charging bear; Grand Junction child bear attack follow-ups; Kiowa County Press mountain-lion investigation; Aspen camper fights off a bear; Colorado Springs bear attack. Matcher still rejects sports/legal “charged” noise; a few circus-bear wires from bilingual CO papers remain.
+
 Priority order: AK, MT, WY, ID, CO, WA, OR, CA, AZ, NM, UT, NV, ME, MN, WI, MI, NH, VT, NY, PA, TN, NC, VA, WV, SD, ND, FL, then remaining black-bear / cougar-range states (TX, OK, AR, GA, KY, MO, IA, KS, NE, LA, AL, SC, MS, OH, IN, IL), then coastal leftovers and unstated domains.
 
-**This continuation** does **not** re-scan the US first pass. It adds three new workstreams:
+**This continuation** does **not** re-scan the US first pass or re-litigate the Canada directory. New workstreams:
 
-1. **Wildlife-state archive backfill** (`--backfill --wildlife`) on AK, MT, WY, ID, CO, WA, OR, CA, NM, UT, NV, ME, MN, WI, MI, NH, VT — uses `lastBackfillAt`, so RSS-already-scanned papers still get sitemaps / site search.
-2. **Canadian local news** directory + crawl (`--country=CA`) with town-center geocode and `country=CA` pins.
-3. **Agency / park press feeds** (`--agencies`) stored as `sourceType=agency`.
+1. **Mexico coverage** — curated local/regional directory + Spanish matcher (`oso` / `puma` / `león de montaña` + `ataque` / `atacó` / `agredió` / `embistió`) + town-center geocode + `country=MX` + All/US/Canada/Mexico map filter.
+2. **Fatal / injury digest** — `npm run digest` / `GET /api/digest` / weekly GitHub Action. Markdown artifact of new serious incidents since the last run.
+3. **Deep western US archive backfill** — `--west --backfill` on **AK, MT, WY, ID, CO only** (skipped in PR #4). High-precision matcher; dedupe against existing incidents.
 
 Each wave writes `data/publications/crawl-progress.json` + `local-paper-incidents.json` so a new Cloud Agent VM can restore `lastCrawledAt` / `lastBackfillAt` after `npm run db:seed`.
 
@@ -70,6 +76,15 @@ npm run crawl:waves -- --hours=3 --batch=250 --concurrency=10 --wildlife --backf
 
 # Canadian local papers (RSS + site-search; skips heavy sitemaps)
 npm run crawl:canada
+
+# Mexican local / regional papers (Spanish matcher; town-center pins)
+npm run crawl:mexico
+
+# Deep western US archives only (AK, MT, WY, ID, CO)
+npm run crawl:west-backfill
+
+# Fatal / injury markdown digest
+npm run digest
 
 # Official agency / park feeds
 npm run crawl:agencies
@@ -107,25 +122,27 @@ Identifying User-Agent; robots.txt + Crawl-delay; backoff on HTTP 429/503; no pa
 
 ## Latest snapshot
 
-Generated **2026-09-14T17:08:44.628Z**. Combined with the committed first-pass baseline plus this VM’s Canada / agency / wildlife-backfill wave.
+Generated **2026-09-15T00:40:22.571Z**. Combined with the committed first-pass baseline plus this VM’s Mexico / digest / western-core backfill wave.
 
 | Metric | Count |
 | --- | ---: |
-| Publications in directory | 15,308 |
-| Scanned at least once (combined) | **11,761** |
-| This-VM pubs scanned | 5,390 |
-| Uncrawled newspapers remaining | 6,446 |
-| Article records fetched (combined) | **135,182** |
-| This-VM articles | 40,001 |
-| Matching articles (combined) | **1,049** |
-| This-VM publication-linked incidents | 301 |
+| Publications in directory | 15,491 |
+| Scanned at least once (combined) | **11,888** |
+| This-VM pubs scanned | 5,726 |
+| Uncrawled newspapers remaining | 6,293 |
+| Article records fetched (combined) | **137,743** |
+| This-VM articles | 43,332 |
+| Matching articles (combined) | **1,081** |
+| This-VM publication-linked incidents | 397 |
 | New incidents this wave (beyond restored) | 0 |
-| Publications with a match | 68 |
-| Incidents from local / agency feeds (combined) | **188** |
+| Publications with a match | 77 |
+| Incidents from local / agency feeds (combined) | **284** |
 | Canada publications (seeded / scanned) | **432 / 314** |
-| Canada incidents (all / publication-linked) | **223 / 208** |
+| Canada incidents (all / publication-linked) | **224 / 210** |
+| Mexico publications (seeded / scanned) | **199 / 197** |
+| Mexico incidents (all / publication-linked) | **34 / 34** |
 | Agency feeds (seeded / scanned) | 49 / 47 |
-| Incidents total | 522 |
+| Incidents total | 614 |
 
 ### Canada coverage (priority)
 
@@ -133,7 +150,7 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 
 | Province / territory | Seeded | Scanned | Articles | Matches | Incidents |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| YT Yukon | 6 | 6 | 99 | 10 | 17 |
+| YT Yukon | 6 | 6 | 99 | 10 | 18 |
 | NT Northwest Territories | 11 | 11 | 448 | 40 | 69 |
 | NU Nunavut | 3 | 3 | 140 | 15 | 4 |
 | BC British Columbia | 88 | 88 | 2120 | 795 | 68 |
@@ -148,10 +165,11 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 | PE Prince Edward Island | 1 | 0 | 0 | 0 | 0 |
 | ??  | 142 | 49 | 330 | 0 | 0 |
 
-**Canada totals:** 432 pubs seeded, 314 scanned, 5072 articles, 988 matcher hits, 208 publication-linked incidents (223 incidents with country=CA).
+**Canada totals:** 432 pubs seeded, 314 scanned, 5072 articles, 988 matcher hits, 210 publication-linked incidents (224 incidents with country=CA).
 
 #### Recent / best Canada finds
 
+- Mientras el esposo cazaba osos, uno de ellos mató a su esposa y bebé (bear, near_miss, YT)
 - 'Handling me like a rag doll': Cranbrook hunter survives grizzly attack - CBC (bear, near_miss, Yellowknife, NT)
 - 'Aggressive' black bear attacks 2 people near Simon Fraser University - CBC (bear, near_miss, Simon Fraser, NT)
 - Wildfire fighter attacked by grizzly bear while on the job in northern B.C. - CBC (bear, near_miss, Yellowknife, NT)
@@ -169,12 +187,64 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 - Black bear attacks on calves increasing in B.C.'s Cariboo region - CBC (bear, near_miss, Yellowknife, NT)
 - Caution urged following fatal cougar attack - CBC (mountain_lion, fatal, Yellowknife, NT)
 - Cougar attacks: Seven ways to survive - CBC (mountain_lion, near_miss, Yellowknife, NT)
-- 2 cougars shot after child mauled in Lake Cowichan subdivision at centre of town - CBC (mountain_lion, near_miss, Lake Cowichan, NT)
+
+### Mexico coverage (new)
+
+Northern states + jaguar / black-bear range: SON, CHH, COA, NLE, BCN, BCS, then SIN / DUR / TAM and Pacific / southeast jaguar states. Moose N/A; elk rare. Spanish matcher: oso / puma / león de montaña + atacó / ataque / agredió / embistió.
+
+| State | Seeded | Scanned | Articles | Matches | Incidents |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| SON Sonora | 7 | 7 | 142 | 0 | 0 |
+| CHH Chihuahua | 12 | 12 | 138 | 2 | 3 |
+| COA Coahuila | 8 | 8 | 134 | 0 | 4 |
+| NLE Nuevo León | 13 | 13 | 185 | 0 | 1 |
+| BCN Baja California | 10 | 10 | 198 | 0 | 0 |
+| BCS Baja California Sur | 6 | 6 | 54 | 0 | 0 |
+| SIN Sinaloa | 8 | 8 | 59 | 0 | 0 |
+| DUR Durango | 3 | 3 | 54 | 0 | 1 |
+| TAM Tamaulipas | 6 | 6 | 64 | 0 | 1 |
+| JAL Jalisco | 6 | 6 | 147 | 0 | 0 |
+| NAY Nayarit | 3 | 3 | 0 | 0 | 1 |
+| MIC Michoacán | 8 | 8 | 28 | 0 | 4 |
+| GRO Guerrero | 4 | 4 | 3 | 0 | 0 |
+| OAX Oaxaca | 3 | 3 | 81 | 0 | 2 |
+| CHP Chiapas | 7 | 7 | 123 | 1 | 1 |
+| CAM Campeche | 4 | 4 | 34 | 1 | 1 |
+| ROO Quintana Roo | 5 | 5 | 122 | 0 | 0 |
+| YUC Yucatán | 5 | 5 | 63 | 0 | 0 |
+| ZAC Zacatecas | 4 | 4 | 30 | 0 | 0 |
+| SLP San Luis Potosí | 3 | 3 | 10 | 0 | 0 |
+| CMX Ciudad de México | 2 | 2 | 21 | 0 | 0 |
+| ??  | 72 | 70 | 1026 | 27 | 15 |
+
+**Mexico totals:** 199 pubs seeded, 197 scanned, 2716 articles, 31 matcher hits, 34 publication-linked incidents (34 incidents with country=MX).
+
+#### Recent / best Mexico finds
+
+- Durango Woman Found Dead After Apparent Bear Attack (bear, fatal, Archuleta, DUR)
+- Puma ataca a campesinos, ellos lo enfrentan y lo matan en Tamaulipas (mountain_lion, near_miss, Coatzacoalcos, TAM)
+- Mujer de 90 años sobrevive a ataque de un oso: “He estado alabando al Señor desde entonces” (bear, near_miss, Coatzacoalcos)
+- El caso del niño que peleó con un puma y sobrevivió (mountain_lion, near_miss)
+- Oaxaca: Crece la depredación de ganado por felinos y fauna silvestre (mountain_lion, property, OAX)
+- Mueren dos venados en Actopan, uno por ataque de puma (mountain_lion, near_miss)
+- Niño de 4 años logra sobrevivir al ataque de un puma en las montañas (mountain_lion, near_miss)
+- Despedazan a hija de “El Puma” por sus fotos en bikini (mountain_lion, near_miss)
+- Oaxaca Ataca puma a niño. Niño mazateco muere tras ser atacado por puma (mountain_lion, near_miss, OAX)
+- En Actopan, sin registro de ataques de pumas a ganado: alcaldesa (mountain_lion, property)
+- Gritos descarnados alertaron a papás: Niña de 3 años es arrastrada y mordida por puma; perdió brazo (mountain_lion, near_miss, CHH)
+- Dylan McWilliams, el joven que sobrevivió a un tiburón, un oso y una serpiente de cascabel (bear, near_miss)
+- Intenta tomarse selfie con oso y resulta mortal (bear, fatal)
+- Noruega: Matan a oso polar que atacó e hirió a guardia en la cabeza (bear, near_miss)
+- VIDEO. Mamá osa ataca un auto en marcha para defender a su cría (bear, near_miss)
+- VIDEO Nuevo León Sorprende oso en fiesta. Sorprende oso en fiesta, no ataca a nadie, pero se come todo (bear, near_miss, NLE)
+- Oso se mete a casa y mata a la mascota de la familia: un borrego (bear, near_miss)
+- VIDEO. Oso se mete hasta la cocina y ataca a un hombre (bear, near_miss)
 
 ### Incidents by country
 
-- US: 292
-- CA: 223
+- US: 338
+- CA: 224
+- MX: 40
 - NO: 10
 - RU: 4
 - JP: 2
@@ -183,7 +253,7 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 
 ### Incidents by source type
 
-- news: 305
+- news: 397
 - ammoland: 205
 - agency: 7
 - other: 5
@@ -192,7 +262,7 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 
 | Region | Scanned | Articles | Matches |
 | --- | ---: | ---: | ---: |
-| ??  | 2041 | 21525 | 0 |
+| ??  | 2041 | 22396 | 27 |
 | CA California | 781 | 11835 | 7 |
 | TX Texas | 536 | 3736 | 0 |
 | NY New York | 475 | 9499 | 3 |
@@ -205,7 +275,7 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 | OH Ohio | 283 | 1054 | 0 |
 | MI Michigan | 269 | 3489 | 0 |
 | MO Missouri | 259 | 1600 | 0 |
-| CO Colorado | 240 | 4034 | 9 |
+| CO Colorado | 240 | 4034 | 10 |
 | PA Pennsylvania | 240 | 4602 | 4 |
 | WA Washington | 224 | 2675 | 2 |
 | VA Virginia | 215 | 3942 | 0 |
@@ -250,30 +320,52 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 | QC Quebec | 24 | 28 | 0 |
 | MB Manitoba | 17 | 331 | 55 |
 | SK Saskatchewan | 16 | 241 | 32 |
+| NLE Nuevo León | 13 | 185 | 0 |
+| CHH Chihuahua | 12 | 138 | 2 |
 | NT Northwest Territories | 11 | 448 | 40 |
+| BCN Baja California | 10 | 198 | 0 |
 | NB New Brunswick | 8 | 0 | 0 |
+| COA Coahuila | 8 | 134 | 0 |
+| MIC Michoacán | 8 | 28 | 0 |
+| SIN Sinaloa | 8 | 59 | 0 |
+| CHP Chiapas | 7 | 123 | 1 |
+| SON Sonora | 7 | 142 | 0 |
 | YT Yukon | 6 | 99 | 10 |
+| BCS Baja California Sur | 6 | 54 | 0 |
+| JAL Jalisco | 6 | 147 | 0 |
+| TAM Tamaulipas | 6 | 64 | 0 |
+| ROO Quintana Roo | 5 | 122 | 0 |
+| YUC Yucatán | 5 | 63 | 0 |
 | NS Nova Scotia | 4 | 2 | 0 |
+| CAM Campeche | 4 | 34 | 1 |
+| GRO Guerrero | 4 | 3 | 0 |
+| ZAC Zacatecas | 4 | 30 | 0 |
 | NU Nunavut | 3 | 140 | 15 |
+| DUR Durango | 3 | 54 | 0 |
+| NAY Nayarit | 3 | 0 | 0 |
+| OAX Oaxaca | 3 | 81 | 0 |
+| SLP San Luis Potosí | 3 | 10 | 0 |
+| CMX Ciudad de México | 2 | 21 | 0 |
 | NL Newfoundland and Labrador | 1 | 1 | 0 |
 | PE Prince Edward Island | 1 | 0 | 0 |
 
 ### Local / agency incidents by species
 
-- bear: 206
-- mountain_lion: 81
-- moose: 10
-- elk: 4
+- bear: 266
+- mountain_lion: 103
+- moose: 22
+- elk: 6
 
 ### Local / agency incidents by region
 
 - BC: 84
 - NT: 69
-- AB: 26
-- AK: 22
-- CO: 15
+- CO: 64
+- AB: 27
+- AK: 23
+- ??: 17
+- YT: 15
 - ON: 14
-- YT: 14
 - MB: 13
 - MT: 11
 - WY: 10
@@ -281,17 +373,21 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 - SK: 8
 - CA: 7
 - VT: 7
+- DUR: 7
 - FL: 5
+- NM: 5
 - ME: 5
 - UT: 5
-- NM: 4
 - NU: 4
+- COA: 4
+- MIC: 4
 - ID: 3
+- CHH: 3
 - AR: 2
 - IL: 2
 - MN: 2
 - PA: 2
-- ??: 2
+- OAX: 2
 - NC: 1
 - NV: 1
 - NY: 1
@@ -299,4 +395,10 @@ Bear / moose / cougar country first: YT, NT, NU, BC, AB, SK, MB, northern ON. Co
 - TN: 1
 - WI: 1
 - NH: 1
+- CAM: 1
+- CHP: 1
+- IN: 1
+- NAY: 1
+- NLE: 1
+- TAM: 1
 

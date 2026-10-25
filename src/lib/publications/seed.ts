@@ -15,6 +15,7 @@ export function loadPublicationSeeds(): PublicationSeed[] {
     "extra.json",
     "canada-local-news.json",
     "canada-priority-extra.json",
+    "mexico-local-news.json",
     "agency-feeds.json",
   ];
   let main: PublicationSeed[] = [];

@@ -1,0 +1,81 @@
+name: Weekly fatal / injury digest
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # Mondays 14:00 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Look-back days if no cursor (default 7)"
+        type: string
+        default: "7"
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve database
+        env:
+          SECRET_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -n "$SECRET_DATABASE_URL" ]; then
+            echo "DATABASE_URL=$SECRET_DATABASE_URL" >> "$GITHUB_ENV"
+            echo "DB_MODE=hosted" >> "$GITHUB_ENV"
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "::error::Scheduled digest requires a DATABASE_URL repo secret (Postgres)."
+            exit 1
+          else
+            echo 'DATABASE_URL=file:./dev.db' >> "$GITHUB_ENV"
+            echo "DB_MODE=sqlite-smoke" >> "$GITHUB_ENV"
+            echo "::warning::No DATABASE_URL secret. Ephemeral SQLite smoke only."
+          fi
+
+      - name: Configure Prisma provider
+        run: npx tsx scripts/configure-db-provider.ts
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Smoke seed (ephemeral SQLite only)
+        if: env.DB_MODE == 'sqlite-smoke'
+        run: |
+          npx prisma db push
+          npm run db:seed
+
+      - name: Build digest
+        run: |
+          DAYS="${{ github.event.inputs.days }}"
+          ARGS="--write"
+          if [ -n "$DAYS" ]; then ARGS="$ARGS --days=$DAYS"; fi
+          npm run digest -- $ARGS | tee digest.md
+
+      - name: Upload markdown artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fatal-injury-digest
+          path: |
+            digest.md
+            data/digests/latest.md
+          if-no-files-found: warn
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Fatal / injury digest"
+            echo ""
+            echo "Markdown artifact only — no email vendor. Confirm each row with the source link."
+            echo ""
+            if [ -f digest.md ]; then
+              cat digest.md
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

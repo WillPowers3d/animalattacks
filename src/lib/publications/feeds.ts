@@ -3,7 +3,7 @@ import { canonicalArticleUrl, originOf } from "./domain";
 import { isCbcFamilyHost } from "./cbc";
 import { extractAlternateFeeds, extractSearchResultLinks, extractSitemapLocs, isSitemapIndex } from "./html";
 import { politeFetch } from "./http";
-import { SEARCH_QUERIES, SEARCH_QUERIES_CA, urlLooksLikeMatch } from "./match";
+import { SEARCH_QUERIES, SEARCH_QUERIES_CA, SEARCH_QUERIES_MX, urlLooksLikeMatch } from "./match";
 import { robotsAllows, type RobotsRules } from "./robots";
 import type { ArticleCandidate } from "./types";
 
@@ -188,7 +188,8 @@ export async function fetchSearchArticles(
 ): Promise<ArticleCandidate[]> {
   const origin = originOf(homepageUrl);
   if (!origin) return [];
-  const pool = opts.country === "CA" ? SEARCH_QUERIES_CA : SEARCH_QUERIES;
+  const pool =
+    opts.country === "CA" ? SEARCH_QUERIES_CA : opts.country === "MX" ? SEARCH_QUERIES_MX : SEARCH_QUERIES;
   const queries = pool.slice(0, opts.maxQueries ?? 4);
   const out: ArticleCandidate[] = [];
   const seen = new Set<string>();

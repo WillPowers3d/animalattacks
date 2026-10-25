@@ -24,6 +24,12 @@ export default async function DataPage() {
     canadaPubLinked,
     canadaByProv,
     canadaIncByProv,
+    mexicoPubs,
+    mexicoScanned,
+    mexicoIncidents,
+    mexicoPubLinked,
+    mexicoByState,
+    mexicoIncByState,
     agencyPubs,
     agencyScanned,
     pubMatches,
@@ -53,6 +59,21 @@ export default async function DataPage() {
     prisma.incident.groupBy({
       by: ["stateProvince"],
       where: { country: "CA" },
+      _count: { _all: true },
+    }),
+    prisma.publication.count({ where: { country: "MX" } }),
+    prisma.publication.count({ where: { country: "MX", lastCrawledAt: { not: null } } }),
+    prisma.incident.count({ where: { country: "MX" } }),
+    prisma.incident.count({ where: { country: "MX", publicationId: { not: null } } }),
+    prisma.publication.groupBy({
+      by: ["state"],
+      where: { country: "MX" },
+      _count: { _all: true },
+      _sum: { matchCount: true, scannedArticleCount: true },
+    }),
+    prisma.incident.groupBy({
+      by: ["stateProvince"],
+      where: { country: "MX" },
       _count: { _all: true },
     }),
     prisma.publication.count({ where: { circulationTier: "agency" } }),
@@ -113,6 +134,46 @@ export default async function DataPage() {
       return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
     });
 
+  const mxOrder = [
+    "SON",
+    "CHH",
+    "COA",
+    "NLE",
+    "BCN",
+    "BCS",
+    "SIN",
+    "DUR",
+    "TAM",
+    "JAL",
+    "NAY",
+    "MIC",
+    "GRO",
+    "OAX",
+    "CHP",
+    "CAM",
+    "ROO",
+    "YUC",
+    "ZAC",
+    "SLP",
+    "CMX",
+    "??",
+  ];
+  const mxIncMap = new Map(mexicoIncByState.map((r) => [r.stateProvince ?? "??", r._count._all]));
+  const mexicoProvRows = mexicoByState
+    .map((p) => ({
+      key: p.state ?? "??",
+      name: regionName(p.state),
+      pubs: p._count._all,
+      articles: p._sum.scannedArticleCount ?? 0,
+      matches: p._sum.matchCount ?? 0,
+      incidents: mxIncMap.get(p.state ?? "??") ?? 0,
+    }))
+    .sort((a, b) => {
+      const ai = mxOrder.indexOf(a.key);
+      const bi = mxOrder.indexOf(b.key);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+
   return (
     <article className="space-y-8 text-sm leading-relaxed text-moss-100">
       <header>
@@ -120,9 +181,11 @@ export default async function DataPage() {
         <h1 className="font-display text-3xl text-kraft-200">Data & crawl stats</h1>
         <p className="mt-2 max-w-3xl text-moss-200">
           Live counts from this database: historical Weingarten cases, extra seed incidents, US
-          local-paper crawl, Canadian local news, and official wildlife-agency / park press feeds.
+          local-paper crawl, Canadian local news, Mexican local / regional news, and official
+          wildlife-agency / park press feeds.
           See <Link href="/about" className="text-kraft-300 underline">methodology</Link> and the{" "}
-          <Link href="/publications" className="text-kraft-300 underline">publication directory</Link>.
+          <Link href="/publications" className="text-kraft-300 underline">publication directory</Link>
+          . Fatal / injury digest: <Link href="/api/digest?format=md" className="text-kraft-300 underline">latest markdown</Link>.
         </p>
         <p className="mt-3 border border-kraft-500/25 bg-moss-950/60 px-3 py-2 font-mono text-xs text-kraft-200">
           Last crawl{" "}
@@ -148,6 +211,8 @@ export default async function DataPage() {
         <Stat tile="Articles fetched" value={(articles._sum.scannedArticleCount ?? 0).toLocaleString()} />
         <Stat tile="Canada pubs / scanned" value={`${canadaPubs} / ${canadaScanned}`} />
         <Stat tile="Canada incidents / crawl" value={`${canadaIncidents} / ${canadaPubLinked}`} />
+        <Stat tile="Mexico pubs / scanned" value={`${mexicoPubs} / ${mexicoScanned}`} />
+        <Stat tile="Mexico incidents / crawl" value={`${mexicoIncidents} / ${mexicoPubLinked}`} />
         <Stat tile="Agency feeds / scanned" value={`${agencyPubs} / ${agencyScanned}`} />
         <Stat tile="Pubs with a match" value={pubMatches.toLocaleString()} />
         <Stat tile="Crawl-sourced incidents" value={localIncidents.toLocaleString()} />
@@ -202,6 +267,26 @@ export default async function DataPage() {
         </p>
         <ul className="mt-3 grid gap-1 sm:grid-cols-2 font-mono text-xs text-moss-200">
           {canadaProvRows.map((r) => (
+            <li key={r.key} className="flex justify-between gap-4 border-b border-kraft-500/10 py-1">
+              <span>
+                {r.key} {r.name}
+              </span>
+              <span className="text-kraft-200">
+                {r.pubs} pubs · {r.articles} arts · {r.matches} hits · {r.incidents} inc
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="font-display text-xl text-kraft-200">Mexico by state</h2>
+        <p className="mt-1 text-moss-300">
+          Priority: Sonora, Chihuahua, Coahuila, Nuevo León, Baja, plus jaguar / black-bear range.
+          Moose are N/A; elk is rare.
+        </p>
+        <ul className="mt-3 grid gap-1 sm:grid-cols-2 font-mono text-xs text-moss-200">
+          {mexicoProvRows.map((r) => (
             <li key={r.key} className="flex justify-between gap-4 border-b border-kraft-500/10 py-1">
               <span>
                 {r.key} {r.name}

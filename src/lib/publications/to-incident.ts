@@ -1,7 +1,7 @@
 import { geocodeIncident, offsetCoord } from "../geo";
 import type { SeedIncident, Species } from "../types";
 import { matchAnimalAttack } from "./match";
-import { CA_PROVINCE_NAMES, US_STATE_NAMES } from "./states";
+import { CA_PROVINCE_NAMES, MX_STATE_NAMES, US_STATE_NAMES } from "./states";
 import type { ArticleCandidate } from "./types";
 
 const STATE_RE: [RegExp, string][] = [
@@ -70,18 +70,52 @@ const PROVINCE_RE: [RegExp, string][] = [
   [/\bNewfoundland\b|\bLabrador\b|\bTerre[- ]Neuve\b/, "NL"],
 ];
 
+const MX_STATE_RE: [RegExp, string][] = [
+  [/\bSonora\b/, "SON"],
+  [/\bChihuahua\b/, "CHH"],
+  [/\bCoahuila\b/, "COA"],
+  [/\bNuevo Le[oó]n\b/, "NLE"],
+  [/\bBaja California Sur\b/, "BCS"],
+  [/\bBaja California\b/, "BCN"],
+  [/\bSinaloa\b/, "SIN"],
+  [/\bDurango\b/, "DUR"],
+  [/\bTamaulipas\b/, "TAM"],
+  [/\bJalisco\b/, "JAL"],
+  [/\bMichoac[aá]n\b/, "MIC"],
+  [/\bNayarit\b/, "NAY"],
+  [/\bGuerrero\b/, "GRO"],
+  [/\bOaxaca\b/, "OAX"],
+  [/\bChiapas\b/, "CHP"],
+  [/\bCampeche\b/, "CAM"],
+  [/\bQuintana Roo\b/, "ROO"],
+  [/\bYucat[aá]n\b/, "YUC"],
+  [/\bZacatecas\b/, "ZAC"],
+  [/\bSan Luis Potos[ií]\b/, "SLP"],
+  [/\bCiudad de M[eé]xico\b|\bCDMX\b/, "CMX"],
+];
+
 function inferSeverity(text: string): SeedIncident["severity"] {
-  if (/\b(killed|dead|dies|fatal|fatally|died|tu[ée]e?s?|mortel(?:le)?)\b/i.test(text)) return "fatal";
-  if (/\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed|bless[ée]e?s?|hospitalis[ée]e?s?)\b/i.test(text))
+  if (
+    /\b(killed|dead|dies|fatal|fatally|died|tu[ée]e?s?|mortel(?:le)?|muert[oa]s?|fallec(?:ió|ido)|mat[oó]|mortal)\b/i.test(
+      text,
+    )
+  )
+    return "fatal";
+  if (
+    /\b(injur|maul|gored|trampled|hospital|bitten|wound|clawed|bless[ée]e?s?|hospitalis[ée]e?s?|herid[oa]s?|lesionad[oa]s?|hospitaliz)\b/i.test(
+      text,
+    )
+  )
     return "injury";
-  if (/\b(home|cabin|property|break-in|livestock|pet|bétail|propriété)\b/i.test(text)) return "property";
+  if (/\b(home|cabin|property|break-in|livestock|pet|bétail|propriété|ganado|vivienda)\b/i.test(text))
+    return "property";
   return "near_miss";
 }
 
 function inferSubspecies(species: Species, text: string): string | null {
   if (species === "bear") {
     if (/grizzly|grizzli|brown bear/i.test(text)) return "grizzly";
-    if (/black bear|ours noir/i.test(text)) return "black";
+    if (/black bear|ours noir|oso negro/i.test(text)) return "black";
     if (/polar|ours polaire/i.test(text)) return "polar";
   }
   if (species === "mountain_lion") return "cougar";
@@ -131,11 +165,20 @@ export function articleToIncident(
   const rawCity = (cityState?.[1] ?? cityMatch?.[1] ?? null)?.replace(/\s+/g, " ").trim() ?? null;
   const cityFromArticle = rawCity && !MONTHS.has(rawCity) ? rawCity : null;
   let stateFromArticle: string | null = cityState?.[2] ?? null;
-  if (stateFromArticle && !CA_PROVINCE_NAMES[stateFromArticle] && !STATE_RE.some(([, abbr]) => abbr === stateFromArticle)) {
+  if (
+    stateFromArticle &&
+    !CA_PROVINCE_NAMES[stateFromArticle] &&
+    !MX_STATE_NAMES[stateFromArticle] &&
+    !STATE_RE.some(([, abbr]) => abbr === stateFromArticle)
+  ) {
     stateFromArticle = null;
   }
   if (!stateFromArticle) {
-    for (const [re, abbr] of [...PROVINCE_RE, ...STATE_RE]) {
+    const mxFirst = pub.country === "MX" || /\bM[eé]xico\b|\bMexico\b/i.test(blob);
+    const order = mxFirst
+      ? [...MX_STATE_RE, ...PROVINCE_RE, ...STATE_RE]
+      : [...PROVINCE_RE, ...STATE_RE];
+    for (const [re, abbr] of order) {
       if (re.test(`${article.title} ${article.snippet}`)) {
         stateFromArticle = abbr;
         break;
@@ -145,14 +188,18 @@ export function articleToIncident(
 
   const city = cityFromArticle ?? pub.city ?? pub.town ?? null;
   const state = stateFromArticle ?? pub.state ?? null;
-  let country = pub.country === "CA" ? "CA" : "US";
+  let country = pub.country === "CA" ? "CA" : pub.country === "MX" ? "MX" : "US";
   if (state && CA_PROVINCE_NAMES[state]) country = "CA";
+  else if (state && MX_STATE_NAMES[state]) country = "MX";
   else if (state && US_STATE_NAMES[state]) country = "US";
   const foreign =
-    blob.match(/\bJapan\b/i) ? "JP"
+    blob.match(/\bJapan\b|\bJap[oó]n\b/i) ? "JP"
     : blob.match(/\bSlovenia\b/i) ? "SI"
     : blob.match(/\bItaly\b|\bItalia\b/i) ? "IT"
     : blob.match(/\bRomania\b/i) ? "RO"
+    : blob.match(/\bBrazil\b|\bBrasil\b/i) ? "BR"
+    : blob.match(/\bIndia\b/i) ? "IN"
+    : blob.match(/\bNorway\b|\bNoruega\b/i) ? "NO"
     : null;
   if (foreign && !CA_PROVINCE_NAMES[state ?? ""] && !/\b(Canada|B\.C\.|Alberta|Yukon|Nunavut|Ontario)\b/i.test(blob)) {
     country = foreign;

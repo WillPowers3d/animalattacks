@@ -48,13 +48,15 @@ export default async function HomePage({
           North American animal attacks
         </h2>
         <p className="mt-2 max-w-3xl text-sm text-moss-200">
-          {total} records in the ledger — every geocoded attack is on the map. Toggle US / Canada /
-          All on the map, then tap a cluster. Historical core: Dean Weingarten’s documented handgun
-          defenses against bears (Ammoland / Gun Watch). This is not official government data.
+          {total} records in the ledger — every geocoded attack is on the map. Toggle All / US /
+          Canada / Mexico on the map, then tap a cluster. Historical core: Dean Weingarten’s
+          documented handgun defenses against bears (Ammoland / Gun Watch). This is not official
+          government data.
         </p>
         <p className="mt-3 border border-kraft-500/30 bg-moss-950/70 px-3 py-2 font-mono text-[11px] text-kraft-200">
           Coverage: {coverage.find((c) => c.country === "US")?._count._all ?? 0} US ·{" "}
-          {coverage.find((c) => c.country === "CA")?._count._all ?? 0} Canada · {total} in this
+          {coverage.find((c) => c.country === "CA")?._count._all ?? 0} Canada ·{" "}
+          {coverage.find((c) => c.country === "MX")?._count._all ?? 0} Mexico · {total} in this
           view.{" "}
           <a href="/data" className="text-kraft-300 underline decoration-kraft-500/40">
             Live crawl stats →

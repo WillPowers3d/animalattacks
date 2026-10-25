@@ -12,7 +12,7 @@ import { runPublicationCrawl } from "../src/lib/publications/crawl";
 import { exportCrawlProgress } from "../src/lib/publications/progress";
 import { writeResultsReport } from "../src/lib/publications/write-results";
 import { prisma } from "../src/lib/prisma";
-import { BACKFILL_STATES } from "../src/lib/publications/states";
+import { BACKFILL_STATES, WESTERN_CORE_STATES } from "../src/lib/publications/states";
 
 function log(msg: string) {
   try {
@@ -36,6 +36,7 @@ const concurrency = Number(flag("concurrency") ?? "12");
 const backfill = process.argv.includes("--backfill");
 const unstated = Boolean(flag("unstated"));
 const wildlife = Boolean(flag("wildlife"));
+const west = Boolean(flag("west"));
 const agencies = Boolean(flag("agencies"));
 const statesRaw = flag("states");
 const countryRaw = flag("country") ?? flag("countries");
@@ -44,9 +45,11 @@ const states = statesRaw
       .split(",")
       .map((s) => s.trim().toUpperCase())
       .filter(Boolean)
-  : wildlife
-    ? [...BACKFILL_STATES]
-    : undefined;
+  : west
+    ? [...WESTERN_CORE_STATES]
+    : wildlife
+      ? [...BACKFILL_STATES]
+      : undefined;
 const countries = countryRaw
   ? countryRaw
       .split(",")
@@ -100,7 +103,7 @@ async function main() {
         states ? ` · states ${states.join(",")}` : ""
       }${countries ? ` · ${countries.join(",")}` : ""}${unstated ? " · +unstated" : ""}${
         wildlife ? " · wildlife" : ""
-      }${agencies ? " · agencies" : ""}${backfill ? " · backfill" : ""} ===`,
+      }${west ? " · west-core" : ""}${agencies ? " · agencies" : ""}${backfill ? " · backfill" : ""} ===`,
     );
     const result = await runPublicationCrawl({
       limit: batch,
@@ -110,6 +113,7 @@ async function main() {
       newspapersOnly: !agencies,
       agencies,
       wildlife,
+      west,
       states,
       countries,
       unstated,

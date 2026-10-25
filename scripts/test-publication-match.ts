@@ -47,6 +47,14 @@ const cases: { title: string; snippet?: string; want: boolean }[] = [
     want: false,
   },
   { title: "Jimmy Fallon mentioned bear attack of La Ronge, Sask., man during show | CBC News - CBC", want: false },
+  { title: "Un oso negro atacó a un ganadero en Chihuahua", want: true },
+  { title: "Puma agredió a un senderista cerca de Monterrey", want: true },
+  { title: "León de montaña embistió a un ciclista en Sonora", want: true },
+  { title: "Oso atacó a dos personas en Arteaga, Coahuila", want: true },
+  { title: "Los Pumas vencen a América en el ataque final", want: false },
+  { title: "Club Pumas vs Tigres: un ataque ofensivo", want: false },
+  { title: "Maullido de gato asusta a vecinos en Tijuana", want: false },
+  { title: 'Despedazan a hija de “El Puma” por sus fotos en bikini', want: false },
 ]
 
 let failed = 0;

@@ -18,7 +18,7 @@ export type PublicationSeed = {
   city?: string | null;
   state?: string | null;
   county?: string | null;
-  country: "US" | "CA";
+  country: "US" | "CA" | "MX";
   lat?: number | null;
   lng?: number | null;
   circulationTier?: CirculationTier | string | null;
