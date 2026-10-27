@@ -77,6 +77,34 @@ flowchart LR
 
 Protected write paths (`/api/ingest`, `/api/publications/crawl`, authorized digest writes) require `INGEST_SECRET` or `CRON_SECRET` in production. Local development does not.
 
+## Screenshots
+
+Captured from a local `npm run db:seed` run (Weingarten + extra JSON + publication directory + committed crawl progress). Counts on the pages are that seed, not a live production SLA.
+
+**Homepage** — coverage strip and latest-attacks feed:
+
+![Homepage latest attacks](docs/screenshots/home.png)
+
+**Field map** — MapLibre clusters with All / US / Canada / Mexico and species toggles:
+
+![North America incident map](docs/screenshots/home-map.png)
+
+**Stats** — species, region, yearly trend, and recorded handgun-caliber outcomes:
+
+![Statistics charts](docs/screenshots/stats.png)
+
+**Incident detail** — attribution, fields, and a pinned map:
+
+![Incident detail page](docs/screenshots/incident.png)
+
+**Local-paper directory** — 15k+ US / Canada / Mexico / agency rows with crawl status:
+
+![Publications directory](docs/screenshots/publications.png)
+
+**Coverage dashboard** (`/data`):
+
+![Data and crawl coverage](docs/screenshots/data.png)
+
 ## Run locally
 
 ```bash
