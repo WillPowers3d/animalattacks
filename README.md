@@ -1,5 +1,7 @@
 # Animal Attack Tracker
 
+[![CI](https://github.com/WillPowers3d/animalattacks/actions/workflows/ci.yml/badge.svg)](https://github.com/WillPowers3d/animalattacks/actions/workflows/ci.yml)
+
 A public Next.js app that compiles **North American animal-attack reports** into a browsable map, list, search, and stats ledger. The focus is **bears, mountain lions (cougars), elk, and moose** across the US, Canada, and Mexico.
 
 Historical starter data comes from Dean Weingarten’s documented handgun defenses against bears, published on [Ammoland](https://www.ammoland.com/) and earlier on [Gun Watch](http://gunwatch.blogspot.com/). Newer rows are ingested from Google News RSS, optional public Facebook pages, official wildlife-agency / park feeds, and a local-newspaper crawler.
